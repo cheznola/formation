@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product HR. Syllabus de formation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0F0E0C;
+    --ink-2: #2A2720;
+    --muted: #6B6560;
+    --muted-lt: #A09890;
+    --parchment: #F8F4EE;
+    --cream: #F0EAE0;
+    --cream-2: #E8DFD2;
+    --accent: #C87542;
+    --accent-deep: #A35E2D;
+    --sage: #5C6E52;
+    --sage-pale: #EBF0E7;
+    --dark: #1A1612;
+    --border: rgba(15,14,12,.10);
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(248,244,238,.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { font-family: var(--serif); font-weight: 700; font-size: 18px; color: var(--accent); letter-spacing: -.3px; }
+  .nav-meta { font-size: 12px; color: var(--muted); font-weight: 400; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 48px 64px;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: 0; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(ellipse, rgba(200,117,66,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--accent);
+    display: block; margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 640px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  /* ── PROMISE PILLS ── */
+  .promise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 720px;
+    margin-bottom: 16px;
+  }
+  .promise-pill {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .promise-icon {
+    width: 32px; height: 32px; min-width: 32px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  .promise-label { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .promise-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  .zero-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 20px;
+  }
+  .zero-tag {
+    font-size: 11.5px; font-weight: 500;
+    background: #fff; border: 1px solid var(--border);
+    border-radius: 100px; padding: 5px 14px;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .zero-tag span { color: var(--accent); font-weight: 700; }
+
+  /* ── SECTION ── */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 56px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 28px; font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    font-size: 14px; color: var(--muted);
+    margin-bottom: 36px;
+  }
+
+  /* ── FORMATS ── */
+  .formats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .format-card {
+    border-radius: 10px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .format-card.starter { background: var(--cream); border: 1px solid var(--border); }
+  .format-card.core {
+    background: var(--ink);
+    color: #fff;
+  }
+  .format-card.premium {
+    background: var(--accent);
+    color: #fff;
+  }
+  .format-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 3px 10px; border-radius: 100px;
+    display: inline-block; margin-bottom: 16px;
+  }
+  .starter .format-badge { background: var(--cream-2); color: var(--muted); }
+  .core .format-badge { background: rgba(255,255,255,.12); color: rgba(255,255,255,.6); }
+  .premium .format-badge { background: rgba(255,255,255,.2); color: #fff; }
+
+  .format-name {
+    font-family: var(--serif);
+    font-size: 22px; font-weight: 700;
+    letter-spacing: -.5px;
+    margin-bottom: 6px;
+  }
+  .starter .format-name { color: var(--ink); }
+
+  .format-duration {
+    font-size: 12px; font-weight: 500;
+    margin-bottom: 16px;
+    opacity: .7;
+  }
+  .starter .format-duration { color: var(--muted); }
+
+  .format-desc {
+    font-size: 13px; line-height: 1.65;
+    margin-bottom: 20px;
+    opacity: .85;
+  }
+  .starter .format-desc { color: var(--ink-2); }
+
+  .format-price {
+    font-family: var(--serif);
+    font-size: 26px; font-weight: 900;
+    letter-spacing: -1px;
+  }
+  .starter .format-price { color: var(--accent); }
+  .format-price-note { font-size: 11px; opacity: .6; margin-top: 2px; }
+
+  .format-tag {
+    position: absolute; top: 20px; right: 20px;
+    font-size: 10px; font-weight: 700; letter-spacing: .08em;
+    padding: 3px 10px; border-radius: 100px;
+  }
+  .core .format-tag { background: rgba(255,255,255,.15); color: rgba(255,255,255,.8); }
+
+  /* ── MÉTHODE ── */
+  .methode-intro {
+    background: var(--ink);
+    border-radius: 10px;
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  .methode-intro p {
+    font-size: 15px; line-height: 1.75;
+    color: rgba(255,255,255,.75);
+    max-width: 640px;
+  }
+  .methode-intro strong { color: #fff; }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .step {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 16px;
+  }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 28px; font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .step-label {
+    font-size: 12px; font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .step-desc {
+    font-size: 11.5px; color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── COMPÉTENCES ── */
+  .competences-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .competence-item {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 18px 20px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .competence-number {
+    font-family: var(--serif);
+    font-size: 32px; font-weight: 900;
+    color: var(--cream-2);
+    letter-spacing: -1px;
+    line-height: 1;
+    min-width: 36px;
+  }
+  .competence-title { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .competence-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── SYLLABUS SESSIONS ── */
+  .sessions-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .session-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .session-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px;
+    background: var(--cream);
+    cursor: default;
+  }
+  .session-num {
+    width: 36px; height: 36px; min-width: 36px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-weight: 900; font-size: 16px;
+    color: #fff;
+  }
+  .session-meta { flex: 1; }
+  .session-title { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .session-subtitle { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .session-duration {
+    font-size: 11px; font-weight: 600;
+    background: var(--cream-2); color: var(--muted);
+    padding: 4px 12px; border-radius: 100px;
+  }
+
+  .session-body {
+    padding: 20px 24px;
+    background: #fff;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+  .session-section-title {
+    font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .session-points { list-style: none; }
+  .session-points li {
+    font-size: 13px; color: var(--ink-2);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .session-points li:last-child { border-bottom: none; }
+  .session-points li::before { content: '→'; color: var(--accent); font-size: 11px; margin-top: 2px; min-width: 14px; }
+
+  .exercice-box {
+    background: var(--sage-pale);
+    border: 1px solid rgba(92,110,82,.15);
+    border-radius: 6px;
+    padding: 14px 16px;
+    grid-column: 1 / -1;
+  }
+  .exercice-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--sage);
+    margin-bottom: 6px;
+  }
+  .exercice-text { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
+
+  /* ── STARTER FOCUS ── */
+  .starter-focus {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .starter-focus-title {
+    font-family: var(--serif);
+    font-size: 20px; font-weight: 700;
+    letter-spacing: -.5px; color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .starter-focus-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+
+  .starter-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .starter-step {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .starter-step-time {
+    font-size: 10px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .starter-step-label { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .starter-step-desc { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+
+  /* ── PUBLIC ── */
+  .public-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .public-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .public-type {
+    font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .public-name { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .public-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── BIO ── */
+  .bio-section {
+    background: var(--ink);
+    padding: 56px 48px;
+    border-top: 1px solid rgba(255,255,255,.05);
+  }
+  .bio-inner { max-width: 900px; margin: 0 auto; }
+  .bio-header { display: flex; align-items: flex-start; gap: 32px; margin-bottom: 32px; }
+  .bio-avatar {
+    width: 72px; height: 72px; min-width: 72px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-weight: 900;
+    font-size: 28px; color: #fff;
+  }
+  .bio-name {
+    font-family: var(--serif);
+    font-size: 28px; font-weight: 900;
+    letter-spacing: -1px; color: #fff;
+    margin-bottom: 4px;
+  }
+  .bio-role { font-size: 13px; color: rgba(255,255,255,.45); }
+
+  .bio-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .bio-block {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .bio-block-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .bio-block-text { font-size: 12.5px; color: rgba(255,255,255,.65); line-height: 1.65; }
+  .bio-block-text strong { color: rgba(255,255,255,.9); }
+
+  .bio-tagline {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    font-family: var(--serif);
+    font-size: 16px; font-style: italic;
+    color: rgba(255,255,255,.5);
+    line-height: 1.65;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--dark);
+    padding: 24px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-brand { font-family: var(--serif); font-weight: 700; font-size: 16px; color: var(--accent); }
+  .footer-meta { font-size: 11px; color: rgba(255,255,255,.2); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp .5s ease both; }
+  .hero > *:nth-child(1) { animation-delay: .05s; }
+  .hero > *:nth-child(2) { animation-delay: .12s; }
+  .hero > *:nth-child(3) { animation-delay: .20s; }
+  .hero > *:nth-child(4) { animation-delay: .28s; }
+  .hero > *:nth-child(5) { animation-delay: .36s; }
+
+  @media (max-width: 768px) {
+    .nav, .hero, .section, .bio-section, .footer { padding-left: 20px; padding-right: 20px; }
+    .formats-grid, .steps-grid, .competences-grid, .bio-blocks, .public-grid, .starter-steps { grid-template-columns: 1fr; }
+    .promise-grid { grid-template-columns: 1fr; }
+    .session-body { grid-template-columns: 1fr; }
+  }
+  @media print {
+    .nav button { display: none; }
+    .nav { position: static; }
+    .hero::before { display: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">Product HR</div>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <div class="nav-meta">Syllabus de formation · Emmanuel Di Marco</div>
+    <button onclick="window.print()" style="display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:background .15s;" onmouseover="this.style.background='var(--accent-deep)'" onmouseout="this.style.background='var(--accent)'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Télécharger le syllabus
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="eyebrow">Formation IA appliquée aux métiers RH</span>
+  <h1 class="hero-title">Piloter son métier RH<br>à <em>l'ère de l'IA</em></h1>
+  <p class="hero-sub">Passer de spectateur des bouleversements IA à professionnel RH augmenté, avec des outils activables dès le lendemain.</p>
+
+  <div class="promise-grid">
+    <div class="promise-pill">
+      <div class="promise-icon">⚡</div>
+      <div>
+        <div class="promise-label">Ultra-concrète</div>
+        <div class="promise-desc">Un exercice à faire après chaque session. Zéro théorie sans application immédiate.</div>
+      </div>
+    </div>
+    <div class="promise-pill">
+      <div class="promise-icon">🎯</div>
+      <div>
+        <div class="promise-label">Ultra-applicable</div>
+        <div class="promise-desc">Un savoir-faire utile acquis à la fin de chaque module. Utilisable au bureau le lendemain.</div>
+      </div>
+    </div>
+    <div class="promise-pill">
+      <div class="promise-icon">🧠</div>
+      <div>
+        <div class="promise-label">Ultra-efficace</div>
+        <div class="promise-desc">Pédagogie par l'itération : démo → comprendre → faire → améliorer. Ancrage réel.</div>
+      </div>
+    </div>
+    <div class="promise-pill">
+      <div class="promise-icon">🏗️</div>
+      <div>
+        <div class="promise-label">Ultra-pratique</div>
+        <div class="promise-desc">Le formateur a construit et lancé les outils qu'il enseigne. Pas de consultants théoriques.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="zero-list">
+    <div class="zero-tag"><span>✕</span> Vidéo pré-enregistrée</div>
+    <div class="zero-tag"><span>✕</span> Débat philosophique</div>
+    <div class="zero-tag"><span>✕</span> Passage théorique</div>
+    <div class="zero-tag"><span>✕</span> Formule magique</div>
+    <div class="zero-tag"><span>✓</span> Fondamentaux solides et éprouvés</div>
+  </div>
+</div>
+
+<!-- FORMATS -->
+<div class="section">
+  <span class="eyebrow">3 formats disponibles</span>
+  <h2 class="section-title">Choisissez votre format</h2>
+  <p class="section-sub">Un seul contenu, trois niveaux d'intensité selon vos objectifs pédagogiques et votre budget.</p>
+
+  <div class="formats-grid">
+    <div class="format-card starter">
+      <div class="format-badge">Starter</div>
+      <div class="format-name">Lire l'IA sans se noyer</div>
+      <div class="format-duration">3 à 4 heures · Intervention ponctuelle</div>
+      <div class="format-desc">La porte d'entrée. Comprendre ce qui change vraiment pour les RH, identifier les 3 outils à maîtriser en priorité, et repartir avec un premier système personnel activable.</div>
+      <div class="format-price" style="font-size:13px;font-weight:500;color:var(--muted);">Tarif sur demande · demi-journée</div>
+    </div>
+
+    <div class="format-card core">
+      <div class="format-tag">Recommandé</div>
+      <div class="format-badge">Core</div>
+      <div class="format-name">Construire son WOS RH</div>
+      <div class="format-duration">2 jours (14h) · Module intégré</div>
+      <div class="format-desc">Le module principal. À la fin des 2 jours, chaque participant repart avec son propre système de travail augmenté, adapté à son rôle, ses outils, ses enjeux réels.</div>
+      <div class="format-price" style="font-size:13px;font-weight:500;color:rgba(255,255,255,.5);">Tarif sur demande · promotion</div>
+    </div>
+
+    <div class="format-card premium">
+      <div class="format-badge">Premium</div>
+      <div class="format-name">Devenir Product HR</div>
+      <div class="format-duration">5 sessions × 3h · Programme diplômant</div>
+      <div class="format-desc">Le programme complet. Pensé pour être intégré dans un référentiel pédagogique. Itérations, projets réels, livrables individuels, suivi entre sessions.</div>
+      <div class="format-price" style="font-size:13px;font-weight:500;color:rgba(255,255,255,.5);">Tarif sur demande · promotion</div>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLIC -->
+<div class="section">
+  <span class="eyebrow">À qui s'adresse cette formation</span>
+  <h2 class="section-title">Trois publics, une même urgence</h2>
+  <p class="section-sub">La formation s'adapte au niveau et au contexte : les exemples, les exercices et les livrables changent. La méthode, non.</p>
+
+  <div class="public-grid">
+    <div class="public-card">
+      <div class="public-type">Bac+3</div>
+      <div class="public-name">Étudiants Licence RH</div>
+      <div class="public-desc">Entrent sur un marché du travail radicalement transformé. Cette formation leur donne une longueur d'avance concrète dès leur premier poste.</div>
+    </div>
+    <div class="public-card">
+      <div class="public-type">Bac+5</div>
+      <div class="public-name">Étudiants Master RH</div>
+      <div class="public-desc">Futurs HRBP, Talent Managers, DRH. Apprennent à piloter leur fonction avec les méthodes des meilleurs product managers.</div>
+    </div>
+    <div class="public-card">
+      <div class="public-type">Formation continue</div>
+      <div class="public-name">Professionnels RH en activité</div>
+      <div class="public-desc">Praticiens qui voient l'IA arriver et veulent comprendre ce qui change vraiment, pas ce que les vendeurs d'outils leur disent.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MÉTHODE -->
+<div class="section">
+  <span class="eyebrow">Méthode pédagogique</span>
+  <h2 class="section-title">Le principe de l'itération appliqué à l'apprentissage</h2>
+  <p class="section-sub">Essai, erreur, analyse, en boucle. C'est comme ça que le cerveau ancre réellement. Pas autrement.</p>
+
+  <div class="methode-intro">
+    <p>Le principe d'itération s'applique aussi bien à l'apprentissage qu'au product management. <strong>On ne comprend pas un outil en regardant une démo.</strong> On le comprend en essayant, en se plantant, en comprenant pourquoi, et en recommençant avec ce qu'on a appris.</p>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-label">Démo rapide</div>
+      <div class="step-desc">On montre ce qu'on veut accomplir. Pas d'intro théorique. On part du résultat.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-label">Décryptage</div>
+      <div class="step-desc">On explique comment ça marche sous le capot, juste ce qu'il faut pour faire.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-label">V1 personnelle</div>
+      <div class="step-desc">Chaque participant construit sa propre V1 avec son contexte réel.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-label">Déblocage collectif</div>
+      <div class="step-desc">On revient ensemble sur les blocages. Ce sont eux qui révèlent les concepts clés.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-label">V3 opérationnelle</div>
+      <div class="step-desc">À la fin, chaque participant repart avec un livrable qui tourne vraiment.</div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPÉTENCES -->
+<div class="section">
+  <span class="eyebrow">Objectifs pédagogiques</span>
+  <h2 class="section-title">Ce que vous savez faire à la fin</h2>
+  <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits pendant la formation.</p>
+
+  <div class="competences-grid">
+    <div class="competence-item">
+      <div class="competence-number">01</div>
+      <div>
+        <div class="competence-title">Lire l'actualité IA sans se noyer</div>
+        <div class="competence-desc">Distinguer ce qui change vraiment du bruit ambiant. Identifier les signaux pertinents pour son métier RH parmi les 100 nouveautés hebdomadaires.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number">02</div>
+      <div>
+        <div class="competence-title">Construire son WOS RH personnel</div>
+        <div class="competence-desc">Créer son propre système de travail augmenté : fichiers contexte, routines IA, stack d'outils, adaptés à son rôle et ses enjeux réels.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number">03</div>
+      <div>
+        <div class="competence-title">Piloter ses processus RH avec l'IA</div>
+        <div class="competence-desc">Recrutement, onboarding, entretiens annuels, marque employeur : identifier où l'IA apporte de la valeur réelle et comment l'intégrer sans casser l'existant.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number">04</div>
+      <div>
+        <div class="competence-title">Raisonner comme un product manager</div>
+        <div class="competence-desc">Appliquer la logique discovery → priorisation → itération à ses projets RH. Passer de l'exécution à la conception de solutions.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number">05</div>
+      <div>
+        <div class="competence-title">Produire ses propres outils IA</div>
+        <div class="competence-desc">Créer des prompts système, des workflows automatisés, des digests personnalisés, sans coder, avec les outils no-code accessibles aujourd'hui.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number">06</div>
+      <div>
+        <div class="competence-title">Anticiper les évolutions de son rôle</div>
+        <div class="competence-desc">Comprendre quelles tâches RH seront automatisées, lesquelles seront augmentées, et comment positionner sa valeur ajoutée humaine durablement.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STARTER FOCUS -->
+<div class="section">
+  <span class="eyebrow">Format Starter · Détail</span>
+  <h2 class="section-title">Intervention ponctuelle 3-4h</h2>
+  <p class="section-sub">Le format pied-dans-la-porte. Dense, mémorable, actionnable le lendemain.</p>
+
+  <div class="starter-focus">
+    <div class="starter-focus-title">Lire l'IA sans se noyer</div>
+    <div class="starter-focus-sub">Session unique · 3h30 recommandées · 15 à 30 participants</div>
+    <div class="starter-steps">
+      <div class="starter-step">
+        <div class="starter-step-time">0h00 à 0h30</div>
+        <div class="starter-step-label">Ce qui change vraiment</div>
+        <div class="starter-step-desc">Le paysage IA en 2026 vu depuis un poste RH. Ce qui est déjà là, ce qui arrive.</div>
+      </div>
+      <div class="starter-step">
+        <div class="starter-step-time">0h30 à 1h30</div>
+        <div class="starter-step-label">Les 3 outils à maîtriser</div>
+        <div class="starter-step-desc">Démo live + exercice guidé. Chaque participant teste sur son propre cas.</div>
+      </div>
+      <div class="starter-step">
+        <div class="starter-step-time">1h30 à 2h30</div>
+        <div class="starter-step-label">Construire son premier prompt système</div>
+        <div class="starter-step-desc">V1 personnelle. Blocages collectifs. Itération guidée.</div>
+      </div>
+      <div class="starter-step">
+        <div class="starter-step-time">2h30 à 3h30</div>
+        <div class="starter-step-label">Livrable + plan d'action</div>
+        <div class="starter-step-desc">Chaque participant repart avec 1 outil activable et 3 actions concrètes pour la semaine.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SYLLABUS PREMIUM -->
+<div class="section">
+  <span class="eyebrow">Format Premium. Programme complet</span>
+  <h2 class="section-title">Devenir Product HR · 5 sessions</h2>
+  <p class="section-sub">Le programme maître. Chaque session suit la même structure : démo → comprendre → faire → itérer. Chaque session produit un livrable concret.</p>
+
+  <div class="sessions-list">
+
+    <div class="session-card">
+      <div class="session-header">
+        <div class="session-num">1</div>
+        <div class="session-meta">
+          <div class="session-title">Lire l'IA. Construire sa grille de lecture</div>
+          <div class="session-subtitle">Passer du bruit au signal · Poser les fondations du WOS</div>
+        </div>
+        <div class="session-duration">3h</div>
+      </div>
+      <div class="session-body">
+        <div>
+          <div class="session-section-title">Au programme</div>
+          <ul class="session-points">
+            <li>Le paysage IA en 2026. ce qui est réel, ce qui est marketing</li>
+            <li>Les 5 changements structurels pour les métiers RH</li>
+            <li>Comment les meilleurs product managers lisent l'actualité tech</li>
+            <li>Construire sa première grille de veille personnalisée</li>
+            <li>Introduction au concept de WOS (Working Operating System)</li>
+          </ul>
+        </div>
+        <div>
+          <div class="session-section-title">Ce qu'on maîtrise à la fin</div>
+          <ul class="session-points">
+            <li>Distinguer les signaux pertinents du bruit ambiant</li>
+            <li>Identifier les 3 outils IA prioritaires pour son rôle</li>
+            <li>Avoir une routine de veille qui prend moins de 15 min/jour</li>
+          </ul>
+        </div>
+        <div class="exercice-box">
+          <div class="exercice-label">Exercice à rendre avant session 2</div>
+          <div class="exercice-text">Créer son premier fichier contexte personnel (PROFIL.md) : qui je suis, mon rôle, mes enjeux actuels, ce que je veux que l'IA comprenne de moi. Tester avec 3 requêtes RH concrètes. Comparer avec et sans contexte.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-header">
+        <div class="session-num">2</div>
+        <div class="session-meta">
+          <div class="session-title">Construire son WOS RH. Le système personnel augmenté</div>
+          <div class="session-subtitle">Fichiers contexte · Routines · Stack d'outils</div>
+        </div>
+        <div class="session-duration">3h</div>
+      </div>
+      <div class="session-body">
+        <div>
+          <div class="session-section-title">Au programme</div>
+          <ul class="session-points">
+            <li>Architecture d'un WOS RH. les 4 composantes essentielles</li>
+            <li>Le fichier contexte : comment briefer son IA une fois pour toutes</li>
+            <li>Les routines IA qui changent vraiment le quotidien RH</li>
+            <li>Déblocage collectif sur les PROFIL.md de la session 1</li>
+            <li>Stack no-code : quels outils, dans quel ordre, pour quels usages</li>
+          </ul>
+        </div>
+        <div>
+          <div class="session-section-title">Ce qu'on maîtrise à la fin</div>
+          <ul class="session-points">
+            <li>Avoir un WOS V1 fonctionnel et personnalisé</li>
+            <li>Savoir briefer son IA sur n'importe quel projet RH</li>
+            <li>Maîtriser 3 outils no-code utiles immédiatement</li>
+          </ul>
+        </div>
+        <div class="exercice-box">
+          <div class="exercice-label">Exercice à rendre avant session 3</div>
+          <div class="exercice-text">Utiliser son WOS sur un vrai projet RH en cours (recrutement, onboarding, entretien annuel…). Documenter : ce qui a marché, ce qui n'a pas marché, ce qu'on a appris. 1 page maximum.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-header">
+        <div class="session-num">3</div>
+        <div class="session-meta">
+          <div class="session-title">Piloter ses processus RH avec l'IA</div>
+          <div class="session-subtitle">Recrutement · Onboarding · Entretiens · Marque employeur</div>
+        </div>
+        <div class="session-duration">3h</div>
+      </div>
+      <div class="session-body">
+        <div>
+          <div class="session-section-title">Au programme</div>
+          <ul class="session-points">
+            <li>Cartographier ses processus RH. ce qui est automatisable, ce qui ne l'est pas</li>
+            <li>Recrutement augmenté : sourcing, scoring, entretiens, compte-rendu</li>
+            <li>Onboarding intelligent : personnalisation à l'échelle</li>
+            <li>Marque employeur IA-first : produire 10x plus vite, sans perdre l'authenticité</li>
+            <li>Déblocage collectif sur les projets réels de la session 2</li>
+          </ul>
+        </div>
+        <div>
+          <div class="session-section-title">Ce qu'on maîtrise à la fin</div>
+          <ul class="session-points">
+            <li>Identifier où l'IA apporte de la valeur dans ses processus RH</li>
+            <li>Avoir automatisé au moins 1 tâche récurrente</li>
+            <li>Produire un contenu marque employeur complet en moins d'1h</li>
+          </ul>
+        </div>
+        <div class="exercice-box">
+          <div class="exercice-label">Exercice à rendre avant session 4</div>
+          <div class="exercice-text">Choisir 1 processus RH récurrent et le retravailler avec l'IA de A à Z. Documenter le avant/après : temps passé, qualité perçue, ce qu'on a gardé humain et pourquoi.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-header">
+        <div class="session-num">4</div>
+        <div class="session-meta">
+          <div class="session-title">Penser comme un product manager. La méthode appliquée aux RH</div>
+          <div class="session-subtitle">Discovery · Priorisation · Itération · Décision</div>
+        </div>
+        <div class="session-duration">3h</div>
+      </div>
+      <div class="session-body">
+        <div>
+          <div class="session-section-title">Au programme</div>
+          <ul class="session-points">
+            <li>La logique product manager : discovery → priorisation → itération</li>
+            <li>Appliquer le "Why before What" à ses projets RH</li>
+            <li>Construire une roadmap RH priorisée par impact</li>
+            <li>Mesurer l'impact de ses actions RH. les métriques qui comptent vraiment</li>
+            <li>Déblocage collectif sur les processus retravaillés de la session 3</li>
+          </ul>
+        </div>
+        <div>
+          <div class="session-section-title">Ce qu'on maîtrise à la fin</div>
+          <ul class="session-points">
+            <li>Structurer un projet RH avec une logique produit</li>
+            <li>Prioriser ses initiatives par impact réel, pas par urgence perçue</li>
+            <li>Présenter ses décisions RH avec une argumentation data-driven</li>
+          </ul>
+        </div>
+        <div class="exercice-box">
+          <div class="exercice-label">Exercice à rendre avant session 5</div>
+          <div class="exercice-text">Construire la roadmap RH IA de son service pour les 3 prochains mois. Format : 3 initiatives, 1 métrique de succès par initiative, 1 risque identifié par initiative. Présentation de 5 minutes en session 5.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-header">
+        <div class="session-num">5</div>
+        <div class="session-meta">
+          <div class="session-title">Présenter, convaincre, ancrer. Devenir Product HR</div>
+          <div class="session-subtitle">Livrables · Présentations · Plan d'action personnel</div>
+        </div>
+        <div class="session-duration">3h</div>
+      </div>
+      <div class="session-body">
+        <div>
+          <div class="session-section-title">Au programme</div>
+          <ul class="session-points">
+            <li>Présentations des roadmaps (5 min par participant)</li>
+            <li>Comment vendre l'IA RH en interne. aux DRH, aux COMEX, aux managers</li>
+            <li>Les angles morts à surveiller : biais IA, RGPD, résistances humaines</li>
+            <li>Construire son plan d'action personnel 90 jours</li>
+            <li>Ressources pour continuer à progresser après la formation</li>
+          </ul>
+        </div>
+        <div>
+          <div class="session-section-title">Livrables finaux de chaque participant</div>
+          <ul class="session-points">
+            <li>Son WOS RH V3 opérationnel</li>
+            <li>Sa roadmap RH IA 3 mois</li>
+            <li>Son plan d'action personnel 90 jours</li>
+            <li>1 processus RH retravaillé et documenté</li>
+          </ul>
+        </div>
+        <div class="exercice-box">
+          <div class="exercice-label">Livrable final. critères d'évaluation</div>
+          <div class="exercice-text">WOS fonctionnel (fichier contexte + 3 routines IA documentées) · Roadmap 3 mois avec métriques · Présentation orale 5 min · Capacité à argumenter ses choix de priorisation.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BIO -->
+<div class="bio-section">
+  <div class="bio-inner">
+    <span class="eyebrow" style="color: rgba(200,117,66,.8); margin-bottom: 28px; display:block;">Le formateur</span>
+    <div class="bio-header">
+      <div class="bio-avatar">ED</div>
+      <div>
+        <div class="bio-name">Emmanuel Di Marco</div>
+        <div class="bio-role">Consultant Product Manager · Formateur IA appliquée aux métiers RH</div>
+      </div>
+    </div>
+
+    <div class="bio-blocks">
+      <div class="bio-block">
+        <div class="bio-block-label">Côté RH</div>
+        <div class="bio-block-text">
+          Chef de projet Marque Employeur chez <strong>Allianz France</strong>. HR Tech chez <strong>Veepee</strong> (licorne française, 800 personnes, fusion européenne, implémentation Workday). Responsable partenariats <strong>Lab 42 / Epitech</strong> (200 étudiants pilotés sur projets internes). <strong>Master Management RH (Bac+5)</strong>. 7+ ans d'expérience RH exclusivement en DSI et directions Big Data.
+        </div>
+      </div>
+      <div class="bio-block">
+        <div class="bio-block-label">Côté Produit</div>
+        <div class="bio-block-text">
+          <strong>First Product Manager</strong> chez MerciYanis (SaaS workplace, IoT). A structuré la fonction produit et lancé le <strong>premier agent IA de l'écosystème workplace français</strong> (clients : Danone, TF1, Ledger, Total). Croissance +68%, rentabilité atteinte. Fondateur de <strong>L'Autre RH</strong>, marketplace RH et juridique. projet arrêté après phase prototype, décision assumée : sans équipe, mieux vaut arrêter que survivre.
+        </div>
+      </div>
+      <div class="bio-block">
+        <div class="bio-block-label">Côté Communauté</div>
+        <div class="bio-block-text">
+          Fondateur de <strong>Nola</strong>, collectif Product réunissant CPO, Head of Product et Senior PM de Payfit, Lucca, Skello, Welcome to the Jungle. Membre actif de <strong>French Produit</strong> (5 000+ product managers français). Consultant Product Manager en activité.
+        </div>
+      </div>
+    </div>
+
+    <div class="bio-tagline">
+      "Ce qu'il enseigne : comment les professionnels RH peuvent s'emparer des méthodes et outils des meilleurs product managers pour piloter leur métier, lire l'IA sans se noyer, et renforcer leur employabilité durablement."
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Product HR</div>
+  <div class="footer-meta">Emmanuel Di Marco · Formation IA appliquée aux métiers RH · 2026</div>
+</footer>
+
+</body>
+</html>
