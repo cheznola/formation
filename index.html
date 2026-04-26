@@ -696,56 +696,81 @@
     line-height: 1.3;
   }
 
-  /* ─── Logos sociaux (fixes) ─── */
+  /* ─── Logos sociaux (SVG monochrome) ─── */
   .logos-section {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: var(--cream);
-    padding: 28px 48px;
+    padding: 32px 48px;
   }
   .logos-inner {
     max-width: var(--max-w);
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
   }
-  .logos-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .logos-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    row-gap: 10px;
+  }
   .logos-group-label {
-    font-size: 9.5px; font-weight: 700; letter-spacing: .14em;
+    font-size: 9px; font-weight: 700; letter-spacing: .13em;
     text-transform: uppercase; color: #fff;
     background: var(--accent);
-    padding: 4px 12px 4px 14px;
-    border-radius: 3px;
+    padding: 5px 20px 5px 13px;
     white-space: nowrap;
     flex-shrink: 0;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
-    padding-right: 20px;
+    margin-right: 24px;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+    line-height: 1;
+    height: 28px;
+    display: flex;
+    align-items: center;
   }
   .logos-row {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 0;
+    row-gap: 8px;
   }
   .logo-name {
-    font-size: 13px; font-weight: 600;
-    color: var(--ink-2);
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 800;
     letter-spacing: -.01em;
-    padding: 4px 16px;
+    color: var(--ink);
+    opacity: .45;
     white-space: nowrap;
-    transition: color .15s;
+    transition: opacity .18s;
+    padding: 2px 0;
   }
-  .logo-name:hover { color: var(--accent); }
+  .logo-name:hover { opacity: 1; }
   .logo-sep {
-    width: 1px; height: 14px;
+    width: 1px;
+    height: 14px;
     background: var(--border-2);
     flex-shrink: 0;
+    margin: 0 18px;
   }
   .logos-divider {
     height: 1px;
     background: var(--border);
     width: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .logos-section { padding: 24px 24px; }
+  }
+  @media (max-width: 768px) {
+    .logos-section { padding: 20px 16px; }
+    .logos-group { gap: 0; row-gap: 10px; }
+    .logos-group-label { margin-right: 14px; font-size: 8px; }
+
   }
 
   /* signal source footnote */
@@ -840,12 +865,12 @@
 <div class="hero">
   <span class="eyebrow">Formation IA appliquée aux métiers RH</span>
   <h1 class="hero-title">Piloter son métier RH<br>à <em>l'ère de l'IA</em></h1>
-  <p class="hero-hook" style="font-family:var(--serif);font-size:clamp(15px,2.2vw,19px);font-style:italic;color:var(--ink-2);max-width:680px;line-height:1.5;margin-bottom:16px;">Preparez-vous au futur dans le present, en appliquant les methodes des Product Managers qui construisent les produits que vous utilisez tous les jours a votre propre metier RH.</p>
-  <p class="hero-sub">Passer de spectateur des bouleversements IA à professionnel RH augmenté, avec des outils activables dès le lendemain.</p>
+  <p class="hero-hook" style="font-family:var(--serif);font-size:clamp(17px,2.4vw,22px);font-style:italic;color:var(--ink-2);max-width:680px;line-height:1.4;margin-bottom:28px;">Les méthodes des meilleurs Product Managers.<br>Appliquées à votre métier RH.</p>
+
 
   <div class="hero-diff">
     <div class="hero-diff-dot"></div>
-    <div class="hero-diff-text">18+ années d'expérience, dont 7+ ans RH en DSI. AI Senior Product Manager : projets IA livrés chez Danone, TF1, Total, Ledger. Praticien en activité.</div>
+    <div class="hero-diff-text">18+ années d'expérience, dont 7+ ans RH en DSI. AI Senior Product Manager : projets IA livrés chez Danone, TF1, Total, Ledger.</div>
   </div>
 
   <div class="promise-grid">
@@ -891,44 +916,43 @@
 <!-- ═══════════════════════════════════════
      LOGOS SOCIAUX
 ═══════════════════════════════════════ -->
-<div class="logos-section">
+<div class="logos-section" aria-label="Références professionnelles">
   <div class="logos-inner">
 
     <div class="logos-group">
-      <div class="logos-group-label">Projets IA deployes pour</div>
-      <div class="logos-row" role="list">
-        <span class="logo-name" role="listitem">Total</span>
+      <div class="logos-group-label">Projets IA déployés pour</div>
+      <div class="logos-row">
+        <span class="logo-name">Total</span>
         <span class="logo-sep" aria-hidden="true"></span>
-        <span class="logo-name" role="listitem">Danone</span>
+        <span class="logo-name">Danone</span>
         <span class="logo-sep" aria-hidden="true"></span>
-        <span class="logo-name" role="listitem">TF1</span>
+        <span class="logo-name">TF1</span>
         <span class="logo-sep" aria-hidden="true"></span>
-        <span class="logo-name" role="listitem">Ledger</span>
+        <span class="logo-name">Ledger</span>
       </div>
     </div>
 
     <div class="logos-divider" aria-hidden="true"></div>
 
     <div class="logos-group">
-      <div class="logos-group-label">Experiences professionnelles</div>
-      <div class="logos-row" role="list">
-        <span class="logo-name" role="listitem">MerciYanis</span>
+      <div class="logos-group-label">Expériences professionnelles</div>
+      <div class="logos-row">
+        <span class="logo-name">MerciYanis</span>
         <span class="logo-sep" aria-hidden="true"></span>
-        <span class="logo-name" role="listitem">Allianz France</span>
+        <span class="logo-name">Allianz France</span>
         <span class="logo-sep" aria-hidden="true"></span>
-        <span class="logo-name" role="listitem">Veepee</span>
+        <span class="logo-name">Veepee</span>
         <span class="logo-sep" aria-hidden="true"></span>
-        <span class="logo-name" role="listitem">Societe Generale</span>
+        <span class="logo-name">Société Générale</span>
         <span class="logo-sep" aria-hidden="true"></span>
-        <span class="logo-name" role="listitem">Casino</span>
+        <span class="logo-name">Casino</span>
         <span class="logo-sep" aria-hidden="true"></span>
-        <span class="logo-name" role="listitem">American Express</span>
+        <span class="logo-name">American Express</span>
       </div>
     </div>
 
   </div>
 </div>
-
 <!-- ═══════════════════════════════════════
      OBJECTIFS PÉDAGOGIQUES (position #2   Cagan/Zhuo)
 ═══════════════════════════════════════ -->
