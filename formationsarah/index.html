@@ -1,0 +1,694 @@
+cat > /mnt/user-data/outputs/wos-rh-demo.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOS RH — Demo Product HR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;background:#0a0a12;font-family:'DM Sans',system-ui,sans-serif;}
+
+/* ── WALLPAPER & STARS ── */
+#mac{width:100vw;height:100vh;position:relative;display:flex;flex-direction:column;overflow:hidden;}
+#wallpaper{position:absolute;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 15% 60%,#1a0533 0%,transparent 55%),
+             radial-gradient(ellipse at 85% 15%,#0a1628 0%,transparent 50%),
+             radial-gradient(ellipse at 55% 85%,#0d2442 0%,transparent 50%),
+             linear-gradient(135deg,#06000f 0%,#0d1020 40%,#150828 70%,#06000f 100%);}
+#stars{position:absolute;inset:0;z-index:1;pointer-events:none;}
+
+/* ── MENUBAR ── */
+#menubar{position:relative;z-index:200;height:26px;background:rgba(0,0,0,0.5);backdrop-filter:blur(30px) saturate(1.8);border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;padding:0 14px;gap:16px;flex-shrink:0;}
+.mb-apple{font-size:14px;color:rgba(255,255,255,0.9);}
+.mb-item{font-size:12px;color:rgba(255,255,255,0.6);cursor:default;}
+.mb-right{margin-left:auto;display:flex;gap:12px;align-items:center;}
+.mb-icon{font-size:11px;color:rgba(255,255,255,0.5);}
+#clock{font-size:12px;color:rgba(255,255,255,0.8);font-weight:500;font-family:'DM Sans',sans-serif;}
+
+/* ── DESKTOP ── */
+#desktop{flex:1;position:relative;z-index:2;overflow:hidden;}
+
+/* ── DESKTOP ICONS ── */
+.desk-icons{position:absolute;right:18px;top:18px;display:flex;flex-direction:column;gap:10px;}
+.di{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:8px 6px;border-radius:10px;transition:background .15s;width:72px;}
+.di:hover{background:rgba(255,255,255,0.1);}
+.di-img{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 16px rgba(0,0,0,0.4);}
+.di-wos{background:linear-gradient(145deg,#1d4ed8,#1e40af);}
+.di-pulse{background:linear-gradient(145deg,#7c3aed,#4f46e5);}
+.di-builder{background:linear-gradient(145deg,#047857,#065f46);}
+.di-label{font-size:10px;color:#fff;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,0.9);line-height:1.3;font-weight:500;}
+
+/* ── INTRO ── */
+#intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;pointer-events:none;z-index:3;}
+.intro-pill{background:rgba(99,102,241,0.18);border:1px solid rgba(99,102,241,0.35);border-radius:100px;padding:6px 18px;font-size:11px;color:#a5b4fc;letter-spacing:.06em;font-weight:600;}
+.intro-sub{font-size:12px;color:rgba(255,255,255,0.3);text-align:center;line-height:1.8;max-width:280px;}
+
+/* ── WINDOWS ── */
+.win{position:absolute;background:rgba(22,22,35,0.97);border-radius:13px;border:1px solid rgba(255,255,255,0.1);box-shadow:0 28px 90px rgba(0,0,0,0.75),0 0 0 0.5px rgba(255,255,255,0.05) inset;display:none;flex-direction:column;overflow:hidden;z-index:10;backdrop-filter:blur(24px);}
+.win.show{display:flex;}
+.win.top{z-index:20;}
+.winbar{background:rgba(35,35,52,0.98);padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;cursor:move;user-select:none;}
+.tls{display:flex;gap:6px;}
+.tl{width:12px;height:12px;border-radius:50%;cursor:pointer;transition:filter .15s;}
+.tl:hover{filter:brightness(1.3);}
+.tl-r{background:#ff5f57;}.tl-y{background:#ffbd2e;}.tl-g{background:#28c840;}
+.wintitle{font-size:11.5px;color:rgba(255,255,255,0.65);margin:0 auto;font-weight:500;letter-spacing:.01em;}
+
+/* ── FINDER ── */
+#finder-win{top:22px;left:14px;width:500px;height:340px;}
+.finder-body{display:flex;flex:1;overflow:hidden;min-height:0;}
+.finder-sidebar{width:136px;background:rgba(16,16,26,0.98);border-right:1px solid rgba(255,255,255,0.06);padding:10px 0;flex-shrink:0;overflow-y:auto;}
+.fs-sect{font-size:9px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:.1em;padding:6px 12px 2px;margin-top:4px;}
+.fs-item{display:flex;align-items:center;gap:7px;padding:5px 12px;font-size:11.5px;color:rgba(255,255,255,0.55);cursor:pointer;transition:background .1s;}
+.fs-item:hover{background:rgba(255,255,255,0.05);}
+.fs-item.on{background:#2563eb;color:#fff;border-radius:6px;margin:0 6px;padding:5px 8px;}
+.finder-toolbar{background:rgba(28,28,42,0.98);padding:6px 12px;font-size:11px;color:rgba(255,255,255,0.35);border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;}
+.finder-toolbar span{color:rgba(255,255,255,0.75);}
+.finder-main{flex:1;overflow-y:auto;padding:12px;}
+.file-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.file-item{display:flex;flex-direction:column;align-items:center;gap:5px;padding:8px 4px;border-radius:8px;cursor:pointer;transition:background .12s;}
+.file-item:hover{background:rgba(255,255,255,0.07);}
+.file-item.on{background:#2563eb;}
+.fi-icon{font-size:30px;line-height:1;}
+.fi-name{font-size:10px;color:rgba(255,255,255,0.75);text-align:center;word-break:break-word;line-height:1.3;}
+.file-item.on .fi-name{color:#fff;}
+
+/* ── BRIEF VIEWER ── */
+#brief-win{top:55px;left:90px;width:410px;height:310px;}
+.brief-body{padding:16px;overflow-y:auto;flex:1;background:#0e0e1c;font-family:'JetBrains Mono',monospace;}
+.brief-content{font-size:11px;line-height:1.8;color:rgba(255,255,255,0.8);white-space:pre-wrap;}
+.bh1{font-size:13px;font-weight:600;color:#818cf8;display:block;margin-bottom:5px;}
+.bh2{font-size:11.5px;font-weight:600;color:#34d399;display:block;margin:10px 0 3px;}
+
+/* ── PULSE ── */
+#pulse-win{top:18px;left:36px;width:460px;height:380px;}
+.pulse-body{display:flex;flex-direction:column;flex:1;overflow:hidden;min-height:0;}
+.pulse-ctx{background:rgba(18,18,30,0.98);border-bottom:1px solid rgba(255,255,255,0.07);padding:5px 14px;font-size:10px;color:rgba(255,255,255,0.35);display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.ctx-pill{background:rgba(99,102,241,0.18);border:1px solid rgba(99,102,241,0.3);border-radius:100px;padding:2px 8px;font-size:9.5px;color:#a5b4fc;}
+.chat-tabs{display:flex;background:rgba(14,14,22,0.98);border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;}
+.chat-tab{flex:1;padding:7px 6px;font-size:10px;color:rgba(255,255,255,0.35);cursor:pointer;text-align:center;border-bottom:2px solid transparent;transition:all .15s;font-weight:500;}
+.chat-tab:hover{color:rgba(255,255,255,0.65);}
+.chat-tab.on{color:#818cf8;border-bottom-color:#818cf8;}
+.chat-panel{display:none;flex:1;overflow-y:auto;padding:14px;flex-direction:column;gap:12px;}
+.chat-panel.on{display:flex;}
+.msg{display:flex;gap:8px;align-items:flex-start;}
+.msg-av{width:26px;height:26px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;margin-top:2px;}
+.av-u{background:#2563eb;color:#fff;}
+.av-p{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;}
+.msg-bub{font-size:11.5px;line-height:1.75;color:rgba(255,255,255,0.8);max-width:340px;}
+.msg.user .msg-bub{color:rgba(255,255,255,0.45);font-style:italic;}
+.hl{color:#34d399;font-weight:600;}
+.hl2{color:#fbbf24;font-weight:600;}
+.pulse-ibar{border-top:1px solid rgba(255,255,255,0.07);padding:9px 14px;display:flex;gap:8px;align-items:center;background:rgba(18,18,30,0.98);flex-shrink:0;}
+.pulse-box{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:7px 10px;font-size:11px;color:rgba(255,255,255,0.25);font-family:'DM Sans',sans-serif;}
+.pulse-disc{font-size:9px;color:rgba(255,255,255,0.18);text-align:center;padding:4px 14px 7px;background:rgba(14,14,22,0.98);border-top:1px solid rgba(255,255,255,0.05);flex-shrink:0;line-height:1.6;}
+
+/* ── TERMINAL ── */
+#term-win{top:30px;left:50px;width:450px;height:290px;}
+.term-body{flex:1;background:#080812;padding:14px;overflow-y:auto;font-family:'JetBrains Mono',monospace;}
+.tline{font-size:11px;line-height:1.85;white-space:pre-wrap;}
+.tp{color:#34d399;}.tc{color:#fff;}.to{color:rgba(255,255,255,0.45);}
+.tok{color:#34d399;}.twarn{color:#fbbf24;}.thl{color:#818cf8;}
+.tcursor{display:inline-block;width:7px;height:12px;background:#34d399;animation:blink 1s step-end infinite;vertical-align:text-bottom;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* ── BUILDER ── */
+#builder-win{top:18px;left:28px;width:480px;height:400px;}
+.build-body{display:flex;flex:1;overflow:hidden;min-height:0;}
+.build-sidebar{width:168px;background:#080812;border-right:1px solid rgba(255,255,255,0.06);padding:10px 0;font-family:'JetBrains Mono',monospace;overflow-y:auto;flex-shrink:0;}
+.bs-sect{font-size:9px;color:rgba(255,255,255,0.22);text-transform:uppercase;letter-spacing:.1em;padding:6px 10px 2px;}
+.bs-file{display:flex;align-items:center;gap:6px;padding:4px 10px;font-size:10px;color:rgba(255,255,255,0.45);cursor:pointer;transition:background .1s;}
+.bs-file:hover{background:rgba(255,255,255,0.04);}
+.bs-file.on{background:rgba(99,102,241,0.14);color:#a5b4fc;}
+.bs-new{color:#34d399!important;}
+.build-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
+.build-tabs{display:flex;background:#0a0a14;border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;}
+.build-tab{padding:7px 14px;font-size:10px;color:rgba(255,255,255,0.35);cursor:pointer;border-bottom:2px solid transparent;font-family:'JetBrains Mono',monospace;white-space:nowrap;transition:color .15s;}
+.build-tab:hover{color:rgba(255,255,255,0.65);}
+.build-tab.on{color:#818cf8;border-bottom-color:#818cf8;}
+.build-tab.green{color:#34d399;}
+.build-editor{flex:1;background:#080812;padding:14px;overflow-y:auto;font-family:'JetBrains Mono',monospace;}
+.cline{font-size:10.5px;line-height:1.85;white-space:pre;}
+.c-comment{color:rgba(255,255,255,0.25);}
+.c-key{color:#f472b6;}.c-str{color:#fbbf24;}.c-fn{color:#818cf8;}.c-var{color:#34d399;}
+.build-runbar{background:#0a0a14;border-top:1px solid rgba(255,255,255,0.07);padding:7px 12px;display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.run-btn{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;border:none;border-radius:7px;padding:5px 16px;font-size:11px;cursor:pointer;font-weight:700;transition:filter .15s;letter-spacing:.02em;}
+.run-btn:hover{filter:brightness(1.2);}
+.run-btn:disabled{opacity:.4;cursor:default;}
+.run-status{font-size:10px;color:rgba(255,255,255,0.35);font-family:'JetBrains Mono',monospace;}
+.build-out{height:76px;background:#050510;border-top:1px solid rgba(255,255,255,0.06);padding:8px 14px;overflow-y:auto;font-family:'JetBrains Mono',monospace;flex-shrink:0;}
+.oline{font-size:10px;line-height:1.75;color:rgba(255,255,255,0.4);}
+.oline-ok{color:#34d399;font-size:10px;line-height:1.75;}
+.oline-w{color:#fbbf24;font-size:10px;line-height:1.75;}
+
+/* RESULT */
+.result-wrap{flex:1;overflow-y:auto;}
+.product-demo{padding:16px;display:flex;flex-direction:column;gap:14px;background:#080812;min-height:100%;}
+.demo-header{display:flex;align-items:center;gap:12px;}
+.logo-mark{width:50px;height:50px;border-radius:13px;background:linear-gradient(135deg,#7c3aed,#06b6d4);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 20px rgba(124,58,237,0.4);}
+.product-name{font-size:20px;font-weight:800;color:#fff;letter-spacing:-.5px;}
+.product-tag{font-size:10.5px;color:rgba(255,255,255,0.35);margin-top:1px;font-style:italic;}
+.meta-row{display:flex;gap:6px;margin-left:auto;}
+.mpill{border-radius:100px;padding:3px 10px;font-size:9px;font-weight:700;}
+.mp-p{background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);color:#a5b4fc;}
+.mp-t{background:rgba(6,182,212,0.1);border:1px solid rgba(6,182,212,0.25);color:#67e8f9;}
+.pitch-card{background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);border-radius:10px;padding:12px 14px;}
+.pitch-label{font-size:9px;text-transform:uppercase;letter-spacing:.12em;color:#818cf8;margin-bottom:5px;font-weight:700;}
+.pitch-text{font-size:11.5px;line-height:1.75;color:rgba(255,255,255,0.78);}
+.pitch-hl{color:#34d399;font-weight:600;}
+.screens-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.screen{background:#111120;border:1px solid rgba(255,255,255,0.07);border-radius:8px;overflow:hidden;}
+.sbar{height:20px;background:#1c1c30;display:flex;align-items:center;padding:0 7px;gap:4px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.sdot{width:6px;height:6px;border-radius:50%;}
+.sbody{padding:9px;}
+.stitle{font-size:8.5px;font-weight:700;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
+.prog-track{height:3px;background:rgba(255,255,255,0.07);border-radius:2px;margin-bottom:7px;}
+.prog-fill{height:3px;border-radius:2px;background:linear-gradient(90deg,#7c3aed,#06b6d4);}
+.step-item{display:flex;align-items:center;gap:5px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.step-item:last-child{border:none;}
+.sicon{width:16px;height:16px;border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px;}
+.si-done{background:rgba(52,211,153,0.18);color:#34d399;}
+.si-next{background:rgba(99,102,241,0.18);color:#818cf8;}
+.si-todo{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.25);}
+.slabel{font-size:9px;color:rgba(255,255,255,0.65);}
+.slabel.done{color:rgba(255,255,255,0.28);text-decoration:line-through;}
+.slabel.next{color:#a5b4fc;font-weight:700;}
+.buddy-card{background:rgba(6,182,212,0.07);border:1px solid rgba(6,182,212,0.18);border-radius:6px;padding:7px;}
+.bhead{display:flex;align-items:center;gap:5px;margin-bottom:5px;}
+.bav{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:700;}
+.bname{font-size:9.5px;color:#fff;font-weight:700;}
+.brole{font-size:8.5px;color:rgba(255,255,255,0.35);}
+.bmsg{font-size:9px;color:rgba(255,255,255,0.55);line-height:1.5;font-style:italic;}
+.pulse-check{background:rgba(124,58,237,0.07);border:1px solid rgba(124,58,237,0.2);border-radius:6px;padding:7px;}
+.pq{font-size:9px;color:rgba(255,255,255,0.65);margin-bottom:5px;font-style:italic;}
+.popts{display:flex;flex-direction:column;gap:3px;}
+.popt{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:4px 7px;font-size:8.5px;color:rgba(255,255,255,0.5);}
+.popt:first-child{background:rgba(99,102,241,0.18);border-color:rgba(99,102,241,0.35);color:#a5b4fc;}
+.demo-footer{display:flex;align-items:center;justify-content:space-between;padding-top:2px;}
+.demo-note{font-size:8.5px;color:rgba(255,255,255,0.2);font-style:italic;}
+.demo-badge{background:linear-gradient(135deg,rgba(124,58,237,0.25),rgba(6,182,212,0.15));border:1px solid rgba(99,102,241,0.25);border-radius:6px;padding:5px 12px;font-size:10px;color:#a5b4fc;font-weight:700;}
+
+/* ── STEP NAV ── */
+#step-nav{position:relative;z-index:200;display:flex;gap:4px;justify-content:center;padding:5px 0 4px;background:rgba(0,0,0,0.6);border-top:1px solid rgba(255,255,255,0.05);flex-shrink:0;}
+.s-btn{font-size:10.5px;padding:4px 14px;border-radius:100px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:rgba(255,255,255,0.45);cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif;font-weight:500;}
+.s-btn:hover{background:rgba(255,255,255,0.07);color:#fff;}
+.s-btn.on{background:#4f46e5;border-color:#4f46e5;color:#fff;}
+
+/* ── DOCK ── */
+#dock-wrap{position:relative;z-index:200;display:flex;justify-content:center;padding:5px 0 7px;background:rgba(0,0,0,0.35);border-top:1px solid rgba(255,255,255,0.07);flex-shrink:0;}
+.dock{display:flex;align-items:flex-end;gap:6px;background:rgba(255,255,255,0.07);backdrop-filter:blur(40px) saturate(1.5);border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:6px 14px;box-shadow:0 4px 30px rgba(0,0,0,0.5),0 0 0 0.5px rgba(255,255,255,0.04) inset;}
+.di-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;position:relative;transition:transform .2s cubic-bezier(.34,1.56,.64,1);}
+.di-wrap:hover{transform:translateY(-10px) scale(1.18);}
+.di-wrap:hover .dock-tip{opacity:1;transform:translateX(-50%) translateY(-6px);}
+.dk-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:23px;box-shadow:0 3px 10px rgba(0,0,0,0.4);}
+.dk-finder{background:linear-gradient(145deg,#4b9fea,#1565c0);}
+.dk-pulse{background:linear-gradient(145deg,#8b5cf6,#6d28d9);}
+.dk-builder{background:linear-gradient(145deg,#10b981,#065f46);}
+.dk-term{background:#0a0a14;border:1px solid rgba(52,211,153,0.35);}
+.dk-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.55);}
+.dock-sep{width:1px;height:36px;background:rgba(255,255,255,0.12);margin:0 4px;align-self:center;}
+.dock-tip{position:absolute;bottom:54px;left:50%;transform:translateX(-50%) translateY(0);background:rgba(10,10,20,0.9);color:#fff;font-size:10px;white-space:nowrap;padding:3px 9px;border-radius:6px;opacity:0;transition:all .15s;pointer-events:none;border:1px solid rgba(255,255,255,0.1);font-family:'DM Sans',sans-serif;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px;}
+</style>
+</head>
+<body>
+
+<div id="mac">
+  <canvas id="stars"></canvas>
+  <div id="wallpaper"></div>
+
+  <div id="menubar">
+    <span class="mb-apple">&#63743;</span>
+    <span class="mb-item">Finder</span>
+    <span class="mb-item">Aller</span>
+    <span class="mb-item">Presentation</span>
+    <div class="mb-right">
+      <span class="mb-icon">&#127931;</span>
+      <span class="mb-icon">&#128267;</span>
+      <span id="clock">--:--</span>
+    </div>
+  </div>
+
+  <div id="desktop">
+    <div id="intro">
+      <div class="intro-pill">WOS RH &mdash; Sarah Lemoine &middot; M2 RH &middot; EMLV 2026</div>
+      <p class="intro-sub">Cliquez sur le dock pour explorer<br>l&rsquo;espace de travail augmente de Sarah.</p>
+    </div>
+
+    <div class="desk-icons">
+      <div class="di" onclick="openFinder()"><div class="di-img di-wos">&#128193;</div><span class="di-label">WOS Sarah</span></div>
+      <div class="di" onclick="openPulse()"><div class="di-img di-pulse">&#10024;</div><span class="di-label">Pulse</span></div>
+      <div class="di" onclick="openBuilder()"><div class="di-img di-builder">&#9654;</div><span class="di-label">Builder</span></div>
+    </div>
+
+    <!-- FINDER -->
+    <div class="win" id="finder-win" onmousedown="toTop('finder-win')">
+      <div class="winbar" onmousedown="startDrag(event,'finder-win')">
+        <div class="tls"><div class="tl tl-r" onclick="closeWin('finder-win',event)"></div><div class="tl tl-y"></div><div class="tl tl-g"></div></div>
+        <span class="wintitle">WOS &mdash; Espace de travail RH</span>
+      </div>
+      <div style="background:rgba(22,22,36,0.98);padding:6px 12px;font-size:11px;color:rgba(255,255,255,0.3);border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;">
+        WOS-RH / <span id="fb-label" style="color:rgba(255,255,255,0.7);">Racine</span>
+      </div>
+      <div class="finder-body">
+        <div class="finder-sidebar">
+          <div class="fs-sect">Favoris</div>
+          <div class="fs-item on" id="fsi-root" onclick="showFolder('root',this)"><span>&#127968;</span>Accueil</div>
+          <div class="fs-sect">Contextes</div>
+          <div class="fs-item" id="fsi-profil" onclick="showFolder('profil',this)"><span>&#128100;</span>Profil</div>
+          <div class="fs-item" id="fsi-entreprise" onclick="showFolder('entreprise',this)"><span>&#127970;</span>Entreprise</div>
+          <div class="fs-item" id="fsi-processus" onclick="showFolder('processus',this)"><span>&#9881;</span>Processus</div>
+          <div class="fs-item" id="fsi-outils" onclick="showFolder('outils',this)"><span>&#128295;</span>Outils</div>
+        </div>
+        <div class="finder-main" id="finder-main"></div>
+      </div>
+    </div>
+
+    <!-- BRIEF VIEWER -->
+    <div class="win" id="brief-win" onmousedown="toTop('brief-win')">
+      <div class="winbar" onmousedown="startDrag(event,'brief-win')">
+        <div class="tls"><div class="tl tl-r" onclick="closeWin('brief-win',event)"></div><div class="tl tl-y"></div><div class="tl tl-g"></div></div>
+        <span class="wintitle" id="brief-title">profil.brief</span>
+      </div>
+      <div class="brief-body"><div class="brief-content" id="brief-content"></div></div>
+    </div>
+
+    <!-- PULSE -->
+    <div class="win" id="pulse-win" onmousedown="toTop('pulse-win')">
+      <div class="winbar" onmousedown="startDrag(event,'pulse-win')">
+        <div class="tls"><div class="tl tl-r" onclick="closeWin('pulse-win',event)"></div><div class="tl tl-y"></div><div class="tl tl-g"></div></div>
+        <span class="wintitle">Pulse &mdash; Projet WOS RH &middot; Sarah Lemoine</span>
+      </div>
+      <div class="pulse-body">
+        <div class="pulse-ctx">Contexte actif :
+          <span class="ctx-pill">profil.brief</span>
+          <span class="ctx-pill">entreprise.brief</span>
+          <span class="ctx-pill">recrutement.brief</span>
+        </div>
+        <div class="chat-tabs">
+          <div class="chat-tab on" onclick="switchTab(0)">Entretien Mirakl</div>
+          <div class="chat-tab" onclick="switchTab(1)">Feedback difficile</div>
+          <div class="chat-tab" onclick="switchTab(2)">Strategie RH</div>
+        </div>
+        <div class="chat-panel on" id="tab0">
+          <div class="msg user"><div class="msg-av av-u">SL</div><div class="msg-bub">J&rsquo;ai un entretien cet apres-midi chez Mirakl, poste Charge RH. Mon manager veut que je creuse la scalabilite des process. Prepare-moi 5 questions.</div></div>
+          <div class="msg"><div class="msg-av av-p">P</div><div class="msg-bub">Je ne vais pas te donner une liste a reciter — tu n&rsquo;en as pas besoin.<br><br>Ce que je vois dans ton contexte : tu es analytique, tu documentes tout, et tu t&rsquo;ennuies quand les process ne sont pas penses. Utilise ca.<br><br><span class="hl">Question 1 (signal d&rsquo;intelligence)</span><br>&ldquo;Votre HRBP couvre combien de managers aujourd&rsquo;hui ? Ou est-ce que ca commence a fissurer ?&rdquo;<br><br><span class="hl">Question 2 (ta vraie curiosite)</span><br>&ldquo;Quel process RH a failli casser en premier quand vous etes passes de 200 a 600 personnes ?&rdquo;<br><br><span class="hl">Question 3 (teste leur maturite data)</span><br>&ldquo;Quelle metrique RH regardez-vous en premier le lundi matin ?&rdquo;<br><br><span class="hl2">Attention :</span> ne les pose pas dans l&rsquo;ordre. Ecoute d&rsquo;abord. La bonne question arrive quand ils disent quelque chose d&rsquo;interessant.<br><br><span style="color:rgba(255,255,255,0.28);font-size:10.5px;">Ce ne sont pas des questions parfaites — ce sont des points de depart pour ta reflexion.</span></div></div>
+        </div>
+        <div class="chat-panel" id="tab1">
+          <div class="msg user"><div class="msg-av av-u">SL</div><div class="msg-bub">Je dois donner un feedback negatif a un stagiaire sur son manque d&rsquo;initiative. Il est sensible. Je ne sais pas comment formuler sans blesser.</div></div>
+          <div class="msg"><div class="msg-av av-p">P</div><div class="msg-bub">Stop. Avant de formuler quoi que ce soit &mdash; une question : <span class="hl">tu as observe quoi exactement ?</span><br><br>Pas &ldquo;manque d&rsquo;initiative&rdquo; &mdash; ca c&rsquo;est ton interpretation. Ce que tu as vu, les moments precis.<br><br>Le feedback qui blesse n&rsquo;est pas le feedback difficile. C&rsquo;est le feedback flou. &ldquo;Tu manques d&rsquo;initiative&rdquo; n&rsquo;aide personne. &ldquo;Lundi tu attendais que je te dise quoi faire sur le dossier Rexel alors que tu avais toutes les infos&rdquo; &mdash; ca, ca peut changer quelque chose.<br><br><span class="hl2">Dis-moi une situation concrete</span> que tu as vecue avec lui. Je t&rsquo;aide a la formuler de facon utile &mdash; pas soft, utile.<br><br><span style="color:rgba(255,255,255,0.28);font-size:10.5px;">La methode compte autant que les mots.</span></div></div>
+        </div>
+        <div class="chat-panel" id="tab2">
+          <div class="msg user"><div class="msg-av av-u">SL</div><div class="msg-bub">Ma DRH me demande une note sur comment structurer la fonction RH pour accompagner le passage de 400 a 800 personnes. Je ne sais pas par ou commencer.</div></div>
+          <div class="msg"><div class="msg-av av-p">P</div><div class="msg-bub">Ne commence pas par la structure. Commence par la contrainte.<br><br><span class="hl">Ce que ta DRH veut vraiment savoir :</span> qu&rsquo;est-ce qui va casser si on ne change rien ?<br><br>Avant d&rsquo;ecrire une ligne, trois questions a te poser :<br><br><span class="hl">1.</span> Quels process RH aujourd&rsquo;hui reposent sur une seule personne qui connait tout par coeur ?<br><span class="hl">2.</span> Ou est-ce que la vitesse de recrutement a deja cree des problemes d&rsquo;integration ?<br><span class="hl">3.</span> Quels managers te contactent directement parce que le process standard ne leur suffit pas ?<br><br>Ces trois questions te donnent ta note. Pas un organigramme cible &mdash; un diagnostic honnete des points de rupture actuels.<br><br><span class="hl2">Quand tu auras les reponses</span>, on structure ensemble. La note qui convainc une DRH part toujours du reel, pas du theorique.<br><br><span style="color:rgba(255,255,255,0.28);font-size:10.5px;">Je peux t&rsquo;aider a structurer ta pensee &mdash; la reflexion reste la tienne.</span></div></div>
+        </div>
+        <div class="pulse-ibar"><div class="pulse-box">Posez votre question...</div></div>
+        <div class="pulse-disc">Demonstration scriptee &mdash; les echanges illustrent la formation Product HR. Pulse est un outil IA et peut se tromper. La reflexion reste celle du professionnel RH.</div>
+      </div>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="win" id="term-win" onmousedown="toTop('term-win')">
+      <div class="winbar" onmousedown="startDrag(event,'term-win')">
+        <div class="tls"><div class="tl tl-r" onclick="closeWin('term-win',event)"></div><div class="tl tl-y"></div><div class="tl tl-g"></div></div>
+        <span class="wintitle">Terminal &mdash; zsh</span>
+      </div>
+      <div class="term-body" id="term-body"></div>
+    </div>
+
+    <!-- BUILDER -->
+    <div class="win" id="builder-win" onmousedown="toTop('builder-win')">
+      <div class="winbar" onmousedown="startDrag(event,'builder-win')">
+        <div class="tls"><div class="tl tl-r" onclick="closeWin('builder-win',event)"></div><div class="tl tl-y"></div><div class="tl tl-g"></div></div>
+        <span class="wintitle">Builder &mdash; projet-onboarding.brief</span>
+      </div>
+      <div class="build-body">
+        <div class="build-sidebar">
+          <div class="bs-sect">Contexte WOS</div>
+          <div class="bs-file on">&#128196; onboarding.brief</div>
+          <div class="bs-file">&#128196; profil.brief</div>
+          <div class="bs-file">&#128196; personas.brief</div>
+          <div class="bs-sect">Brief produit</div>
+          <div class="bs-file">&#128196; projet-onboard.brief</div>
+          <div class="bs-sect">Genere</div>
+          <div class="bs-file bs-new" id="gen-file" style="display:none">&#10004; onboard-demo.html</div>
+        </div>
+        <div class="build-main">
+          <div class="build-tabs">
+            <div class="build-tab on" id="btab-code" onclick="showBTab('code')">projet-onboard.brief</div>
+            <div class="build-tab green" id="btab-result" style="display:none" onclick="showBTab('result')">&#10024; Firstday. &mdash; demo</div>
+          </div>
+          <div id="bview-code" class="build-editor">
+<div class="cline"><span class="c-comment"># projet-onboard.brief</span></div>
+<div class="cline"><span class="c-comment"># Contexte : WOS RH Sarah + onboarding.brief charges</span></div>
+<div class="cline"></div>
+<div class="cline"><span class="c-key">produit</span>: <span class="c-str">"outil onboarding interactif"</span></div>
+<div class="cline"><span class="c-key">cible</span>: <span class="c-str">"nouveau collaborateur J1 a J30"</span></div>
+<div class="cline"><span class="c-key">probleme</span>: <span class="c-str">"onboarding non standardise, buddy absent"</span></div>
+<div class="cline"><span class="c-comment">  detecte automatiquement depuis onboarding.brief</span></div>
+<div class="cline"></div>
+<div class="cline"><span class="c-key">livrer</span>:</div>
+<div class="cline">  - <span class="c-str">"logo + nom du produit"</span></div>
+<div class="cline">  - <span class="c-str">"demo interactive 3 ecrans"</span></div>
+<div class="cline">  - <span class="c-str">"pitch 30 secondes"</span></div>
+<div class="cline"></div>
+<div class="cline"><span class="c-fn">builder</span>.<span class="c-fn">run</span>({</div>
+<div class="cline">  <span class="c-var">context</span>: <span class="c-fn">wos</span>.<span class="c-fn">load</span>(<span class="c-str">'onboarding.brief'</span>),</div>
+<div class="cline">  <span class="c-var">output</span>: [<span class="c-str">'logo'</span>, <span class="c-str">'demo'</span>, <span class="c-str">'pitch'</span>],</div>
+<div class="cline">  <span class="c-var">persona</span>: <span class="c-str">'nouveau_collaborateur'</span></div>
+<div class="cline">})</div>
+          </div>
+          <div id="bview-result" class="result-wrap" style="display:none;">
+            <div class="product-demo">
+              <div class="demo-header">
+                <div class="logo-mark">
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+                    <circle cx="13" cy="9" r="5" fill="white" opacity="0.9"/>
+                    <path d="M3 23 Q13 15 23 23" stroke="white" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.65"/>
+                    <circle cx="7" cy="21" r="2.5" fill="#06b6d4" opacity="0.9"/>
+                    <circle cx="19" cy="21" r="2.5" fill="#7c3aed" opacity="0.9"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="product-name">Firstday.</div>
+                  <div class="product-tag">Ton premier mois, pas au hasard.</div>
+                </div>
+                <div class="meta-row">
+                  <div class="mpill mp-p">XP collaborateur</div>
+                  <div class="mpill mp-t">J1 &rarr; J30</div>
+                </div>
+              </div>
+              <div class="pitch-card">
+                <div class="pitch-label">Pitch 30 secondes</div>
+                <div class="pitch-text"><span class="pitch-hl">80% des departs en periode d&rsquo;essai sont evitables.</span> Firstday guide chaque nouveau collaborateur pas a pas, du premier jour au premier mois &mdash; avec un buddy dedie, des etapes claires et un check-in bien-etre hebdomadaire. Le RH voit tout. Le collaborateur ne se perd plus. <span class="pitch-hl">L&rsquo;onboarding devient une experience, pas une liste de taches.</span></div>
+              </div>
+              <div class="screens-row">
+                <div class="screen">
+                  <div class="sbar"><div class="sdot" style="background:#ff5f57;"></div><div class="sdot" style="background:#ffbd2e;"></div><div class="sdot" style="background:#28c840;"></div></div>
+                  <div class="sbody">
+                    <div class="stitle">Ma progression</div>
+                    <div style="font-size:8px;color:rgba(255,255,255,0.35);margin-bottom:5px;">Semaine 1 &mdash; Jour 3</div>
+                    <div class="prog-track"><div class="prog-fill" style="width:40%;"></div></div>
+                    <div style="font-size:7.5px;color:rgba(255,255,255,0.25);margin-bottom:7px;text-align:right;">3/7 etapes</div>
+                    <div class="step-item"><div class="sicon si-done">&#10003;</div><span class="slabel done">IT setup</span></div>
+                    <div class="step-item"><div class="sicon si-done">&#10003;</div><span class="slabel done">Tour equipes</span></div>
+                    <div class="step-item"><div class="sicon si-next">&#9654;</div><span class="slabel next">Dejeuner manager</span></div>
+                    <div class="step-item"><div class="sicon si-todo">&#9675;</div><span class="slabel">Shadowing equipe</span></div>
+                  </div>
+                </div>
+                <div class="screen">
+                  <div class="sbar"><div class="sdot" style="background:#ff5f57;"></div><div class="sdot" style="background:#ffbd2e;"></div><div class="sdot" style="background:#28c840;"></div></div>
+                  <div class="sbody">
+                    <div class="stitle">Mon buddy</div>
+                    <div class="buddy-card">
+                      <div class="bhead"><div class="bav">MK</div><div><div class="bname">Marie K.</div><div class="brole">Senior RH &middot; 3 ans</div></div></div>
+                      <div class="bmsg">&ldquo;Bienvenue ! Dispo pour ton debrief vendredi &mdash; dis-moi si tu veux qu&rsquo;on se retrouve avant.&rdquo;</div>
+                    </div>
+                    <div style="margin-top:6px;font-size:8px;color:rgba(255,255,255,0.25);text-align:center;">Prochain check-in vendredi 14h</div>
+                  </div>
+                </div>
+                <div class="screen">
+                  <div class="sbar"><div class="sdot" style="background:#ff5f57;"></div><div class="sdot" style="background:#ffbd2e;"></div><div class="sdot" style="background:#28c840;"></div></div>
+                  <div class="sbody">
+                    <div class="stitle">Check-in J7</div>
+                    <div class="pulse-check">
+                      <div class="pq">&ldquo;Comment tu te sens apres cette premiere semaine ?&rdquo;</div>
+                      <div class="popts">
+                        <div class="popt">Bien integre, je trouve mes marques</div>
+                        <div class="popt">Quelques questions encore</div>
+                        <div class="popt">Perdu, j&rsquo;ai besoin d&rsquo;aide</div>
+                      </div>
+                    </div>
+                    <div style="margin-top:6px;font-size:7.5px;color:rgba(255,255,255,0.25);">Visible par ton RH &middot; Anonymisable</div>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-footer">
+                <div class="demo-note">Genere depuis onboarding.brief &mdash; WOS RH Sarah Lemoine</div>
+                <div class="demo-badge">&#128640; Firstday. &mdash; Product HR 2026</div>
+              </div>
+            </div>
+          </div>
+          <div class="build-runbar">
+            <button class="run-btn" id="run-btn" onclick="runBuilder()">&#9654; Lancer Builder</button>
+            <span class="run-status" id="run-status">Pret &mdash; contexte WOS charge</span>
+          </div>
+          <div class="build-out" id="build-out"><div class="oline">En attente...</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /desktop -->
+
+  <div id="step-nav">
+    <button class="s-btn on" onclick="goStep(0)">Bureau</button>
+    <button class="s-btn" onclick="goStep(1)">WOS</button>
+    <button class="s-btn" onclick="goStep(2)">Pulse</button>
+    <button class="s-btn" onclick="goStep(3)">Terminal</button>
+    <button class="s-btn" onclick="goStep(4)">Builder</button>
+  </div>
+
+  <div id="dock-wrap">
+    <div class="dock">
+      <div class="di-wrap" onclick="openFinder()">
+        <div class="dk-icon dk-finder">&#128193;</div>
+        <div class="dk-dot"></div>
+        <div class="dock-tip">WOS Sarah</div>
+      </div>
+      <div class="di-wrap" onclick="openPulse()">
+        <div class="dk-icon dk-pulse">&#10024;</div>
+        <div class="dk-dot"></div>
+        <div class="dock-tip">Pulse</div>
+      </div>
+      <div class="di-wrap" onclick="openBuilder()">
+        <div class="dk-icon dk-builder">&#9654;</div>
+        <div class="dock-tip">Builder</div>
+      </div>
+      <div class="dock-sep"></div>
+      <div class="di-wrap" onclick="openTerm()">
+        <div class="dk-icon dk-term" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#34d399;letter-spacing:-.5px;">&gt;_</div>
+        <div class="dock-tip">Terminal</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── DATA ── */
+const FOLDERS={
+  root:{label:'Racine',items:[
+    {name:'profil.brief',icon:'&#128221;',type:'brief',key:'profil'},
+    {name:'entreprise',icon:'&#128193;',type:'folder',key:'entreprise'},
+    {name:'processus',icon:'&#128193;',type:'folder',key:'processus'},
+    {name:'outils',icon:'&#128193;',type:'folder',key:'outils'},
+  ]},
+  profil:{label:'Profil',items:[{name:'profil.brief',icon:'&#128221;',type:'brief',key:'profil'}]},
+  entreprise:{label:'Entreprise',items:[
+    {name:'culture.brief',icon:'&#128221;',type:'brief',key:'culture'},
+    {name:'postes-ouverts.brief',icon:'&#128221;',type:'brief',key:'postes'},
+    {name:'personas.brief',icon:'&#128221;',type:'brief',key:'personas'},
+  ]},
+  processus:{label:'Processus',items:[
+    {name:'recrutement.brief',icon:'&#128221;',type:'brief',key:'recrutement'},
+    {name:'onboarding.brief',icon:'&#128221;',type:'brief',key:'onboarding'},
+    {name:'entretiens.brief',icon:'&#128221;',type:'brief',key:'entretiens'},
+  ]},
+  outils:{label:'Outils',items:[
+    {name:'prompts-recrutement.brief',icon:'&#128221;',type:'brief',key:'promptsrec'},
+    {name:'prompts-feedback.brief',icon:'&#128221;',type:'brief',key:'promptsfb'},
+  ]}
+};
+
+const BRIEFS={
+  profil:`# profil.brief — Sarah Lemoine\n\n## Identite\nNom: Sarah Lemoine\nRole: Stagiaire RH — Scaleway (400 pers.)\nFormation: M2 Management RH — EMLV 2026\n\n## Ce que je veux devenir\nHRBP dans une scale-up tech en hypercroissance.\nLa RH strategique. Pas l'administrative.\n\n## Mon style de travail\n- Directe, feedback clair prefere\n- Analytique : je documente tout\n- Mal a l'aise avec l'ambiguite non resolue\n\n## Mes forces (identifiees en stage)\n- Reformuler un besoin metier en fiche de poste\n- Animer des entretiens structures\n- Piloter un projet onboarding de A a Z`,
+  culture:`# culture.brief — Scaleway\n\n## Valeurs affichees vs reelles\nAffiche: Innovation, transparence, autonomie\nReel: Vitesse d'execution prime sur tout\n\n## Ce qui plait aux candidats\n- Stack technique de haut niveau\n- Autonomie reelle des equipes\n- Flexibilite teletravail (3j/semaine)\n\n## Points de friction identifies\n- Process RH encore manuels pour 400 pers.\n- Pas de HRBP dedie par BU\n- Onboarding non standardise`,
+  postes:`# postes-ouverts.brief\n\n## Poste 1 — Ingenieur Backend Python\nEquipe: Platform Engineering\nManager: Thomas K.\nProfil: 3-5 ans, Python avance, microservices\nUrgence: Haute (Q2) | Difficulte: 7/10\n\n## Poste 2 — Charge RH (CDI)\nEquipe: RH centrale | Manager: Marine D.\nProfil: 2-4 ans, generalist RH, culture tech\nNote: Succession partielle de mon poste`,
+  personas:`# personas.brief\n\n## Persona A — Le Builder\nAge: 27-32 ans\nMotivation #1: Problemes techniques complexes\nDealbreaker: Micro-management, process lourds\nCanal: GitHub, meetups tech, cooptation\n\n## Persona B — Le Strategique\nAge: 32-40 ans\nMotivation #1: Impact business mesurable\nDealbreaker: Flou strategique, pas de donnees\nCanal: LinkedIn, chasse, reseau pro`,
+  recrutement:`# recrutement.brief — Mon process\n\n## Structure entretien (4 temps)\n1. Accueil (5 min) — cadre, mise a l'aise\n2. Parcours (15 min) — motivations reelles\n3. Mise en situation (20 min) — cas concret\n4. Questions candidat (10 min)\n\n## Questions signature\n- "C'est quoi le projet dont tu es le plus fier ?"\n- "Qu'est-ce qui te ferait quitter ce poste en 6 mois ?"\n- "Comment tu travailles avec quelqu'un pas d'accord ?"\n\n## Red flags\n- Ne sait pas ce que fait vraiment Scaleway\n- Pas de questions sur l'equipe ou le contexte`,
+  onboarding:`# onboarding.brief\n\n## Semaine 1 — Ancrage\n- J1: IT setup + tour des equipes + dejeuner manager\n- J2-J3: Shadowing 2 membres equipe differents\n- J4: Premier livrable simple\n- J5: Debrief manager 30 min\n\n## Premier mois\n- S2: Premier entretien (observe par senior)\n- S3: Entretien en autonomie\n- S4: Retrospective 1 mois\n\n## Ce qui manque actuellement\n- Pas de buddy programme formalise\n- Aucun suivi 3 mois post-integration`,
+  entretiens:`# entretiens.brief\n\n## Grille evaluation\n1. Realisation des objectifs (40%)\n2. Competences developpees (30%)\n3. Contribution equipe (20%)\n4. Potentiel percu (10%)\n\n## Erreurs a eviter\n- Effet de recence (biais sur les 2 derniers mois)\n- Biais de similarite\n- Note centrale par confort`,
+  promptsrec:`# prompts-recrutement.brief\n\n## Prompt fiche de poste\n"Tu connais mon contexte Scaleway et le Persona A.\nRedige une fiche de poste pour [poste] en 250 mots.\nTon: direct, pas de jargon RH."\nGain: 45 min -> 8 min\n\n## Prompt preparation entretien\n"J'ai un entretien pour [poste] chez [entreprise].\nMon style: [ref profil.brief].\nAide-moi a identifier les bonnes questions."`,
+  promptsfb:`# prompts-feedback.brief\n\n## Prompt feedback difficile\n"Aide-moi a clarifier ce que j'ai observe: [situation].\nAvant de formuler le feedback — quelle est la situation\nconcrete que j'ai vecue ?"\n\n## Regles personnelles feedback\n- Jamais dans les 30 min apres l'emotion\n- Toujours en prive d'abord\n- Un seul point a la fois si negatif`
+};
+
+/* ── STARS ── */
+(function(){
+  const c=document.getElementById('stars');
+  function draw(){
+    c.width=window.innerWidth;c.height=window.innerHeight;
+    const ctx=c.getContext('2d');
+    for(let i=0;i<140;i++){
+      const x=Math.random()*c.width,y=Math.random()*c.height;
+      const r=Math.random()*1.3+.2,a=Math.random()*.65+.1;
+      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${a})`;ctx.fill();
+    }
+  }
+  draw();window.addEventListener('resize',draw);
+})();
+
+/* ── CLOCK ── */
+function tick(){const n=new Date();document.getElementById('clock').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0');}
+tick();setInterval(tick,30000);
+
+/* ── DRAG ── */
+let drag=null;
+function startDrag(e,id){
+  const el=document.getElementById(id);
+  const rect=el.getBoundingClientRect();
+  drag={id,ox:e.clientX-rect.left,oy:e.clientY-rect.top};
+  toTop(id);
+}
+document.addEventListener('mousemove',e=>{
+  if(!drag)return;
+  const el=document.getElementById(drag.id);
+  const desk=document.getElementById('desktop').getBoundingClientRect();
+  let x=e.clientX-desk.left-drag.ox;
+  let y=e.clientY-desk.top-drag.oy;
+  x=Math.max(0,Math.min(x,desk.width-el.offsetWidth));
+  y=Math.max(0,Math.min(y,desk.height-el.offsetHeight));
+  el.style.left=x+'px';el.style.top=y+'px';
+});
+document.addEventListener('mouseup',()=>{drag=null;});
+
+/* ── WINDOWS ── */
+function showWin(id){document.getElementById(id).classList.add('show');toTop(id);hideIntro();}
+function closeWin(id,e){if(e)e.stopPropagation();document.getElementById(id).classList.remove('show');}
+function toTop(id){document.querySelectorAll('.win').forEach(w=>w.classList.remove('top'));document.getElementById(id).classList.add('top');}
+function hideIntro(){document.getElementById('intro').style.display='none';}
+
+/* ── FINDER ── */
+function showFolder(key,el){
+  document.getElementById('fb-label').textContent=FOLDERS[key].label;
+  document.querySelectorAll('.fs-item').forEach(i=>i.classList.remove('on'));
+  if(el)el.classList.add('on');
+  const main=document.getElementById('finder-main');
+  main.innerHTML='';
+  const grid=document.createElement('div');grid.className='file-grid';
+  FOLDERS[key].items.forEach(item=>{
+    const d=document.createElement('div');d.className='file-item';
+    d.innerHTML=`<span class="fi-icon">${item.icon}</span><span class="fi-name">${item.name}</span>`;
+    if(item.type==='folder')d.ondblclick=()=>showFolder(item.key,null);
+    else d.ondblclick=()=>openBrief(item.name,item.key);
+    d.onclick=e=>{e.stopPropagation();document.querySelectorAll('.file-item').forEach(f=>f.classList.remove('on'));d.classList.add('on');};
+    grid.appendChild(d);
+  });
+  main.appendChild(grid);
+}
+function openFinder(){showWin('finder-win');showFolder('root',document.getElementById('fsi-root'));}
+function openBrief(name,key){
+  document.getElementById('brief-title').textContent=name;
+  document.getElementById('brief-content').innerHTML=fmtBrief(BRIEFS[key]||'Vide');
+  showWin('brief-win');
+}
+function fmtBrief(t){
+  return t.replace(/^# (.+)$/gm,'<span class="bh1">$1</span>').replace(/^## (.+)$/gm,'<span class="bh2">$1</span>').replace(/\n/g,'<br>');
+}
+
+/* ── PULSE ── */
+function openPulse(){showWin('pulse-win');}
+function switchTab(i){
+  document.querySelectorAll('.chat-tab').forEach((t,j)=>t.classList.toggle('on',j===i));
+  document.querySelectorAll('.chat-panel').forEach((p,j)=>p.classList.toggle('on',j===i));
+}
+
+/* ── TERMINAL ── */
+let termDone=false;
+function openTerm(){
+  showWin('term-win');
+  if(termDone)return;termDone=true;
+  const body=document.getElementById('term-body');body.innerHTML='';
+  const lines=[
+    {t:0,h:`<span class="tp">sarah@wos-rh ~ %</span> <span class="tc">ls -la WOS-RH/</span>`},
+    {t:280,h:`<span class="to">total 8 contextes charges</span>`},
+    {t:380,h:`<span class="to">drwxr-xr-x  profil/</span>`},
+    {t:480,h:`<span class="to">drwxr-xr-x  entreprise/</span>`},
+    {t:580,h:`<span class="to">drwxr-xr-x  processus/</span>`},
+    {t:680,h:`<span class="to">drwxr-xr-x  outils/</span>`},
+    {t:900,h:`<span class="tp">sarah@wos-rh ~ %</span> <span class="tc">pulse sync --all</span>`},
+    {t:1150,h:`<span class="tok">&#10003; profil.brief charge (1.2 kb)</span>`},
+    {t:1350,h:`<span class="tok">&#10003; entreprise/culture.brief charge</span>`},
+    {t:1550,h:`<span class="tok">&#10003; processus/recrutement.brief charge</span>`},
+    {t:1750,h:`<span class="tok">&#10003; outils/prompts-recrutement.brief charge</span>`},
+    {t:2000,h:`<span class="thl">Pulse pret &mdash; 4 contextes actifs</span>`},
+    {t:2300,h:`<span class="tp">sarah@wos-rh ~ %</span> <span class="tc">builder run onboarding.js</span>`},
+    {t:2600,h:`<span class="to">Lecture du contexte WOS...</span>`},
+    {t:2850,h:`<span class="to">Structure detectee : 2 phases, 7 etapes</span>`},
+    {t:3100,h:`<span class="twarn">&#9888; Point manquant : buddy programme non formalise</span>`},
+    {t:3350,h:`<span class="twarn">&#9888; Point manquant : suivi J+90 absent</span>`},
+    {t:3650,h:`<span class="tok">&#10003; Firstday. genere &mdash; 3.4 kb</span>`},
+    {t:3900,h:`<span class="thl">Livrable disponible dans Builder &gt; Firstday. demo</span>`},
+    {t:4150,h:`<span class="tp">sarah@wos-rh ~ %</span> <span class="tcursor"></span>`},
+  ];
+  lines.forEach(l=>setTimeout(()=>{
+    const d=document.createElement('div');d.className='tline';d.innerHTML=l.h;
+    body.appendChild(d);body.scrollTop=body.scrollHeight;
+  },l.t));
+}
+
+/* ── BUILDER ── */
+let bRan=false;
+function openBuilder(){showWin('builder-win');}
+function showBTab(t){
+  document.getElementById('bview-code').style.display=t==='code'?'block':'none';
+  document.getElementById('bview-result').style.display=t==='result'?'block':'none';
+  document.getElementById('btab-code').classList.toggle('on',t==='code');
+  document.getElementById('btab-result').classList.toggle('on',t==='result');
+}
+function runBuilder(){
+  if(bRan)return;bRan=true;
+  const btn=document.getElementById('run-btn');
+  const status=document.getElementById('run-status');
+  const out=document.getElementById('build-out');
+  btn.disabled=true;out.innerHTML='';
+  const steps=[
+    {t:0,txt:'Lecture du contexte WOS...',cl:'oline'},
+    {t:380,txt:'onboarding.brief charge &mdash; 2 phases, 7 etapes',cl:'oline'},
+    {t:760,txt:'&#9888; Buddy programme absent du process',cl:'oline-w'},
+    {t:1050,txt:'&#9888; Check-in J+90 manquant',cl:'oline-w'},
+    {t:1350,txt:'Generation nom + logo + pitch...',cl:'oline'},
+    {t:1800,txt:'&#10003; Firstday. &mdash; "Ton premier mois, pas au hasard."',cl:'oline-ok'},
+    {t:2200,txt:'Generation demo interactive 3 ecrans...',cl:'oline'},
+    {t:2700,txt:'&#10003; onboard-demo.html genere &mdash; livrable pret',cl:'oline-ok'},
+  ];
+  steps.forEach(s=>setTimeout(()=>{
+    const d=document.createElement('div');d.className=s.cl;d.innerHTML=s.txt;
+    out.appendChild(d);out.scrollTop=out.scrollHeight;
+    status.textContent='En cours...';
+  },s.t));
+  setTimeout(()=>{
+    status.innerHTML='&#10003; Succes';status.style.color='#34d399';
+    document.getElementById('gen-file').style.display='flex';
+    document.getElementById('btab-result').style.display='block';
+    showBTab('result');
+  },3000);
+}
+
+/* ── STEP NAV ── */
+const ALL_WINS=['finder-win','brief-win','pulse-win','term-win','builder-win'];
+function goStep(i){
+  document.querySelectorAll('.s-btn').forEach((b,j)=>b.classList.toggle('on',j===i));
+  ALL_WINS.forEach(id=>document.getElementById(id).classList.remove('show'));
+  hideIntro();
+  if(i===0){document.getElementById('intro').style.display='flex';}
+  else if(i===1)openFinder();
+  else if(i===2)openPulse();
+  else if(i===3)openTerm();
+  else if(i===4)openBuilder();
+}
+
+/* ── INIT ── */
+showFolder('root',document.getElementById('fsi-root'));
+</script>
+</body>
+</html>
+HTMLEOF
+echo "Done"
+wc -c /mnt/user-data/outputs/wos-rh-demo.html
