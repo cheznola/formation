@@ -572,7 +572,7 @@
   .hero > *:nth-child(4) { -webkit-animation-delay: .28s; animation-delay: .28s; }
   .hero > *:nth-child(5) { -webkit-animation-delay: .36s; animation-delay: .36s; }
 
-  /* ─── Responsive — Tablet (769 → 1023px) ─── */
+  /* ─── Responsive   Tablet (769 → 1023px) ─── */
   @media (max-width: 900px) {
     .nav { padding: 0 24px; }
     .nav-meta { display: none; }
@@ -585,7 +585,7 @@
     .bio-blocks .bio-block:last-child { grid-column: 1 / -1; }
   }
 
-  /* ─── Responsive — Mobile (≤ 768px) ─── */
+  /* ─── Responsive   Mobile (≤ 768px) ─── */
   @media (max-width: 768px) {
     html { font-size: 14px; }
     .nav { padding: 0 16px; height: 52px; }
@@ -696,103 +696,74 @@
     line-height: 1.3;
   }
 
-  /* ─── Ticker ─── */
-  .ticker-section {
+  /* ─── Logos sociaux (fixes) ─── */
+  .logos-section {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: var(--cream);
-    overflow: hidden;
-    padding: 0;
+    padding: 28px 48px;
   }
-  .ticker-row {
+  .logos-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
     display: flex;
-    align-items: center;
-    height: 44px;
-    overflow: hidden;
-    position: relative;
+    flex-direction: column;
+    gap: 20px;
   }
-  .ticker-row + .ticker-row {
-    border-top: 1px solid var(--border);
-  }
-  .ticker-label {
-    flex-shrink: 0;
-    font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: #fff;
+  .logos-group { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .logos-group-label {
+    font-size: 9.5px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: #fff;
     background: var(--accent);
-    padding: 0 16px;
-    height: 100%;
-    display: flex;
-    align-items: center;
+    padding: 4px 12px 4px 14px;
+    border-radius: 3px;
     white-space: nowrap;
-    z-index: 2;
-    position: relative;
+    flex-shrink: 0;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
+    padding-right: 20px;
   }
-  .ticker-label::after {
-    content: '';
-    position: absolute;
-    right: -10px; top: 0;
-    border-top: 22px solid transparent;
-    border-bottom: 22px solid transparent;
-    border-left: 10px solid var(--accent);
-  }
-  .ticker-track-wrap {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-  }
-  .ticker-track-wrap::before,
-  .ticker-track-wrap::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 40px;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .ticker-track-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
-  .ticker-track-wrap::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
-
-  .ticker-track {
+  .logos-row {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0;
-    white-space: nowrap;
-    will-change: transform;
   }
-  .ticker-track.track-clients  { animation: ticker-left 22s linear infinite; }
-  .ticker-track.track-parcours { animation: ticker-left 30s linear infinite; }
-
-  .ticker-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 28px;
-    font-size: 12.5px;
-    font-weight: 600;
+  .logo-name {
+    font-size: 13px; font-weight: 600;
     color: var(--ink-2);
-    letter-spacing: .01em;
+    letter-spacing: -.01em;
+    padding: 4px 16px;
+    white-space: nowrap;
+    transition: color .15s;
   }
-  .ticker-item::after {
-    content: '·';
-    color: var(--accent);
-    font-size: 16px;
-    line-height: 1;
+  .logo-name:hover { color: var(--accent); }
+  .logo-sep {
+    width: 1px; height: 14px;
+    background: var(--border-2);
+    flex-shrink: 0;
+  }
+  .logos-divider {
+    height: 1px;
+    background: var(--border);
+    width: 100%;
   }
 
-  @keyframes ticker-left {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  @-webkit-keyframes ticker-left {
-    0%   { -webkit-transform: translateX(0); }
-    100% { -webkit-transform: translateX(-50%); }
+  /* signal source footnote */
+  .signal-source {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 400;
+    color: rgba(255,255,255,.3);
+    margin-top: 4px;
+    font-style: italic;
   }
 
-  /* pause on hover */
-  .ticker-track-wrap:hover .ticker-track { animation-play-state: paused; }
+  @media (max-width: 768px) {
+    .logos-section { padding: 20px 16px; }
+    .logos-group { gap: 12px; }
+    .logos-group-label { font-size: 8.5px; padding: 3px 18px 3px 10px; }
+    .logo-name { font-size: 12px; padding: 4px 10px; }
+  }
 
   /* ─── Market signal section ─── */
   .signal-section {
@@ -844,8 +815,6 @@
   @media (max-width: 768px) {
     .signal-section { padding: 32px 16px; }
     .signal-inner { grid-template-columns: 1fr; gap: 24px; }
-    .ticker-label { padding: 0 12px; font-size: 8.5px; }
-    .ticker-item { padding: 0 20px; font-size: 11.5px; }
   }
 </style>
 </head>
@@ -855,9 +824,9 @@
      NAV
 ═══════════════════════════════════════ -->
 <nav class="nav">
-  <div class="nav-brand">Product HR</div>
+  <div class="nav-brand">Emmanuel Di Marco</div>
   <div class="nav-right">
-    <div class="nav-meta">Syllabus · Emmanuel Di Marco</div>
+    <div class="nav-meta">Product HR</div>
     <a href="syllabus-product-hr.pdf" download class="nav-cta" aria-label="Télécharger le syllabus PDF">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Télécharger le syllabus
@@ -871,11 +840,12 @@
 <div class="hero">
   <span class="eyebrow">Formation IA appliquée aux métiers RH</span>
   <h1 class="hero-title">Piloter son métier RH<br>à <em>l'ère de l'IA</em></h1>
+  <p class="hero-hook" style="font-family:var(--serif);font-size:clamp(15px,2.2vw,19px);font-style:italic;color:var(--ink-2);max-width:680px;line-height:1.5;margin-bottom:16px;">Preparez-vous au futur dans le present, en appliquant les methodes des Product Managers qui construisent les produits que vous utilisez tous les jours a votre propre metier RH.</p>
   <p class="hero-sub">Passer de spectateur des bouleversements IA à professionnel RH augmenté, avec des outils activables dès le lendemain.</p>
 
   <div class="hero-diff">
     <div class="hero-diff-dot"></div>
-    <div class="hero-diff-text">Seul formateur RH combinant 7 ans de terrain en DSI, du PM sur des projets IA déployés chez Danone, TF1, Total, et une pratique quotidienne des outils qu'il enseigne</div>
+    <div class="hero-diff-text">18+ années d'expérience, dont 7+ ans RH en DSI. AI Senior Product Manager : projets IA livrés chez Danone, TF1, Total, Ledger. Praticien en activité.</div>
   </div>
 
   <div class="promise-grid">
@@ -919,61 +889,53 @@
 </div>
 
 <!-- ═══════════════════════════════════════
-     TICKER
+     LOGOS SOCIAUX
 ═══════════════════════════════════════ -->
-<div class="ticker-section" aria-hidden="true">
+<div class="logos-section">
+  <div class="logos-inner">
 
-  <!-- Row 1 : projets IA livrés -->
-  <div class="ticker-row">
-    <div class="ticker-label">Projets IA déployés pour</div>
-    <div class="ticker-track-wrap">
-      <div class="ticker-track track-clients">
-        <span class="ticker-item">Total</span>
-        <span class="ticker-item">Danone</span>
-        <span class="ticker-item">TF1</span>
-        <span class="ticker-item">Ledger</span>
-        <span class="ticker-item">Total</span>
-        <span class="ticker-item">Danone</span>
-        <span class="ticker-item">TF1</span>
-        <span class="ticker-item">Ledger</span>
-        <span class="ticker-item">Total</span>
-        <span class="ticker-item">Danone</span>
-        <span class="ticker-item">TF1</span>
-        <span class="ticker-item">Ledger</span>
+    <div class="logos-group">
+      <div class="logos-group-label">Projets IA deployes pour</div>
+      <div class="logos-row" role="list">
+        <span class="logo-name" role="listitem">Total</span>
+        <span class="logo-sep" aria-hidden="true"></span>
+        <span class="logo-name" role="listitem">Danone</span>
+        <span class="logo-sep" aria-hidden="true"></span>
+        <span class="logo-name" role="listitem">TF1</span>
+        <span class="logo-sep" aria-hidden="true"></span>
+        <span class="logo-name" role="listitem">Ledger</span>
       </div>
     </div>
-  </div>
 
-  <!-- Row 2 : expériences professionnelles -->
-  <div class="ticker-row">
-    <div class="ticker-label">Expériences professionnelles</div>
-    <div class="ticker-track-wrap">
-      <div class="ticker-track track-parcours">
-        <span class="ticker-item">MerciYanis</span>
-        <span class="ticker-item">Allianz France</span>
-        <span class="ticker-item">Veepee</span>
-        <span class="ticker-item">Société Générale</span>
-        <span class="ticker-item">Casino</span>
-        <span class="ticker-item">American Express Assurances</span>
-        <span class="ticker-item">MerciYanis</span>
-        <span class="ticker-item">Allianz France</span>
-        <span class="ticker-item">Veepee</span>
-        <span class="ticker-item">Société Générale</span>
-        <span class="ticker-item">Casino</span>
-        <span class="ticker-item">American Express Assurances</span>
+    <div class="logos-divider" aria-hidden="true"></div>
+
+    <div class="logos-group">
+      <div class="logos-group-label">Experiences professionnelles</div>
+      <div class="logos-row" role="list">
+        <span class="logo-name" role="listitem">MerciYanis</span>
+        <span class="logo-sep" aria-hidden="true"></span>
+        <span class="logo-name" role="listitem">Allianz France</span>
+        <span class="logo-sep" aria-hidden="true"></span>
+        <span class="logo-name" role="listitem">Veepee</span>
+        <span class="logo-sep" aria-hidden="true"></span>
+        <span class="logo-name" role="listitem">Societe Generale</span>
+        <span class="logo-sep" aria-hidden="true"></span>
+        <span class="logo-name" role="listitem">Casino</span>
+        <span class="logo-sep" aria-hidden="true"></span>
+        <span class="logo-name" role="listitem">American Express</span>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════
-     OBJECTIFS PÉDAGOGIQUES (position #2 — Cagan/Zhuo)
+     OBJECTIFS PÉDAGOGIQUES (position #2   Cagan/Zhuo)
 ═══════════════════════════════════════ -->
 <div class="section">
   <span class="eyebrow">Objectifs pédagogiques</span>
   <h2 class="section-title">Ce que vos étudiants savent faire à la fin</h2>
-  <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits pendant la formation — exactement ce que les directions RH et les recruteurs cherchent en 2026.</p>
+  <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits pendant la formation   exactement ce que les directions RH et les recruteurs cherchent en 2026.</p>
 
   <div class="competences-grid">
     <div class="competence-item">
@@ -1028,31 +990,35 @@
   <div class="signal-inner">
     <div>
       <div class="signal-headline">Les entreprises cherchent des RH qui <em>pensent produit</em>.</div>
-      <p class="signal-sub">La transformation IA ne cherche pas des utilisateurs d'outils — elle cherche des professionnels capables de piloter le changement, prioriser par impact, et itérer vite. Vos étudiants sortent avec exactement ce profil.</p>
+      <p class="signal-sub">La transformation IA ne cherche pas des utilisateurs d'outils   elle cherche des professionnels capables de piloter le changement, prioriser par impact, et itérer vite. Vos étudiants sortent avec exactement ce profil.</p>
     </div>
     <div class="signal-stats">
       <div class="signal-stat">
-        <div class="signal-stat-num">73%</div>
-        <div class="signal-stat-label">des DRH considèrent l'IA comme priorité stratégique n°1 en 2026</div>
+        <div class="signal-stat-num">83%</div>
+        <div class="signal-stat-label">des Directions Generales considerent l'automatisation RH comme prioritaire
+          <span class="signal-source">Neobrain, 2025</span>
+        </div>
       </div>
       <div class="signal-stat">
-        <div class="signal-stat-num">4×</div>
-        <div class="signal-stat-label">plus de postes RH mentionnant l'IA dans les offres d'emploi vs 2023</div>
+        <div class="signal-stat-num">92%</div>
+        <div class="signal-stat-label">des entreprises vont investir dans l'IA generative dans les 3 ans
+          <span class="signal-source">ConvictionsRH x Mercer, 2025</span>
+        </div>
       </div>
       <div class="signal-stat">
         <div class="signal-stat-num">J+1</div>
-        <div class="signal-stat-label">chaque session produit un livrable activable dès le lendemain</div>
+        <div class="signal-stat-label">chaque session produit un livrable activable des le lendemain</div>
       </div>
       <div class="signal-stat">
         <div class="signal-stat-num">100%</div>
-        <div class="signal-stat-label">des participants repartent avec un outil opérationnel personnalisé</div>
+        <div class="signal-stat-label">des participants repartent avec un outil operationnel personnalise</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════
-     FORMATS — CARDS
+     FORMATS   CARDS
 ═══════════════════════════════════════ -->
 <div class="section">
   <span class="eyebrow">3 formats disponibles</span>
@@ -1086,7 +1052,7 @@
     </div>
   </div>
 
-  <!-- ACCORDION — détail de chaque format -->
+  <!-- ACCORDION   détail de chaque format -->
   <div class="formats-detail" id="formats-detail">
 
     <!-- Starter -->
@@ -1094,7 +1060,7 @@
       <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-starter" id="trigger-starter">
         <span class="acc-badge">Starter</span>
         <div class="acc-meta" style="flex:1;">
-          <div class="acc-title">Lire l'IA sans se noyer — Programme détaillé</div>
+          <div class="acc-title">Lire l'IA sans se noyer   Programme détaillé</div>
         </div>
         <span class="acc-duration">3h30 · 1 session</span>
         <span class="acc-chevron" aria-hidden="true">
@@ -1136,7 +1102,7 @@
       <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-core" id="trigger-core">
         <span class="acc-badge">Core</span>
         <div style="flex:1;">
-          <div class="acc-title">Construire son WOS RH — Programme détaillé</div>
+          <div class="acc-title">Construire son WOS RH   Programme détaillé</div>
         </div>
         <span class="acc-duration">14h · 2 jours</span>
         <span class="acc-chevron" aria-hidden="true">
@@ -1146,7 +1112,7 @@
       <div class="accordion-panel" id="panel-core" role="region" aria-labelledby="trigger-core">
         <div class="accordion-panel-grid">
           <div>
-            <div class="session-section-title">Jour 1 — Fondations</div>
+            <div class="session-section-title">Jour 1   Fondations</div>
             <ul class="session-points">
               <li>Lire l'IA sans se noyer : signaux RH vs bruit médiatique</li>
               <li>Architecture d'un WOS RH : les 4 composantes essentielles</li>
@@ -1156,7 +1122,7 @@
             </ul>
           </div>
           <div>
-            <div class="session-section-title">Jour 2 — Application</div>
+            <div class="session-section-title">Jour 2   Application</div>
             <ul class="session-points">
               <li>Piloter ses processus RH avec l'IA : recrutement, onboarding, entretiens</li>
               <li>Marque employeur IA-first : produire 10x plus vite sans perdre l'authenticité</li>
@@ -1178,7 +1144,7 @@
       <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-premium" id="trigger-premium">
         <span class="acc-badge">Premium</span>
         <div style="flex:1;">
-          <div class="acc-title">Devenir Product HR — Programme complet 5 sessions</div>
+          <div class="acc-title">Devenir Product HR   Programme complet 5 sessions</div>
         </div>
         <span class="acc-duration">15h · 5 × 3h</span>
         <span class="acc-chevron" aria-hidden="true">
@@ -1493,7 +1459,7 @@
     <!-- Nola -->
     <div>
       <span class="beyond-label">Communauté</span>
-      <div class="beyond-col-title">Nola — dîners en petit comité entre pairs produit</div>
+      <div class="beyond-col-title">Nola   dîners en petit comité entre pairs produit</div>
       <p class="beyond-col-text">Des dîners qui comptent, entre Product People. Chaque mois à Paris, 4 à 6 personnes autour d'une table, sélectionnées pour la qualité des échanges. CPO, Head of Product, Senior PM de Payfit, Lucca, Skello, Welcome to the Jungle.</p>
       <p class="beyond-col-text" style="font-size:12px;font-style:italic;color:var(--muted-lt);">"On se croise souvent. On se rencontre rarement."</p>
       <a href="https://cheznola.fr" target="_blank" rel="noopener noreferrer" class="beyond-link">
@@ -1506,7 +1472,7 @@
     <div>
       <span class="beyond-label">Consulting</span>
       <div class="beyond-col-title">Consultant Product Manager indépendant</div>
-      <p class="beyond-col-text">En parallèle de la formation, je travaille en mission courte sur des périmètres PM — structuration produit, cadrage discovery, pilotage de backlog à l'échelle programme. Profil non-technique, fort sur l'alignement parties prenantes et la conduite du changement.</p>
+      <p class="beyond-col-text">En parallèle de la formation, je travaille en mission courte sur des périmètres PM   structuration produit, cadrage discovery, pilotage de backlog à l'échelle programme. Profil non-technique, fort sur l'alignement parties prenantes et la conduite du changement.</p>
       <p class="beyond-col-text" style="font-size:12px;color:var(--muted-lt);">Disponible pour missions en portage salarial · Paris et distanciel</p>
       <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Mission%20PM%20%E2%80%94%20Prise%20de%20contact" class="beyond-link">
         Me contacter
@@ -1546,7 +1512,7 @@
 </footer>
 
 <!-- ═══════════════════════════════════════
-     JS — Accordion
+     JS   Accordion
 ═══════════════════════════════════════ -->
 <script>
 (function() {
