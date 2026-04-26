@@ -481,6 +481,78 @@
   /* FIX: footer-meta était rgba(255,255,255,.2) = quasi invisible */
   .footer-meta { font-size: 11px; color: rgba(255,255,255,.55); }
 
+
+  /* ─── Footer buttons ─── */
+  .footer-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .footer-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 9px 18px; border-radius: 7px;
+    font-size: 13px; font-weight: 600;
+    text-decoration: none; white-space: nowrap;
+    transition: opacity .15s, transform .12s;
+    cursor: pointer;
+  }
+  .footer-btn:hover { opacity: .85; transform: translateY(-1px); }
+  .footer-btn--email {
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.15);
+    color: #fff;
+  }
+  .footer-btn--whatsapp {
+    background: #25D366;
+    border: 1px solid rgba(0,0,0,.10);
+    color: #fff;
+  }
+
+  /* ─── Nola / Au-delà section ─── */
+  .beyond-section {
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+    padding: 48px 48px;
+  }
+  .beyond-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .beyond-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--muted-lt);
+    display: block; margin-bottom: 20px;
+  }
+  .beyond-col-title {
+    font-family: var(--serif);
+    font-size: 20px; font-weight: 700;
+    letter-spacing: -.5px; color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .beyond-col-text {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.65; margin-bottom: 16px;
+  }
+  .beyond-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600;
+    color: var(--accent); text-decoration: none;
+    transition: gap .15s;
+  }
+  .beyond-link:hover { gap: 10px; }
+  .beyond-divider {
+    width: 1px;
+    background: var(--border-2);
+    align-self: stretch;
+    display: none; /* shown via grid column */
+  }
+  @media (max-width: 768px) {
+    .beyond-section { padding: 36px 16px; }
+    .beyond-inner { grid-template-columns: 1fr; gap: 28px; }
+    .footer-actions { justify-content: flex-start; }
+    .footer { flex-direction: column; align-items: flex-start; }
+  }
+
   /* ─── Animations ─── */
   @-webkit-keyframes fadeUp {
     from { opacity: 0; -webkit-transform: translateY(16px); transform: translateY(16px); }
@@ -565,6 +637,216 @@
 
   /* ─── Focus visible (accessibility) ─── */
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ─── Footer buttons ─── */
+  .footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity .15s, transform .12s;
+    font-family: var(--sans);
+  }
+  .footer-btn:hover { opacity: .85; transform: translateY(-1px); }
+  .footer-btn--email {
+    background: rgba(255,255,255,.10);
+    color: rgba(255,255,255,.85);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  .footer-btn--whatsapp {
+    background: #25D366;
+    color: #fff;
+    border: 1px solid transparent;
+  }
+  @media (max-width: 768px) {
+    .footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .footer-actions { width: 100%; }
+    .footer-btn { flex: 1; justify-content: center; }
+  }
+
+  /* ─── Hero differentiator line ─── */
+  .hero-diff {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--cream);
+    border: 1px solid var(--border-2);
+    border-radius: 100px;
+    padding: 6px 16px 6px 8px;
+    margin-bottom: 20px;
+  }
+  .hero-diff-dot {
+    width: 6px; height: 6px; min-width: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .hero-diff-text {
+    font-size: 12px; font-weight: 500; color: var(--ink-2);
+    line-height: 1.3;
+  }
+
+  /* ─── Ticker ─── */
+  .ticker-section {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--cream);
+    overflow: hidden;
+    padding: 0;
+  }
+  .ticker-row {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-row + .ticker-row {
+    border-top: 1px solid var(--border);
+  }
+  .ticker-label {
+    flex-shrink: 0;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent);
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    z-index: 2;
+    position: relative;
+  }
+  .ticker-label::after {
+    content: '';
+    position: absolute;
+    right: -10px; top: 0;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+    border-left: 10px solid var(--accent);
+  }
+  .ticker-track-wrap {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-track-wrap::before,
+  .ticker-track-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 40px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .ticker-track-wrap::before { left: 0; background: linear-gradient(to right, var(--cream), transparent); }
+  .ticker-track-wrap::after  { right: 0; background: linear-gradient(to left, var(--cream), transparent); }
+
+  .ticker-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+    will-change: transform;
+  }
+  .ticker-track.track-clients  { animation: ticker-left 22s linear infinite; }
+  .ticker-track.track-parcours { animation: ticker-left 30s linear infinite; }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 28px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink-2);
+    letter-spacing: .01em;
+  }
+  .ticker-item::after {
+    content: '·';
+    color: var(--accent);
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  @keyframes ticker-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  @-webkit-keyframes ticker-left {
+    0%   { -webkit-transform: translateX(0); }
+    100% { -webkit-transform: translateX(-50%); }
+  }
+
+  /* pause on hover */
+  .ticker-track-wrap:hover .ticker-track { animation-play-state: paused; }
+
+  /* ─── Market signal section ─── */
+  .signal-section {
+    background: var(--ink);
+    padding: 40px 48px;
+    border-top: 1px solid rgba(255,255,255,.05);
+  }
+  .signal-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .signal-headline {
+    font-family: var(--serif);
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700;
+    letter-spacing: -.8px;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .signal-headline em { font-style: italic; color: var(--accent); }
+  .signal-sub { font-size: 13px; color: rgba(255,255,255,.5); line-height: 1.6; }
+  .signal-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .signal-stat {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 8px;
+    padding: 16px 20px;
+  }
+  .signal-stat-num {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--accent);
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .signal-stat-label { font-size: 11.5px; color: rgba(255,255,255,.5); line-height: 1.4; }
+
+  @media (max-width: 768px) {
+    .signal-section { padding: 32px 16px; }
+    .signal-inner { grid-template-columns: 1fr; gap: 24px; }
+    .ticker-label { padding: 0 12px; font-size: 8.5px; }
+    .ticker-item { padding: 0 20px; font-size: 11.5px; }
+  }
 </style>
 </head>
 <body>
@@ -590,6 +872,11 @@
   <span class="eyebrow">Formation IA appliquée aux métiers RH</span>
   <h1 class="hero-title">Piloter son métier RH<br>à <em>l'ère de l'IA</em></h1>
   <p class="hero-sub">Passer de spectateur des bouleversements IA à professionnel RH augmenté, avec des outils activables dès le lendemain.</p>
+
+  <div class="hero-diff">
+    <div class="hero-diff-dot"></div>
+    <div class="hero-diff-text">Seul formateur RH combinant 7 ans de terrain en DSI, du PM sur des projets IA déployés chez Danone, TF1, Total, et une pratique quotidienne des outils qu'il enseigne</div>
+  </div>
 
   <div class="promise-grid">
     <div class="promise-pill">
@@ -628,6 +915,139 @@
     <div class="zero-tag" role="listitem"><span aria-hidden="true">✕</span> Passage théorique</div>
     <div class="zero-tag" role="listitem"><span aria-hidden="true">✕</span> Formule magique</div>
     <div class="zero-tag" role="listitem"><span aria-hidden="true">✓</span> Fondamentaux solides et éprouvés</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TICKER
+═══════════════════════════════════════ -->
+<div class="ticker-section" aria-hidden="true">
+
+  <!-- Row 1 : projets IA livrés -->
+  <div class="ticker-row">
+    <div class="ticker-label">Projets IA déployés pour</div>
+    <div class="ticker-track-wrap">
+      <div class="ticker-track track-clients">
+        <span class="ticker-item">Total</span>
+        <span class="ticker-item">Danone</span>
+        <span class="ticker-item">TF1</span>
+        <span class="ticker-item">Ledger</span>
+        <span class="ticker-item">Total</span>
+        <span class="ticker-item">Danone</span>
+        <span class="ticker-item">TF1</span>
+        <span class="ticker-item">Ledger</span>
+        <span class="ticker-item">Total</span>
+        <span class="ticker-item">Danone</span>
+        <span class="ticker-item">TF1</span>
+        <span class="ticker-item">Ledger</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2 : expériences professionnelles -->
+  <div class="ticker-row">
+    <div class="ticker-label">Expériences professionnelles</div>
+    <div class="ticker-track-wrap">
+      <div class="ticker-track track-parcours">
+        <span class="ticker-item">MerciYanis</span>
+        <span class="ticker-item">Allianz France</span>
+        <span class="ticker-item">Veepee</span>
+        <span class="ticker-item">Société Générale</span>
+        <span class="ticker-item">Casino</span>
+        <span class="ticker-item">American Express Assurances</span>
+        <span class="ticker-item">MerciYanis</span>
+        <span class="ticker-item">Allianz France</span>
+        <span class="ticker-item">Veepee</span>
+        <span class="ticker-item">Société Générale</span>
+        <span class="ticker-item">Casino</span>
+        <span class="ticker-item">American Express Assurances</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════
+     OBJECTIFS PÉDAGOGIQUES (position #2 — Cagan/Zhuo)
+═══════════════════════════════════════ -->
+<div class="section">
+  <span class="eyebrow">Objectifs pédagogiques</span>
+  <h2 class="section-title">Ce que vos étudiants savent faire à la fin</h2>
+  <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits pendant la formation — exactement ce que les directions RH et les recruteurs cherchent en 2026.</p>
+
+  <div class="competences-grid">
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">01</div>
+      <div>
+        <div class="competence-title">Lire l'actualité IA sans se noyer</div>
+        <div class="competence-desc">Distinguer ce qui change vraiment du bruit ambiant. Identifier les signaux pertinents pour son métier RH parmi les 100 nouveautés hebdomadaires.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">02</div>
+      <div>
+        <div class="competence-title">Construire son WOS RH personnel</div>
+        <div class="competence-desc">Créer son propre système de travail augmenté : fichiers contexte, routines IA, stack d'outils, adaptés à son rôle et ses enjeux réels.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">03</div>
+      <div>
+        <div class="competence-title">Piloter ses processus RH avec l'IA</div>
+        <div class="competence-desc">Recrutement, onboarding, entretiens annuels, marque employeur : identifier où l'IA apporte de la valeur réelle et comment l'intégrer sans casser l'existant.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">04</div>
+      <div>
+        <div class="competence-title">Raisonner comme un product manager</div>
+        <div class="competence-desc">Appliquer la logique discovery → priorisation → itération à ses projets RH. Passer de l'exécution à la conception de solutions.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">05</div>
+      <div>
+        <div class="competence-title">Produire ses propres outils IA</div>
+        <div class="competence-desc">Créer des prompts système, des workflows automatisés, des digests personnalisés, sans coder, avec les outils no-code accessibles aujourd'hui.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">06</div>
+      <div>
+        <div class="competence-title">Anticiper les évolutions de son rôle</div>
+        <div class="competence-desc">Comprendre quelles tâches RH seront automatisées, lesquelles seront augmentées, et comment positionner sa valeur ajoutée humaine durablement.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     SIGNAL MARCHÉ (pour directeurs de programme)
+═══════════════════════════════════════ -->
+<div class="signal-section">
+  <div class="signal-inner">
+    <div>
+      <div class="signal-headline">Les entreprises cherchent des RH qui <em>pensent produit</em>.</div>
+      <p class="signal-sub">La transformation IA ne cherche pas des utilisateurs d'outils — elle cherche des professionnels capables de piloter le changement, prioriser par impact, et itérer vite. Vos étudiants sortent avec exactement ce profil.</p>
+    </div>
+    <div class="signal-stats">
+      <div class="signal-stat">
+        <div class="signal-stat-num">73%</div>
+        <div class="signal-stat-label">des DRH considèrent l'IA comme priorité stratégique n°1 en 2026</div>
+      </div>
+      <div class="signal-stat">
+        <div class="signal-stat-num">4×</div>
+        <div class="signal-stat-label">plus de postes RH mentionnant l'IA dans les offres d'emploi vs 2023</div>
+      </div>
+      <div class="signal-stat">
+        <div class="signal-stat-num">J+1</div>
+        <div class="signal-stat-label">chaque session produit un livrable activable dès le lendemain</div>
+      </div>
+      <div class="signal-stat">
+        <div class="signal-stat-num">100%</div>
+        <div class="signal-stat-label">des participants repartent avec un outil opérationnel personnalisé</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -1024,60 +1444,6 @@
 </div>
 
 <!-- ═══════════════════════════════════════
-     OBJECTIFS PÉDAGOGIQUES
-═══════════════════════════════════════ -->
-<div class="section">
-  <span class="eyebrow">Objectifs pédagogiques</span>
-  <h2 class="section-title">Ce que vous savez faire à la fin</h2>
-  <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits pendant la formation.</p>
-
-  <div class="competences-grid">
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">01</div>
-      <div>
-        <div class="competence-title">Lire l'actualité IA sans se noyer</div>
-        <div class="competence-desc">Distinguer ce qui change vraiment du bruit ambiant. Identifier les signaux pertinents pour son métier RH parmi les 100 nouveautés hebdomadaires.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">02</div>
-      <div>
-        <div class="competence-title">Construire son WOS RH personnel</div>
-        <div class="competence-desc">Créer son propre système de travail augmenté : fichiers contexte, routines IA, stack d'outils, adaptés à son rôle et ses enjeux réels.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">03</div>
-      <div>
-        <div class="competence-title">Piloter ses processus RH avec l'IA</div>
-        <div class="competence-desc">Recrutement, onboarding, entretiens annuels, marque employeur : identifier où l'IA apporte de la valeur réelle et comment l'intégrer sans casser l'existant.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">04</div>
-      <div>
-        <div class="competence-title">Raisonner comme un product manager</div>
-        <div class="competence-desc">Appliquer la logique discovery → priorisation → itération à ses projets RH. Passer de l'exécution à la conception de solutions.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">05</div>
-      <div>
-        <div class="competence-title">Produire ses propres outils IA</div>
-        <div class="competence-desc">Créer des prompts système, des workflows automatisés, des digests personnalisés, sans coder, avec les outils no-code accessibles aujourd'hui.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">06</div>
-      <div>
-        <div class="competence-title">Anticiper les évolutions de son rôle</div>
-        <div class="competence-desc">Comprendre quelles tâches RH seront automatisées, lesquelles seront augmentées, et comment positionner sa valeur ajoutée humaine durablement.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════
      BIO
 ═══════════════════════════════════════ -->
 <div class="bio-section">
@@ -1107,7 +1473,7 @@
       <div class="bio-block">
         <div class="bio-block-label">Côté Communauté</div>
         <div class="bio-block-text">
-          Fondateur de <strong>Nola</strong>, collectif Product réunissant CPO, Head of Product et Senior PM de Payfit, Lucca, Skello, Welcome to the Jungle. Membre actif de <strong>French Produit</strong> (5 000+ product managers français). Consultant Product Manager en activité.
+          Fondateur de <strong><a href="https://cheznola.fr" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(200,117,66,.3);">Nola</a></strong>, collectif Product réunissant CPO, Head of Product et Senior PM de Payfit, Lucca, Skello, Welcome to the Jungle. Membre actif de <strong>French Produit</strong> (5 000+ product managers français). Consultant Product Manager en activité.
         </div>
       </div>
     </div>
@@ -1119,12 +1485,64 @@
 </div>
 
 <!-- ═══════════════════════════════════════
+     AU-DELÀ DE LA FORMATION
+═══════════════════════════════════════ -->
+<div class="beyond-section">
+  <div class="beyond-inner">
+
+    <!-- Nola -->
+    <div>
+      <span class="beyond-label">Communauté</span>
+      <div class="beyond-col-title">Nola — dîners en petit comité entre pairs produit</div>
+      <p class="beyond-col-text">Des dîners qui comptent, entre Product People. Chaque mois à Paris, 4 à 6 personnes autour d'une table, sélectionnées pour la qualité des échanges. CPO, Head of Product, Senior PM de Payfit, Lucca, Skello, Welcome to the Jungle.</p>
+      <p class="beyond-col-text" style="font-size:12px;font-style:italic;color:var(--muted-lt);">"On se croise souvent. On se rencontre rarement."</p>
+      <a href="https://cheznola.fr" target="_blank" rel="noopener noreferrer" class="beyond-link">
+        Découvrir Nola
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+    <!-- Consulting PM -->
+    <div>
+      <span class="beyond-label">Consulting</span>
+      <div class="beyond-col-title">Consultant Product Manager indépendant</div>
+      <p class="beyond-col-text">En parallèle de la formation, je travaille en mission courte sur des périmètres PM — structuration produit, cadrage discovery, pilotage de backlog à l'échelle programme. Profil non-technique, fort sur l'alignement parties prenantes et la conduite du changement.</p>
+      <p class="beyond-col-text" style="font-size:12px;color:var(--muted-lt);">Disponible pour missions en portage salarial · Paris et distanciel</p>
+      <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Mission%20PM%20%E2%80%94%20Prise%20de%20contact" class="beyond-link">
+        Me contacter
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════ -->
 <footer class="footer">
   <div class="footer-brand">Product HR</div>
-  <!-- FIX: couleur passée de rgba(255,255,255,.2) à rgba(255,255,255,.55) pour lisibilité -->
   <div class="footer-meta">Emmanuel Di Marco · Formation IA appliquée aux métiers RH · 2026</div>
+  <div class="footer-actions">
+    <a
+      href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20%E2%80%94%20Demande%20d%27information&body=Bonjour%20Emmanuel%2C%0A%0AJ%27ai%20consult%C3%A9%20votre%20syllabus%20Product%20HR%20et%20je%20souhaiterais%20en%20savoir%20plus%20sur%20une%20%C3%A9ventuelle%20intervention%20dans%20notre%20programme.%0A%0ACordialement%2C"
+      class="footer-btn footer-btn--email"
+      aria-label="Écrire à Emmanuel Di Marco"
+    >
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      M'écrire
+    </a>
+    <a
+      href="https://wa.me/?text=Bonjour%2C%0A%0AJe%20souhaitais%20partager%20avec%20vous%20le%20syllabus%20de%20la%20formation%20%22Product%20HR%20%E2%80%94%20Piloter%20son%20m%C3%A9tier%20RH%20%C3%A0%20l%27%C3%A8re%20de%20l%27IA%22.%0A%0ACette%20formation%20est%20con%C3%A7ue%20pour%20les%20%C3%A9tudiants%20et%20professionnels%20RH%20souhaitant%20s%27emparer%20concr%C3%A8tement%20de%20l%27IA%20dans%20leur%20m%C3%A9tier.%0A%0ASyllabus%20complet%20%3A%20https%3A%2F%2Fcheznola.github.io%2Fformation%0A%0ABonne%20lecture%20!"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="footer-btn footer-btn--whatsapp"
+      aria-label="Partager cette page via WhatsApp"
+    >
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      Partager
+    </a>
+  </div>
 </footer>
 
 <!-- ═══════════════════════════════════════
