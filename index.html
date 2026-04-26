@@ -135,11 +135,12 @@
     line-height: 1.7;
     margin-bottom: 40px;
   }
+
   .bio-avatar-img {
-  width: 72px; height: 72px; min-width: 72px;
-  border-radius: 10px;
-  object-fit: cover;
-  display: block;
+    width: 72px; height: 72px; min-width: 72px;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
   }
   .promise-grid {
     display: -ms-grid;
@@ -604,7 +605,13 @@
     .section { padding: 40px 16px; }
     .section-title { font-size: clamp(20px, 5vw, 24px); }
 
-    .promise-grid { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
+    .bio-avatar-img {
+    width: 72px; height: 72px; min-width: 72px;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+  }
+  .promise-grid { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
     .formats-grid { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
     .steps-grid { grid-template-columns: 1fr 1fr; -ms-grid-columns: 1fr 12px 1fr; }
     .competences-grid { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
@@ -776,7 +783,14 @@
     .logos-section { padding: 20px 16px; }
     .logos-group { gap: 0; row-gap: 10px; }
     .logos-group-label { margin-right: 14px; font-size: 8px; }
-
+    .logos-row { gap: 0; row-gap: 4px; }
+    .logo-sep { display: none; }
+    .logo-name {
+      font-size: 13px;
+      padding: 3px 12px;
+      border-right: 1px solid var(--border-2);
+    }
+    .logo-name:last-child { border-right: none; }
   }
 
   /* signal source footnote */
@@ -1463,7 +1477,7 @@
       <div class="bio-block">
         <div class="bio-block-label">Côté Produit</div>
         <div class="bio-block-text">
-          <strong>First Product Manager</strong> chez MerciYanis, l'OS des sièges sociaux (scale-up française, SaaS workplace, IoT). A structuré la fonction produit et lancé le <strong>premier agent IA de l'écosystème workplace français</strong> (clients : Danone, TF1, Ledger, Total). Croissance +68%, rentabilité atteinte. Fondateur de <strong>L'Autre RH</strong>: 2 ans d'activité, revenus générés, go-to-market réel. 
+          <strong>First Product Manager</strong> chez MerciYanis, l'OS des sièges sociaux (scale-up française, SaaS workplace, IoT). A structuré la fonction produit et lancé le <strong>premier agent IA de l'écosystème workplace français</strong> (clients : Danone, TF1, Ledger, Total). Croissance +68%, rentabilité atteinte. Fondateur de <strong>L'Autre RH</strong> : 2 ans d'activité, revenus générés, go-to-market réel.
         </div>
       </div>
       <div class="bio-block">
@@ -1475,7 +1489,7 @@
     </div>
 
     <div class="bio-tagline">
-      J'enseigne aux professionnels RH à piloter leur métier comme un product manager : lire l'IA sans se noyer, prioriser par impact, et renforcer leur employabilité durablement. 
+      J'enseigne aux professionnels RH à piloter leur métier comme un product manager : lire l'IA sans se noyer, prioriser par impact, et renforcer leur employabilité durablement.
     </div>
   </div>
 </div>
