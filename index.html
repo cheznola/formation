@@ -58,14 +58,8 @@
     border-bottom: 1px solid var(--border);
     padding: 0 48px;
     height: 56px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
     gap: 16px;
   }
@@ -73,11 +67,7 @@
   .nav-right { display: flex; align-items: center; gap: 16px; }
   .nav-meta { font-size: 12px; color: var(--muted); font-weight: 400; white-space: nowrap; }
   .nav-cta {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     gap: 6px;
     background: var(--accent);
@@ -90,7 +80,6 @@
     cursor: pointer;
     font-family: var(--sans);
     text-decoration: none;
-    -webkit-transition: background .15s;
     transition: background .15s;
     white-space: nowrap;
   }
@@ -142,10 +131,62 @@
     object-fit: cover;
     display: block;
   }
+
+  /* ─── Hero differentiator ─── */
+  .hero-diff {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--cream);
+    border: 1px solid var(--border-2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 28px;
+    max-width: 640px;
+  }
+  .hero-diff-dot {
+    width: 6px; height: 6px; min-width: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-top: 6px;
+  }
+  .hero-diff-text {
+    font-size: 13px; font-weight: 500; color: var(--ink-2);
+    line-height: 1.5;
+  }
+  .hero-diff-text strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .hero-diff-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .hero-diff-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .hero-diff-list li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 11px;
+    margin-top: 2px;
+    min-width: 14px;
+    flex-shrink: 0;
+  }
+
   .promise-grid {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 12px 1fr;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     max-width: 720px;
@@ -156,11 +197,7 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 16px 20px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
     align-items: flex-start;
     gap: 12px;
   }
@@ -168,31 +205,21 @@
     width: 32px; height: 32px; min-width: 32px;
     background: var(--accent);
     border-radius: 6px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
     font-size: 14px;
   }
   .promise-label { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
   .promise-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
-  .zero-list { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .zero-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
   .zero-tag {
     font-size: 11.5px; font-weight: 500;
     background: #fff; border: 1px solid var(--border);
     border-radius: 100px; padding: 5px 14px;
     color: var(--muted);
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     gap: 6px;
   }
@@ -217,9 +244,7 @@
 
   /* ─── Formats grid ─── */
   .formats-grid {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 16px 1fr 16px 1fr;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-bottom: 24px;
@@ -229,39 +254,71 @@
     padding: 28px 24px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
   .format-card.starter { background: var(--cream); border: 1px solid var(--border); }
   .format-card.core { background: var(--ink); color: #fff; }
   .format-card.premium { background: var(--accent); color: #fff; }
 
+  /* badge + recommended tag alignés */
+  .format-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 28px;
+    margin-bottom: 16px;
+  }
   .format-badge {
     font-size: 10px; font-weight: 700; letter-spacing: .12em;
     text-transform: uppercase;
     padding: 3px 10px; border-radius: 100px;
-    display: inline-block; margin-bottom: 16px;
+    display: inline-block;
   }
   .starter .format-badge { background: var(--cream-2); color: var(--muted); }
   .core .format-badge { background: rgba(255,255,255,.12); color: rgba(255,255,255,.6); }
   .premium .format-badge { background: rgba(255,255,255,.2); color: #fff; }
 
-  .format-name { font-family: var(--serif); font-size: 22px; font-weight: 700; letter-spacing: -.5px; margin-bottom: 6px; }
-  .starter .format-name { color: var(--ink); }
-  .format-duration { font-size: 12px; font-weight: 500; margin-bottom: 16px; opacity: .7; }
-  .starter .format-duration { color: var(--muted); }
-  .format-desc { font-size: 13px; line-height: 1.65; margin-bottom: 20px; opacity: .85; }
-  .starter .format-desc { color: var(--ink-2); }
-  .format-price { font-size: 13px; font-weight: 500; }
-  .starter .format-price { color: var(--muted); }
-  .core .format-price, .premium .format-price { color: rgba(255,255,255,.5); }
-
   .format-tag {
-    position: absolute; top: 20px; right: 20px;
     font-size: 10px; font-weight: 700; letter-spacing: .08em;
     padding: 3px 10px; border-radius: 100px;
   }
   .core .format-tag { background: rgba(255,255,255,.15); color: rgba(255,255,255,.8); }
 
-  /* ─── ACCORDION for formats detail ─── */
+  .format-name { font-family: var(--serif); font-size: 22px; font-weight: 700; letter-spacing: -.5px; margin-bottom: 6px; }
+  .starter .format-name { color: var(--ink); }
+  .format-duration { font-size: 12px; font-weight: 500; margin-bottom: 16px; opacity: .7; }
+  .starter .format-duration { color: var(--muted); }
+  .format-desc { font-size: 13px; line-height: 1.65; flex: 1; }
+  .starter .format-desc { color: var(--ink-2); }
+  .core .format-desc, .premium .format-desc { color: rgba(255,255,255,.82); }
+
+  /* tarif aligné en bas de chaque carte */
+  .format-price-area {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .core .format-price-area { border-top-color: rgba(255,255,255,.12); }
+  .premium .format-price-area { border-top-color: rgba(255,255,255,.2); }
+
+  .format-price-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 7px 14px;
+    transition: opacity .15s;
+  }
+  .format-price-link:hover { opacity: .8; }
+  .starter .format-price-link { background: var(--ink); color: #fff; }
+  .core .format-price-link { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.18); }
+  .premium .format-price-link { background: rgba(255,255,255,.25); color: #fff; }
+
+  /* ─── ACCORDION ─── */
   .formats-detail { margin-top: 0; }
 
   .accordion-item {
@@ -272,11 +329,7 @@
   }
   .accordion-trigger {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     gap: 16px;
     padding: 20px 24px;
@@ -285,7 +338,6 @@
     cursor: pointer;
     text-align: left;
     font-family: var(--sans);
-    -webkit-transition: background .15s;
     transition: background .15s;
   }
   .accordion-trigger:hover { background: var(--cream-2); }
@@ -312,13 +364,9 @@
     width: 20px; height: 20px; min-width: 20px;
     display: flex; align-items: center; justify-content: center;
     color: var(--muted-lt);
-    -webkit-transition: -webkit-transform .25s ease;
     transition: transform .25s ease;
   }
-  .accordion-trigger[aria-expanded="true"] .acc-chevron {
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-  }
+  .accordion-trigger[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
 
   .accordion-panel {
     display: none;
@@ -327,9 +375,7 @@
   }
   .accordion-panel.is-open { display: block; }
   .accordion-panel-grid {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 24px 1fr;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
   }
@@ -340,11 +386,7 @@
     font-size: 13px; color: var(--ink-2);
     padding: 5px 0;
     border-bottom: 1px solid var(--border);
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
     align-items: flex-start;
     gap: 8px;
   }
@@ -365,9 +407,7 @@
   .starter-focus-title { font-family: var(--serif); font-size: 20px; font-weight: 700; letter-spacing: -.5px; color: var(--ink); margin-bottom: 6px; }
   .starter-focus-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
   .starter-steps {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 12px 1fr 12px 1fr 12px 1fr;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
   }
@@ -388,9 +428,7 @@
   .methode-intro strong { color: #fff; }
 
   .steps-grid {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 12px 1fr 12px 1fr 12px 1fr 12px 1fr;
     grid-template-columns: repeat(5, 1fr);
     gap: 12px;
   }
@@ -401,18 +439,12 @@
 
   /* ─── Compétences ─── */
   .competences-grid {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 14px 1fr;
     grid-template-columns: repeat(2, 1fr);
     gap: 14px;
   }
   .competence-item {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
     align-items: flex-start;
     gap: 14px;
     padding: 18px 20px;
@@ -426,10 +458,8 @@
 
   /* ─── Public ─── */
   .public-grid {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 14px 1fr 14px 1fr;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 14px;
   }
   .public-card { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
@@ -441,22 +471,16 @@
   .bio-section { background: var(--ink); padding: 56px 48px; border-top: 1px solid rgba(255,255,255,.05); }
   .bio-inner { max-width: var(--max-w); margin: 0 auto; }
   .bio-header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
     align-items: flex-start;
     gap: 32px;
     margin-bottom: 32px;
   }
-  .bio-avatar { width: 72px; height: 72px; min-width: 72px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 900; font-size: 28px; color: #fff; }
+  .bio-avatar-img-large { width: 72px; height: 72px; min-width: 72px; border-radius: 10px; object-fit: cover; }
   .bio-name { font-family: var(--serif); font-size: 28px; font-weight: 900; letter-spacing: -1px; color: #fff; margin-bottom: 4px; }
   .bio-role { font-size: 13px; color: rgba(255,255,255,.45); }
   .bio-blocks {
-    display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 20px 1fr 20px 1fr;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
@@ -470,26 +494,15 @@
   .footer {
     background: var(--dark);
     padding: 24px 48px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
     justify-content: space-between;
     gap: 16px;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
   .footer-brand { font-family: var(--serif); font-weight: 700; font-size: 16px; color: var(--accent); }
-  /* FIX: footer-meta était rgba(255,255,255,.2) = quasi invisible */
   .footer-meta { font-size: 11px; color: rgba(255,255,255,.55); }
-
-
-  /* ─── Footer buttons ─── */
-  .footer-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .footer-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; flex-shrink: 0; }
   .footer-btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 9px 18px; border-radius: 7px;
@@ -497,6 +510,7 @@
     text-decoration: none; white-space: nowrap;
     transition: opacity .15s, transform .12s;
     cursor: pointer;
+    font-family: var(--sans);
   }
   .footer-btn:hover { opacity: .85; transform: translateY(-1px); }
   .footer-btn--email {
@@ -546,169 +560,8 @@
     transition: gap .15s;
   }
   .beyond-link:hover { gap: 10px; }
-  .beyond-divider {
-    width: 1px;
-    background: var(--border-2);
-    align-self: stretch;
-    display: none; /* shown via grid column */
-  }
-  @media (max-width: 768px) {
-    .beyond-section { padding: 36px 16px; }
-    .beyond-inner { grid-template-columns: 1fr; gap: 28px; }
-    .footer-actions { justify-content: flex-start; }
-    .footer { flex-direction: column; align-items: flex-start; }
-  }
 
-  /* ─── Animations ─── */
-  @-webkit-keyframes fadeUp {
-    from { opacity: 0; -webkit-transform: translateY(16px); transform: translateY(16px); }
-    to   { opacity: 1; -webkit-transform: translateY(0);    transform: translateY(0); }
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .hero > * {
-    -webkit-animation: fadeUp .5s ease both;
-    animation: fadeUp .5s ease both;
-  }
-  .hero > *:nth-child(1) { -webkit-animation-delay: .05s; animation-delay: .05s; }
-  .hero > *:nth-child(2) { -webkit-animation-delay: .12s; animation-delay: .12s; }
-  .hero > *:nth-child(3) { -webkit-animation-delay: .20s; animation-delay: .20s; }
-  .hero > *:nth-child(4) { -webkit-animation-delay: .28s; animation-delay: .28s; }
-  .hero > *:nth-child(5) { -webkit-animation-delay: .36s; animation-delay: .36s; }
-
-  /* ─── Responsive   Tablet (769 → 1023px) ─── */
-  @media (max-width: 900px) {
-    .nav { padding: 0 24px; }
-    .nav-meta { display: none; }
-    .hero, .section { padding-left: 24px; padding-right: 24px; }
-    .bio-section, .footer { padding-left: 24px; padding-right: 24px; }
-    .formats-grid { grid-template-columns: 1fr 1fr; -ms-grid-columns: 1fr 16px 1fr; }
-    .formats-grid .format-card.premium { grid-column: 1 / -1; }
-    .steps-grid { grid-template-columns: 1fr 1fr 1fr; -ms-grid-columns: 1fr 12px 1fr 12px 1fr; }
-    .bio-blocks { grid-template-columns: 1fr 1fr; -ms-grid-columns: 1fr 20px 1fr; }
-    .bio-blocks .bio-block:last-child { grid-column: 1 / -1; }
-  }
-
-  /* ─── Responsive   Mobile (≤ 768px) ─── */
-  @media (max-width: 768px) {
-    html { font-size: 14px; }
-    .nav { padding: 0 16px; height: 52px; }
-    .nav-brand { font-size: 16px; }
-    .nav-cta { padding: 7px 14px; font-size: 12px; }
-
-    .hero { padding: 48px 16px 40px; }
-    .hero::before { display: none; }
-    .hero-title { font-size: clamp(28px, 8vw, 38px); letter-spacing: -1px; }
-
-    .section { padding: 40px 16px; }
-    .section-title { font-size: clamp(20px, 5vw, 24px); }
-
-    .bio-avatar-img {
-    width: 72px; height: 72px; min-width: 72px;
-    border-radius: 10px;
-    object-fit: cover;
-    display: block;
-  }
-  .promise-grid { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
-    .formats-grid { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
-    .steps-grid { grid-template-columns: 1fr 1fr; -ms-grid-columns: 1fr 12px 1fr; }
-    .competences-grid { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
-    .public-grid { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
-    .starter-steps { grid-template-columns: 1fr 1fr; -ms-grid-columns: 1fr 12px 1fr; }
-
-    .accordion-panel-grid { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
-
-    .bio-section { padding: 40px 16px; }
-    .bio-blocks { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
-    .bio-blocks .bio-block:last-child { grid-column: auto; }
-    .bio-header { gap: 20px; }
-    .bio-avatar { width: 56px; height: 56px; min-width: 56px; font-size: 22px; }
-    .bio-name { font-size: 22px; }
-
-    .footer { padding: 20px 16px; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; gap: 8px; }
-
-    .methode-intro { padding: 24px 20px; }
-    .starter-focus { padding: 20px 16px; }
-    .starter-steps { grid-template-columns: 1fr; -ms-grid-columns: 1fr; }
-
-    .acc-duration { display: none; }
-    .accordion-trigger { padding: 16px 20px; }
-    .accordion-panel { padding: 16px 20px; }
-  }
-
-  /* ─── Print ─── */
-  @media print {
-    .nav button, .nav-cta { display: none; }
-    .nav { position: static; }
-    .hero::before { display: none; }
-    .accordion-panel { display: block !important; }
-    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  }
-
-  /* ─── Focus visible (accessibility) ─── */
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-  /* ─── Footer buttons ─── */
-  .footer-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  .footer-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 12.5px;
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: opacity .15s, transform .12s;
-    font-family: var(--sans);
-  }
-  .footer-btn:hover { opacity: .85; transform: translateY(-1px); }
-  .footer-btn--email {
-    background: rgba(255,255,255,.10);
-    color: rgba(255,255,255,.85);
-    border: 1px solid rgba(255,255,255,.12);
-  }
-  .footer-btn--whatsapp {
-    background: #25D366;
-    color: #fff;
-    border: 1px solid transparent;
-  }
-  @media (max-width: 768px) {
-    .footer { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .footer-actions { width: 100%; }
-    .footer-btn { flex: 1; justify-content: center; }
-  }
-
-  /* ─── Hero differentiator line ─── */
-  .hero-diff {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--cream);
-    border: 1px solid var(--border-2);
-    border-radius: 100px;
-    padding: 6px 16px 6px 8px;
-    margin-bottom: 20px;
-  }
-  .hero-diff-dot {
-    width: 6px; height: 6px; min-width: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-  }
-  .hero-diff-text {
-    font-size: 12px; font-weight: 500; color: var(--ink-2);
-    line-height: 1.3;
-  }
-
-  /* ─── Logos sociaux (SVG monochrome) ─── */
+  /* ─── Logos sociaux ─── */
   .logos-section {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
@@ -776,41 +629,7 @@
     width: 100%;
   }
 
-  @media (max-width: 900px) {
-    .logos-section { padding: 24px 24px; }
-  }
-  @media (max-width: 768px) {
-    .logos-section { padding: 20px 16px; }
-    .logos-group { gap: 0; row-gap: 10px; }
-    .logos-group-label { margin-right: 14px; font-size: 8px; }
-    .logos-row { gap: 0; row-gap: 4px; }
-    .logo-sep { display: none; }
-    .logo-name {
-      font-size: 13px;
-      padding: 3px 12px;
-      border-right: 1px solid var(--border-2);
-    }
-    .logo-name:last-child { border-right: none; }
-  }
-
-  /* signal source footnote */
-  .signal-source {
-    display: block;
-    font-size: 9.5px;
-    font-weight: 400;
-    color: rgba(255,255,255,.3);
-    margin-top: 4px;
-    font-style: italic;
-  }
-
-  @media (max-width: 768px) {
-    .logos-section { padding: 20px 16px; }
-    .logos-group { gap: 12px; }
-    .logos-group-label { font-size: 8.5px; padding: 3px 18px 3px 10px; }
-    .logo-name { font-size: 12px; padding: 4px 10px; }
-  }
-
-  /* ─── Market signal section ─── */
+  /* ─── Market signal ─── */
   .signal-section {
     background: var(--ink);
     padding: 40px 48px;
@@ -856,13 +675,16 @@
     margin-bottom: 4px;
   }
   .signal-stat-label { font-size: 11.5px; color: rgba(255,255,255,.5); line-height: 1.4; }
-
-  @media (max-width: 768px) {
-    .signal-section { padding: 32px 16px; }
-    .signal-inner { grid-template-columns: 1fr; gap: 24px; }
+  .signal-source {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 400;
+    color: rgba(255,255,255,.3);
+    margin-top: 4px;
+    font-style: italic;
   }
 
-  /* ─── Crédibilité hero ─── */
+  /* ─── Hero cred ─── */
   .hero-cred {
     display: flex; align-items: center; gap: 14px;
     margin-bottom: 36px; padding: 16px 20px;
@@ -874,21 +696,132 @@
   .hero-cred-role { font-size: 11.5px; color: rgba(255,255,255,.5); line-height: 1.4; }
   .hero-cred-logos { margin-left: auto; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .hero-cred-logo { font-size: 10.5px; font-weight: 700; color: #fff; white-space: nowrap; letter-spacing: .02em; }
-  @media (max-width: 640px) {
-    .hero-cred { flex-wrap: wrap; }
-    .hero-cred-logos { margin-left: 0; margin-top: 8px; }
+
+  /* ─── Animations ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * {
+    animation: fadeUp .5s ease both;
+  }
+  .hero > *:nth-child(1) { animation-delay: .05s; }
+  .hero > *:nth-child(2) { animation-delay: .12s; }
+  .hero > *:nth-child(3) { animation-delay: .20s; }
+  .hero > *:nth-child(4) { animation-delay: .28s; }
+  .hero > *:nth-child(5) { animation-delay: .36s; }
+
+  /* ─── Focus visible ─── */
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ─── Responsive tablet ─── */
+  @media (max-width: 900px) {
+    .nav { padding: 0 24px; }
+    .nav-meta { display: none; }
+    .hero, .section { padding-left: 24px; padding-right: 24px; }
+    .bio-section, .footer { padding-left: 24px; padding-right: 24px; }
+    .logos-section { padding: 24px; }
+    .signal-section { padding: 32px 24px; }
+    .beyond-section { padding: 36px 24px; }
+    .formats-grid { grid-template-columns: 1fr 1fr; }
+    .formats-grid .format-card.premium { grid-column: 1 / -1; }
+    .steps-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .bio-blocks { grid-template-columns: 1fr 1fr; }
+    .bio-blocks .bio-block:last-child { grid-column: 1 / -1; }
+    .public-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ─── Responsive mobile ─── */
+  @media (max-width: 768px) {
+    html { font-size: 14px; }
+    .nav { padding: 0 16px; height: 52px; }
+    .nav-brand { font-size: 16px; }
+    .nav-cta { padding: 7px 14px; font-size: 12px; }
+
+    .hero { padding: 40px 16px 36px; }
+    .hero::before { display: none; }
+    .hero-title { font-size: clamp(28px, 8vw, 38px); letter-spacing: -1px; }
+
+    .hero-cred { flex-wrap: wrap; gap: 10px; }
+    .hero-cred-logos { margin-left: 0; margin-top: 4px; flex-wrap: wrap; }
+
+    .hero-diff { max-width: 100%; }
+
+    .section { padding: 36px 16px; }
+    .section-title { font-size: clamp(20px, 5vw, 24px); }
+
+    .promise-grid { grid-template-columns: 1fr; }
+    .formats-grid { grid-template-columns: 1fr; }
+    .formats-grid .format-card.premium { grid-column: auto; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .competences-grid { grid-template-columns: 1fr; }
+    .public-grid { grid-template-columns: 1fr 1fr; }
+    .starter-steps { grid-template-columns: 1fr 1fr; }
+    .accordion-panel-grid { grid-template-columns: 1fr; }
+
+    .bio-section { padding: 36px 16px; }
+    .bio-blocks { grid-template-columns: 1fr; }
+    .bio-blocks .bio-block:last-child { grid-column: auto; }
+    .bio-header { gap: 20px; }
+    .bio-avatar-img-large { width: 56px; height: 56px; min-width: 56px; }
+    .bio-name { font-size: 22px; }
+
+    .footer {
+      padding: 20px 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .footer-actions { width: 100%; }
+    .footer-btn { flex: 1; justify-content: center; }
+
+    .signal-inner { grid-template-columns: 1fr; gap: 24px; }
+    .beyond-inner { grid-template-columns: 1fr; gap: 28px; }
+
+    .methode-intro { padding: 24px 20px; }
+    .starter-focus { padding: 20px 16px; }
+    .starter-steps { grid-template-columns: 1fr; }
+
+    .acc-duration { display: none; }
+    .accordion-trigger { padding: 16px 20px; gap: 12px; }
+    .accordion-panel { padding: 16px 20px; }
+
+    .logos-section { padding: 20px 16px; }
+    .logo-sep { display: none; }
+    .logo-name {
+      font-size: 13px;
+      padding: 3px 12px;
+      border-right: 1px solid var(--border-2);
+    }
+    .logo-name:last-child { border-right: none; }
+    .logos-group-label { margin-right: 14px; font-size: 8px; }
+  }
+
+  @media (max-width: 480px) {
+    .public-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .starter-steps { grid-template-columns: 1fr; }
+    .hero-cred { padding: 12px 14px; }
+    .signal-stats { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ─── Print ─── */
+  @media print {
+    .nav button, .nav-cta { display: none; }
+    .nav { position: static; }
+    .hero::before { display: none; }
+    .accordion-panel { display: block !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     NAV
-═══════════════════════════════════════ -->
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-brand">Emmanuel Di Marco</div>
   <div class="nav-right">
-    <div class="nav-meta">Formation IA · Métiers RH & Management des équipes</div>
+    <div class="nav-meta">Formation IA · Métiers RH &amp; Management des équipes</div>
     <a href="syllabus-product-hr.pdf" download class="nav-cta" aria-label="Télécharger le syllabus PDF">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Télécharger le syllabus
@@ -897,12 +830,9 @@
 </nav>
 
 
-<!-- ═══════════════════════════════════════
-     HERO
-═══════════════════════════════════════ -->
+<!-- HERO -->
 <div class="hero">
 
-  <!-- Crédibilité remontée -->
   <div class="hero-cred">
     <img src="https://res.cloudinary.com/dtjcum3gb/image/upload/w_104,h_104,c_fill,g_face,r_8,q_auto,f_auto/v1777113053/Capture_d_e%CC%81cran_2026-04-25_a%CC%80_12.30.37_simsay.png" alt="Emmanuel Di Marco" class="hero-cred-avatar" width="52" height="52">
     <div>
@@ -920,13 +850,21 @@
     </div>
   </div>
 
-      <span class="eyebrow">Formation IA · Filière RH</span>
-    <h1 class="hero-title">Vos étudiants RH<br>prêts à piloter <em>l'ère de l'IA</em></h1>
-    <p class="hero-hook" style="font-family:var(--serif);font-size:clamp(16px,2.4vw,21px);font-style:italic;color:var(--ink-2);max-width:660px;line-height:1.4;margin-bottom:28px;">Les méthodes des meilleurs Product Managers.<br>Appliquées aux métiers RH dès la première semaine de cours.</p>
-    <div class="hero-diff">
-      <div class="hero-diff-dot"></div>
-      <div class="hero-diff-text">Ce que vos diplômés sauront faire : lire l'IA sans se noyer, automatiser leurs processus RH, et se positionner comme profils augmentés sur le marché.</div>
+  <span class="eyebrow">Formation IA · Filière RH</span>
+  <h1 class="hero-title">Vos étudiants RH<br>prêts à piloter <em>l'ère de l'IA</em></h1>
+  <p class="hero-hook" style="font-family:var(--serif);font-size:clamp(16px,2.4vw,21px);font-style:italic;color:var(--ink-2);max-width:660px;line-height:1.4;margin-bottom:28px;">Les méthodes des meilleurs Product Managers.<br>Appliquées aux métiers RH dès la première semaine de cours.</p>
+
+  <div class="hero-diff">
+    <div class="hero-diff-dot"></div>
+    <div class="hero-diff-text">
+      <strong>Ce que vos diplômés sauront faire</strong>
+      <ul class="hero-diff-list">
+        <li>Lire l'IA sans se noyer dans le bruit médiatique</li>
+        <li>Automatiser leurs processus RH avec les bons outils</li>
+        <li>Se positionner comme profils augmentés sur le marché de l'emploi</li>
+      </ul>
     </div>
+  </div>
 
   <div class="promise-grid">
     <div class="promise-pill">
@@ -947,7 +885,7 @@
       <div class="promise-icon" aria-hidden="true">🧠</div>
       <div>
         <div class="promise-label">Ultra-efficace</div>
-        <div class="promise-desc">Pédagogie par l'itération : démo → comprendre → faire → améliorer. Ancrage réel.</div>
+        <div class="promise-desc">Pédagogie par l'itération : démo, comprendre, faire, améliorer. Ancrage réel.</div>
       </div>
     </div>
     <div class="promise-pill">
@@ -968,12 +906,10 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     LOGOS SOCIAUX
-═══════════════════════════════════════ -->
+
+<!-- LOGOS -->
 <div class="logos-section" aria-label="Références professionnelles">
   <div class="logos-inner">
-
     <div class="logos-group">
       <div class="logos-group-label">Projets IA déployés pour</div>
       <div class="logos-row">
@@ -986,9 +922,7 @@
         <span class="logo-name">Ledger</span>
       </div>
     </div>
-
     <div class="logos-divider" aria-hidden="true"></div>
-
     <div class="logos-group">
       <div class="logos-group-label">Expériences professionnelles</div>
       <div class="logos-row">
@@ -1005,52 +939,48 @@
         <span class="logo-name">American Express</span>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     SIGNAL MARCHÉ (pour directeurs de programme)
-═══════════════════════════════════════ -->
+
+<!-- SIGNAL MARCHÉ -->
 <div class="signal-section">
   <div class="signal-inner">
     <div>
       <div class="signal-headline">Les entreprises cherchent des RH qui <em>pensent produit</em>.</div>
-      <p class="signal-sub">La transformation IA ne cherche pas des utilisateurs d'outils   elle cherche des professionnels capables de piloter le changement, prioriser par impact, et itérer vite. Vos étudiants sortent avec exactement ce profil.</p>
+      <p class="signal-sub">La transformation IA ne cherche pas des utilisateurs d'outils. Elle cherche des professionnels capables de piloter le changement, prioriser par impact, et itérer vite. Vos étudiants sortent avec exactement ce profil.</p>
     </div>
     <div class="signal-stats">
       <div class="signal-stat">
         <div class="signal-stat-num">83%</div>
-        <div class="signal-stat-label">des Directions Generales considerent l'automatisation RH comme prioritaire
+        <div class="signal-stat-label">des Directions Générales considèrent l'automatisation RH comme prioritaire
           <span class="signal-source">Neobrain, 2025</span>
         </div>
       </div>
       <div class="signal-stat">
         <div class="signal-stat-num">92%</div>
-        <div class="signal-stat-label">des entreprises vont investir dans l'IA generative dans les 3 ans
+        <div class="signal-stat-label">des entreprises vont investir dans l'IA générative dans les 3 ans
           <span class="signal-source">ConvictionsRH x Mercer, 2025</span>
         </div>
       </div>
       <div class="signal-stat">
         <div class="signal-stat-num">J+1</div>
-        <div class="signal-stat-label">chaque session produit un livrable activable des le lendemain</div>
+        <div class="signal-stat-label">chaque session produit un livrable activable dès le lendemain</div>
       </div>
       <div class="signal-stat">
         <div class="signal-stat-num">100%</div>
-        <div class="signal-stat-label">des participants repartent avec un outil operationnel personnalise</div>
+        <div class="signal-stat-label">des participants repartent avec un outil opérationnel personnalisé</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     OBJECTIFS PÉDAGOGIQUES
-═══════════════════════════════════════ -->
+
+<!-- OBJECTIFS PÉDAGOGIQUES -->
 <div class="section">
   <span class="eyebrow">Objectifs pédagogiques</span>
   <h2 class="section-title">Ce que vos étudiants savent faire à la fin</h2>
-
-  <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits — exactement ce que les directions RH et les recruteurs cherchent en 2026.</p>
+  <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits. Exactement ce que les directions RH et les recruteurs cherchent en 2026.</p>
   <div class="competences-grid">
     <div class="competence-item">
       <div class="competence-number" aria-hidden="true">01</div>
@@ -1077,7 +1007,7 @@
       <div class="competence-number" aria-hidden="true">04</div>
       <div>
         <div class="competence-title">Raisonner comme un product manager</div>
-        <div class="competence-desc">Appliquer la logique discovery → priorisation → itération à ses projets RH. Passer de l'exécution à la conception de solutions.</div>
+        <div class="competence-desc">Appliquer la logique discovery, priorisation, itération à ses projets RH. Passer de l'exécution à la conception de solutions.</div>
       </div>
     </div>
     <div class="competence-item">
@@ -1096,66 +1026,96 @@
     </div>
   </div>
 
-  <!-- Démo output — résultat réel session pilote -->
   <div style="margin-top:40px;padding:28px 32px;background:var(--cream);border:1px solid var(--border-2);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
     <div>
       <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Résultat réel · Session pilote</div>
       <div style="font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px;letter-spacing:-.3px;">Ce qu'une étudiante RH a construit en 2 jours</div>
-      <div style="font-size:13.5px;color:var(--muted);line-height:1.6;max-width:480px;">Son WOS personnel, un assistant IA métier et un prototype d'outil onboarding — générés depuis son contexte réel, sans coder.</div>
+      <div style="font-size:13.5px;color:var(--muted);line-height:1.6;max-width:480px;">Son WOS personnel, un assistant IA métier et un prototype d'outil onboarding. Générés depuis son contexte réel, sans coder.</div>
     </div>
     <a href="formationsarah/index.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:12px 24px;border-radius:7px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .15s;" onmouseover="this.style.background='#2A2720'" onmouseout="this.style.background='var(--ink)'">
       Voir la démo →
     </a>
   </div>
-
-
 </div>
 
 
-<!-- ═══════════════════════════════════════
-     FORMATS   CARDS
-═══════════════════════════════════════ -->
+<!-- FORMATS CARDS -->
 <div class="section">
   <span class="eyebrow">3 formats disponibles</span>
   <h2 class="section-title">Choisissez votre format</h2>
   <p class="section-sub">Un seul contenu, trois niveaux d'intensité selon vos objectifs pédagogiques et votre budget.</p>
 
   <div class="formats-grid">
+
+    <!-- Starter -->
     <div class="format-card starter">
-      <div class="format-badge">Starter</div>
+      <div class="format-card-top">
+        <div class="format-badge">Starter</div>
+      </div>
       <div class="format-name">Lire l'IA sans se noyer</div>
       <div class="format-duration">3 à 4 heures · Intervention ponctuelle</div>
       <div class="format-desc">La porte d'entrée. Comprendre ce qui change vraiment pour les RH, identifier les 3 outils à maîtriser en priorité, et repartir avec un premier système personnel activable.</div>
-      <div class="format-price">Tarif sur demande · demi-journée</div>
+      <div class="format-price-area" style="display:flex;flex-direction:column;gap:8px;">
+      <a href="https://calendly.com/emmanueldimarco_/formation" target="_blank" rel="noopener" class="format-price-link">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Réserver un créneau
+      </a>
+      <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20Core%20%E2%80%94%20Demande%20de%20tarif" class="format-price-link" style="opacity:.65;font-size:11.5px;padding:5px 14px;">
+      ou m'écrire directement
+      </a>
+      </div>
     </div>
 
+    <!-- Core -->
     <div class="format-card core">
-      <div class="format-tag">Recommandé</div>
-      <div class="format-badge">Core</div>
+      <div class="format-card-top">
+        <div class="format-badge">Core</div>
+        <div class="format-tag">Recommandé</div>
+      </div>
       <div class="format-name">Construire son WOS RH</div>
       <div class="format-duration">2 jours (14h) · Module intégré</div>
       <div class="format-desc">Le module principal. À la fin des 2 jours, chaque participant repart avec son propre système de travail augmenté, adapté à son rôle, ses outils, ses enjeux réels.</div>
-      <div class="format-price">Tarif sur demande · promotion</div>
+      <div class="format-price-area" style="display:flex;flex-direction:column;gap:8px;">
+      <a href="https://calendly.com/emmanueldimarco_/formation" target="_blank" rel="noopener" class="format-price-link">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Réserver un créneau
+      </a>
+      <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20Core%20%E2%80%94%20Demande%20de%20tarif" class="format-price-link" style="opacity:.65;font-size:11.5px;padding:5px 14px;">
+      ou m'écrire directement
+      </a>
+      </div>
     </div>
 
+    <!-- Premium -->
     <div class="format-card premium">
-      <div class="format-badge">Premium</div>
+      <div class="format-card-top">
+        <div class="format-badge">Premium</div>
+      </div>
       <div class="format-name">Devenir Product HR</div>
-      <div class="format-duration">5 sessions × 3h · Étalé sur 8 semaines</div>
-      <div class="format-desc">Le programme long. Une session toutes les deux semaines sur 8 semaines. Des exercices entre chaque session, des livrables individuels corrigés. L'écart avec le Core n'est pas la durée — c'est la profondeur d'ancrage.</div>
-      <div class="format-price">Tarif sur demande · promotion</div>
+      <div class="format-duration">5 sessions x 3h · Étalé sur 8 semaines</div>
+      <div class="format-desc">Le programme long. Une session toutes les deux semaines sur 8 semaines. Des exercices entre chaque session, des livrables individuels corrigés. L'écart avec le Core n'est pas la durée, c'est la profondeur d'ancrage.</div>
+      <div class="format-price-area" style="display:flex;flex-direction:column;gap:8px;">
+      <a href="https://calendly.com/emmanueldimarco_/formation" target="_blank" rel="noopener" class="format-price-link">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Réserver un créneau
+      </a>
+      <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20Core%20%E2%80%94%20Demande%20de%20tarif" class="format-price-link" style="opacity:.65;font-size:11.5px;padding:5px 14px;">
+      ou m'écrire directement
+      </a>
+      </div>
     </div>
+
   </div>
 
-  <!-- ACCORDION   détail de chaque format -->
+  <!-- ACCORDION détail formats -->
   <div class="formats-detail" id="formats-detail">
 
     <!-- Starter -->
     <div class="accordion-item">
       <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-starter" id="trigger-starter">
         <span class="acc-badge">Starter</span>
-        <div class="acc-meta" style="flex:1;">
-          <div class="acc-title">Lire l'IA sans se noyer   Programme détaillé</div>
+        <div style="flex:1;">
+          <div class="acc-title">Lire l'IA sans se noyer - Programme détaillé</div>
         </div>
         <span class="acc-duration">3h30 · 1 session</span>
         <span class="acc-chevron" aria-hidden="true">
@@ -1197,7 +1157,7 @@
       <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-core" id="trigger-core">
         <span class="acc-badge">Core</span>
         <div style="flex:1;">
-          <div class="acc-title">Construire son WOS RH   Programme détaillé</div>
+          <div class="acc-title">Construire son WOS RH - Programme détaillé</div>
         </div>
         <span class="acc-duration">14h · 2 jours</span>
         <span class="acc-chevron" aria-hidden="true">
@@ -1207,7 +1167,7 @@
       <div class="accordion-panel" id="panel-core" role="region" aria-labelledby="trigger-core">
         <div class="accordion-panel-grid">
           <div>
-            <div class="session-section-title">Jour 1   Fondations</div>
+            <div class="session-section-title">Jour 1 - Fondations</div>
             <ul class="session-points">
               <li>Lire l'IA sans se noyer : signaux RH vs bruit médiatique</li>
               <li>Architecture d'un WOS RH : les 4 composantes essentielles</li>
@@ -1217,13 +1177,15 @@
             </ul>
           </div>
           <div>
-            <div class="session-section-title">Jour 2   Application</div>
+            <div class="session-section-title">Jour 2 - Application</div>
             <ul class="session-points">
-              <li>Piloter ses processus RH avec l'IA : recrutement, onboarding, entretiens</li>
+              <li>Recrutement augmenté : sourcing, scoring, entretiens, compte-rendu</li>
+              <li>Onboarding intelligent : personnalisation à l'échelle</li>
+              <li>Entretiens annuels : préparation, analyse, restitution avec l'IA</li>
               <li>Marque employeur IA-first : produire 10x plus vite sans perdre l'authenticité</li>
-              <li>Raisonner comme un product manager : discovery → priorisation → itération</li>
+              <li>HRBP augmenté : accompagner les managers, suivre la masse salariale, piloter la performance</li>
+              <li>Raisonner comme un product manager : discovery, priorisation, itération</li>
               <li>Construire sa roadmap RH IA 3 mois</li>
-              <li>Présenter ses décisions RH avec une argumentation data-driven</li>
             </ul>
           </div>
           <div class="exercice-box">
@@ -1239,7 +1201,7 @@
       <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-premium" id="trigger-premium">
         <span class="acc-badge">Premium</span>
         <div style="flex:1;">
-          <div class="acc-title">Devenir Product HR   Programme complet 5 sessions</div>
+          <div class="acc-title">Devenir Product HR - Programme complet 5 sessions</div>
         </div>
         <span class="acc-duration">15h · 5 sessions</span>
         <span class="acc-chevron" aria-hidden="true">
@@ -1247,7 +1209,7 @@
         </span>
       </button>
       <div class="accordion-panel" id="panel-premium" role="region" aria-labelledby="trigger-premium">
-        <p style="font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.6;">Le programme maître. Chaque session suit la même structure : démo → comprendre → faire → itérer. Chaque session produit un livrable concret.</p>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:20px;line-height:1.6;">Le programme maître. Chaque session suit la même structure : démo, comprendre, faire, itérer. Chaque session produit un livrable concret.</p>
 
         <!-- Session 1 -->
         <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:12px;">
@@ -1316,7 +1278,7 @@
             </div>
             <div class="exercice-box">
               <div class="exercice-label">Exercice à rendre avant session 3</div>
-              <div class="exercice-text">Utiliser son WOS sur un vrai projet RH en cours (recrutement, onboarding, entretien annuel…). Documenter : ce qui a marché, ce qui n'a pas marché, ce qu'on a appris. 1 page maximum.</div>
+              <div class="exercice-text">Utiliser son WOS sur un vrai projet RH en cours (recrutement, onboarding, entretien annuel...). Documenter : ce qui a marché, ce qui n'a pas marché, ce qu'on a appris. 1 page maximum.</div>
             </div>
           </div>
         </div>
@@ -1327,7 +1289,7 @@
             <div style="width:30px;height:30px;min-width:30px;background:var(--accent);border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:900;font-size:14px;color:#fff;">3</div>
             <div style="flex:1;">
               <div style="font-size:14px;font-weight:600;color:var(--ink);">Piloter ses processus RH avec l'IA</div>
-              <div style="font-size:11px;color:var(--muted);margin-top:2px;">Recrutement · Onboarding · Entretiens · Marque employeur</div>
+              <div style="font-size:11px;color:var(--muted);margin-top:2px;">Recrutement · Onboarding · Entretiens · Marque employeur · HRBP</div>
             </div>
             <div style="font-size:11px;font-weight:600;background:var(--cream-2);color:var(--muted);padding:4px 12px;border-radius:100px;">3h</div>
           </div>
@@ -1338,7 +1300,9 @@
                 <li>Cartographier ses processus RH : ce qui est automatisable, ce qui ne l'est pas</li>
                 <li>Recrutement augmenté : sourcing, scoring, entretiens, compte-rendu</li>
                 <li>Onboarding intelligent : personnalisation à l'échelle</li>
+                <li>Entretiens annuels : préparation, analyse, restitution avec l'IA</li>
                 <li>Marque employeur IA-first : produire 10x plus vite, sans perdre l'authenticité</li>
+                <li>HRBP augmenté : accompagner les managers, suivre la masse salariale, piloter la performance</li>
                 <li>Déblocage collectif sur les projets réels de la session 2</li>
               </ul>
             </div>
@@ -1348,6 +1312,7 @@
                 <li>Identifier où l'IA apporte de la valeur dans ses processus RH</li>
                 <li>Avoir automatisé au moins 1 tâche récurrente</li>
                 <li>Produire un contenu marque employeur complet en moins d'1h</li>
+                <li>Savoir où l'IA aide le HRBP sans déshumaniser la relation manager</li>
               </ul>
             </div>
             <div class="exercice-box">
@@ -1371,10 +1336,11 @@
             <div>
               <div class="session-section-title">Au programme</div>
               <ul class="session-points">
-                <li>La logique product manager : discovery → priorisation → itération</li>
+                <li>La logique product manager : discovery, priorisation, itération</li>
                 <li>Appliquer le "Why before What" à ses projets RH</li>
                 <li>Construire une roadmap RH priorisée par impact</li>
                 <li>Mesurer l'impact de ses actions RH : les métriques qui comptent vraiment</li>
+                <li>Présenter ses décisions RH avec une argumentation data-driven</li>
                 <li>Déblocage collectif sur les processus retravaillés de la session 3</li>
               </ul>
             </div>
@@ -1436,36 +1402,38 @@
   </div><!-- /formats-detail -->
 </div>
 
-<!-- ═══════════════════════════════════════
-     PUBLIC CIBLE
-═══════════════════════════════════════ -->
+
+<!-- PUBLIC CIBLE -->
 <div class="section">
   <span class="eyebrow">À qui s'adresse cette formation</span>
-
-    <h2 class="section-title">Trois publics RH, une même urgence</h2>
-    <p class="section-sub">La formation s'adapte au niveau et au contexte : les exemples, les exercices et les livrables changent. La méthode, non.</p>
-    <div class="public-grid">
-      <div class="public-card">
-        <div class="public-type">Bac+3</div>
-        <div class="public-name">Étudiants Licence RH</div>
-        <div class="public-desc">Entrent sur un marché du travail radicalement transformé. Cette formation leur donne une longueur d'avance concrète dès leur premier poste.</div>
-      </div>
-      <div class="public-card">
-        <div class="public-type">Bac+5</div>
-        <div class="public-name">Étudiants Master RH</div>
-        <div class="public-desc">Futurs HRBP, Talent Managers, DRH. Apprennent à piloter leur fonction avec les méthodes des meilleurs product managers.</div>
-      </div>
-      <div class="public-card">
-        <div class="public-type">Formation continue</div>
-        <div class="public-name">Professionnels RH en activité</div>
-        <div class="public-desc">Praticiens qui voient l'IA arriver et veulent comprendre ce qui change vraiment, pas ce que les vendeurs d'outils leur disent.</div>
-      </div>
+  <h2 class="section-title">Trois publics RH, une même urgence</h2>
+  <p class="section-sub">La formation s'adapte au niveau et au contexte : les exemples, les exercices et les livrables changent. La méthode, non.</p>
+  <div class="public-grid">
+    <div class="public-card">
+      <div class="public-type">Bac+2</div>
+      <div class="public-name">Étudiants BTS RH</div>
+      <div class="public-desc">Entrent sur un marché du travail qui n'attend pas. Cette formation leur donne les réflexes opérationnels pour être utiles dès le premier jour en entreprise.</div>
     </div>
+    <div class="public-card">
+      <div class="public-type">Bac+3</div>
+      <div class="public-name">Étudiants Licence RH</div>
+      <div class="public-desc">Entrent sur un marché du travail radicalement transformé. Cette formation leur donne une longueur d'avance concrète dès leur premier poste.</div>
+    </div>
+    <div class="public-card">
+      <div class="public-type">Bac+5</div>
+      <div class="public-name">Étudiants Master RH</div>
+      <div class="public-desc">Futurs HRBP, Talent Managers, DRH. Apprennent à piloter leur fonction avec les méthodes des meilleurs product managers.</div>
+    </div>
+    <div class="public-card">
+      <div class="public-type">Formation continue</div>
+      <div class="public-name">Professionnels RH en activité</div>
+      <div class="public-desc">Praticiens qui voient l'IA arriver et veulent comprendre ce qui change vraiment, pas ce que les vendeurs d'outils leur disent.</div>
+    </div>
+  </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     MÉTHODE
-═══════════════════════════════════════ -->
+
+<!-- MÉTHODE -->
 <div class="section">
   <span class="eyebrow">Méthode pédagogique</span>
   <h2 class="section-title">Le principe de l'itération appliqué à l'apprentissage</h2>
@@ -1504,14 +1472,13 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     BIO
-═══════════════════════════════════════ -->
+
+<!-- BIO -->
 <div class="bio-section">
   <div class="bio-inner">
-    <span class="eyebrow" style="color: rgba(200,117,66,.8); margin-bottom: 28px; display:block;">Le formateur</span>
+    <span class="eyebrow" style="color:rgba(200,117,66,.8);margin-bottom:28px;display:block;">Le formateur</span>
     <div class="bio-header">
-      <img src="https://res.cloudinary.com/dtjcum3gb/image/upload/w_144,h_144,c_fill,g_face,r_12,q_auto,f_auto/v1777113053/Capture_d_e%CC%81cran_2026-04-25_a%CC%80_12.30.37_simsay.png" alt="Emmanuel Di Marco" class="bio-avatar-img" width="72" height="72">
+      <img src="https://res.cloudinary.com/dtjcum3gb/image/upload/w_144,h_144,c_fill,g_face,r_12,q_auto,f_auto/v1777113053/Capture_d_e%CC%81cran_2026-04-25_a%CC%80_12.30.37_simsay.png" alt="Emmanuel Di Marco" class="bio-avatar-img-large" width="72" height="72">
       <div>
         <div class="bio-name">Emmanuel Di Marco</div>
         <div class="bio-role">Consultant Product Manager · Formateur IA appliquée aux métiers RH</div>
@@ -1545,16 +1512,13 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     AU-DELÀ DE LA FORMATION
-═══════════════════════════════════════ -->
+
+<!-- AU-DELÀ DE LA FORMATION -->
 <div class="beyond-section">
   <div class="beyond-inner">
-
-    <!-- Nola -->
     <div>
       <span class="beyond-label">Communauté</span>
-      <div class="beyond-col-title">Nola   dîners en petit comité entre pairs produit</div>
+      <div class="beyond-col-title">Nola - dîners en petit comité entre pairs produit</div>
       <p class="beyond-col-text">Des dîners qui comptent, entre Product People. Chaque mois à Paris, 4 à 6 personnes autour d'une table, sélectionnées pour la qualité des échanges. CPO, Head of Product, Senior PM de Payfit, Lucca, Skello, Welcome to the Jungle.</p>
       <p class="beyond-col-text" style="font-size:12px;font-style:italic;color:var(--muted-lt);">"On se croise souvent. On se rencontre rarement."</p>
       <a href="https://cheznola.fr" target="_blank" rel="noopener noreferrer" class="beyond-link">
@@ -1562,25 +1526,21 @@
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
       </a>
     </div>
-
-    <!-- Consulting PM -->
     <div>
       <span class="beyond-label">Consulting</span>
       <div class="beyond-col-title">Consultant Product Manager indépendant</div>
-      <p class="beyond-col-text">En parallèle de la formation, je travaille en mission courte sur des périmètres PM   structuration produit, cadrage discovery, pilotage de backlog à l'échelle programme. Profil non-technique, fort sur l'alignement parties prenantes et la conduite du changement.</p>
+      <p class="beyond-col-text">En parallèle de la formation, je travaille en mission courte sur des périmètres PM : structuration produit, cadrage discovery, pilotage de backlog à l'échelle programme. Profil non-technique, fort sur l'alignement parties prenantes et la conduite du changement.</p>
       <p class="beyond-col-text" style="font-size:12px;color:var(--muted-lt);">Disponible pour missions en portage salarial · Paris et distanciel</p>
       <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Mission%20PM%20%E2%80%94%20Prise%20de%20contact" class="beyond-link">
         Me contacter
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
       </a>
     </div>
-
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════ -->
+
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-brand">Product HR</div>
   <div class="footer-meta">Emmanuel Di Marco · Formation IA appliquée aux métiers RH · 2026</div>
@@ -1590,7 +1550,7 @@
       class="footer-btn footer-btn--email"
       aria-label="Écrire à Emmanuel Di Marco"
     >
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
       M'écrire
     </a>
     <a
@@ -1606,14 +1566,12 @@
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════════
-     JS   Accordion
-═══════════════════════════════════════ -->
+
+<!-- JS Accordion -->
 <script>
 (function() {
   'use strict';
 
-  /* ─── Accordion formats ─── */
   var triggers = document.querySelectorAll('.accordion-trigger');
 
   function closeAll() {
@@ -1631,25 +1589,20 @@
       var panelId = this.getAttribute('aria-controls');
       var panel = document.getElementById(panelId);
 
-      // Close all first
       closeAll();
 
-      // If it was closed, open it
       if (!expanded && panel) {
         this.setAttribute('aria-expanded', 'true');
         panel.classList.add('is-open');
-        // Smooth scroll so it's visible
         var rect = this.getBoundingClientRect();
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        var targetY = scrollTop + rect.top - 72; // 72 = nav height approx
+        var targetY = scrollTop + rect.top - 72;
         if (window.scrollTo) {
           window.scrollTo({ top: targetY, behavior: 'smooth' });
         }
       }
     });
 
-    // Keyboard: Enter / Space already handled natively for <button>
-    // Arrow keys for roving tabindex (optional enhancement)
     trigger.addEventListener('keydown', function(e) {
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
