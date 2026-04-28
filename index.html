@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#F8F4EE">
-<title>Formation IA · Filière RH & Management · Emmanuel Di Marco</title>
+<title>Formation IA · Filière RH &amp; Management · Emmanuel Di Marco</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
@@ -875,99 +875,45 @@
     border-bottom: 1px solid rgba(255,255,255,.06);
   }
   .filiere-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .10em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,.35);
-    white-space: nowrap;
-    margin-right: 4px;
+    font-size: 11px; font-weight: 600; letter-spacing: .10em;
+    text-transform: uppercase; color: rgba(255,255,255,.35);
+    white-space: nowrap; margin-right: 4px;
   }
   .filiere-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 16px;
-    border-radius: 100px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 16px; border-radius: 100px;
     border: 1px solid rgba(255,255,255,.12);
-    background: transparent;
-    color: rgba(255,255,255,.5);
-    font-size: 12px;
-    font-weight: 600;
-    font-family: var(--sans);
-    cursor: pointer;
-    transition: all .18s;
-    white-space: nowrap;
-    text-decoration: none;
+    background: transparent; color: rgba(255,255,255,.5);
+    font-size: 12px; font-weight: 600; font-family: var(--sans);
+    cursor: pointer; transition: all .18s; white-space: nowrap; text-decoration: none;
   }
   .filiere-btn:hover { border-color: rgba(255,255,255,.3); color: rgba(255,255,255,.85); }
-  .filiere-btn.active {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-  }
-  .filiere-hint {
-    margin-left: auto;
-    font-size: 11px;
-    color: rgba(255,255,255,.2);
-    white-space: nowrap;
-  }
+  .filiere-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
   @media (max-width: 768px) {
     .filiere-bar { padding: 8px 16px; gap: 8px; }
     .filiere-label { display: none; }
   }
 
-  /* ─── Bloc crédibilité rapide dans le hero ─── */
+  /* ─── Crédibilité hero ─── */
   .hero-cred {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 36px;
-    padding: 16px 20px;
-    background: var(--dark);
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 10px;
-    max-width: 640px;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 36px; padding: 16px 20px;
+    background: var(--dark); border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px; max-width: 640px;
   }
-  .hero-cred-avatar {
-    width: 52px; height: 52px; min-width: 52px;
-    border-radius: 8px;
-    object-fit: cover;
-  }
-  .hero-cred-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 2px;
-  }
-  .hero-cred-role {
-    font-size: 11.5px;
-    color: rgba(255,255,255,.5);
-    line-height: 1.4;
-  }
-  .hero-cred-logos {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-  }
-  .hero-cred-logo {
-    font-size: 10.5px;
-    font-weight: 700;
-    color: rgba(255,255,255,.35);
-    white-space: nowrap;
-    letter-spacing: .02em;
-  }
+  .hero-cred-avatar { width: 52px; height: 52px; min-width: 52px; border-radius: 8px; object-fit: cover; }
+  .hero-cred-name { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+  .hero-cred-role { font-size: 11.5px; color: rgba(255,255,255,.5); line-height: 1.4; }
+  .hero-cred-logos { margin-left: auto; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .hero-cred-logo { font-size: 10.5px; font-weight: 700; color: rgba(255,255,255,.35); white-space: nowrap; letter-spacing: .02em; }
   @media (max-width: 640px) {
     .hero-cred { flex-wrap: wrap; }
     .hero-cred-logos { margin-left: 0; margin-top: 8px; }
   }
 
-  /* ─── Contenu dynamique filière (caché par défaut, affiché par JS) ─── */
+  /* ─── Contenu dynamique filière ─── */
   [data-filiere] { display: none; }
   [data-filiere].visible { display: block; }
-
 </style>
 </head>
 <body>
@@ -978,7 +924,7 @@
 <nav class="nav">
   <div class="nav-brand">Emmanuel Di Marco</div>
   <div class="nav-right">
-    <div class="nav-meta" id="nav-meta">Formation IA</div>
+    <div class="nav-meta" id="nav-meta">Formation IA · Filière RH</div>
     <a href="syllabus-product-hr.pdf" download class="nav-cta" aria-label="Télécharger le syllabus PDF">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Télécharger le syllabus
@@ -986,37 +932,59 @@
   </div>
 </nav>
 
+
+<!-- ═══════════════════════════════════════
+     SWITCHER FILIÈRE
+═══════════════════════════════════════ -->
+<div class="filiere-bar" role="navigation" aria-label="Choisir votre filière">
+  <span class="filiere-label">Votre filière</span>
+  <button class="filiere-btn active" data-target="rh" id="btn-rh" type="button">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    Filière RH
+  </button>
+</div>
 <!-- ═══════════════════════════════════════
      HERO
 ═══════════════════════════════════════ -->
 <div class="hero">
 
-  <!-- Crédibilité remontée — visible immédiatement pour l'acheteur -->
+  <!-- Crédibilité remontée -->
   <div class="hero-cred">
     <img src="https://res.cloudinary.com/dtjcum3gb/image/upload/w_104,h_104,c_fill,g_face,r_8,q_auto,f_auto/v1777113053/Capture_d_e%CC%81cran_2026-04-25_a%CC%80_12.30.37_simsay.png" alt="Emmanuel Di Marco" class="hero-cred-avatar" width="52" height="52">
     <div>
       <div class="hero-cred-name">Emmanuel Di Marco</div>
-      <div class="hero-cred-role">Senior Product Manager · 7 ans RH en DSI · Formateur IA</div>
+      <div class="hero-cred-role">Product Manager · 7 ans RH en DSI · Formateur IA</div>
     </div>
     <div class="hero-cred-logos">
       <span class="hero-cred-logo">Allianz</span>
-      <span class="hero-cred-logo" style="color:var(--border-2);">·</span>
+      <span class="hero-cred-logo" style="color:rgba(255,255,255,.15);">·</span>
       <span class="hero-cred-logo">Veepee</span>
-      <span class="hero-cred-logo" style="color:var(--border-2);">·</span>
+      <span class="hero-cred-logo" style="color:rgba(255,255,255,.15);">·</span>
       <span class="hero-cred-logo">Danone</span>
-      <span class="hero-cred-logo" style="color:var(--border-2);">·</span>
+      <span class="hero-cred-logo" style="color:rgba(255,255,255,.15);">·</span>
       <span class="hero-cred-logo">TF1</span>
     </div>
   </div>
 
   <!-- Filière RH -->
   <div data-filiere="rh" class="visible">
-    <span class="eyebrow">Formation IA · Filière RH</span>
+    <span class="eyebrow">Formation IA · Métiers RH & Management des équipes</span>
     <h1 class="hero-title">Vos étudiants RH<br>prêts à piloter <em>l'ère de l'IA</em></h1>
     <p class="hero-hook" style="font-family:var(--serif);font-size:clamp(16px,2.4vw,21px);font-style:italic;color:var(--ink-2);max-width:660px;line-height:1.4;margin-bottom:28px;">Les méthodes des meilleurs Product Managers.<br>Appliquées aux métiers RH dès la première semaine de cours.</p>
     <div class="hero-diff">
       <div class="hero-diff-dot"></div>
       <div class="hero-diff-text">Ce que vos diplômés sauront faire : lire l'IA sans se noyer, automatiser leurs processus RH, et se positionner comme profils augmentés sur le marché.</div>
+    </div>
+  </div>
+
+  <!-- Filière Management -->
+  <div data-filiere="management">
+    <span class="eyebrow">Formation IA · Filière Management</span>
+    <h1 class="hero-title">Vos étudiants managers<br><em>pilotent</em> avec les méthodes PM</h1>
+    <p class="hero-hook" style="font-family:var(--serif);font-size:clamp(16px,2.4vw,21px);font-style:italic;color:var(--ink-2);max-width:660px;line-height:1.4;margin-bottom:28px;">Les outils de décision des meilleurs Product Managers.<br>Appliqués au management et à la conduite du changement à l'ère de l'IA.</p>
+    <div class="hero-diff">
+      <div class="hero-diff-dot"></div>
+      <div class="hero-diff-text">Ce que vos diplômés sauront faire : prioriser par impact, piloter des projets complexes avec l'IA, et conduire le changement là où d'autres subissent la transformation.</div>
     </div>
   </div>
 
@@ -1101,7 +1069,7 @@
   </div>
 </div>
 <!-- ═══════════════════════════════════════
-     OBJECTIFS PÉDAGOGIQUES (position #2   Cagan/Zhuo)
+     OBJECTIFS PÉDAGOGIQUES
 ═══════════════════════════════════════ -->
 <div class="section">
   <span class="eyebrow">Objectifs pédagogiques</span>
@@ -1109,112 +1077,114 @@
 
   <!-- RH -->
   <div data-filiere="rh" class="visible">
-    <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits pendant la formation — exactement ce que les directions RH et les recruteurs cherchent en 2026.</p>
-    <div class="competences-grid">
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">01</div>
-        <div>
-          <div class="competence-title">Lire l'actualité IA sans se noyer</div>
-          <div class="competence-desc">Distinguer ce qui change vraiment du bruit ambiant. Identifier les signaux pertinents pour son métier RH parmi les 100 nouveautés hebdomadaires.</div>
-        </div>
-      </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">02</div>
-        <div>
-          <div class="competence-title">Construire son système de travail augmenté</div>
-          <div class="competence-desc">Créer son WOS RH personnel : fichiers contexte, routines IA, stack d'outils, adaptés à son rôle et ses enjeux réels.</div>
-        </div>
-      </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">03</div>
-        <div>
-          <div class="competence-title">Piloter ses processus RH avec l'IA</div>
-          <div class="competence-desc">Recrutement, onboarding, entretiens annuels, marque employeur : identifier où l'IA apporte de la valeur réelle et comment l'intégrer sans casser l'existant.</div>
-        </div>
-      </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">04</div>
-        <div>
-          <div class="competence-title">Raisonner comme un product manager</div>
-          <div class="competence-desc">Appliquer la logique discovery → priorisation → itération à ses projets RH. Passer de l'exécution à la conception de solutions.</div>
-        </div>
-      </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">05</div>
-        <div>
-          <div class="competence-title">Produire ses propres outils IA</div>
-          <div class="competence-desc">Créer des prompts système, des workflows automatisés, des digests personnalisés, sans coder, avec les outils no-code accessibles aujourd'hui.</div>
-        </div>
-      </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">06</div>
-        <div>
-          <div class="competence-title">Anticiper les évolutions de son rôle</div>
-          <div class="competence-desc">Comprendre quelles tâches RH seront automatisées, lesquelles seront augmentées, et comment positionner sa valeur ajoutée humaine durablement.</div>
-        </div>
+  <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits — exactement ce que les directions RH et les recruteurs cherchent en 2026.</p>
+  <div class="competences-grid">
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">01</div>
+      <div>
+        <div class="competence-title">Lire l'actualité IA sans se noyer</div>
+        <div class="competence-desc">Distinguer ce qui change vraiment du bruit ambiant. Identifier les signaux pertinents pour son métier RH parmi les 100 nouveautés hebdomadaires.</div>
       </div>
     </div>
-    <!-- Démo output -->
-<div style="margin-top:40px;padding:28px 32px;background:var(--cream);border:1px solid var(--border-2);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
-  <div>
-    <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Résultat réel · Session pilote</div>
-    <div style="font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px;letter-spacing:-.3px;">Ce qu'une étudiante RH a construit en 2 jours</div>
-    <div style="font-size:13.5px;color:var(--muted);line-height:1.6;max-width:480px;">Son WOS personnel, un assistant IA métier et un prototype d'outil onboarding — générés depuis son contexte réel, sans coder.</div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">02</div>
+      <div>
+        <div class="competence-title">Construire son WOS RH personnel</div>
+        <div class="competence-desc">Créer son propre système de travail augmenté : fichiers contexte, routines IA, stack d'outils, adaptés à son rôle et ses enjeux réels.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">03</div>
+      <div>
+        <div class="competence-title">Piloter ses processus RH avec l'IA</div>
+        <div class="competence-desc">Recrutement, onboarding, entretiens annuels, marque employeur : identifier où l'IA apporte de la valeur réelle et comment l'intégrer sans casser l'existant.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">04</div>
+      <div>
+        <div class="competence-title">Raisonner comme un product manager</div>
+        <div class="competence-desc">Appliquer la logique discovery → priorisation → itération à ses projets RH. Passer de l'exécution à la conception de solutions.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">05</div>
+      <div>
+        <div class="competence-title">Produire ses propres outils IA</div>
+        <div class="competence-desc">Créer des prompts système, des workflows automatisés, des digests personnalisés, sans coder, avec les outils no-code accessibles aujourd'hui.</div>
+      </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">06</div>
+      <div>
+        <div class="competence-title">Anticiper les évolutions de son rôle</div>
+        <div class="competence-desc">Comprendre quelles tâches RH seront automatisées, lesquelles seront augmentées, et comment positionner sa valeur ajoutée humaine durablement.</div>
+      </div>
+    </div>
   </div>
-  <a href="formationsarah/index.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:12px 24px;border-radius:7px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .15s;" onmouseover="this.style.background='var(--ink-2)'" onmouseout="this.style.background='var(--ink)'">
-    Voir la démo →
-  </a>
-</div>
+
+  <!-- Démo output — résultat réel session pilote -->
+  <div style="margin-top:40px;padding:28px 32px;background:var(--cream);border:1px solid var(--border-2);border-radius:12px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+    <div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Résultat réel · Session pilote</div>
+      <div style="font-size:17px;font-weight:700;color:var(--ink);margin-bottom:6px;letter-spacing:-.3px;">Ce qu'une étudiante RH a construit en 2 jours</div>
+      <div style="font-size:13.5px;color:var(--muted);line-height:1.6;max-width:480px;">Son WOS personnel, un assistant IA métier et un prototype d'outil onboarding — générés depuis son contexte réel, sans coder.</div>
+    </div>
+    <a href="formationsarah/index.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:12px 24px;border-radius:7px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .15s;" onmouseover="this.style.background='#2A2720'" onmouseout="this.style.background='var(--ink)'">
+      Voir la démo →
+    </a>
   </div>
+  </div><!-- fin filière RH objectifs -->
 
   <!-- Management -->
   <div data-filiere="management">
-    <p class="section-sub">Compétences actionnables le lendemain : ce que les DG et recruteurs cherchent chez des managers capables de piloter la transformation, pas de la subir.</p>
-    <div class="competences-grid">
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">01</div>
-        <div>
-          <div class="competence-title">Lire l'IA comme un signal stratégique</div>
-          <div class="competence-desc">Distinguer les changements structurels du bruit médiatique. Identifier les impacts sur son secteur, son équipe, son rôle de manager.</div>
-        </div>
+  <p class="section-sub">Compétences actionnables le lendemain — ce que les DG et recruteurs cherchent chez des managers capables de piloter la transformation, pas de la subir.</p>
+  <div class="competences-grid">
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">01</div>
+      <div>
+        <div class="competence-title">Lire l'IA comme un signal stratégique</div>
+        <div class="competence-desc">Distinguer les changements structurels du bruit médiatique. Identifier les impacts sur son secteur, son équipe, son rôle de manager.</div>
       </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">02</div>
-        <div>
-          <div class="competence-title">Prioriser par impact, pas par urgence</div>
-          <div class="competence-desc">Appliquer la logique PM à ses décisions managériales : discovery, priorisation, itération. Construire une roadmap d'équipe orientée résultats.</div>
-        </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">02</div>
+      <div>
+        <div class="competence-title">Prioriser par impact, pas par urgence</div>
+        <div class="competence-desc">Appliquer la logique PM à ses décisions managériales : discovery, priorisation, itération. Construire une roadmap d'équipe orientée résultats.</div>
       </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">03</div>
-        <div>
-          <div class="competence-title">Piloter ses projets avec l'IA</div>
-          <div class="competence-desc">Structurer, cadrer et accélérer ses projets grâce aux outils IA. Passer de 3 semaines à 3 jours sur des livrables qui comptent vraiment.</div>
-        </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">03</div>
+      <div>
+        <div class="competence-title">Piloter ses projets avec l'IA</div>
+        <div class="competence-desc">Structurer, cadrer et accélérer ses projets grâce aux outils IA. Passer de 3 semaines à 3 jours sur des livrables qui comptent vraiment.</div>
       </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">04</div>
-        <div>
-          <div class="competence-title">Conduire le changement dans son équipe</div>
-          <div class="competence-desc">Accompagner l'adoption de l'IA sans résistance. Aligner des parties prenantes qui n'ont pas la même lecture des enjeux.</div>
-        </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">04</div>
+      <div>
+        <div class="competence-title">Conduire le changement dans son équipe</div>
+        <div class="competence-desc">Accompagner l'adoption de l'IA sans résistance. Aligner des parties prenantes qui n'ont pas la même lecture des enjeux.</div>
       </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">05</div>
-        <div>
-          <div class="competence-title">Produire ses propres outils sans coder</div>
-          <div class="competence-desc">Créer des prompts système, automatiser des workflows récurrents, construire ses propres assistants métier avec les outils no-code d'aujourd'hui.</div>
-        </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">05</div>
+      <div>
+        <div class="competence-title">Produire ses propres outils sans coder</div>
+        <div class="competence-desc">Créer des prompts système, automatiser des workflows récurrents, construire ses propres assistants métier avec les outils no-code d'aujourd'hui.</div>
       </div>
-      <div class="competence-item">
-        <div class="competence-number" aria-hidden="true">06</div>
-        <div>
-          <div class="competence-title">Positionner sa valeur managériale augmentée</div>
-          <div class="competence-desc">Comprendre ce que l'IA automatise et ce qu'elle ne remplace pas. Renforcer les compétences humaines irremplaçables : jugement, alignement, décision.</div>
-        </div>
+    </div>
+    <div class="competence-item">
+      <div class="competence-number" aria-hidden="true">06</div>
+      <div>
+        <div class="competence-title">Positionner sa valeur managériale augmentée</div>
+        <div class="competence-desc">Comprendre ce que l'IA automatise et ce qu'elle ne remplace pas. Renforcer les compétences humaines irremplaçables : jugement, alignement, décision.</div>
       </div>
     </div>
   </div>
+  </div><!-- fin filière Management objectifs -->
+
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -1280,8 +1250,8 @@
     <div class="format-card premium">
       <div class="format-badge">Premium</div>
       <div class="format-name">Devenir Product HR</div>
-      <div class="format-duration">5 sessions × 3h · Programme diplômant</div>
-      <div class="format-desc">Le programme complet. Pensé pour être intégré dans un référentiel pédagogique. Itérations, projets réels, livrables individuels, suivi entre sessions.</div>
+      <div class="format-duration">5 sessions × 3h · Étalé sur 8 semaines</div>
+      <div class="format-desc">Le programme long. Une session toutes les deux semaines sur 8 semaines. Des exercices entre chaque session, des livrables individuels corrigés. L'écart avec le Core n'est pas la durée — c'est la profondeur d'ancrage.</div>
       <div class="format-price">Tarif sur demande · promotion</div>
     </div>
   </div>
@@ -1380,7 +1350,7 @@
         <div style="flex:1;">
           <div class="acc-title">Devenir Product HR   Programme complet 5 sessions</div>
         </div>
-        <span class="acc-duration">15h · 5 × 3h</span>
+        <span class="acc-duration">15h · 5 sessions</span>
         <span class="acc-chevron" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
         </span>
@@ -1626,6 +1596,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -1788,13 +1759,10 @@
   }
 
   function setFiliere(f) {
-    // Met à jour l'URL si l'API est disponible
     try {
-      var url = window.location.pathname + '?f=' + f;
-      history.replaceState(null, '', url);
+      history.replaceState(null, '', window.location.pathname + '?f=' + f);
     } catch(e) {}
 
-    // Affiche/masque les blocs dynamiques
     var blocs = document.querySelectorAll('[data-filiere]');
     for (var i = 0; i < blocs.length; i++) {
       var el = blocs[i];
@@ -1805,37 +1773,27 @@
       }
     }
 
-    // Met à jour les boutons switcher
     var btns = document.querySelectorAll('.filiere-btn');
     for (var j = 0; j < btns.length; j++) {
       var btn = btns[j];
-      if (btn.getAttribute('data-target') === f) {
-        btn.classList.add('active');
-      } else {
-        btn.classList.remove('active');
-      }
+      btn.classList.toggle('active', btn.getAttribute('data-target') === f);
     }
 
-    // Met à jour le label nav
     var navMeta = document.getElementById('nav-meta');
     if (navMeta) {
-      navMeta.textContent = f === 'rh' ? 'Formation IA · Filière RH' : 'Formation IA · Product HR/Management';
+      navMeta.textContent = f === 'rh' ? 'Formation IA · Filière RH' : 'Formation IA · Filière Management';
     }
   }
 
-  // Init au chargement
   setFiliere(getFiliere());
 
-  // Listeners boutons switcher
   var switcherBtns = document.querySelectorAll('.filiere-btn');
   for (var k = 0; k < switcherBtns.length; k++) {
     (function(btn) {
       btn.addEventListener('click', function() {
         setFiliere(btn.getAttribute('data-target'));
         var hero = document.querySelector('.hero');
-        if (hero && hero.scrollIntoView) {
-          hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (hero && hero.scrollIntoView) hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     })(switcherBtns[k]);
   }
@@ -1844,43 +1802,49 @@
   var triggers = document.querySelectorAll('.accordion-trigger');
 
   function closeAll() {
-    for (var i = 0; i < triggers.length; i++) {
-      triggers[i].setAttribute('aria-expanded', 'false');
-      var panelId = triggers[i].getAttribute('aria-controls');
+    triggers.forEach(function(t) {
+      t.setAttribute('aria-expanded', 'false');
+      var panelId = t.getAttribute('aria-controls');
       var panel = document.getElementById(panelId);
       if (panel) panel.classList.remove('is-open');
-    }
+    });
   }
 
-  for (var t = 0; t < triggers.length; t++) {
-    (function(trigger) {
-      trigger.addEventListener('click', function() {
-        var expanded = trigger.getAttribute('aria-expanded') === 'true';
-        var panelId = trigger.getAttribute('aria-controls');
-        var panel = document.getElementById(panelId);
-        closeAll();
-        if (!expanded && panel) {
-          trigger.setAttribute('aria-expanded', 'true');
-          panel.classList.add('is-open');
-          var rect = trigger.getBoundingClientRect();
-          var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-          var targetY = scrollTop + rect.top - 112;
-          if (window.scrollTo) { window.scrollTo({ top: targetY, behavior: 'smooth' }); }
-        }
-      });
-      trigger.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-          e.preventDefault();
-          var list = [];
-          for (var i = 0; i < triggers.length; i++) list.push(triggers[i]);
-          var idx = list.indexOf(trigger);
-          var next = e.key === 'ArrowDown' ? list[idx + 1] : list[idx - 1];
-          if (next) next.focus();
-        }
-      });
-    })(triggers[t]);
-  }
+  triggers.forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      var panelId = this.getAttribute('aria-controls');
+      var panel = document.getElementById(panelId);
 
+      // Close all first
+      closeAll();
+
+      // If it was closed, open it
+      if (!expanded && panel) {
+        this.setAttribute('aria-expanded', 'true');
+        panel.classList.add('is-open');
+        // Smooth scroll so it's visible
+        var rect = this.getBoundingClientRect();
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        var targetY = scrollTop + rect.top - 72; // 72 = nav height approx
+        if (window.scrollTo) {
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
+      }
+    });
+
+    // Keyboard: Enter / Space already handled natively for <button>
+    // Arrow keys for roving tabindex (optional enhancement)
+    trigger.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        var list = Array.prototype.slice.call(triggers);
+        var idx = list.indexOf(this);
+        var next = e.key === 'ArrowDown' ? list[idx + 1] : list[idx - 1];
+        if (next) next.focus();
+      }
+    });
+  });
 })();
 </script>
 
