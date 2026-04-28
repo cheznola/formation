@@ -862,38 +862,6 @@
     .signal-inner { grid-template-columns: 1fr; gap: 24px; }
   }
 
-  /* ─── Switcher filière ─── */
-  .filiere-bar {
-    background: var(--dark);
-    padding: 10px 48px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    position: sticky;
-    top: 56px;
-    z-index: 99;
-    border-bottom: 1px solid rgba(255,255,255,.06);
-  }
-  .filiere-label {
-    font-size: 11px; font-weight: 600; letter-spacing: .10em;
-    text-transform: uppercase; color: rgba(255,255,255,.35);
-    white-space: nowrap; margin-right: 4px;
-  }
-  .filiere-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 6px 16px; border-radius: 100px;
-    border: 1px solid rgba(255,255,255,.12);
-    background: transparent; color: rgba(255,255,255,.5);
-    font-size: 12px; font-weight: 600; font-family: var(--sans);
-    cursor: pointer; transition: all .18s; white-space: nowrap; text-decoration: none;
-  }
-  .filiere-btn:hover { border-color: rgba(255,255,255,.3); color: rgba(255,255,255,.85); }
-  .filiere-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  @media (max-width: 768px) {
-    .filiere-bar { padding: 8px 16px; gap: 8px; }
-    .filiere-label { display: none; }
-  }
-
   /* ─── Crédibilité hero ─── */
   .hero-cred {
     display: flex; align-items: center; gap: 14px;
@@ -910,10 +878,6 @@
     .hero-cred { flex-wrap: wrap; }
     .hero-cred-logos { margin-left: 0; margin-top: 8px; }
   }
-
-  /* ─── Contenu dynamique filière ─── */
-  [data-filiere] { display: none; }
-  [data-filiere].visible { display: block; }
 </style>
 </head>
 <body>
@@ -924,7 +888,7 @@
 <nav class="nav">
   <div class="nav-brand">Emmanuel Di Marco</div>
   <div class="nav-right">
-    <div class="nav-meta" id="nav-meta">Formation IA · Filière RH</div>
+    <div class="nav-meta">Formation IA · Métiers RH</div>
     <a href="syllabus-product-hr.pdf" download class="nav-cta" aria-label="Télécharger le syllabus PDF">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       Télécharger le syllabus
@@ -933,16 +897,6 @@
 </nav>
 
 
-<!-- ═══════════════════════════════════════
-     SWITCHER FILIÈRE
-═══════════════════════════════════════ -->
-<div class="filiere-bar" role="navigation" aria-label="Choisir votre filière">
-  <span class="filiere-label">Votre filière</span>
-  <button class="filiere-btn active" data-target="rh" id="btn-rh" type="button">
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-    Filière RH
-  </button>
-</div>
 <!-- ═══════════════════════════════════════
      HERO
 ═══════════════════════════════════════ -->
@@ -966,27 +920,13 @@
     </div>
   </div>
 
-  <!-- Filière RH -->
-  <div data-filiere="rh" class="visible">
-    <span class="eyebrow">Formation IA · Métiers RH & Management des équipes</span>
+      <span class="eyebrow">Formation IA · Filière RH</span>
     <h1 class="hero-title">Vos étudiants RH<br>prêts à piloter <em>l'ère de l'IA</em></h1>
     <p class="hero-hook" style="font-family:var(--serif);font-size:clamp(16px,2.4vw,21px);font-style:italic;color:var(--ink-2);max-width:660px;line-height:1.4;margin-bottom:28px;">Les méthodes des meilleurs Product Managers.<br>Appliquées aux métiers RH dès la première semaine de cours.</p>
     <div class="hero-diff">
       <div class="hero-diff-dot"></div>
       <div class="hero-diff-text">Ce que vos diplômés sauront faire : lire l'IA sans se noyer, automatiser leurs processus RH, et se positionner comme profils augmentés sur le marché.</div>
     </div>
-  </div>
-
-  <!-- Filière Management -->
-  <div data-filiere="management">
-    <span class="eyebrow">Formation IA · Filière Management</span>
-    <h1 class="hero-title">Vos étudiants managers<br><em>pilotent</em> avec les méthodes PM</h1>
-    <p class="hero-hook" style="font-family:var(--serif);font-size:clamp(16px,2.4vw,21px);font-style:italic;color:var(--ink-2);max-width:660px;line-height:1.4;margin-bottom:28px;">Les outils de décision des meilleurs Product Managers.<br>Appliqués au management et à la conduite du changement à l'ère de l'IA.</p>
-    <div class="hero-diff">
-      <div class="hero-diff-dot"></div>
-      <div class="hero-diff-text">Ce que vos diplômés sauront faire : prioriser par impact, piloter des projets complexes avec l'IA, et conduire le changement là où d'autres subissent la transformation.</div>
-    </div>
-  </div>
 
   <div class="promise-grid">
     <div class="promise-pill">
@@ -1068,6 +1008,41 @@
 
   </div>
 </div>
+
+<!-- ═══════════════════════════════════════
+     SIGNAL MARCHÉ (pour directeurs de programme)
+═══════════════════════════════════════ -->
+<div class="signal-section">
+  <div class="signal-inner">
+    <div>
+      <div class="signal-headline">Les entreprises cherchent des RH qui <em>pensent produit</em>.</div>
+      <p class="signal-sub">La transformation IA ne cherche pas des utilisateurs d'outils   elle cherche des professionnels capables de piloter le changement, prioriser par impact, et itérer vite. Vos étudiants sortent avec exactement ce profil.</p>
+    </div>
+    <div class="signal-stats">
+      <div class="signal-stat">
+        <div class="signal-stat-num">83%</div>
+        <div class="signal-stat-label">des Directions Generales considerent l'automatisation RH comme prioritaire
+          <span class="signal-source">Neobrain, 2025</span>
+        </div>
+      </div>
+      <div class="signal-stat">
+        <div class="signal-stat-num">92%</div>
+        <div class="signal-stat-label">des entreprises vont investir dans l'IA generative dans les 3 ans
+          <span class="signal-source">ConvictionsRH x Mercer, 2025</span>
+        </div>
+      </div>
+      <div class="signal-stat">
+        <div class="signal-stat-num">J+1</div>
+        <div class="signal-stat-label">chaque session produit un livrable activable des le lendemain</div>
+      </div>
+      <div class="signal-stat">
+        <div class="signal-stat-num">100%</div>
+        <div class="signal-stat-label">des participants repartent avec un outil operationnel personnalise</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════
      OBJECTIFS PÉDAGOGIQUES
 ═══════════════════════════════════════ -->
@@ -1075,8 +1050,6 @@
   <span class="eyebrow">Objectifs pédagogiques</span>
   <h2 class="section-title">Ce que vos étudiants savent faire à la fin</h2>
 
-  <!-- RH -->
-  <div data-filiere="rh" class="visible">
   <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits — exactement ce que les directions RH et les recruteurs cherchent en 2026.</p>
   <div class="competences-grid">
     <div class="competence-item">
@@ -1134,92 +1107,10 @@
       Voir la démo →
     </a>
   </div>
-  </div><!-- fin filière RH objectifs -->
 
-  <!-- Management -->
-  <div data-filiere="management">
-  <p class="section-sub">Compétences actionnables le lendemain — ce que les DG et recruteurs cherchent chez des managers capables de piloter la transformation, pas de la subir.</p>
-  <div class="competences-grid">
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">01</div>
-      <div>
-        <div class="competence-title">Lire l'IA comme un signal stratégique</div>
-        <div class="competence-desc">Distinguer les changements structurels du bruit médiatique. Identifier les impacts sur son secteur, son équipe, son rôle de manager.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">02</div>
-      <div>
-        <div class="competence-title">Prioriser par impact, pas par urgence</div>
-        <div class="competence-desc">Appliquer la logique PM à ses décisions managériales : discovery, priorisation, itération. Construire une roadmap d'équipe orientée résultats.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">03</div>
-      <div>
-        <div class="competence-title">Piloter ses projets avec l'IA</div>
-        <div class="competence-desc">Structurer, cadrer et accélérer ses projets grâce aux outils IA. Passer de 3 semaines à 3 jours sur des livrables qui comptent vraiment.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">04</div>
-      <div>
-        <div class="competence-title">Conduire le changement dans son équipe</div>
-        <div class="competence-desc">Accompagner l'adoption de l'IA sans résistance. Aligner des parties prenantes qui n'ont pas la même lecture des enjeux.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">05</div>
-      <div>
-        <div class="competence-title">Produire ses propres outils sans coder</div>
-        <div class="competence-desc">Créer des prompts système, automatiser des workflows récurrents, construire ses propres assistants métier avec les outils no-code d'aujourd'hui.</div>
-      </div>
-    </div>
-    <div class="competence-item">
-      <div class="competence-number" aria-hidden="true">06</div>
-      <div>
-        <div class="competence-title">Positionner sa valeur managériale augmentée</div>
-        <div class="competence-desc">Comprendre ce que l'IA automatise et ce qu'elle ne remplace pas. Renforcer les compétences humaines irremplaçables : jugement, alignement, décision.</div>
-      </div>
-    </div>
-  </div>
-  </div><!-- fin filière Management objectifs -->
 
 </div>
 
-<!-- ═══════════════════════════════════════
-     SIGNAL MARCHÉ (pour directeurs de programme)
-═══════════════════════════════════════ -->
-<div class="signal-section">
-  <div class="signal-inner">
-    <div>
-      <div class="signal-headline">Les entreprises cherchent des RH qui <em>pensent produit</em>.</div>
-      <p class="signal-sub">La transformation IA ne cherche pas des utilisateurs d'outils   elle cherche des professionnels capables de piloter le changement, prioriser par impact, et itérer vite. Vos étudiants sortent avec exactement ce profil.</p>
-    </div>
-    <div class="signal-stats">
-      <div class="signal-stat">
-        <div class="signal-stat-num">83%</div>
-        <div class="signal-stat-label">des Directions Generales considerent l'automatisation RH comme prioritaire
-          <span class="signal-source">Neobrain, 2025</span>
-        </div>
-      </div>
-      <div class="signal-stat">
-        <div class="signal-stat-num">92%</div>
-        <div class="signal-stat-label">des entreprises vont investir dans l'IA generative dans les 3 ans
-          <span class="signal-source">ConvictionsRH x Mercer, 2025</span>
-        </div>
-      </div>
-      <div class="signal-stat">
-        <div class="signal-stat-num">J+1</div>
-        <div class="signal-stat-label">chaque session produit un livrable activable des le lendemain</div>
-      </div>
-      <div class="signal-stat">
-        <div class="signal-stat-num">100%</div>
-        <div class="signal-stat-label">des participants repartent avec un outil operationnel personnalise</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- ═══════════════════════════════════════
      FORMATS   CARDS
@@ -1551,8 +1442,6 @@
 <div class="section">
   <span class="eyebrow">À qui s'adresse cette formation</span>
 
-  <!-- RH -->
-  <div data-filiere="rh" class="visible">
     <h2 class="section-title">Trois publics RH, une même urgence</h2>
     <p class="section-sub">La formation s'adapte au niveau et au contexte : les exemples, les exercices et les livrables changent. La méthode, non.</p>
     <div class="public-grid">
@@ -1572,31 +1461,6 @@
         <div class="public-desc">Praticiens qui voient l'IA arriver et veulent comprendre ce qui change vraiment, pas ce que les vendeurs d'outils leur disent.</div>
       </div>
     </div>
-  </div>
-
-  <!-- Management -->
-  <div data-filiere="management">
-    <h2 class="section-title">Trois publics management, une même transformation</h2>
-    <p class="section-sub">La formation s'adapte aux enjeux du niveau : BTS, Licence ou Master. Les cas pratiques changent. La méthode PM reste la même.</p>
-    <div class="public-grid">
-      <div class="public-card">
-        <div class="public-type">BTS / Bac+2</div>
-        <div class="public-name">BTS Management, MCO, NDRC</div>
-        <div class="public-desc">Futurs managers opérationnels qui auront à piloter des équipes et des processus augmentés par l'IA dès leur premier poste.</div>
-      </div>
-      <div class="public-card">
-        <div class="public-type">Bac+3 / Bac+5</div>
-        <div class="public-name">Licence & Master Management</div>
-        <div class="public-desc">Futurs chefs de projet, managers, consultants. Apprennent à piloter des projets complexes avec les outils de décision des meilleurs PMs.</div>
-      </div>
-      <div class="public-card">
-        <div class="public-type">Grande école</div>
-        <div class="public-name">Écoles de commerce et d'ingénieurs</div>
-        <div class="public-desc">Profils à fort potentiel qui veulent une longueur d'avance réelle sur l'IA — pas une initiation, une pratique professionnelle immédiatement activable.</div>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <!-- ═══════════════════════════════════════
@@ -1748,55 +1612,6 @@
 <script>
 (function() {
   'use strict';
-
-  /* ─── Switcher filière ─── */
-  var DEFAULT = 'rh';
-
-  function getFiliere() {
-    var search = window.location.search;
-    var match = search.match(/[?&]f=([^&]+)/);
-    return (match && match[1]) ? match[1] : DEFAULT;
-  }
-
-  function setFiliere(f) {
-    try {
-      history.replaceState(null, '', window.location.pathname + '?f=' + f);
-    } catch(e) {}
-
-    var blocs = document.querySelectorAll('[data-filiere]');
-    for (var i = 0; i < blocs.length; i++) {
-      var el = blocs[i];
-      if (el.getAttribute('data-filiere') === f) {
-        el.classList.add('visible');
-      } else {
-        el.classList.remove('visible');
-      }
-    }
-
-    var btns = document.querySelectorAll('.filiere-btn');
-    for (var j = 0; j < btns.length; j++) {
-      var btn = btns[j];
-      btn.classList.toggle('active', btn.getAttribute('data-target') === f);
-    }
-
-    var navMeta = document.getElementById('nav-meta');
-    if (navMeta) {
-      navMeta.textContent = f === 'rh' ? 'Formation IA · Filière RH' : 'Formation IA · Filière Management';
-    }
-  }
-
-  setFiliere(getFiliere());
-
-  var switcherBtns = document.querySelectorAll('.filiere-btn');
-  for (var k = 0; k < switcherBtns.length; k++) {
-    (function(btn) {
-      btn.addEventListener('click', function() {
-        setFiliere(btn.getAttribute('data-target'));
-        var hero = document.querySelector('.hero');
-        if (hero && hero.scrollIntoView) hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    })(switcherBtns[k]);
-  }
 
   /* ─── Accordion formats ─── */
   var triggers = document.querySelectorAll('.accordion-trigger');
