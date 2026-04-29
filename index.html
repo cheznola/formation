@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#F8F4EE">
+<meta name="description" content="Formation IA appliquée aux métiers RH - Emmanuel Di Marco, ex-RH et Senior PM. Méthodes product manager pour professionnels et étudiants RH.">
+<meta property="og:title" content="Formation IA · Métiers RH · Emmanuel Di Marco">
+<meta property="og:description" content="Les méthodes des meilleurs Product Managers. Appliquées aux métiers RH dès la première session.">
+<meta property="og:url" content="https://emmanueldimarco.fr">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Formation IA · Métiers RH · Emmanuel Di Marco">
+<meta name="twitter:description" content="Les méthodes des meilleurs Product Managers. Appliquées aux métiers RH dès la première session.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231A1612'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='%23C87542'>E</text></svg>">
 <title>Formation IA · Filière RH &amp; Management · Emmanuel Di Marco</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -261,7 +270,6 @@
   .format-card.core { background: var(--ink); color: #fff; }
   .format-card.premium { background: var(--accent); color: #fff; }
 
-  /* badge + recommended tag alignés */
   .format-card-top {
     display: flex;
     align-items: center;
@@ -293,7 +301,6 @@
   .starter .format-desc { color: var(--ink-2); }
   .core .format-desc, .premium .format-desc { color: rgba(255,255,255,.82); }
 
-  /* tarif aligné en bas de chaque carte */
   .format-price-area {
     margin-top: 20px;
     padding-top: 14px;
@@ -402,7 +409,6 @@
   .exercice-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--sage); margin-bottom: 6px; }
   .exercice-text { font-size: 13px; color: var(--ink-2); line-height: 1.55; }
 
-  /* Starter focus detail */
   .starter-focus { background: var(--cream); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; }
   .starter-focus-title { font-family: var(--serif); font-size: 20px; font-weight: 700; letter-spacing: -.5px; color: var(--ink); margin-bottom: 6px; }
   .starter-focus-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
@@ -459,10 +465,18 @@
   /* ─── Public ─── */
   .public-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 14px;
+    justify-items: center;
   }
-  .public-card { background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .public-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+  }
   .public-type { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
   .public-name { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
   .public-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
@@ -524,7 +538,7 @@
     color: #fff;
   }
 
-  /* ─── Nola / Au-delà section ─── */
+  /* ─── Au-delà section ─── */
   .beyond-section {
     background: var(--cream);
     border-top: 1px solid var(--border);
@@ -561,7 +575,7 @@
   }
   .beyond-link:hover { gap: 10px; }
 
-  /* ─── Logos sociaux ─── */
+  /* ─── Logos ─── */
   .logos-section {
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
@@ -728,7 +742,7 @@
     .steps-grid { grid-template-columns: 1fr 1fr 1fr; }
     .bio-blocks { grid-template-columns: 1fr 1fr; }
     .bio-blocks .bio-block:last-child { grid-column: 1 / -1; }
-    .public-grid { grid-template-columns: repeat(2, 1fr); }
+    .public-grid { grid-template-columns: repeat(3, 1fr); }
   }
 
   /* ─── Responsive mobile ─── */
@@ -1056,13 +1070,13 @@
       <div class="format-duration">3 à 4 heures · Intervention ponctuelle</div>
       <div class="format-desc">La porte d'entrée. Comprendre ce qui change vraiment pour les RH, identifier les 3 outils à maîtriser en priorité, et repartir avec un premier système personnel activable.</div>
       <div class="format-price-area" style="display:flex;flex-direction:column;gap:8px;">
-      <a href="https://calendly.com/emmanueldimarco_/formation" target="_blank" rel="noopener" class="format-price-link">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Réserver un créneau
-      </a>
-      <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20Core%20%E2%80%94%20Demande%20de%20tarif" class="format-price-link" style="opacity:.65;font-size:11.5px;padding:5px 14px;">
-      ou m'écrire directement
-      </a>
+        <a href="https://calendly.com/emmanueldimarco_/formation" target="_blank" rel="noopener" class="format-price-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Réserver un créneau
+        </a>
+        <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20Starter%20%E2%80%94%20Demande%20de%20tarif" class="format-price-link" style="opacity:.65;font-size:11.5px;padding:5px 14px;">
+          ou m'écrire directement
+        </a>
       </div>
     </div>
 
@@ -1076,13 +1090,13 @@
       <div class="format-duration">2 jours (14h) · Module intégré</div>
       <div class="format-desc">Le module principal. À la fin des 2 jours, chaque participant repart avec son propre système de travail augmenté, adapté à son rôle, ses outils, ses enjeux réels.</div>
       <div class="format-price-area" style="display:flex;flex-direction:column;gap:8px;">
-      <a href="https://calendly.com/emmanueldimarco_/formation" target="_blank" rel="noopener" class="format-price-link">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Réserver un créneau
-      </a>
-      <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20Core%20%E2%80%94%20Demande%20de%20tarif" class="format-price-link" style="opacity:.65;font-size:11.5px;padding:5px 14px;">
-      ou m'écrire directement
-      </a>
+        <a href="https://calendly.com/emmanueldimarco_/formation" target="_blank" rel="noopener" class="format-price-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Réserver un créneau
+        </a>
+        <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20Core%20%E2%80%94%20Demande%20de%20tarif" class="format-price-link" style="opacity:.65;font-size:11.5px;padding:5px 14px;">
+          ou m'écrire directement
+        </a>
       </div>
     </div>
 
@@ -1095,13 +1109,13 @@
       <div class="format-duration">5 sessions x 3h · Étalé sur 8 semaines</div>
       <div class="format-desc">Le programme long. Une session toutes les deux semaines sur 8 semaines. Des exercices entre chaque session, des livrables individuels corrigés. L'écart avec le Core n'est pas la durée, c'est la profondeur d'ancrage.</div>
       <div class="format-price-area" style="display:flex;flex-direction:column;gap:8px;">
-      <a href="https://calendly.com/emmanueldimarco_/formation" target="_blank" rel="noopener" class="format-price-link">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Réserver un créneau
-      </a>
-      <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20Core%20%E2%80%94%20Demande%20de%20tarif" class="format-price-link" style="opacity:.65;font-size:11.5px;padding:5px 14px;">
-      ou m'écrire directement
-      </a>
+        <a href="https://calendly.com/emmanueldimarco_/formation" target="_blank" rel="noopener" class="format-price-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Réserver un créneau
+        </a>
+        <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Formation%20Product%20HR%20Premium%20%E2%80%94%20Demande%20de%20tarif" class="format-price-link" style="opacity:.65;font-size:11.5px;padding:5px 14px;">
+          ou m'écrire directement
+        </a>
       </div>
     </div>
 
@@ -1410,12 +1424,7 @@
   <p class="section-sub">La formation s'adapte au niveau et au contexte : les exemples, les exercices et les livrables changent. La méthode, non.</p>
   <div class="public-grid">
     <div class="public-card">
-      <div class="public-type">Bac+3</div>
-      <div class="public-name">Étudiants Licence RH</div>
-      <div class="public-desc">Entrent sur un marché du travail radicalement transformé. Cette formation leur donne une longueur d'avance concrète dès leur premier poste.</div>
-    </div>
-    <div class="public-card">
-      <div class="public-type">Bac+5</div>
+      <div class="public-type">Master RH</div>
       <div class="public-name">Étudiants Master RH</div>
       <div class="public-desc">Futurs HRBP, Talent Managers, DRH. Apprennent à piloter leur fonction avec les méthodes des meilleurs product managers.</div>
     </div>
@@ -1423,6 +1432,11 @@
       <div class="public-type">Formation continue</div>
       <div class="public-name">Professionnels RH en activité</div>
       <div class="public-desc">Praticiens qui voient l'IA arriver et veulent comprendre ce qui change vraiment, pas ce que les vendeurs d'outils leur disent.</div>
+    </div>
+    <div class="public-card">
+      <div class="public-type">Entreprises</div>
+      <div class="public-name">Équipes RH en transformation</div>
+      <div class="public-desc">DRH qui veulent acculturer leur équipe à l'IA avec une méthode praticienne, pas un catalogue d'outils.</div>
     </div>
   </div>
 </div>
@@ -1508,7 +1522,7 @@
 </div>
 
 
-<!-- AU-DELÀ DE LA FORMATION -->
+<!-- AU-DELÀ -->
 <div class="beyond-section">
   <div class="beyond-inner">
     <div>
@@ -1549,7 +1563,7 @@
       M'écrire
     </a>
     <a
-      href="https://wa.me/?text=Bonjour%2C%0A%0AJe%20souhaitais%20partager%20avec%20vous%20le%20syllabus%20de%20la%20formation%20%22Product%20HR%20%E2%80%94%20Piloter%20son%20m%C3%A9tier%20RH%20%C3%A0%20l%27%C3%A8re%20de%20l%27IA%22.%0A%0ACette%20formation%20est%20con%C3%A7ue%20pour%20les%20%C3%A9tudiants%20et%20professionnels%20RH%20souhaitant%20s%27emparer%20concr%C3%A8tement%20de%20l%27IA%20dans%20leur%20m%C3%A9tier.%0A%0ASyllabus%20complet%20%3A%20https%3A%2F%2Fcheznola.github.io%2Fformation%0A%0ABonne%20lecture%20!"
+      href="https://wa.me/?text=Bonjour%2C%0A%0AJe%20souhaitais%20partager%20avec%20vous%20le%20syllabus%20de%20la%20formation%20%22Product%20HR%20%E2%80%94%20Piloter%20son%20m%C3%A9tier%20RH%20%C3%A0%20l%27%C3%A8re%20de%20l%27IA%22.%0A%0ACette%20formation%20est%20con%C3%A7ue%20pour%20les%20%C3%A9tudiants%20et%20professionnels%20RH%20souhaitant%20s%27emparer%20concr%C3%A8tement%20de%20l%27IA%20dans%20leur%20m%C3%A9tier.%0A%0ASyllabus%20complet%20%3A%20https%3A%2F%2Femmanueldimarco.fr%0A%0ABonne%20lecture%20!"
       target="_blank"
       rel="noopener noreferrer"
       class="footer-btn footer-btn--whatsapp"
