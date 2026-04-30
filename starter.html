@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation Starter · Product HR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@300;400;500;600;700;800;900&family=Playpen+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #F9F5EE;
+    --cream: #F4EFE4;
+    --cream-2: #EDE7D9;
+    --cream-3: #E5DDD0;
+    --brown-pale: #F3E8D8;
+    --sage-pale: #EBF0E7;
+    --brown: #C87542;
+    --brown-deep: #A85E2E;
+    --sage: #6E7E64;
+    --sage-bg: #5D6E54;
+    --ink: #3A342C;
+    --muted: #7A7168;
+    --muted-lt: #A09890;
+    --dark: #1E1A15;
+    --dark-2: #2C2720;
+    --border: rgba(58,52,44,.10);
+    --border-2: rgba(58,52,44,.16);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* SCREENS */
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: flex; }
+
+  /* =============================
+     SCREEN 1 -- PASSWORD
+  ============================= */
+  #screen-password {
+    background: var(--dark);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .pw-logo {
+    font-family: 'Playpen Sans', cursive;
+    font-weight: 800;
+    font-size: 42px;
+    color: var(--brown);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .pw-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--muted-lt);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 32px;
+  }
+
+  .pw-title {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: #fff;
+    font-size: 28px;
+    text-align: center;
+    max-width: 380px;
+    line-height: 1.35;
+    margin-bottom: 40px;
+  }
+
+  .pw-form {
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pw-input-wrap {
+    position: relative;
+  }
+
+  #pw-input {
+    width: 100%;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    color: #fff;
+    border-radius: 7px;
+    padding: 14px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  #pw-input::placeholder { color: rgba(255,255,255,.35); }
+  #pw-input:focus { border-color: rgba(255,255,255,.28); }
+
+  #pw-input.shake {
+    animation: shake 0.4s ease;
+  }
+
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+  }
+
+  .pw-error {
+    color: #F08080;
+    font-size: 13px;
+    text-align: center;
+    min-height: 18px;
+    transition: opacity 0.2s;
+  }
+
+  .pw-btn {
+    background: var(--brown);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    border-radius: 7px;
+    padding: 14px 20px;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .pw-btn:hover { background: var(--brown-deep); }
+  .pw-btn:active { transform: scale(0.98); }
+
+  /* =============================
+     SCREEN 2 -- WELCOME
+  ============================= */
+  #screen-welcome {
+    background: var(--dark);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 60px 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .welcome-inner {
+    max-width: 540px;
+    width: 100%;
+  }
+
+  .welcome-title {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: #fff;
+    font-size: clamp(24px, 4vw, 40px);
+    line-height: 1.25;
+    margin-bottom: 28px;
+  }
+
+  .welcome-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: rgba(255,255,255,.75);
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+    white-space: pre-line;
+  }
+
+  .welcome-tag {
+    color: var(--muted-lt);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+  }
+
+  .welcome-btn {
+    background: var(--brown);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    border-radius: 7px;
+    padding: 14px 36px;
+    cursor: pointer;
+    opacity: 0;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .welcome-btn.visible {
+    animation: fadeInBtn 0.6s ease forwards;
+  }
+
+  @keyframes fadeInBtn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .welcome-btn:hover { background: var(--brown-deep); }
+
+  .pulse-dot {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--brown);
+    animation: pulse-dot 1.6s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%,100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.4; transform: translateX(-50%) scale(1.6); }
+  }
+
+  /* =============================
+     SCREEN 3 -- COURSE
+  ============================= */
+  #screen-course {
+    background: var(--parchment);
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 52px;
+    background: rgba(249,245,238,.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'Playpen Sans', cursive;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--brown);
+  }
+
+  .nav-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .progress-bar {
+    width: 120px;
+    height: 6px;
+    background: var(--cream-2);
+    border-radius: 100px;
+    display: flex;
+    gap: 3px;
+    overflow: hidden;
+    padding: 1px;
+  }
+
+  .progress-segment {
+    flex: 1;
+    border-radius: 100px;
+    background: transparent;
+    transition: background 0.4s ease;
+  }
+
+  .progress-segment.filled { background: var(--brown); }
+
+  .progress-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .course-body {
+    padding-top: 52px;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 80px;
+  }
+
+  /* STEPS */
+  .step { display: none; padding-top: 48px; }
+  .step.active {
+    display: block;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--brown);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+  }
+
+  .step-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(22px, 3.5vw, 32px);
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .step-intro {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  /* STEP BUTTONS */
+  .step-btn {
+    background: var(--brown);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    border-radius: 7px;
+    padding: 13px 28px;
+    cursor: pointer;
+    margin-top: 32px;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+  }
+
+  .step-btn:hover { background: var(--brown-deep); }
+  .step-btn:active { transform: scale(0.98); }
+
+  /* =============================
+     STEP 1 SPECIFIC
+  ============================= */
+  .demo-block {
+    background: var(--dark);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 28px;
+  }
+
+  .demo-live-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .demo-diode {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FF7043;
+    animation: pulse-live 1.4s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse-live {
+    0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,112,67,.5); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(255,112,67,0); }
+  }
+
+  .demo-live-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: rgba(255,255,255,.6);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .demo-desc {
+    color: rgba(255,255,255,.7);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .demo-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 560px) {
+    .demo-cards { grid-template-columns: 1fr; }
+  }
+
+  .demo-card {
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .demo-card-bad {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+  }
+
+  .demo-card-good {
+    background: rgba(200,117,66,.15);
+    border: 1px solid rgba(200,117,66,.4);
+  }
+
+  .demo-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .demo-card-label-bad { color: #F08080; }
+  .demo-card-label-good { color: #A8D8A8; }
+
+  .demo-card-prompt {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .demo-card-result {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .demo-card-result-bad { color: var(--muted-lt); }
+  .demo-card-result-good { color: rgba(200,117,66,.9); }
+
+  .demo-conclusion {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: rgba(255,255,255,.85);
+    font-size: 15px;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .key-block {
+    background: var(--cream);
+    border: 1px solid var(--border-2);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .key-number {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: var(--brown);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .key-content {}
+  .key-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .key-body {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* =============================
+     STEP 2 SPECIFIC
+  ============================= */
+  .template-block {
+    background: var(--cream);
+    border: 2px dashed rgba(200,117,66,.4);
+    border-radius: 10px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+
+  .template-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .template-label {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: var(--brown);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .copy-btn {
+    background: var(--brown-pale);
+    color: var(--brown-deep);
+    border: 1px solid rgba(168,94,46,.25);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .copy-btn:hover { background: var(--cream-2); }
+  .copy-btn.copied {
+    background: var(--sage-pale);
+    color: var(--sage-bg);
+    border-color: var(--sage);
+  }
+
+  .template-content {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 2;
+    white-space: pre-line;
+  }
+
+  .method-block {
+    background: var(--sage-pale);
+    border: 1px solid var(--sage);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .method-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--sage-bg);
+    margin-bottom: 10px;
+  }
+
+  .method-text {
+    font-size: 14px;
+    color: var(--sage-bg);
+    line-height: 1.65;
+  }
+
+  .rgpd-block {
+    background: var(--brown-pale);
+    border: 1px solid rgba(200,117,66,.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .rgpd-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--brown-deep);
+    margin-bottom: 10px;
+  }
+
+  .rgpd-text {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  .practice-block {
+    background: var(--dark);
+    border-radius: 10px;
+    padding: 28px;
+  }
+
+  .practice-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 16px;
+  }
+
+  .practice-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .practice-text {
+    font-size: 14px;
+    color: rgba(255,255,255,.75);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .prompt-box {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 8px;
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: rgba(255,255,255,.85);
+    font-size: 14px;
+    line-height: 1.75;
+    white-space: pre-line;
+    margin-bottom: 12px;
+  }
+
+  .prompt-copy-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .prompt-note {
+    font-size: 13px;
+    color: var(--muted-lt);
+    line-height: 1.5;
+  }
+
+  /* =============================
+     STEP 3 SPECIFIC
+  ============================= */
+  .usage-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .usage-card {
+    background: var(--cream);
+    border: 1px solid var(--border-2);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .usage-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .usage-card-num {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: var(--brown);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .usage-card-info {
+    flex: 1;
+    min-width: 180px;
+  }
+
+  .usage-card-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+
+  .usage-card-pill {
+    display: inline-block;
+    background: var(--brown-pale);
+    color: var(--brown-deep);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .usage-card-context {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .usage-prompt-block {
+    background: var(--brown-pale);
+    border: 2px dashed rgba(200,117,66,.3);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+
+  .usage-prompt-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.75;
+    white-space: pre-line;
+    margin-bottom: 12px;
+  }
+
+  .tip-block {
+    background: var(--sage-pale);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  .tip-text {
+    font-size: 13px;
+    color: var(--sage-bg);
+    line-height: 1.55;
+  }
+
+  .rgpd-inline {
+    background: var(--brown-pale);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: var(--brown-deep);
+    line-height: 1.5;
+  }
+
+  .bilan-block {
+    background: var(--cream-2);
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .bilan-text {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* =============================
+     STEP 4 SPECIFIC
+  ============================= */
+  .context-note {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .veille-block {
+    background: var(--dark);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+
+  .veille-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .veille-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,.5);
+  }
+
+  .veille-prompt {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    font-size: 15px;
+    line-height: 2;
+    white-space: pre-line;
+    margin-bottom: 16px;
+  }
+
+  .veille-note {
+    font-size: 13px;
+    color: rgba(200,117,66,.9);
+    line-height: 1.5;
+  }
+
+  .ritual-block {
+    background: var(--brown);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+  }
+
+  .ritual-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .ritual-list {
+    font-size: 15px;
+    color: #fff;
+    line-height: 2;
+    list-style: none;
+    margin-bottom: 16px;
+  }
+
+  .ritual-note {
+    font-size: 13px;
+    color: rgba(255,255,255,.7);
+  }
+
+  .livrables-block {
+    background: var(--cream);
+    border: 1px solid var(--border-2);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 32px;
+  }
+
+  .livrables-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+  }
+
+  .livrable-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .livrable-item:last-child { border-bottom: none; }
+
+  .livrable-check {
+    color: var(--brown);
+    font-size: 18px;
+    flex-shrink: 0;
+    line-height: 1.3;
+  }
+
+  .final-cta {
+    text-align: center;
+  }
+
+  .final-btn {
+    background: var(--brown);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    border-radius: 7px;
+    padding: 16px 48px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-bottom: 12px;
+    display: inline-block;
+  }
+
+  .final-btn:hover { background: var(--brown-deep); }
+  .final-btn:active { transform: scale(0.98); }
+
+  .final-note {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* =============================
+     FOOTER
+  ============================= */
+  .footer {
+    background: var(--dark);
+    padding: 36px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-name {
+    font-family: 'Playpen Sans', cursive;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--brown);
+  }
+
+  .footer-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,.3);
+  }
+
+  .footer-link {
+    font-size: 13px;
+    color: rgba(255,255,255,.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-link:hover { color: #fff; }
+
+  /* =============================
+     SCREEN FINAL -- EASTER EGG
+  ============================= */
+  #screen-final {
+    background: var(--dark);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 60px 24px;
+    text-align: center;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 200;
+    display: none;
+  }
+
+  #screen-final.active {
+    display: flex;
+  }
+
+  .confetti-container {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 201;
+  }
+
+  .confetti-piece {
+    position: absolute;
+    top: -20px;
+    animation: confetti-fall linear forwards;
+    border-radius: 2px;
+  }
+
+  @keyframes confetti-fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    80% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  .final-inner {
+    position: relative;
+    z-index: 202;
+    max-width: 520px;
+    width: 100%;
+  }
+
+  .final-logo {
+    font-family: 'Playpen Sans', cursive;
+    font-weight: 800;
+    font-size: 48px;
+    color: var(--brown);
+    margin-bottom: 24px;
+    animation: fadeInEl 0.6s ease forwards;
+  }
+
+  .final-headline {
+    font-family: 'Playpen Sans', cursive;
+    font-weight: 700;
+    color: #fff;
+    font-size: 28px;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInEl 0.6s ease 0.5s forwards;
+  }
+
+  .final-tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: rgba(255,255,255,.7);
+    font-size: 18px;
+    line-height: 1.65;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInEl 0.6s ease 1s forwards;
+  }
+
+  .final-credit {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--muted-lt);
+    font-size: 14px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeInEl 0.6s ease 1.5s forwards;
+  }
+
+  .final-back-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.2);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    border-radius: 6px;
+    padding: 10px 24px;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeInEl 0.6s ease 2s forwards;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .final-back-btn:hover {
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.4);
+  }
+
+  @keyframes fadeInEl {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Misc utility */
+  .hidden { display: none !important; }
+
+  .dark-copy-btn {
+    background: var(--brown);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .dark-copy-btn:hover { background: var(--brown-deep); }
+  .dark-copy-btn.copied {
+    background: var(--sage-bg);
+  }
+</style>
+</head>
+<body>
+
+<!-- =============================
+     SCREEN 1 — PASSWORD
+============================= -->
+<div id="screen-password" class="screen active">
+  <div class="pw-logo">ED.</div>
+  <div class="pw-subtitle">Product HR</div>
+  <div class="pw-title">Formation Starter · Lire l'IA sans se noyer</div>
+  <div class="pw-form">
+    <div class="pw-input-wrap">
+      <input type="password" id="pw-input" placeholder="Mot de passe..." autocomplete="current-password" />
+    </div>
+    <div class="pw-error" id="pw-error"></div>
+    <button class="pw-btn" id="pw-btn" type="button">Accéder &rarr;</button>
+  </div>
+</div>
+
+<!-- =============================
+     SCREEN 2 — WELCOME
+============================= -->
+<div id="screen-welcome" class="screen">
+  <div class="welcome-inner">
+    <div class="welcome-title" id="welcome-title"></div>
+    <div class="welcome-body" id="welcome-body"></div>
+    <div class="welcome-tag">PRODUCT HR &middot; FORMATION STARTER &middot; 3H30</div>
+    <button class="welcome-btn" id="welcome-btn" type="button">Commencer &rarr;</button>
+  </div>
+  <div class="pulse-dot" id="pulse-dot"></div>
+</div>
+
+<!-- =============================
+     SCREEN 3 — COURSE
+============================= -->
+<div id="screen-course" class="screen">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">ED.</div>
+    <div class="nav-right">
+      <div class="progress-bar" id="progress-bar">
+        <div class="progress-segment" id="seg-1"></div>
+        <div class="progress-segment" id="seg-2"></div>
+        <div class="progress-segment" id="seg-3"></div>
+        <div class="progress-segment" id="seg-4"></div>
+      </div>
+      <div class="progress-label" id="progress-label">Étape 1 sur 4</div>
+    </div>
+  </nav>
+
+  <div class="course-body">
+
+    <!-- STEP 1 -->
+    <div class="step" id="step-1">
+      <div class="eyebrow">MISE EN ROUTE &middot; 30 MIN</div>
+      <h2 class="step-title">Avant l'IA, comprendre pourquoi ça change tout</h2>
+      <p class="step-intro">L'outil c'est 20% du résultat. Le contexte, c'est 80%. On va te le prouver maintenant.</p>
+
+      <div class="demo-block">
+        <div class="demo-live-label">
+          <div class="demo-diode"></div>
+          <span class="demo-live-text">DÉMO LIVE</span>
+        </div>
+        <div class="demo-desc">La même demande. Deux contextes différents. Regarde le résultat.</div>
+        <div class="demo-cards">
+          <div class="demo-card demo-card-bad">
+            <div class="demo-card-label demo-card-label-bad">SANS CONTEXTE</div>
+            <div class="demo-card-prompt">Aide-moi à rédiger une offre d'emploi pour un HRBP</div>
+            <div class="demo-card-result demo-card-result-bad">Résultat : générique. Inutilisable directement.</div>
+          </div>
+          <div class="demo-card demo-card-good">
+            <div class="demo-card-label demo-card-label-good">AVEC CONTEXTE</div>
+            <div class="demo-card-prompt">Je suis RH dans une scale-up tech de 200 personnes, culture directe et informelle. On cherche un HRBP pour accompagner nos managers sur la performance et préparer notre prochain round. Aide-moi à rédiger une offre différenciante.</div>
+            <div class="demo-card-result demo-card-result-good">Résultat : utilisable immédiatement. Adapté à ta réalité.</div>
+          </div>
+        </div>
+        <div class="demo-conclusion">Même outil. Résultat radicalement différent. La différence : le contexte que tu donnes.</div>
+      </div>
+
+      <div class="key-block">
+        <div class="key-number">01</div>
+        <div class="key-content">
+          <div class="key-title">Le principe fondamental</div>
+          <div class="key-body">Claude ne sait pas qui tu es, où tu travailles, ce que tu cherches vraiment. Sans contexte, il répond pour tout le monde. Avec contexte, il répond pour toi. C'est tout. Et c'est énorme.</div>
+        </div>
+      </div>
+
+      <button class="step-btn" onclick="goToStep(2)">J'ai compris, on construit mon contexte &rarr;</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step-2">
+      <div class="eyebrow">EXERCICE PRINCIPAL &middot; 1H</div>
+      <h2 class="step-title">Ton fichier contexte, la pièce la plus importante</h2>
+      <p class="step-intro">Remplis ce template une fois. Utilise-le dans chaque conversation Claude. C'est ton identité professionnelle pour l'IA.</p>
+
+      <div class="template-block">
+        <div class="template-header">
+          <span class="template-label">TON TEMPLATE</span>
+          <button class="copy-btn" onclick="copyText(this, 'template-text')">Copier &rarr;</button>
+        </div>
+        <div class="template-content" id="template-text">Je suis [prénom], étudiant(e) en Master RH à [école].
+Mon alternance ou stage est chez [entreprise] dans le secteur [secteur].
+Mes 3 missions principales : [mission 1] / [mission 2] / [mission 3].
+La culture de mon entreprise en 3 mots : [mot 1] / [mot 2] / [mot 3].
+Mon enjeu principal ce trimestre : [enjeu concret].
+Ce que je veux que tu comprennes de mon contexte : [texte libre].</div>
+      </div>
+
+      <div class="method-block">
+        <div class="method-label">LA MÉTHODE</div>
+        <div class="method-text">Garde ce fichier dans Notion ou Google Doc. Au début de chaque conversation Claude, colle-le. Tu n'as plus jamais à te réexpliquer. Claude sait qui tu es dès la première ligne.</div>
+      </div>
+
+      <div class="rgpd-block">
+        <div class="rgpd-label">RÈGLE PRO &middot; DONNÉES</div>
+        <div class="rgpd-text">En entreprise : remplace les noms réels par Candidat A ou Entreprise X avant de copier quoi que ce soit dans Claude. Active le mode Incognito Claude pour les échanges sensibles. Tu es RH, tu connais la valeur des données. Traite-les comme telles avec l'IA aussi.</div>
+      </div>
+
+      <div class="practice-block">
+        <div class="practice-label">MAINTENANT</div>
+        <div class="practice-title">Ouvre Claude et teste ton contexte</div>
+        <div class="practice-text">Colle ton template rempli dans une nouvelle conversation Claude. Pose ensuite cette question :</div>
+        <div class="prompt-copy-header">
+          <span></span>
+          <button class="dark-copy-btn" onclick="copyText(this, 'prompt-1')">Copier &rarr;</button>
+        </div>
+        <div class="prompt-box" id="prompt-1">Sur la base de mon contexte, quelles sont les 3 questions RH que je devrais me poser cette semaine dans mon alternance ?</div>
+        <div class="prompt-note">Compare la réponse avec et sans ton contexte. La différence, c'est ta nouvelle réalité.</div>
+      </div>
+
+      <button class="step-btn" onclick="goToStep(3)">Mon contexte est prêt, on passe aux usages &rarr;</button>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step-3">
+      <div class="eyebrow">MISE EN PRATIQUE &middot; 1H</div>
+      <h2 class="step-title">3 prompts que tu utilises dès lundi</h2>
+      <p class="step-intro">Pas de théorie. Trois situations réelles. Trois prompts. Tu testes chacun sur ton cas.</p>
+
+      <div class="usage-cards">
+
+        <!-- Card 1 -->
+        <div class="usage-card">
+          <div class="usage-card-header">
+            <div class="usage-card-num">01</div>
+            <div class="usage-card-info">
+              <div class="usage-card-title">Préparer un entretien de recrutement</div>
+              <span class="usage-card-pill">20 MIN</span>
+            </div>
+          </div>
+          <div class="usage-card-context">Tu reçois un candidat demain. Tu veux des questions vraiment adaptées à ta culture, pas des questions génériques copiées d'un guide.</div>
+          <div class="usage-prompt-block">
+            <div class="template-header" style="margin-bottom:12px;">
+              <span class="template-label" style="color:var(--brown);">PROMPT</span>
+              <button class="copy-btn" onclick="copyText(this, 'prompt-card-1')">Copier &rarr;</button>
+            </div>
+            <div class="usage-prompt-text" id="prompt-card-1">[Coller ton contexte]
+
+Je reçois demain un candidat pour le poste de [poste].
+Son profil en 3 lignes : [résumé rapide].
+Génère 5 questions d'entretien adaptées à notre culture et à ce que ce poste exige vraiment.</div>
+          </div>
+          <div class="tip-block">
+            <div class="tip-text">Teste-le maintenant avec un vrai poste de ton alternance. Ajuste les questions à ta main. C'est ça, travailler avec l'IA.</div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="usage-card">
+          <div class="usage-card-header">
+            <div class="usage-card-num">02</div>
+            <div class="usage-card-info">
+              <div class="usage-card-title">Synthétiser un document RH</div>
+              <span class="usage-card-pill">20 MIN</span>
+            </div>
+          </div>
+          <div class="usage-card-context">Une convention collective, un accord d'entreprise, une politique interne. Tu dois comprendre vite ce qui te concerne.</div>
+          <div class="rgpd-inline">Anonymise d'abord : remplace les noms par des initiales ou des rôles.</div>
+          <div class="usage-prompt-block">
+            <div class="template-header" style="margin-bottom:12px;">
+              <span class="template-label" style="color:var(--brown);">PROMPT</span>
+              <button class="copy-btn" onclick="copyText(this, 'prompt-card-2')">Copier &rarr;</button>
+            </div>
+            <div class="usage-prompt-text" id="prompt-card-2">[Coller ton contexte]
+
+Voici un extrait d'un document RH de mon entreprise :
+[coller le texte anonymisé]
+
+Résume les 5 points clés que je dois retenir en tant que RH junior.
+Indique ce que ça change concrètement dans mon quotidien.</div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="usage-card">
+          <div class="usage-card-header">
+            <div class="usage-card-num">03</div>
+            <div class="usage-card-info">
+              <div class="usage-card-title">Rédiger une communication interne</div>
+              <span class="usage-card-pill">20 MIN</span>
+            </div>
+          </div>
+          <div class="usage-card-context">Ton manager te demande d'annoncer quelque chose à l'équipe. Tu veux que ça sonne vrai, pas corporate.</div>
+          <div class="usage-prompt-block">
+            <div class="template-header" style="margin-bottom:12px;">
+              <span class="template-label" style="color:var(--brown);">PROMPT</span>
+              <button class="copy-btn" onclick="copyText(this, 'prompt-card-3')">Copier &rarr;</button>
+            </div>
+            <div class="usage-prompt-text" id="prompt-card-3">[Coller ton contexte]
+
+Mon manager me demande d'annoncer ceci à l'équipe :
+[décrire l'information à communiquer]
+
+Rédige un email adapté au ton de notre entreprise.
+Direct, humain, sans jargon RH inutile.</div>
+          </div>
+          <div class="tip-block">
+            <div class="tip-text">Si le résultat sonne trop formel, ajoute : "Rends ça plus direct, on ne parle pas comme ça chez nous." L'itération, c'est normal.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bilan-block">
+        <div class="bilan-text">Tu viens de construire ta bibliothèque de prompts. Sauvegarde-les dans ton fichier MES PROMPTS dans Notion. C'est ton capital.</div>
+      </div>
+
+      <button class="step-btn" onclick="goToStep(4)">J'ai mes 3 prompts, on construit la routine &rarr;</button>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" id="step-4">
+      <div class="eyebrow">LIVRABLE &middot; 1H</div>
+      <h2 class="step-title">Ta routine hebdomadaire, activable dès lundi</h2>
+      <p class="step-intro">Le plan gratuit Claude ne permet pas une synthèse automatique chaque matin. Mais il permet quelque chose de plus puissant : une veille qui te ressemble.</p>
+
+      <div class="context-note">La plupart des RH lisent les mêmes newsletters que tout le monde. Toi, tu vas construire ta propre lecture de l'actualité, filtrée par ton contexte, tes missions, ta réalité d'alternant. Chaque lundi matin. En 5 minutes.</div>
+
+      <div class="veille-block">
+        <div class="veille-header">
+          <span class="veille-label">TON PROMPT DE VEILLE</span>
+          <button class="dark-copy-btn" onclick="copyText(this, 'prompt-veille')">Copier &rarr;</button>
+        </div>
+        <div class="veille-prompt" id="prompt-veille">[Coller ton contexte]
+
+Je fais ma veille RH de la semaine.
+Les 3 sujets qui me concernent cette semaine : [sujet 1] / [sujet 2] / [sujet 3].
+
+Pour chaque sujet :
+- Les 3 informations essentielles à connaître
+- Ce que ça change concrètement pour un RH junior en 2026
+- Une question que je devrais poser à mon manager ou mon tuteur</div>
+        <div class="veille-note">Ce prompt, tu le lances chaque lundi. Tu changes juste les 3 sujets selon ta semaine. C'est ta veille RH personnalisée.</div>
+      </div>
+
+      <div class="ritual-block">
+        <div class="ritual-title">Le lundi matin Product HR</div>
+        <ul class="ritual-list">
+          <li>08h00 : tu ouvres Claude</li>
+          <li>08h02 : tu colles ton contexte</li>
+          <li>08h03 : tu colles ton prompt de veille avec les 3 sujets de la semaine</li>
+          <li>08h07 : tu as une synthèse sur mesure que personne d'autre dans ta promo n'a</li>
+          <li>08h10 : tu es prêt(e)</li>
+        </ul>
+        <div class="ritual-note">Pas d'abonnement payant requis. Juste de la régularité.</div>
+      </div>
+
+      <div class="livrables-block">
+        <div class="livrables-title">TU REPARS AVEC</div>
+        <div class="livrable-item">
+          <span class="livrable-check">&#10003;</span>
+          <span>Ton fichier contexte personnalisé, prêt à l'emploi</span>
+        </div>
+        <div class="livrable-item">
+          <span class="livrable-check">&#10003;</span>
+          <span>3 prompts RH activables dès lundi matin</span>
+        </div>
+        <div class="livrable-item">
+          <span class="livrable-check">&#10003;</span>
+          <span>Ta routine de veille hebdomadaire sur mesure</span>
+        </div>
+        <div class="livrable-item">
+          <span class="livrable-check">&#10003;</span>
+          <span>La règle d'or : contexte d'abord, toujours, dans chaque conversation</span>
+        </div>
+      </div>
+
+      <div class="final-cta">
+        <button class="final-btn" id="final-btn" onclick="showFinal()">Formation terminée. Garde ce lien &rarr;</button>
+        <div class="final-note">Ce lien reste accessible. Reviens quand tu veux, autant de fois que tu veux.</div>
+      </div>
+    </div>
+
+  </div><!-- /course-body -->
+
+  <div class="footer">
+    <div class="footer-name">Emmanuel Di Marco</div>
+    <div class="footer-sub">Product HR &middot; Formation Starter &middot; 2026</div>
+    <a href="https://emmanueldimarco.fr" target="_blank" class="footer-link">emmanueldimarco.fr</a>
+  </div>
+
+</div><!-- /screen-course -->
+
+<!-- =============================
+     SCREEN FINAL — EASTER EGG
+============================= -->
+<div id="screen-final">
+  <div class="confetti-container" id="confetti-container"></div>
+  <div class="final-inner">
+    <div class="final-logo">ED.</div>
+    <div class="final-headline">Tu viens de passer de RH à Product HR.</div>
+    <div class="final-tagline">Ce n'est pas la fin de la formation. C'est le début d'une façon différente de travailler.</div>
+    <div class="final-credit">Emmanuel Di Marco &middot; Product HR &middot; <a href="https://emmanueldimarco.fr" target="_blank" style="color:var(--muted-lt);text-decoration:none;">emmanueldimarco.fr</a></div>
+    <button class="final-back-btn" onclick="goBackToStart()">Retourner au début</button>
+  </div>
+</div>
+
+<script>
+  // ========================
+  // DATA
+  // ========================
+  const PASSWORD = 'productRH2026';
+
+  const WELCOME_MESSAGES = [
+    {
+      title: 'Dans 3 ans, deux types de RH existeront.',
+      body: 'Ceux qui auront appris à confier à l\'IA ce qu\'elle fait mieux qu\'eux. Et ceux qui auront été remplacés par quelqu\'un qui l\'a fait.\nAujourd\'hui, tu construis ta première brique.'
+    },
+    {
+      title: 'L\'IA ne va pas remplacer les RH.',
+      body: 'Elle va remplacer les RH qui ne savent pas s\'en servir. Ce n\'est pas une menace. C\'est une fenêtre qui s\'ouvre, maintenant, pour toi.\nEn 3h30, tu passes de l\'autre côté.'
+    },
+    {
+      title: 'Le métier RH ne disparaît pas.',
+      body: 'Il se transforme, vite, maintenant, sous tes yeux. Les meilleurs RH de demain ne travailleront pas plus. Ils travailleront différemment. Avec de meilleurs outils. Et une pensée que peu ont encore.\nAujourd\'hui, on commence.'
+    }
+  ];
+
+  // ========================
+  // UTILS
+  // ========================
+  function showScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    const el = document.getElementById(id);
+    if (el) el.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function copyText(btn, targetId) {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    const text = target.innerText || target.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Copié ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      try { document.execCommand('copy'); } catch(e) {}
+      document.body.removeChild(ta);
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Copié ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  // ========================
+  // SCREEN 1 — PASSWORD
+  // ========================
+  const pwInput = document.getElementById('pw-input');
+  const pwBtn = document.getElementById('pw-btn');
+  const pwError = document.getElementById('pw-error');
+
+  function tryPassword() {
+    if (pwInput.value === PASSWORD) {
+      pwError.textContent = '';
+      enterWelcome();
+    } else {
+      pwError.textContent = 'Mot de passe incorrect.';
+      pwInput.classList.remove('shake');
+      void pwInput.offsetWidth; // reflow
+      pwInput.classList.add('shake');
+      pwInput.addEventListener('animationend', () => pwInput.classList.remove('shake'), { once: true });
+    }
+  }
+
+  pwBtn.addEventListener('click', tryPassword);
+  pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryPassword(); });
+
+  // ========================
+  // SCREEN 2 — WELCOME
+  // ========================
+  function enterWelcome() {
+    // Pick message — stored in localStorage for consistency
+    let idx = localStorage.getItem('starter_welcome_idx');
+    if (idx === null) {
+      idx = Math.floor(Math.random() * 3);
+      localStorage.setItem('starter_welcome_idx', idx);
+    }
+    idx = parseInt(idx);
+    const msg = WELCOME_MESSAGES[idx];
+
+    document.getElementById('welcome-title').textContent = msg.title;
+    document.getElementById('welcome-body').textContent = msg.body;
+
+    showScreen('screen-welcome');
+
+    const btn = document.getElementById('welcome-btn');
+    const dot = document.getElementById('pulse-dot');
+    btn.style.opacity = '0';
+    dot.style.display = 'block';
+
+    // Button appears after 3s
+    setTimeout(() => {
+      dot.style.display = 'none';
+      btn.classList.add('visible');
+    }, 3000);
+  }
+
+  document.getElementById('welcome-btn').addEventListener('click', () => {
+    enterCourse();
+  });
+
+  // ========================
+  // SCREEN 3 — COURSE
+  // ========================
+  let currentStep = 1;
+
+  function enterCourse() {
+    showScreen('screen-course');
+    const saved = parseInt(localStorage.getItem('starter_progress') || '1');
+    currentStep = saved;
+    showStep(currentStep);
+  }
+
+  function showStep(n) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    const stepEl = document.getElementById('step-' + n);
+    if (stepEl) {
+      stepEl.classList.add('active');
+    }
+    updateProgress(n);
+    localStorage.setItem('starter_progress', n);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goToStep(n) {
+    currentStep = n;
+    showStep(n);
+  }
+
+  function updateProgress(n) {
+    for (let i = 1; i <= 4; i++) {
+      const seg = document.getElementById('seg-' + i);
+      if (i < n) {
+        seg.classList.add('filled');
+      } else if (i === n) {
+        seg.classList.add('filled');
+      } else {
+        seg.classList.remove('filled');
+      }
+    }
+    document.getElementById('progress-label').textContent = 'Étape ' + n + ' sur 4';
+  }
+
+  // ========================
+  // SCREEN FINAL — EASTER EGG
+  // ========================
+  function showFinal() {
+    const finalEl = document.getElementById('screen-final');
+    finalEl.style.display = 'flex';
+    spawnConfetti();
+  }
+
+  function goBackToStart() {
+    const finalEl = document.getElementById('screen-final');
+    finalEl.style.display = 'none';
+    localStorage.removeItem('starter_progress');
+    localStorage.removeItem('starter_welcome_idx');
+    showScreen('screen-password');
+    pwInput.value = '';
+    pwError.textContent = '';
+    currentStep = 1;
+  }
+
+  // ========================
+  // CONFETTI
+  // ========================
+  function spawnConfetti() {
+    const container = document.getElementById('confetti-container');
+    container.innerHTML = '';
+    const colors = ['#C87542', '#F4EFE4', '#6E7E64', '#A85E2E', '#EBF0E7', '#F3E8D8'];
+    const shapes = ['rect', 'circle'];
+
+    for (let i = 0; i < 40; i++) {
+      const piece = document.createElement('div');
+      piece.classList.add('confetti-piece');
+
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const size = 6 + Math.random() * 12;
+      const left = Math.random() * 100;
+      const delay = Math.random() * 1.5;
+      const duration = 2.5 + Math.random() * 2;
+      const width = shape === 'circle' ? size : size * (0.4 + Math.random() * 1.2);
+      const height = shape === 'circle' ? size : size * (0.4 + Math.random() * 1.2);
+
+      piece.style.cssText = `
+        left: ${left}%;
+        width: ${width}px;
+        height: ${height}px;
+        background: ${color};
+        border-radius: ${shape === 'circle' ? '50%' : '2px'};
+        animation-duration: ${duration}s;
+        animation-delay: ${delay}s;
+        opacity: 0;
+      `;
+
+      // Make it visible at start of animation
+      piece.style.animation = `confetti-fall ${duration}s ease ${delay}s forwards`;
+
+      container.appendChild(piece);
+    }
+
+    // Clean up after 5 seconds
+    setTimeout(() => {
+      container.innerHTML = '';
+    }, 5000);
+  }
+
+  // ========================
+  // INIT — resume from saved state
+  // ========================
+  (function init() {
+    const saved = localStorage.getItem('starter_progress');
+    if (saved && parseInt(saved) >= 1) {
+      // User was mid-course — go to password screen still (security)
+      // They'll see the welcome again and auto-resume
+    }
+    // Show password screen by default (already active)
+  })();
+</script>
+</body>
+</html>
