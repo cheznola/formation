@@ -4,1449 +4,1324 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Formation Starter · Product HR · Emmanuel Di Marco</title>
-<meta name="description" content="Lire l'IA sans se noyer. La formation qui transforme les étudiants RH en professionnels augmentés. Par Emmanuel Di Marco.">
-<meta property="og:title" content="Product HR · Formation Starter">
-<meta property="og:description" content="En 3h30, tu passes de l'autre côté.">
-<meta property="og:image" content="https://res.cloudinary.com/dtjcum3gb/image/upload/q_auto,f_auto/v1777113053/Capture_d_e%CC%81cran_2026-04-25_a%CC%80_12.30.37_simsay.png">
-<meta property="og:url" content="https://emmanueldimarco.fr/starter">
+<meta name="description" content="Lire l'IA sans se noyer. La formation qui transforme les étudiants RH en professionnels augmentés.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@300;400;500;600;700;800;900&family=Playpen+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Playpen+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --parchment: #F9F5EE;
-    --cream: #F4EFE4;
-    --cream-2: #EDE7D9;
-    --cream-3: #E5DDD0;
-    --brown-pale: #F3E8D8;
-    --sage-pale: #EBF0E7;
-    --brown: #C87542;
-    --brown-deep: #A85E2E;
-    --sage: #6E7E64;
-    --sage-bg: #5D6E54;
-    --ink: #3A342C;
-    --muted: #7A7168;
-    --muted-lt: #A09890;
-    --dark: #1E1A15;
-    --dark-2: #2C2720;
-    --border: rgba(58,52,44,.10);
-    --border-2: rgba(58,52,44,.16);
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--dark);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  .screen { display: none; min-height: 100vh; }
-  .screen.active { display: flex; }
-
-  /* =============================
-     SCREEN 1 — PASSWORD
-  ============================= */
-  #screen-password {
-    background: var(--dark);
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 56px 20px;
-    text-align: center;
-  }
-
-  .pw-logo {
-    font-family: 'Playpen Sans', cursive;
-    font-weight: 800;
-    font-size: 42px;
-    color: var(--brown);
-    line-height: 1;
-  }
-
-  .pw-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    color: var(--muted-lt);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-top: 8px;
-    margin-bottom: 36px;
-  }
-
-  .pw-title-block {
-    margin-bottom: 44px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: center;
-  }
-
-  .pw-title-line1 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: 32px;
-    color: #fff;
-    line-height: 1.2;
-  }
-
-  .pw-title-line2 {
-    font-family: 'Instrument Serif', serif;
-    font-size: 24px;
-    color: rgba(255,255,255,.65);
-    line-height: 1.3;
-  }
-
-  .pw-form {
-    width: 100%;
-    max-width: 360px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .pw-input-wrap { position: relative; }
-
-  #pw-input {
-    width: 100%;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.12);
-    color: #fff;
-    border-radius: 7px;
-    padding: 14px 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  #pw-input::placeholder { color: rgba(255,255,255,.35); }
-  #pw-input:focus { border-color: rgba(255,255,255,.28); }
-  #pw-input.shake { animation: shake 0.4s ease; }
-
-  @keyframes shake {
-    0%,100% { transform: translateX(0); }
-    20% { transform: translateX(-8px); }
-    40% { transform: translateX(8px); }
-    60% { transform: translateX(-6px); }
-    80% { transform: translateX(6px); }
-  }
-
-  .pw-error {
-    color: #F08080;
-    font-size: 13px;
-    text-align: center;
-    min-height: 18px;
-  }
-
-  .pw-btn {
-    background: var(--brown);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    border: none;
-    border-radius: 7px;
-    padding: 14px 20px;
-    width: 100%;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-  }
-  .pw-btn:hover { background: var(--brown-deep); }
-  .pw-btn:active { transform: scale(0.98); }
-
-  /* =============================
-     SCREEN PRENOM
-  ============================= */
-  #screen-prenom {
-    background: var(--dark);
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 60px 24px;
-    text-align: center;
-  }
-
-  .prenom-inner {
-    width: 100%;
-    max-width: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .prenom-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    color: var(--brown);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 24px;
-  }
-
-  .prenom-question {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 22px;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-  .prenom-sub {
-    font-size: 14px;
-    color: rgba(255,255,255,.5);
-    line-height: 1.55;
-    margin-bottom: 32px;
-  }
-
-  #prenom-input {
-    width: 100%;
-    background: rgba(255,255,255,.06);
-    border: 1px solid rgba(255,255,255,.12);
-    color: #fff;
-    border-radius: 7px;
-    padding: 14px 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  #prenom-input::placeholder { color: rgba(255,255,255,.35); }
-  #prenom-input:focus { border-color: rgba(255,255,255,.28); }
-
-  .prenom-btn {
-    background: var(--brown);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    border: none;
-    border-radius: 7px;
-    padding: 14px 20px;
-    width: 100%;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-  }
-  .prenom-btn:hover { background: var(--brown-deep); }
-  .prenom-btn:active { transform: scale(0.98); }
-
-  /* =============================
-     SCREEN 2 — WELCOME
-  ============================= */
-  #screen-welcome {
-    background: var(--dark);
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 60px 24px;
-    text-align: center;
-    position: relative;
-  }
-
-  .welcome-inner {
-    max-width: 540px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .welcome-prenom {
-    font-family: 'Instrument Serif', serif;
-    color: #fff;
-    font-size: 32px;
-    line-height: 1.2;
-    margin-bottom: 8px;
-  }
-
-  .welcome-title {
-    font-family: 'Instrument Serif', serif;
-    color: #fff;
-    font-size: clamp(24px, 4vw, 40px);
-    line-height: 1.25;
-    margin-bottom: 28px;
-  }
-
-  .welcome-body {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    color: rgba(255,255,255,.75);
-    font-size: 18px;
-    line-height: 1.8;
-    margin-bottom: 28px;
-    white-space: pre-line;
-  }
-
-  .welcome-divider {
-    width: 100%;
-    height: 1px;
-    background: rgba(255,255,255,.1);
-    margin-bottom: 24px;
-  }
-
-  .welcome-philosophy {
-    font-family: 'Instrument Serif', serif;
-    color: rgba(255,255,255,.6);
-    font-size: 17px;
-    line-height: 1.7;
-    max-width: 480px;
-    margin: 0 auto 32px;
-    white-space: pre-line;
-  }
-
-  .welcome-tag {
-    color: var(--muted-lt);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 40px;
-  }
-
-  .welcome-btn {
-    background: var(--brown);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    border: none;
-    border-radius: 7px;
-    padding: 14px 36px;
-    cursor: pointer;
-    opacity: 0;
-    transition: background 0.2s, transform 0.1s;
-  }
-  .welcome-btn.visible { animation: fadeInBtn 0.6s ease forwards; }
-  @keyframes fadeInBtn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .welcome-btn:hover { background: var(--brown-deep); }
-
-  .pulse-dot {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--brown);
-    animation: pulse-dot 1.6s ease-in-out infinite;
-  }
-  @keyframes pulse-dot {
-    0%,100% { opacity: 1; transform: translateX(-50%) scale(1); }
-    50% { opacity: 0.4; transform: translateX(-50%) scale(1.6); }
-  }
-
-  /* =============================
-     SCREEN 3 — COURSE
-  ============================= */
-  #screen-course {
-    background: var(--parchment);
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: 52px;
-    background: rgba(249,245,238,.95);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    z-index: 100;
-  }
-
-  .nav-logo {
-    font-family: 'Playpen Sans', cursive;
-    font-weight: 700;
-    font-size: 20px;
-    color: var(--brown);
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .nav-progress-group {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-  }
-
-  .progress-bar {
-    width: 120px;
-    height: 6px;
-    background: var(--cream-2);
-    border-radius: 100px;
-    display: flex;
-    gap: 3px;
-    overflow: hidden;
-    padding: 1px;
-  }
-
-  .progress-segment {
-    flex: 1;
-    border-radius: 100px;
-    background: transparent;
-    transition: background 0.4s ease;
-  }
-  .progress-segment.filled { background: var(--brown); }
-
-  .progress-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .score-display {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 12px;
-    color: var(--brown);
-    white-space: nowrap;
-  }
-
-  .course-body {
-    padding-top: 52px;
-    width: 100%;
-    max-width: 760px;
-    margin: 0 auto;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 80px;
-  }
-
-  .step { display: none; padding-top: 80px; }
-  .step.active {
-    display: block;
-    animation: fadeUp 0.5s ease forwards;
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    color: var(--brown);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 12px;
-  }
-
-  .step-title {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: clamp(22px, 3.5vw, 32px);
-    color: var(--ink);
-    line-height: 1.2;
-    margin-bottom: 20px;
-  }
-
-  .step-intro {
-    font-family: 'Instrument Serif', serif;
-    color: var(--ink);
-    font-size: 20px;
-    line-height: 1.75;
-    margin-bottom: 32px;
-  }
-
-  .step-block-gap { margin-bottom: 32px; }
-
-  .step-btn {
-    background: var(--brown);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    border: none;
-    border-radius: 7px;
-    padding: 13px 28px;
-    cursor: pointer;
-    margin-top: 32px;
-    transition: background 0.2s, transform 0.1s;
-    display: inline-block;
-  }
-  .step-btn:hover { background: var(--brown-deep); }
-  .step-btn:active { transform: scale(0.98); }
-
-  /* =============================
-     REFLECT BLOCK
-  ============================= */
-  .reflect-block {
-    background: var(--cream-2);
-    border-radius: 12px;
-    padding: 28px;
-    border-left: 3px solid var(--brown);
-    margin-bottom: 0;
-  }
-
-  .reflect-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    color: var(--brown);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 12px;
-  }
-
-  .reflect-question {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: var(--ink);
-    font-size: 17px;
-    line-height: 1.5;
-    margin-bottom: 8px;
-  }
-
-  .reflect-hint {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.6;
-    margin-bottom: 16px;
-  }
-
-  .reflect-textarea {
-    width: 100%;
-    background: #fff;
-    border: 1px solid var(--border-2);
-    border-radius: 8px;
-    padding: 16px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    color: var(--ink);
-    line-height: 1.65;
-    min-height: 100px;
-    resize: vertical;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .reflect-textarea:focus { border-color: var(--brown); }
-  .reflect-textarea::placeholder { color: var(--muted-lt); }
-
-  .reflect-counter {
-    font-size: 12px;
-    color: var(--muted-lt);
-    margin-top: 6px;
-    margin-bottom: 14px;
-  }
-
-  .reveal-prompt-btn {
-    background: var(--brown);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    border: none;
-    border-radius: 7px;
-    padding: 12px 24px;
-    cursor: not-allowed;
-    opacity: 0.4;
-    transition: background 0.2s, opacity 0.2s;
-  }
-  .reveal-prompt-btn.enabled {
-    cursor: pointer;
-    opacity: 1;
-  }
-  .reveal-prompt-btn.enabled:hover { background: var(--brown-deep); }
-
-  .reflect-revealed-note {
-    background: var(--sage-pale);
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 16px;
-    font-size: 14px;
-    color: var(--sage-bg);
-    line-height: 1.65;
-    display: none;
-  }
-
-  .prompt-hidden { display: none; }
-  .prompt-visible {
-    display: block;
-    animation: fadeUp 0.4s ease forwards;
-  }
-
-  /* =============================
-     STEP 1 — INTERACTIVE DEMO
-  ============================= */
-  .demo-block {
-    background: var(--dark);
-    border-radius: 12px;
-    padding: 32px;
-    margin-bottom: 32px;
-  }
-
-  .demo-live-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-
-  .demo-diode {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #FF7043;
-    animation: pulse-live 1.4s ease-in-out infinite;
-    flex-shrink: 0;
-  }
-  @keyframes pulse-live {
-    0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,112,67,.5); }
-    50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(255,112,67,0); }
-  }
-
-  .demo-live-text {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    color: rgba(255,255,255,.6);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-  }
-
-  .demo-tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-
-  .demo-tab {
-    background: var(--cream-2);
-    color: var(--ink);
-    border: none;
-    border-radius: 6px;
-    padding: 8px 20px;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-  .demo-tab.active {
-    background: var(--brown);
-    color: #fff;
-  }
-
-  .demo-terminal {
-    background: #0D0D0D;
-    border-radius: 8px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    padding: 24px;
-    min-height: 200px;
-    overflow: hidden;
-    margin-bottom: 12px;
-    position: relative;
-  }
-
-  .terminal-line { display: block; line-height: 1.7; }
-  .terminal-prompt-color { color: #C87542; }
-  .terminal-response-color { color: #4CAF50; }
-
-  .demo-result-msg {
-    text-align: center;
-    font-size: 13px;
-    margin-top: 4px;
-    min-height: 20px;
-    transition: color 0.3s;
-  }
-
-  .demo-relaunch-row {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
-  }
-
-  .demo-relaunch-btn {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted-lt);
-    border-radius: 6px;
-    padding: 6px 16px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .demo-relaunch-btn:hover { color: #fff; border-color: rgba(255,255,255,.3); }
-
-  .demo-conclusion {
-    font-family: 'Instrument Serif', serif;
-    color: rgba(255,255,255,.85);
-    font-size: 15px;
-    text-align: center;
-    line-height: 1.6;
-    margin-top: 16px;
-  }
-
-  .key-block {
-    background: var(--cream);
-    border: 1px solid var(--border-2);
-    border-radius: 10px;
-    padding: 24px;
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    margin-bottom: 32px;
-  }
-
-  .key-number {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: 32px;
-    color: var(--brown);
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .key-title {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: var(--ink);
-    font-size: 16px;
-    margin-bottom: 8px;
-  }
-
-  .key-body {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-
-  /* =============================
-     STEP 2
-  ============================= */
-  .template-block {
-    background: var(--cream);
-    border: 2px dashed rgba(200,117,66,.4);
-    border-radius: 10px;
-    padding: 28px;
-    margin-bottom: 32px;
-  }
-
-  .template-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-
-  .template-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    color: var(--brown);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-
-  .copy-btn {
-    background: var(--brown-pale);
-    color: var(--brown-deep);
-    border: 1px solid rgba(168,94,46,.25);
-    border-radius: 6px;
-    padding: 6px 14px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    white-space: nowrap;
-  }
-  .copy-btn:hover { background: var(--cream-2); }
-  .copy-btn.copied {
-    background: var(--sage-pale);
-    color: var(--sage-bg);
-    border-color: var(--sage);
-  }
-
-  .template-content {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    color: var(--ink);
-    font-size: 15px;
-    line-height: 2;
-    white-space: pre-line;
-  }
-
-  .method-block {
-    background: var(--sage-pale);
-    border: 1px solid var(--sage);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 32px;
-  }
-
-  .method-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--sage-bg);
-    margin-bottom: 10px;
-  }
-
-  .method-text {
-    font-size: 14px;
-    color: var(--sage-bg);
-    line-height: 1.75;
-  }
-
-  .rgpd-block {
-    background: var(--brown-pale);
-    border: 1px solid rgba(200,117,66,.3);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 32px;
-  }
-
-  .rgpd-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--brown-deep);
-    margin-bottom: 10px;
-  }
-
-  .rgpd-text {
-    font-size: 14px;
-    color: var(--ink);
-    line-height: 1.75;
-  }
-
-  .practice-block {
-    background: var(--dark);
-    border-radius: 10px;
-    padding: 28px;
-    margin-bottom: 32px;
-  }
-
-  .practice-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,.5);
-    margin-bottom: 16px;
-  }
-
-  .practice-title {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: #fff;
-    font-size: 18px;
-    margin-bottom: 12px;
-  }
-
-  .practice-text {
-    font-size: 14px;
-    color: rgba(255,255,255,.75);
-    line-height: 1.75;
-    margin-bottom: 16px;
-  }
-
-  .prompt-box {
-    background: rgba(255,255,255,.08);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 8px;
-    padding: 16px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    color: rgba(255,255,255,.85);
-    font-size: 14px;
-    line-height: 1.75;
-    white-space: pre-line;
-    margin-bottom: 12px;
-  }
-
-  .prompt-copy-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-  }
-
-  .prompt-note {
-    font-size: 13px;
-    color: var(--muted-lt);
-    line-height: 1.5;
-  }
-
-  .dark-copy-btn {
-    background: var(--brown);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 6px 14px;
-    font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-    white-space: nowrap;
-  }
-  .dark-copy-btn:hover { background: var(--brown-deep); }
-  .dark-copy-btn.copied { background: var(--sage-bg); }
-
-  /* =============================
-     STEP 3
-  ============================= */
-  .usage-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    margin-bottom: 32px;
-  }
-
-  .usage-card {
-    background: var(--cream);
-    border: 1px solid var(--border-2);
-    border-radius: 12px;
-    padding: 28px;
-  }
-
-  .usage-card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-
-  .usage-card-num {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    font-size: 32px;
-    color: var(--brown);
-    line-height: 1;
-    flex-shrink: 0;
-  }
-
-  .usage-card-info { flex: 1; min-width: 180px; }
-
-  .usage-card-title {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: var(--ink);
-    font-size: 18px;
-    margin-bottom: 6px;
-  }
-
-  .usage-card-pill {
-    display: inline-block;
-    background: var(--brown-pale);
-    color: var(--brown-deep);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 4px 10px;
-    border-radius: 100px;
-  }
-
-  .usage-card-context {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.75;
-    margin-bottom: 20px;
-  }
-
-  .usage-prompt-block {
-    background: var(--brown-pale);
-    border: 2px dashed rgba(200,117,66,.3);
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 12px;
-  }
-
-  .usage-prompt-text {
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    color: var(--ink);
-    line-height: 1.75;
-    white-space: pre-line;
-    margin-bottom: 12px;
-  }
-
-  .tip-block {
-    background: var(--sage-pale);
-    border-radius: 8px;
-    padding: 12px 16px;
-  }
-
-  .tip-text {
-    font-size: 13px;
-    color: var(--sage-bg);
-    line-height: 1.55;
-  }
-
-  .rgpd-inline {
-    background: var(--brown-pale);
-    border-radius: 6px;
-    padding: 8px 12px;
-    margin-bottom: 12px;
-    font-size: 13px;
-    color: var(--brown-deep);
-    line-height: 1.5;
-  }
-
-  .bilan-block {
-    background: var(--cream-2);
-    border-radius: 10px;
-    padding: 24px;
-    text-align: center;
-    margin-bottom: 32px;
-  }
-
-  .bilan-text {
-    font-family: 'Instrument Serif', serif;
-    color: var(--ink);
-    font-size: 18px;
-    line-height: 1.6;
-  }
-
-  /* =============================
-     STEP 4
-  ============================= */
-  .context-note {
-    background: var(--cream);
-    border-radius: 10px;
-    padding: 24px;
-    margin-bottom: 32px;
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.75;
-  }
-
-  .veille-block {
-    background: var(--dark);
-    border-radius: 12px;
-    padding: 32px;
-    margin-bottom: 32px;
-  }
-
-  .veille-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-
-  .veille-label {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,.5);
-  }
-
-  .veille-prompt {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    color: #fff;
-    font-size: 15px;
-    line-height: 2;
-    white-space: pre-line;
-    margin-bottom: 16px;
-  }
-
-  .veille-note {
-    font-size: 13px;
-    color: rgba(200,117,66,.9);
-    line-height: 1.5;
-  }
-
-  .ritual-block {
-    background: var(--brown);
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 32px;
-  }
-
-  .ritual-title {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    color: #fff;
-    font-size: 18px;
-    margin-bottom: 16px;
-  }
-
-  .ritual-list {
-    font-size: 15px;
-    color: #fff;
-    line-height: 2;
-    list-style: none;
-    margin-bottom: 16px;
-  }
-
-  .ritual-note {
-    font-size: 13px;
-    color: rgba(255,255,255,.7);
-  }
-
-  .livrables-block {
-    background: var(--cream);
-    border: 1px solid var(--border-2);
-    border-radius: 12px;
-    padding: 28px;
-    margin-bottom: 32px;
-  }
-
-  .livrables-title {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: var(--ink);
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 20px;
-  }
-
-  .livrable-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 15px;
-    color: var(--ink);
-    line-height: 1.5;
-  }
-  .livrable-item:last-child { border-bottom: none; }
-
-  .livrable-check {
-    color: var(--brown);
-    font-size: 18px;
-    flex-shrink: 0;
-    line-height: 1.3;
-  }
-
-  .final-cta { text-align: center; }
-
-  .final-btn {
-    background: var(--brown);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    border: none;
-    border-radius: 7px;
-    padding: 16px 48px;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    margin-bottom: 12px;
-    display: inline-block;
-  }
-  .final-btn:hover { background: var(--brown-deep); }
-  .final-btn:active { transform: scale(0.98); }
-
-  .final-note {
-    font-size: 13px;
-    color: var(--muted);
-  }
-
-  /* =============================
-     MINI-DÉFI OVERLAY
-  ============================= */
-  .defi-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(30,26,21,.96);
-    z-index: 300;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .defi-overlay.active { display: flex; }
-
-  .defi-inner {
-    max-width: 560px;
-    width: 100%;
-    padding: 48px 32px;
-  }
-
-  .defi-label {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 11px;
-    color: var(--brown);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 6px;
-  }
-
-  .defi-sublabel {
-    font-size: 12px;
-    color: var(--muted-lt);
-    margin-bottom: 16px;
-  }
-
-  .defi-question {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: #fff;
-    font-size: 22px;
-    line-height: 1.35;
-    margin-bottom: 24px;
-  }
-
-  .defi-choices {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 16px;
-  }
-
-  .defi-choice {
-    background: var(--cream);
-    border: 1.5px solid var(--border-2);
-    border-radius: 10px;
-    padding: 16px 20px;
-    color: var(--ink);
-    font-size: 15px;
-    text-align: left;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    transition: background 0.15s, border-color 0.15s;
-    line-height: 1.5;
-  }
-  .defi-choice:hover { background: var(--cream-2); }
-  .defi-choice.correct {
-    background: var(--sage-pale);
-    border-color: var(--sage);
-    cursor: default;
-  }
-  .defi-choice.wrong {
-    background: rgba(200,0,0,.08);
-    border-color: rgba(200,0,0,.3);
-    cursor: default;
-  }
-  .defi-choice:disabled { pointer-events: none; }
-
-  .defi-feedback {
-    font-size: 14px;
-    color: var(--sage-bg);
-    line-height: 1.65;
-    margin-bottom: 16px;
-    display: none;
-  }
-  .defi-feedback.wrong-msg { color: var(--muted); }
-  .defi-feedback.visible { display: block; }
-
-  .defi-continue-btn {
-    background: var(--brown);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    border: none;
-    border-radius: 7px;
-    padding: 13px 28px;
-    cursor: pointer;
-    display: none;
-    transition: background 0.2s;
-    margin-top: 8px;
-  }
-  .defi-continue-btn.visible { display: inline-block; }
-  .defi-continue-btn:hover { background: var(--brown-deep); }
-
-  .defi-retry-btn {
-    background: transparent;
-    color: var(--muted-lt);
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 6px;
-    padding: 8px 20px;
-    cursor: pointer;
-    display: none;
-    margin-top: 8px;
-    margin-left: 8px;
-  }
-  .defi-retry-btn.visible { display: inline-block; }
-
-  /* =============================
-     FOOTER
-  ============================= */
-  .footer {
-    background: var(--dark);
-    padding: 36px 24px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .footer-name {
-    font-family: 'Playpen Sans', cursive;
-    font-weight: 700;
-    font-size: 18px;
-    color: var(--brown);
-  }
-
-  .footer-sub { font-size: 13px; color: rgba(255,255,255,.3); }
-
-  .footer-link {
-    font-size: 13px;
-    color: rgba(255,255,255,.5);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .footer-link:hover { color: #fff; }
-
-  /* =============================
-     SCREEN FINAL — EASTER EGG
-  ============================= */
-  #screen-final {
-    background: var(--dark);
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 60px 24px;
-    text-align: center;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 200;
-    display: none;
-  }
-  #screen-final.active { display: flex; }
-
-  .confetti-container {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 201;
-  }
-
-  .confetti-piece {
-    position: absolute;
-    top: -20px;
-    animation: confetti-fall linear forwards;
-    border-radius: 2px;
-  }
-
-  @keyframes confetti-fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-    80% { opacity: 1; }
-    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
-  }
-
-  .final-inner {
-    position: relative;
-    z-index: 202;
-    max-width: 520px;
-    width: 100%;
-  }
-
-  .final-logo {
-    font-family: 'Playpen Sans', cursive;
-    font-weight: 800;
-    font-size: 48px;
-    color: var(--brown);
-    margin-bottom: 24px;
-    animation: fadeInEl 0.6s ease forwards;
-  }
-
-  .final-headline {
-    font-family: 'Inter', sans-serif;
-    font-weight: 800;
-    color: #fff;
-    font-size: clamp(22px, 4vw, 32px);
-    line-height: 1.3;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeInEl 0.6s ease 0.5s forwards;
-  }
-
-  .final-score-badge {
-    display: inline-block;
-    background: var(--brown-pale);
-    border: 1px solid var(--brown);
-    border-radius: 100px;
-    padding: 8px 24px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    color: var(--brown-deep);
-    font-size: 16px;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeInEl 0.6s ease 1s forwards;
-  }
-
-  .final-tagline {
-    font-family: 'Instrument Serif', serif;
-    color: rgba(255,255,255,.7);
-    font-size: 18px;
-    line-height: 1.65;
-    margin-bottom: 20px;
-    opacity: 0;
-    animation: fadeInEl 0.6s ease 1.5s forwards;
-  }
-
-  .final-credit {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    color: var(--muted-lt);
-    font-size: 14px;
-    margin-bottom: 32px;
-    opacity: 0;
-    animation: fadeInEl 0.6s ease 2s forwards;
-  }
-
-  .final-back-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,.2);
-    color: #fff;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    border-radius: 6px;
-    padding: 10px 24px;
-    cursor: pointer;
-    opacity: 0;
-    animation: fadeInEl 0.6s ease 2.5s forwards;
-    transition: background 0.2s, border-color 0.2s;
-  }
-  .final-back-btn:hover {
-    background: rgba(255,255,255,.08);
-    border-color: rgba(255,255,255,.4);
-  }
-
-  @keyframes fadeInEl {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .hidden { display: none !important; }
+:root {
+  --parchment: #F9F5EE;
+  --cream: #F4EFE4;
+  --cream-2: #EDE7D9;
+  --cream-3: #E5DDD0;
+  --brown-pale: #F3E8D8;
+  --sage-pale: #EBF0E7;
+  --brown: #C87542;
+  --brown-deep: #A85E2E;
+  --sage: #6E7E64;
+  --sage-bg: #5D6E54;
+  --ink: #3A342C;
+  --muted: #7A7168;
+  --muted-lt: #A09890;
+  --dark: #1E1A15;
+  --dark-2: #2C2720;
+  --border: rgba(58,52,44,.10);
+  --border-2: rgba(58,52,44,.16);
+  --danger: #D94F3A;
+  --danger-pale: rgba(217,79,58,.08);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.screen { display: none; min-height: 100vh; }
+.screen.active { display: flex; }
+
+/* ===================== GLOBAL ANIMATIONS ===================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
+  80% { transform: translateX(-5px); }
+}
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.4; transform: translateX(-50%) scale(1.6); }
+}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes fadeInEl {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+@keyframes float-score {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  60% { opacity: 1; transform: translateY(-50px) scale(1.3); }
+  100% { opacity: 0; transform: translateY(-90px) scale(0.9); }
+}
+@keyframes flash-overlay {
+  0% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+@keyframes unlock-bar-grow {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+@keyframes streak-in {
+  0% { opacity: 0; transform: translateX(20px) scale(0.8); }
+  60% { opacity: 1; transform: translateX(-4px) scale(1.05); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes pulse-urgent {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+@keyframes xp-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(200,117,66,.6); }
+  100% { box-shadow: 0 0 0 8px rgba(200,117,66,0); }
+}
+@keyframes live-pulse {
+  0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255,112,67,.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(255,112,67,0); }
+}
+
+/* ===================== PASSWORD ===================== */
+#screen-password {
+  background: var(--dark);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 56px 20px;
+  text-align: center;
+  position: relative;
+}
+#screen-password::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(200,117,66,.06), transparent);
+  pointer-events: none;
+}
+.pw-logo {
+  font-family: 'Playpen Sans', cursive;
+  font-weight: 800;
+  font-size: 42px;
+  color: var(--brown);
+  line-height: 1;
+  position: relative;
+}
+.pw-subtitle {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--muted-lt);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 8px;
+  margin-bottom: 40px;
+  position: relative;
+}
+.pw-title-block {
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  position: relative;
+}
+.pw-title-line1 {
+  font-weight: 800;
+  font-size: 32px;
+  color: #fff;
+  line-height: 1.2;
+}
+.pw-title-line2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 24px;
+  color: rgba(255,255,255,.6);
+}
+.pw-form {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+}
+#pw-input {
+  width: 100%;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #fff;
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#pw-input::placeholder { color: rgba(255,255,255,.3); }
+#pw-input:focus { border-color: rgba(200,117,66,.6); }
+#pw-input.shake { animation: shake 0.4s ease; }
+.pw-error { color: #F08080; font-size: 13px; text-align: center; min-height: 18px; }
+.pw-btn {
+  background: var(--brown);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 20px;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.pw-btn:hover { background: var(--brown-deep); }
+.pw-btn:active { transform: scale(0.98); }
+
+/* ===================== PRENOM ===================== */
+#screen-prenom {
+  background: var(--dark);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 60px 24px;
+  text-align: center;
+}
+.prenom-inner {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.prenom-label {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--brown);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 24px;
+}
+.prenom-question {
+  font-weight: 400;
+  font-size: 22px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+.prenom-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.55;
+  margin-bottom: 32px;
+}
+#prenom-input {
+  width: 100%;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #fff;
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 16px;
+  text-align: center;
+}
+#prenom-input::placeholder { color: rgba(255,255,255,.3); }
+#prenom-input:focus { border-color: rgba(200,117,66,.6); }
+.prenom-btn {
+  background: var(--brown);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 20px;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.prenom-btn:hover { background: var(--brown-deep); }
+
+/* ===================== WELCOME ===================== */
+#screen-welcome {
+  background: var(--dark);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 60px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#screen-welcome::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200,117,66,.05), transparent);
+  pointer-events: none;
+}
+.welcome-inner {
+  max-width: 560px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.welcome-prenom {
+  font-family: 'Instrument Serif', serif;
+  color: var(--brown);
+  font-size: 20px;
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.2s forwards;
+}
+.welcome-title {
+  font-family: 'Instrument Serif', serif;
+  color: #fff;
+  font-size: clamp(24px, 4vw, 38px);
+  line-height: 1.25;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.5s forwards;
+}
+.welcome-body {
+  font-weight: 400;
+  color: rgba(255,255,255,.7);
+  font-size: 17px;
+  line-height: 1.85;
+  margin-bottom: 28px;
+  white-space: pre-line;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.8s forwards;
+}
+.welcome-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,.08);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeIn 0.4s ease 1.2s forwards;
+}
+.welcome-philosophy {
+  font-family: 'Instrument Serif', serif;
+  color: rgba(255,255,255,.5);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto 28px;
+  white-space: pre-line;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 1.4s forwards;
+}
+.welcome-tag {
+  color: var(--muted-lt);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeIn 0.4s ease 1.8s forwards;
+}
+.welcome-btn {
+  background: var(--brown);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 40px;
+  cursor: pointer;
+  opacity: 0;
+  transition: background 0.2s, transform 0.1s;
+}
+.welcome-btn.visible { animation: fadeInBtn 0.6s ease 2.4s forwards; }
+@keyframes fadeInBtn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.welcome-btn:hover { background: var(--brown-deep); }
+.pulse-dot {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--brown);
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+/* ===================== COURSE ===================== */
+#screen-course { background: var(--parchment); flex-direction: column; align-items: stretch; }
+
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: rgba(249,245,238,.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 100;
+}
+.nav-logo { font-family: 'Playpen Sans', cursive; font-weight: 700; font-size: 20px; color: var(--brown); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-progress-group { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.progress-bar {
+  width: 120px;
+  height: 6px;
+  background: var(--cream-2);
+  border-radius: 100px;
+  display: flex;
+  gap: 3px;
+  overflow: hidden;
+  padding: 1px;
+}
+.progress-segment { flex: 1; border-radius: 100px; background: transparent; transition: background 0.5s ease; }
+.progress-segment.filled { background: var(--brown); }
+.progress-label { font-weight: 700; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.score-display { font-weight: 700; font-size: 13px; color: var(--brown); white-space: nowrap; transition: transform 0.2s; }
+.score-display.bump { animation: score-bump 0.3s ease; }
+@keyframes score-bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* XP BAR (fixed bottom) */
+.xp-bar-wrap {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: rgba(58,52,44,.06);
+  z-index: 99;
+}
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brown), var(--sage));
+  border-radius: 0 2px 2px 0;
+  transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* STREAK BADGE */
+.streak-badge {
+  position: fixed;
+  top: 68px;
+  right: 16px;
+  background: var(--brown);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 100px;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 150;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(200,117,66,.35);
+}
+.streak-badge.visible {
+  opacity: 1;
+  transform: translateX(0);
+  animation: streak-in 0.5s ease;
+}
+
+.course-body {
+  padding-top: 56px;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-bottom: 80px;
+}
+
+.step { display: none; padding-top: 80px; }
+.step.active { display: block; animation: fadeUp 0.5s ease forwards; }
+
+.eyebrow {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--brown);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+.step-title {
+  font-weight: 800;
+  font-size: clamp(22px, 3.5vw, 32px);
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.step-intro {
+  font-family: 'Instrument Serif', serif;
+  color: var(--ink);
+  font-size: 20px;
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.step-block-gap { margin-bottom: 32px; }
+.step-btn {
+  background: var(--brown);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 28px;
+  cursor: pointer;
+  margin-top: 32px;
+  transition: background 0.2s, transform 0.1s;
+  display: inline-block;
+}
+.step-btn:hover { background: var(--brown-deep); }
+.step-btn:active { transform: scale(0.98); }
+
+/* ===================== REFLECT BLOCK ===================== */
+.reflect-block {
+  background: var(--cream-2);
+  border-radius: 12px;
+  padding: 28px;
+  border-left: 3px solid var(--brown);
+  margin-bottom: 0;
+  position: relative;
+}
+.reflect-label {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--brown);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+.reflect-question {
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.reflect-hint {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.reflect-textarea {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border-2);
+  border-radius: 8px;
+  padding: 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.65;
+  min-height: 110px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.reflect-textarea:focus { border-color: var(--brown); }
+.reflect-textarea::placeholder { color: var(--muted-lt); }
+
+/* TIMER ROW */
+.timer-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  margin-bottom: 14px;
+}
+.timer-ring-wrap { position: relative; width: 52px; height: 52px; flex-shrink: 0; }
+.timer-ring-svg { transform: rotate(-90deg); }
+.timer-ring-track { fill: none; stroke: var(--cream-3); stroke-width: 3.5; }
+.timer-ring-fill {
+  fill: none;
+  stroke: var(--brown);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 138;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear, stroke 0.5s;
+}
+.timer-ring-fill.urgent { stroke: var(--danger); }
+.timer-ring-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+  transition: color 0.3s;
+}
+.timer-ring-text.urgent { color: var(--danger); animation: pulse-urgent 0.5s ease-in-out infinite alternate; }
+.timer-msg {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+  flex: 1;
+}
+.timer-msg .timer-italic { font-style: italic; }
+
+.reveal-prompt-btn {
+  background: var(--brown);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: not-allowed;
+  opacity: 0.35;
+  transition: background 0.2s, opacity 0.2s, transform 0.1s;
+  position: relative;
+  overflow: hidden;
+}
+.reveal-prompt-btn.enabled {
+  cursor: pointer;
+  opacity: 1;
+  animation: xp-pulse 1s ease-out;
+}
+.reveal-prompt-btn.enabled:hover { background: var(--brown-deep); transform: translateY(-1px); }
+.reveal-prompt-btn.used { opacity: 0.5; cursor: default; background: var(--sage); }
+
+/* ANALYSIS SEQUENCE */
+.analysis-sequence {
+  display: none;
+  background: var(--dark);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-top: 16px;
+}
+.analysis-sequence.active { display: block; animation: fadeUp 0.3s ease; }
+.seq-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 0;
+  font-size: 13px;
+  color: rgba(255,255,255,.35);
+  transition: color 0.3s;
+}
+.seq-line.current { color: rgba(255,255,255,.85); }
+.seq-line.done { color: var(--sage-pale); }
+.seq-icon { width: 18px; text-align: center; font-size: 14px; flex-shrink: 0; }
+.seq-spin { display: inline-block; animation: spin 0.8s linear infinite; }
+
+/* REVEAL AREA */
+.reflect-revealed-note {
+  background: var(--sage-pale);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--sage-bg);
+  line-height: 1.65;
+  display: none;
+}
+.prompt-hidden { display: none; }
+.prompt-visible { display: block; animation: fadeUp 0.4s ease; }
+
+/* ===================== STEP 1 — DEMO ===================== */
+.demo-block {
+  background: var(--dark);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.demo-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,117,66,.04), transparent);
+  pointer-events: none;
+}
+.demo-live-label { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+.demo-diode {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #FF7043;
+  animation: live-pulse 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.demo-live-text {
+  font-weight: 700;
+  font-size: 11px;
+  color: rgba(255,255,255,.55);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.demo-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+.demo-tab {
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.6);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 6px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.demo-tab.active { background: var(--brown); color: #fff; border-color: transparent; }
+.demo-terminal {
+  background: #0A0A0A;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 24px;
+  min-height: 200px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.terminal-line { display: block; line-height: 1.7; }
+.terminal-prompt-color { color: #C87542; }
+.terminal-response-color { color: #4CAF50; }
+.demo-result-msg { text-align: center; font-size: 13px; margin-top: 4px; min-height: 20px; transition: color 0.3s; }
+.demo-relaunch-row { display: flex; justify-content: flex-end; margin-top: 10px; }
+.demo-relaunch-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.4);
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.demo-relaunch-btn:hover { color: rgba(255,255,255,.8); border-color: rgba(255,255,255,.25); }
+.demo-conclusion {
+  font-family: 'Instrument Serif', serif;
+  color: rgba(255,255,255,.75);
+  font-size: 15px;
+  text-align: center;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+.key-block {
+  background: var(--cream);
+  border: 1px solid var(--border-2);
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+.key-number { font-weight: 800; font-size: 32px; color: var(--brown); line-height: 1; flex-shrink: 0; }
+.key-title { font-weight: 700; color: var(--ink); font-size: 16px; margin-bottom: 8px; }
+.key-body { font-size: 15px; color: var(--muted); line-height: 1.75; }
+
+/* ===================== STEP 2 — TEMPLATE ===================== */
+.template-block {
+  background: var(--cream);
+  border: 2px dashed rgba(200,117,66,.35);
+  border-radius: 10px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+.template-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.template-label { font-weight: 700; font-size: 11px; color: var(--brown); text-transform: uppercase; letter-spacing: 0.1em; }
+.copy-btn {
+  background: var(--brown-pale);
+  color: var(--brown-deep);
+  border: 1px solid rgba(168,94,46,.25);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.copy-btn:hover { background: var(--cream-2); }
+.copy-btn.copied { background: var(--sage-pale); color: var(--sage-bg); border-color: var(--sage); }
+.template-content { font-size: 15px; color: var(--ink); line-height: 2; white-space: pre-line; }
+
+.method-block {
+  background: var(--sage-pale);
+  border: 1px solid rgba(110,126,100,.2);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+.method-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--sage-bg); margin-bottom: 10px; }
+.method-text { font-size: 14px; color: var(--sage-bg); line-height: 1.75; }
+
+.rgpd-block {
+  background: var(--brown-pale);
+  border: 1px solid rgba(200,117,66,.25);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+.rgpd-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--brown-deep); margin-bottom: 10px; }
+.rgpd-text { font-size: 14px; color: var(--ink); line-height: 1.75; }
+
+.practice-block { background: var(--dark); border-radius: 10px; padding: 28px; margin-bottom: 32px; }
+.practice-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,.4); margin-bottom: 16px; }
+.practice-title { font-weight: 700; color: #fff; font-size: 18px; margin-bottom: 12px; }
+.practice-text { font-size: 14px; color: rgba(255,255,255,.65); line-height: 1.75; margin-bottom: 16px; }
+.prompt-box {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 14px;
+  color: rgba(255,255,255,.8);
+  line-height: 1.75;
+  white-space: pre-line;
+  margin-bottom: 12px;
+}
+.prompt-copy-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.prompt-note { font-size: 13px; color: var(--muted-lt); line-height: 1.5; }
+.dark-copy-btn {
+  background: var(--brown);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.dark-copy-btn:hover { background: var(--brown-deep); }
+.dark-copy-btn.copied { background: var(--sage-bg); }
+
+/* ===================== STEP 3 — USAGE CARDS ===================== */
+.usage-cards { display: flex; flex-direction: column; gap: 32px; margin-bottom: 32px; }
+.usage-card {
+  background: var(--cream);
+  border: 1px solid var(--border-2);
+  border-radius: 12px;
+  padding: 28px;
+  transition: box-shadow 0.2s;
+}
+.usage-card:hover { box-shadow: 0 4px 20px rgba(58,52,44,.07); }
+.usage-card-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+.usage-card-num { font-weight: 800; font-size: 32px; color: var(--brown); line-height: 1; flex-shrink: 0; }
+.usage-card-info { flex: 1; min-width: 180px; }
+.usage-card-title { font-weight: 700; color: var(--ink); font-size: 18px; margin-bottom: 6px; }
+.usage-card-pill {
+  display: inline-block;
+  background: var(--brown-pale);
+  color: var(--brown-deep);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.usage-card-context { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 20px; }
+.usage-prompt-block {
+  background: var(--brown-pale);
+  border: 2px dashed rgba(200,117,66,.28);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+.usage-prompt-text { font-size: 14px; color: var(--ink); line-height: 1.75; white-space: pre-line; margin-bottom: 12px; }
+.tip-block { background: var(--sage-pale); border-radius: 8px; padding: 12px 16px; }
+.tip-text { font-size: 13px; color: var(--sage-bg); line-height: 1.55; }
+.rgpd-inline {
+  background: var(--brown-pale);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--brown-deep);
+  line-height: 1.5;
+}
+.bilan-block {
+  background: var(--cream-2);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.bilan-text { font-family: 'Instrument Serif', serif; color: var(--ink); font-size: 18px; line-height: 1.6; }
+
+/* ===================== STEP 4 — LIVRABLE ===================== */
+.context-note {
+  background: var(--cream);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 32px;
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.veille-block { background: var(--dark); border-radius: 12px; padding: 32px; margin-bottom: 32px; }
+.veille-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.veille-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,.4); }
+.veille-prompt { font-size: 15px; color: #fff; line-height: 2; white-space: pre-line; margin-bottom: 16px; }
+.veille-note { font-size: 13px; color: rgba(200,117,66,.85); line-height: 1.5; }
+.ritual-block { background: var(--brown); border-radius: 12px; padding: 28px; margin-bottom: 32px; }
+.ritual-title { font-weight: 800; color: #fff; font-size: 18px; margin-bottom: 16px; }
+.ritual-list { font-size: 15px; color: #fff; line-height: 2.1; list-style: none; margin-bottom: 16px; }
+.ritual-list li::before { content: '→ '; opacity: 0.7; }
+.ritual-note { font-size: 13px; color: rgba(255,255,255,.65); }
+.livrables-block {
+  background: var(--cream);
+  border: 1px solid var(--border-2);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+.livrables-title { font-weight: 700; color: var(--ink); font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+.livrable-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.livrable-item:last-child { border-bottom: none; }
+.livrable-check { color: var(--brown); font-size: 18px; flex-shrink: 0; line-height: 1.3; }
+.final-cta { text-align: center; }
+.final-btn {
+  background: var(--brown);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  padding: 16px 48px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+.final-btn:hover { background: var(--brown-deep); }
+.final-note { font-size: 13px; color: var(--muted); }
+
+/* ===================== DÉFI OVERLAY ===================== */
+.defi-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30,26,21,.97);
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.defi-overlay.active { display: flex; }
+
+.defi-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+.defi-flash.correct-flash { background: rgba(76,175,80,.06); animation: flash-overlay 0.6s ease forwards; }
+.defi-flash.wrong-flash { background: rgba(217,79,58,.08); animation: flash-overlay 0.5s ease forwards; }
+
+.defi-inner {
+  max-width: 560px;
+  width: 100%;
+  padding: 48px 32px;
+  position: relative;
+}
+
+.defi-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.defi-top-left { }
+.defi-label {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--brown);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+.defi-sublabel { font-size: 12px; color: var(--muted-lt); }
+
+.defi-countdown-ring { position: relative; width: 56px; height: 56px; flex-shrink: 0; }
+.defi-countdown-svg { transform: rotate(-90deg); }
+.defi-countdown-track { fill: none; stroke: rgba(255,255,255,.08); stroke-width: 3; }
+.defi-countdown-fill {
+  fill: none;
+  stroke: var(--brown);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 151;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear, stroke 0.5s;
+}
+.defi-countdown-fill.urgent { stroke: var(--danger); }
+.defi-countdown-num {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: 800;
+  color: #fff;
+  transition: color 0.3s;
+}
+.defi-countdown-num.urgent { color: var(--danger); animation: pulse-urgent 0.5s ease-in-out infinite alternate; }
+
+.defi-question {
+  font-weight: 700;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.35;
+  margin-bottom: 28px;
+}
+.defi-choices { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.defi-choice {
+  background: var(--cream);
+  border: 1.5px solid var(--border-2);
+  border-radius: 10px;
+  padding: 16px 20px;
+  color: var(--ink);
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  line-height: 1.5;
+}
+.defi-choice:hover { background: var(--cream-2); transform: translateX(4px); }
+.defi-choice.correct { background: var(--sage-pale); border-color: var(--sage); cursor: default; transform: none; }
+.defi-choice.wrong { background: var(--danger-pale); border-color: rgba(217,79,58,.4); cursor: default; transform: none; animation: shake 0.4s ease; }
+.defi-choice:disabled { pointer-events: none; }
+
+.defi-feedback { font-size: 14px; line-height: 1.65; margin-bottom: 16px; display: none; }
+.defi-feedback.correct-msg { color: var(--sage-bg); }
+.defi-feedback.wrong-msg { color: var(--muted); }
+.defi-feedback.visible { display: block; animation: fadeUp 0.3s ease; }
+
+.defi-continue-btn {
+  background: var(--brown);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 13px 28px;
+  cursor: pointer;
+  display: none;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+.defi-continue-btn.visible { display: inline-block; animation: fadeUp 0.3s ease; }
+.defi-continue-btn:hover { background: var(--brown-deep); }
+
+.defi-retry-btn {
+  background: transparent;
+  color: var(--muted-lt);
+  font-size: 13px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 6px;
+  padding: 8px 20px;
+  cursor: pointer;
+  display: none;
+  margin-top: 8px;
+  margin-left: 8px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.defi-retry-btn:hover { color: rgba(255,255,255,.7); border-color: rgba(255,255,255,.25); }
+.defi-retry-btn.visible { display: inline-block; }
+
+.defi-timeout-msg {
+  font-size: 14px;
+  color: var(--danger);
+  margin-bottom: 12px;
+  display: none;
+  animation: fadeUp 0.3s ease;
+}
+.defi-timeout-msg.visible { display: block; }
+
+/* ===================== STEP UNLOCK OVERLAY ===================== */
+#step-unlock-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--dark);
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+#step-unlock-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.unlock-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brown);
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fadeUp 0.4s ease 0.2s forwards;
+}
+.unlock-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(24px, 4vw, 36px);
+  color: #fff;
+  text-align: center;
+  max-width: 480px;
+  padding: 0 20px;
+  opacity: 0;
+  animation: fadeUp 0.4s ease 0.5s forwards;
+}
+.unlock-bar {
+  width: 200px;
+  height: 2px;
+  background: rgba(255,255,255,.08);
+  border-radius: 100px;
+  margin-top: 36px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.3s ease 0.8s forwards;
+}
+.unlock-bar-fill {
+  height: 100%;
+  background: var(--brown);
+  width: 0%;
+  animation: unlock-bar-grow 1.4s cubic-bezier(0.4,0,0.2,1) 0.9s forwards;
+}
+
+/* SCORE FLOAT */
+.score-float {
+  position: fixed;
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--brown);
+  pointer-events: none;
+  animation: float-score 1.5s ease forwards;
+  z-index: 1000;
+  text-shadow: 0 2px 8px rgba(200,117,66,.3);
+}
+
+/* HOT STREAK OVERLAY */
+#streak-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(200,117,66,.08);
+  z-index: 350;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#streak-overlay.active { opacity: 1; }
+.streak-overlay-text {
+  font-weight: 900;
+  font-size: clamp(36px, 8vw, 64px);
+  color: var(--brown);
+  text-align: center;
+  line-height: 1.2;
+  animation: fadeUp 0.4s ease;
+}
+.streak-overlay-sub {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px;
+  color: rgba(255,255,255,.7);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+  background: var(--dark);
+  padding: 36px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.footer-name { font-family: 'Playpen Sans', cursive; font-weight: 700; font-size: 18px; color: var(--brown); }
+.footer-sub { font-size: 13px; color: rgba(255,255,255,.3); }
+.footer-link { font-size: 13px; color: rgba(255,255,255,.4); text-decoration: none; transition: color 0.2s; }
+.footer-link:hover { color: rgba(255,255,255,.8); }
+
+/* ===================== FINAL SCREEN ===================== */
+#screen-final {
+  background: var(--dark);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 60px 24px;
+  text-align: center;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  overflow: hidden;
+}
+#screen-final::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200,117,66,.06), transparent);
+  pointer-events: none;
+}
+#screen-final.active { display: flex; }
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 201;
+}
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  animation: confetti-fall linear forwards;
+  border-radius: 2px;
+}
+.final-inner {
+  position: relative;
+  z-index: 202;
+  max-width: 540px;
+  width: 100%;
+}
+.final-logo {
+  font-family: 'Playpen Sans', cursive;
+  font-weight: 800;
+  font-size: 52px;
+  color: var(--brown);
+  margin-bottom: 28px;
+  animation: fadeInEl 0.5s ease forwards;
+}
+.final-profile-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInEl 0.5s ease 0.3s forwards;
+}
+.profile-2023 { background: rgba(255,255,255,.07); color: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.1); }
+.profile-transition { background: var(--brown-pale); color: var(--brown-deep); }
+.profile-pro { background: var(--sage-pale); color: var(--sage-bg); }
+
+.final-headline {
+  font-weight: 800;
+  color: #fff;
+  font-size: clamp(22px, 4vw, 32px);
+  line-height: 1.3;
+  margin-bottom: 16px;
+  opacity: 0;
+  animation: fadeInEl 0.5s ease 0.6s forwards;
+}
+.final-score-badge {
+  display: inline-block;
+  background: var(--brown-pale);
+  border: 1px solid rgba(200,117,66,.4);
+  border-radius: 100px;
+  padding: 8px 24px;
+  font-weight: 700;
+  color: var(--brown-deep);
+  font-size: 16px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeInEl 0.5s ease 0.9s forwards;
+}
+.final-tagline {
+  font-family: 'Instrument Serif', serif;
+  color: rgba(255,255,255,.65);
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  animation: fadeInEl 0.5s ease 1.2s forwards;
+}
+.final-sub {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeInEl 0.5s ease 1.5s forwards;
+}
+.final-credit {
+  font-size: 13px;
+  color: var(--muted-lt);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeInEl 0.5s ease 1.8s forwards;
+}
+.final-back-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.5);
+  font-size: 13px;
+  border-radius: 6px;
+  padding: 10px 24px;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInEl 0.5s ease 2.1s forwards;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.final-back-btn:hover {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.3);
+  color: rgba(255,255,255,.8);
+}
 </style>
 </head>
 <body>
 
-<!-- =============================
-     SCREEN 1 — PASSWORD
-============================= -->
+<!-- ===== PASSWORD ===== -->
 <div id="screen-password" class="screen active">
   <div class="pw-logo">ED.</div>
   <div class="pw-subtitle">Product HR</div>
@@ -1455,30 +1330,24 @@
     <div class="pw-title-line2">Lire l'IA sans se noyer</div>
   </div>
   <div class="pw-form">
-    <div class="pw-input-wrap">
-      <input type="password" id="pw-input" placeholder="Mot de passe..." autocomplete="current-password" />
-    </div>
+    <input type="password" id="pw-input" placeholder="Mot de passe..." autocomplete="current-password" />
     <div class="pw-error" id="pw-error"></div>
-    <button class="pw-btn" id="pw-btn" type="button">Accéder &rarr;</button>
+    <button class="pw-btn" id="pw-btn">Accéder &rarr;</button>
   </div>
 </div>
 
-<!-- =============================
-     SCREEN PRENOM
-============================= -->
+<!-- ===== PRENOM ===== -->
 <div id="screen-prenom" class="screen">
   <div class="prenom-inner">
     <div class="prenom-label">ET TOI ?</div>
     <div class="prenom-question">Comment tu t'appelles&nbsp;?</div>
     <div class="prenom-sub">Juste ton prénom. Ce parcours est le tien.</div>
     <input type="text" id="prenom-input" placeholder="Ton prénom..." autocomplete="given-name" />
-    <button class="prenom-btn" id="prenom-btn" type="button">C'est parti &rarr;</button>
+    <button class="prenom-btn" id="prenom-btn">C'est parti &rarr;</button>
   </div>
 </div>
 
-<!-- =============================
-     SCREEN WELCOME
-============================= -->
+<!-- ===== WELCOME ===== -->
 <div id="screen-welcome" class="screen">
   <div class="welcome-inner">
     <div class="welcome-prenom" id="welcome-prenom"></div>
@@ -1488,14 +1357,12 @@
     <div class="welcome-philosophy">L'IA ne pense pas à ta place. Elle pense avec toi.
 Mais seulement si tu penses d'abord.</div>
     <div class="welcome-tag">PRODUCT HR &middot; FORMATION STARTER &middot; 3H30</div>
-    <button class="welcome-btn" id="welcome-btn" type="button">Commencer &rarr;</button>
+    <button class="welcome-btn" id="welcome-btn">Commencer &rarr;</button>
   </div>
   <div class="pulse-dot" id="pulse-dot"></div>
 </div>
 
-<!-- =============================
-     SCREEN COURSE
-============================= -->
+<!-- ===== COURSE ===== -->
 <div id="screen-course" class="screen">
 
   <nav class="nav">
@@ -1514,9 +1381,12 @@ Mais seulement si tu penses d'abord.</div>
     </div>
   </nav>
 
+  <div class="xp-bar-wrap"><div class="xp-bar-fill" id="xp-bar-fill" style="width:0%"></div></div>
+  <div class="streak-badge" id="streak-badge"></div>
+
   <div class="course-body">
 
-    <!-- ===== STEP 1 ===== -->
+    <!-- STEP 1 -->
     <div class="step" id="step-1">
       <div class="eyebrow">MISE EN ROUTE &middot; 30 MIN</div>
       <h2 class="step-title">Avant l'IA, comprendre pourquoi ça change tout</h2>
@@ -1539,7 +1409,7 @@ C'est exactement là qu'on commence.</p>
         <div class="demo-relaunch-row">
           <button class="demo-relaunch-btn" onclick="relaunchDemo()">Relancer la démo &rarr;</button>
         </div>
-        <div class="demo-conclusion">Même outil. Résultat radicalement différent. La différence : le contexte que tu donnes.</div>
+        <div class="demo-conclusion">Même outil. Résultat radicalement différent. La différence&nbsp;: le contexte que tu donnes.</div>
       </div>
 
       <div class="key-block step-block-gap">
@@ -1553,20 +1423,29 @@ C'est exactement là qu'on commence.</p>
       <button class="step-btn" onclick="openDefi(1)">J'ai compris, on construit mon contexte &rarr;</button>
     </div>
 
-    <!-- ===== STEP 2 ===== -->
+    <!-- STEP 2 -->
     <div class="step" id="step-2">
       <div class="eyebrow">EXERCICE PRINCIPAL &middot; 1H</div>
       <h2 class="step-title">Ton fichier contexte, la pièce la plus importante</h2>
       <p class="step-intro">Remplis ce template une fois. Utilise-le dans chaque conversation avec ton IA. C'est ton identité professionnelle pour l'IA.</p>
 
-      <!-- REFLECT -->
       <div class="reflect-block step-block-gap" id="reflect-2">
         <div class="reflect-label">AVANT L'IA &middot; RÉFLÉCHIS D'ABORD</div>
         <div class="reflect-question">Si ton IA ne sait rien de toi, que se passe-t-il quand tu lui poses une question professionnelle&nbsp;?</div>
-        <div class="reflect-hint">2-3 lignes suffisent. Pas de bonne ou mauvaise réponse. Juste ta pensée.</div>
-        <textarea class="reflect-textarea" id="reflect-textarea-2" placeholder="Décris en quelques lignes ce que tu imagines..." oninput="updateReflect(2)"></textarea>
-        <div class="reflect-counter" id="reflect-counter-2">0 / 50 minimum</div>
-        <button class="reveal-prompt-btn" id="reveal-btn-2" onclick="revealPrompt(2)">Voir le prompt &rarr;</button>
+        <div class="reflect-hint">Prends le temps d'y penser. Vraiment. <em>Le bouton se déverrouille après 90 secondes.</em></div>
+        <textarea class="reflect-textarea" id="reflect-textarea-2" placeholder="Décris en quelques lignes ce que tu imagines..." oninput="onReflectInput(2)" onfocus="startReflectTimer(2)"></textarea>
+        <div class="timer-row" id="timer-row-2">
+          <div class="timer-ring-wrap">
+            <svg class="timer-ring-svg" width="52" height="52" viewBox="0 0 52 52">
+              <circle class="timer-ring-track" cx="26" cy="26" r="22"/>
+              <circle class="timer-ring-fill" id="timer-fill-2" cx="26" cy="26" r="22"/>
+            </svg>
+            <div class="timer-ring-text" id="timer-text-2">1:30</div>
+          </div>
+          <div class="timer-msg" id="timer-msg-2"><span class="timer-italic">Réfléchis vraiment.</span> L'IA peut attendre. Toi, tu ne dois pas.</div>
+        </div>
+        <div class="analysis-sequence" id="analysis-2"></div>
+        <button class="reveal-prompt-btn" id="reveal-btn-2" onclick="revealPrompt(2)">Voir le prompt →</button>
       </div>
 
       <div class="reflect-revealed-note" id="reflect-note-2">Maintenant compare avec ta réflexion. Qu'est-ce que le contexte change ? Qu'est-ce que l'IA a vu que tu n'avais pas formulé ? C'est ça, apprendre à penser avec l'IA.</div>
@@ -1584,25 +1463,19 @@ La culture de mon entreprise en 3 mots : [mot 1] / [mot 2] / [mot 3].
 Mon enjeu principal ce trimestre : [enjeu concret].
 Ce que je veux que tu comprennes de mon contexte : [texte libre].</div>
         </div>
-
         <div class="method-block step-block-gap">
           <div class="method-label">LA MÉTHODE</div>
           <div class="method-text">Garde ce fichier dans Notion ou Google Doc. Au début de chaque conversation avec ton IA, colle-le. Tu n'as plus jamais à te réexpliquer. L'IA sait qui tu es dès la première ligne.</div>
         </div>
-
         <div class="rgpd-block step-block-gap">
           <div class="rgpd-label">RÈGLE PRO &middot; DONNÉES</div>
           <div class="rgpd-text">En entreprise : remplace les noms réels par Candidat A ou Entreprise X avant de copier quoi que ce soit dans ton IA. Active le mode Incognito pour les échanges sensibles. Tu es RH, tu connais la valeur des données. Traite-les comme telles avec l'IA aussi.</div>
         </div>
-
         <div class="practice-block step-block-gap">
           <div class="practice-label">MAINTENANT</div>
           <div class="practice-title">Ouvre ton IA et teste ton contexte</div>
           <div class="practice-text">Colle ton template rempli dans une nouvelle conversation. Pose ensuite cette question :</div>
-          <div class="prompt-copy-header">
-            <span></span>
-            <button class="dark-copy-btn" onclick="copyText(this, 'prompt-1')">Utiliser ce prompt</button>
-          </div>
+          <div class="prompt-copy-header"><span></span><button class="dark-copy-btn" onclick="copyText(this, 'prompt-1')">Utiliser ce prompt</button></div>
           <div class="prompt-box" id="prompt-1">Sur la base de mon contexte, quelles sont les 3 questions RH que je devrais me poser cette semaine dans mon alternance ?</div>
           <div class="prompt-note">Compare la réponse avec et sans ton contexte. La différence, c'est ta nouvelle réalité.</div>
         </div>
@@ -1611,14 +1484,13 @@ Ce que je veux que tu comprennes de mon contexte : [texte libre].</div>
       <button class="step-btn" onclick="openDefi(2)">Mon contexte est prêt, on passe aux usages &rarr;</button>
     </div>
 
-    <!-- ===== STEP 3 ===== -->
+    <!-- STEP 3 -->
     <div class="step" id="step-3">
       <div class="eyebrow">MISE EN PRATIQUE &middot; 1H</div>
       <h2 class="step-title">3 prompts que tu utilises dès lundi</h2>
       <p class="step-intro">Pas de théorie. Trois situations réelles. Trois prompts. Tu testes chacun sur ton cas.</p>
 
       <div class="usage-cards">
-
         <!-- Card 1 -->
         <div class="usage-card">
           <div class="usage-card-header">
@@ -1629,18 +1501,25 @@ Ce que je veux que tu comprennes de mon contexte : [texte libre].</div>
             </div>
           </div>
           <div class="usage-card-context">Tu reçois un candidat demain. Tu veux des questions vraiment adaptées à ta culture, pas des questions génériques copiées d'un guide.</div>
-
           <div class="reflect-block step-block-gap" id="reflect-3a">
             <div class="reflect-label">AVANT L'IA &middot; RÉFLÉCHIS D'ABORD</div>
             <div class="reflect-question">Comment tu prépares un entretien aujourd'hui, sans IA&nbsp;?</div>
-            <div class="reflect-hint">2-3 lignes suffisent. Pas de bonne ou mauvaise réponse. Juste ta pensée.</div>
-            <textarea class="reflect-textarea" id="reflect-textarea-3a" placeholder="Décris ta méthode actuelle, même si elle est simple..." oninput="updateReflect('3a')"></textarea>
-            <div class="reflect-counter" id="reflect-counter-3a">0 / 50 minimum</div>
-            <button class="reveal-prompt-btn" id="reveal-btn-3a" onclick="revealPrompt('3a')">Voir le prompt &rarr;</button>
+            <div class="reflect-hint">Décris ta méthode actuelle. <em>Le bouton se déverrouille dans 90 secondes.</em></div>
+            <textarea class="reflect-textarea" id="reflect-textarea-3a" placeholder="Décris ta méthode actuelle, même si elle est simple..." oninput="onReflectInput('3a')" onfocus="startReflectTimer('3a')"></textarea>
+            <div class="timer-row" id="timer-row-3a">
+              <div class="timer-ring-wrap">
+                <svg class="timer-ring-svg" width="52" height="52" viewBox="0 0 52 52">
+                  <circle class="timer-ring-track" cx="26" cy="26" r="22"/>
+                  <circle class="timer-ring-fill" id="timer-fill-3a" cx="26" cy="26" r="22"/>
+                </svg>
+                <div class="timer-ring-text" id="timer-text-3a">1:30</div>
+              </div>
+              <div class="timer-msg" id="timer-msg-3a"><span class="timer-italic">Réfléchis vraiment.</span> L'IA peut attendre. Toi, tu ne dois pas.</div>
+            </div>
+            <div class="analysis-sequence" id="analysis-3a"></div>
+            <button class="reveal-prompt-btn" id="reveal-btn-3a" onclick="revealPrompt('3a')">Voir le prompt →</button>
           </div>
-
           <div class="reflect-revealed-note" id="reflect-note-3a">Maintenant compare avec ta réflexion. Qu'est-ce que le contexte change ? Qu'est-ce que l'IA a vu que tu n'avais pas formulé ? C'est ça, apprendre à penser avec l'IA.</div>
-
           <div id="prompt-section-3a" class="prompt-hidden">
             <div class="usage-prompt-block">
               <div class="template-header" style="margin-bottom:12px;">
@@ -1653,9 +1532,7 @@ Je reçois demain un candidat pour le poste de [poste].
 Son profil en 3 lignes : [résumé rapide].
 Génère 5 questions d'entretien adaptées à notre culture et à ce que ce poste exige vraiment.</div>
             </div>
-            <div class="tip-block">
-              <div class="tip-text">Teste-le maintenant avec un vrai poste de ton alternance. Ajuste les questions à ta main. C'est ça, travailler avec l'IA.</div>
-            </div>
+            <div class="tip-block"><div class="tip-text">Teste-le maintenant avec un vrai poste de ton alternance. Ajuste les questions à ta main. C'est ça, travailler avec l'IA.</div></div>
           </div>
         </div>
 
@@ -1669,18 +1546,25 @@ Génère 5 questions d'entretien adaptées à notre culture et à ce que ce post
             </div>
           </div>
           <div class="usage-card-context">Une convention collective, un accord d'entreprise, une politique interne. Tu dois comprendre vite ce qui te concerne.</div>
-
           <div class="reflect-block step-block-gap" id="reflect-3b">
             <div class="reflect-label">AVANT L'IA &middot; RÉFLÉCHIS D'ABORD</div>
             <div class="reflect-question">Quand tu reçois un document RH de 40 pages, quelle est ta première réaction&nbsp;?</div>
-            <div class="reflect-hint">2-3 lignes suffisent. Pas de bonne ou mauvaise réponse. Juste ta pensée.</div>
-            <textarea class="reflect-textarea" id="reflect-textarea-3b" placeholder="Sois honnête. Tout le monde a la même réaction au début..." oninput="updateReflect('3b')"></textarea>
-            <div class="reflect-counter" id="reflect-counter-3b">0 / 50 minimum</div>
-            <button class="reveal-prompt-btn" id="reveal-btn-3b" onclick="revealPrompt('3b')">Voir le prompt &rarr;</button>
+            <div class="reflect-hint">Sois honnête. <em>Le bouton se déverrouille dans 90 secondes.</em></div>
+            <textarea class="reflect-textarea" id="reflect-textarea-3b" placeholder="Sois honnête. Tout le monde a la même réaction au début..." oninput="onReflectInput('3b')" onfocus="startReflectTimer('3b')"></textarea>
+            <div class="timer-row" id="timer-row-3b">
+              <div class="timer-ring-wrap">
+                <svg class="timer-ring-svg" width="52" height="52" viewBox="0 0 52 52">
+                  <circle class="timer-ring-track" cx="26" cy="26" r="22"/>
+                  <circle class="timer-ring-fill" id="timer-fill-3b" cx="26" cy="26" r="22"/>
+                </svg>
+                <div class="timer-ring-text" id="timer-text-3b">1:30</div>
+              </div>
+              <div class="timer-msg" id="timer-msg-3b"><span class="timer-italic">Réfléchis vraiment.</span> L'IA peut attendre. Toi, tu ne dois pas.</div>
+            </div>
+            <div class="analysis-sequence" id="analysis-3b"></div>
+            <button class="reveal-prompt-btn" id="reveal-btn-3b" onclick="revealPrompt('3b')">Voir le prompt →</button>
           </div>
-
           <div class="reflect-revealed-note" id="reflect-note-3b">Maintenant compare avec ta réflexion. Qu'est-ce que le contexte change ? Qu'est-ce que l'IA a vu que tu n'avais pas formulé ? C'est ça, apprendre à penser avec l'IA.</div>
-
           <div id="prompt-section-3b" class="prompt-hidden">
             <div class="rgpd-inline">Anonymise d'abord : remplace les noms par des initiales ou des rôles.</div>
             <div class="usage-prompt-block">
@@ -1709,18 +1593,25 @@ Indique ce que ça change concrètement dans mon quotidien.</div>
             </div>
           </div>
           <div class="usage-card-context">Ton manager te demande d'annoncer quelque chose à l'équipe. Tu veux que ça sonne vrai, pas corporate.</div>
-
           <div class="reflect-block step-block-gap" id="reflect-3c">
             <div class="reflect-label">AVANT L'IA &middot; RÉFLÉCHIS D'ABORD</div>
             <div class="reflect-question">Qu'est-ce qui rend une communication interne vraiment efficace selon toi&nbsp;?</div>
-            <div class="reflect-hint">2-3 lignes suffisent. Pas de bonne ou mauvaise réponse. Juste ta pensée.</div>
-            <textarea class="reflect-textarea" id="reflect-textarea-3c" placeholder="Pense à une com interne que tu as trouvée bonne ou mauvaise..." oninput="updateReflect('3c')"></textarea>
-            <div class="reflect-counter" id="reflect-counter-3c">0 / 50 minimum</div>
-            <button class="reveal-prompt-btn" id="reveal-btn-3c" onclick="revealPrompt('3c')">Voir le prompt &rarr;</button>
+            <div class="reflect-hint">Pense à une com que tu as trouvée bonne ou mauvaise. <em>Le bouton se déverrouille dans 90 secondes.</em></div>
+            <textarea class="reflect-textarea" id="reflect-textarea-3c" placeholder="Pense à une com interne que tu as trouvée bonne ou mauvaise..." oninput="onReflectInput('3c')" onfocus="startReflectTimer('3c')"></textarea>
+            <div class="timer-row" id="timer-row-3c">
+              <div class="timer-ring-wrap">
+                <svg class="timer-ring-svg" width="52" height="52" viewBox="0 0 52 52">
+                  <circle class="timer-ring-track" cx="26" cy="26" r="22"/>
+                  <circle class="timer-ring-fill" id="timer-fill-3c" cx="26" cy="26" r="22"/>
+                </svg>
+                <div class="timer-ring-text" id="timer-text-3c">1:30</div>
+              </div>
+              <div class="timer-msg" id="timer-msg-3c"><span class="timer-italic">Réfléchis vraiment.</span> L'IA peut attendre. Toi, tu ne dois pas.</div>
+            </div>
+            <div class="analysis-sequence" id="analysis-3c"></div>
+            <button class="reveal-prompt-btn" id="reveal-btn-3c" onclick="revealPrompt('3c')">Voir le prompt →</button>
           </div>
-
           <div class="reflect-revealed-note" id="reflect-note-3c">Maintenant compare avec ta réflexion. Qu'est-ce que le contexte change ? Qu'est-ce que l'IA a vu que tu n'avais pas formulé ? C'est ça, apprendre à penser avec l'IA.</div>
-
           <div id="prompt-section-3c" class="prompt-hidden">
             <div class="usage-prompt-block">
               <div class="template-header" style="margin-bottom:12px;">
@@ -1735,39 +1626,42 @@ Mon manager me demande d'annoncer ceci à l'équipe :
 Rédige un email adapté au ton de notre entreprise.
 Direct, humain, sans jargon RH inutile.</div>
             </div>
-            <div class="tip-block">
-              <div class="tip-text">Si le résultat sonne trop formel, ajoute : "Rends ça plus direct, on ne parle pas comme ça chez nous." L'itération, c'est normal.</div>
-            </div>
+            <div class="tip-block"><div class="tip-text">Si le résultat sonne trop formel, ajoute : "Rends ça plus direct, on ne parle pas comme ça chez nous." L'itération, c'est normal.</div></div>
           </div>
         </div>
-
       </div>
 
       <div class="bilan-block">
         <div class="bilan-text">Tu viens de construire ta bibliothèque de prompts. Sauvegarde-les dans ton fichier MES PROMPTS dans Notion. C'est ton capital.</div>
       </div>
-
       <button class="step-btn" onclick="openDefi(3)">J'ai mes 3 prompts, on construit la routine &rarr;</button>
     </div>
 
-    <!-- ===== STEP 4 ===== -->
+    <!-- STEP 4 -->
     <div class="step" id="step-4">
       <div class="eyebrow">LIVRABLE &middot; 1H</div>
       <h2 class="step-title">Ta routine hebdomadaire, activable dès lundi</h2>
       <p class="step-intro">Le plan gratuit de ton IA ne permet pas une synthèse automatique chaque matin. Mais il permet quelque chose de plus puissant : une veille qui te ressemble.</p>
-
       <div class="context-note">La plupart des RH lisent les mêmes newsletters que tout le monde. Toi, tu vas construire ta propre lecture de l'actualité, filtrée par ton contexte, tes missions, ta réalité d'alternant. Chaque lundi matin. En 5 minutes.</div>
 
-      <!-- REFLECT -->
       <div class="reflect-block step-block-gap" id="reflect-4">
         <div class="reflect-label">AVANT L'IA &middot; RÉFLÉCHIS D'ABORD</div>
         <div class="reflect-question">Comment tu te tiens informé sur l'actualité RH aujourd'hui&nbsp;?</div>
-        <div class="reflect-hint">2-3 lignes suffisent. Pas de bonne ou mauvaise réponse. Juste ta pensée.</div>
-        <textarea class="reflect-textarea" id="reflect-textarea-4" placeholder="LinkedIn, newsletters, rien du tout... sois honnête." oninput="updateReflect(4)"></textarea>
-        <div class="reflect-counter" id="reflect-counter-4">0 / 50 minimum</div>
-        <button class="reveal-prompt-btn" id="reveal-btn-4" onclick="revealPrompt(4)">Voir le prompt &rarr;</button>
+        <div class="reflect-hint">LinkedIn, newsletters, rien du tout... <em>Le bouton se déverrouille dans 90 secondes.</em></div>
+        <textarea class="reflect-textarea" id="reflect-textarea-4" placeholder="LinkedIn, newsletters, rien du tout... sois honnête." oninput="onReflectInput(4)" onfocus="startReflectTimer(4)"></textarea>
+        <div class="timer-row" id="timer-row-4">
+          <div class="timer-ring-wrap">
+            <svg class="timer-ring-svg" width="52" height="52" viewBox="0 0 52 52">
+              <circle class="timer-ring-track" cx="26" cy="26" r="22"/>
+              <circle class="timer-ring-fill" id="timer-fill-4" cx="26" cy="26" r="22"/>
+            </svg>
+            <div class="timer-ring-text" id="timer-text-4">1:30</div>
+          </div>
+          <div class="timer-msg" id="timer-msg-4"><span class="timer-italic">Réfléchis vraiment.</span> L'IA peut attendre. Toi, tu ne dois pas.</div>
+        </div>
+        <div class="analysis-sequence" id="analysis-4"></div>
+        <button class="reveal-prompt-btn" id="reveal-btn-4" onclick="revealPrompt(4)">Voir le prompt →</button>
       </div>
-
       <div class="reflect-revealed-note" id="reflect-note-4">Maintenant compare avec ta réflexion. Qu'est-ce que le contexte change ? Qu'est-ce que l'IA a vu que tu n'avais pas formulé ? C'est ça, apprendre à penser avec l'IA.</div>
 
       <div id="prompt-section-4" class="prompt-hidden">
@@ -1785,15 +1679,14 @@ Pour chaque sujet :
 - Les 3 informations essentielles à connaître
 - Ce que ça change concrètement pour un RH junior en 2026
 - Une question que je devrais poser à mon manager ou mon tuteur</div>
-          <div class="veille-note">Ce prompt, tu le lances chaque lundi. Tu changes juste les 3 sujets selon ta semaine. C'est ta veille RH personnalisée.</div>
+          <div class="veille-note">Ce prompt, tu le lances chaque lundi. Tu changes juste les 3 sujets selon ta semaine.</div>
         </div>
-
         <div class="ritual-block step-block-gap">
           <div class="ritual-title">Le lundi matin Product HR</div>
           <ul class="ritual-list">
             <li>08h00 : tu ouvres ton IA</li>
             <li>08h02 : tu colles ton contexte</li>
-            <li>08h03 : tu colles ton prompt de veille avec les 3 sujets de la semaine</li>
+            <li>08h03 : tu colles ton prompt de veille avec les 3 sujets</li>
             <li>08h07 : tu as une synthèse sur mesure que personne d'autre dans ta promo n'a</li>
             <li>08h10 : tu es prêt(e)</li>
           </ul>
@@ -1803,27 +1696,14 @@ Pour chaque sujet :
 
       <div class="livrables-block step-block-gap">
         <div class="livrables-title">TU REPARS AVEC</div>
-        <div class="livrable-item">
-          <span class="livrable-check">&#10003;</span>
-          <span>Ton fichier contexte personnalisé, prêt à l'emploi</span>
-        </div>
-        <div class="livrable-item">
-          <span class="livrable-check">&#10003;</span>
-          <span>3 prompts RH activables dès lundi matin</span>
-        </div>
-        <div class="livrable-item">
-          <span class="livrable-check">&#10003;</span>
-          <span>Ta routine de veille hebdomadaire sur mesure</span>
-        </div>
-        <div class="livrable-item">
-          <span class="livrable-check">&#10003;</span>
-          <span>La règle d'or : contexte d'abord, toujours, dans chaque conversation</span>
-        </div>
+        <div class="livrable-item"><span class="livrable-check">&#10003;</span><span>Ton fichier contexte personnalisé, prêt à l'emploi</span></div>
+        <div class="livrable-item"><span class="livrable-check">&#10003;</span><span>3 prompts RH activables dès lundi matin</span></div>
+        <div class="livrable-item"><span class="livrable-check">&#10003;</span><span>Ta routine de veille hebdomadaire sur mesure</span></div>
+        <div class="livrable-item"><span class="livrable-check">&#10003;</span><span>La règle d'or : contexte d'abord, toujours, dans chaque conversation</span></div>
       </div>
-
       <div class="final-cta">
-        <button class="final-btn" id="final-btn" onclick="showFinal()">Formation terminée. Garde ce lien &rarr;</button>
-        <div class="final-note">Ce lien reste accessible. Reviens quand tu veux, autant de fois que tu veux.</div>
+        <button class="final-btn" onclick="showFinal()">Formation terminée. Voir mon profil &rarr;</button>
+        <div class="final-note">Ce lien reste accessible. Reviens quand tu veux.</div>
       </div>
     </div>
 
@@ -1837,18 +1717,29 @@ Pour chaque sujet :
 
 </div>
 
-<!-- =============================
-     MINI-DÉFI OVERLAYS
-============================= -->
+<!-- ===== DÉFI OVERLAYS ===== -->
 <div class="defi-overlay" id="defi-overlay-1">
+  <div class="defi-flash" id="defi-flash-1"></div>
   <div class="defi-inner">
-    <div class="defi-label">MINI-DÉFI</div>
-    <div class="defi-sublabel">30 secondes &middot; Une seule bonne réponse</div>
+    <div class="defi-top-row">
+      <div class="defi-top-left">
+        <div class="defi-label">MINI-DÉFI</div>
+        <div class="defi-sublabel">Une seule bonne réponse</div>
+      </div>
+      <div class="defi-countdown-ring">
+        <svg class="defi-countdown-svg" width="56" height="56" viewBox="0 0 56 56">
+          <circle class="defi-countdown-track" cx="28" cy="28" r="24"/>
+          <circle class="defi-countdown-fill" id="defi-fill-1" cx="28" cy="28" r="24"/>
+        </svg>
+        <div class="defi-countdown-num" id="defi-num-1">30</div>
+      </div>
+    </div>
     <div class="defi-question">Quelle est la vraie différence entre les deux prompts de la démo&nbsp;?</div>
+    <div class="defi-timeout-msg" id="defi-timeout-1">Temps écoulé. Voici la bonne réponse ↓</div>
     <div class="defi-choices" id="defi-choices-1">
-      <button class="defi-choice" onclick="answerDefi(1, 0)">Le deuxième est plus long et plus détaillé</button>
-      <button class="defi-choice" onclick="answerDefi(1, 1)">Le deuxième donne le contexte réel de l'entreprise</button>
-      <button class="defi-choice" onclick="answerDefi(1, 2)">Le deuxième utilise un vocabulaire plus professionnel</button>
+      <button class="defi-choice" onclick="answerDefi(1,0)">Le deuxième est plus long et plus détaillé</button>
+      <button class="defi-choice" onclick="answerDefi(1,1)">Le deuxième donne le contexte réel de l'entreprise</button>
+      <button class="defi-choice" onclick="answerDefi(1,2)">Le deuxième utilise un vocabulaire plus professionnel</button>
     </div>
     <div class="defi-feedback" id="defi-feedback-1"></div>
     <div>
@@ -1859,14 +1750,27 @@ Pour chaque sujet :
 </div>
 
 <div class="defi-overlay" id="defi-overlay-2">
+  <div class="defi-flash" id="defi-flash-2"></div>
   <div class="defi-inner">
-    <div class="defi-label">MINI-DÉFI</div>
-    <div class="defi-sublabel">30 secondes &middot; Une seule bonne réponse</div>
+    <div class="defi-top-row">
+      <div class="defi-top-left">
+        <div class="defi-label">MINI-DÉFI</div>
+        <div class="defi-sublabel">Une seule bonne réponse</div>
+      </div>
+      <div class="defi-countdown-ring">
+        <svg class="defi-countdown-svg" width="56" height="56" viewBox="0 0 56 56">
+          <circle class="defi-countdown-track" cx="28" cy="28" r="24"/>
+          <circle class="defi-countdown-fill" id="defi-fill-2" cx="28" cy="28" r="24"/>
+        </svg>
+        <div class="defi-countdown-num" id="defi-num-2">30</div>
+      </div>
+    </div>
     <div class="defi-question">Tu veux uploader un compte-rendu d'entretien dans ton IA. Quelle est ta première action&nbsp;?</div>
+    <div class="defi-timeout-msg" id="defi-timeout-2">Temps écoulé. Voici la bonne réponse ↓</div>
     <div class="defi-choices" id="defi-choices-2">
-      <button class="defi-choice" onclick="answerDefi(2, 0)">Je l'uploade directement, c'est plus rapide</button>
-      <button class="defi-choice" onclick="answerDefi(2, 1)">J'anonymise les noms et données sensibles avant</button>
-      <button class="defi-choice" onclick="answerDefi(2, 2)">Je demande la permission à mon DRH d'abord</button>
+      <button class="defi-choice" onclick="answerDefi(2,0)">Je l'uploade directement, c'est plus rapide</button>
+      <button class="defi-choice" onclick="answerDefi(2,1)">J'anonymise les noms et données sensibles avant</button>
+      <button class="defi-choice" onclick="answerDefi(2,2)">Je demande la permission à mon DRH d'abord</button>
     </div>
     <div class="defi-feedback" id="defi-feedback-2"></div>
     <div>
@@ -1877,14 +1781,27 @@ Pour chaque sujet :
 </div>
 
 <div class="defi-overlay" id="defi-overlay-3">
+  <div class="defi-flash" id="defi-flash-3"></div>
   <div class="defi-inner">
-    <div class="defi-label">MINI-DÉFI</div>
-    <div class="defi-sublabel">30 secondes &middot; Une seule bonne réponse</div>
+    <div class="defi-top-row">
+      <div class="defi-top-left">
+        <div class="defi-label">MINI-DÉFI</div>
+        <div class="defi-sublabel">Une seule bonne réponse</div>
+      </div>
+      <div class="defi-countdown-ring">
+        <svg class="defi-countdown-svg" width="56" height="56" viewBox="0 0 56 56">
+          <circle class="defi-countdown-track" cx="28" cy="28" r="24"/>
+          <circle class="defi-countdown-fill" id="defi-fill-3" cx="28" cy="28" r="24"/>
+        </svg>
+        <div class="defi-countdown-num" id="defi-num-3">30</div>
+      </div>
+    </div>
     <div class="defi-question">Tu viens de créer 3 prompts qui fonctionnent. Quelle est la pire chose que tu puisses faire&nbsp;?</div>
+    <div class="defi-timeout-msg" id="defi-timeout-3">Temps écoulé. Voici la bonne réponse ↓</div>
     <div class="defi-choices" id="defi-choices-3">
-      <button class="defi-choice" onclick="answerDefi(3, 0)">Les partager avec mes collègues</button>
-      <button class="defi-choice" onclick="answerDefi(3, 1)">Ne pas les sauvegarder et compter sur ma mémoire</button>
-      <button class="defi-choice" onclick="answerDefi(3, 2)">Les utiliser trop souvent</button>
+      <button class="defi-choice" onclick="answerDefi(3,0)">Les partager avec mes collègues</button>
+      <button class="defi-choice" onclick="answerDefi(3,1)">Ne pas les sauvegarder et compter sur ma mémoire</button>
+      <button class="defi-choice" onclick="answerDefi(3,2)">Les utiliser trop souvent</button>
     </div>
     <div class="defi-feedback" id="defi-feedback-3"></div>
     <div>
@@ -1894,47 +1811,92 @@ Pour chaque sujet :
   </div>
 </div>
 
-<!-- =============================
-     SCREEN FINAL
-============================= -->
+<!-- ===== STEP UNLOCK OVERLAY ===== -->
+<div id="step-unlock-overlay">
+  <div class="unlock-eyebrow" id="unlock-eyebrow"></div>
+  <div class="unlock-title" id="unlock-title"></div>
+  <div class="unlock-bar"><div class="unlock-bar-fill" id="unlock-bar-fill"></div></div>
+</div>
+
+<!-- ===== STREAK OVERLAY ===== -->
+<div id="streak-overlay">
+  <div>
+    <div class="streak-overlay-text">🔥 En feu !</div>
+    <div class="streak-overlay-sub">Deux bonnes réponses d'affilée.</div>
+  </div>
+</div>
+
+<!-- ===== FINAL ===== -->
 <div id="screen-final">
   <div class="confetti-container" id="confetti-container"></div>
   <div class="final-inner">
     <div class="final-logo">ED.</div>
-    <div class="final-headline" id="final-headline">Tu viens de passer de RH à Product HR.</div>
-    <div class="final-score-badge" id="final-score-badge">&#10022; 0 pts sur 650 possibles</div>
-    <div class="final-tagline">Ce n'est pas la fin de la formation. C'est le début d'une façon différente de travailler.</div>
+    <div class="final-profile-badge" id="final-profile-badge"></div>
+    <div class="final-headline" id="final-headline"></div>
+    <div class="final-score-badge" id="final-score-badge"></div>
+    <div class="final-tagline" id="final-tagline"></div>
+    <div class="final-sub" id="final-sub"></div>
     <div class="final-credit">Emmanuel Di Marco &middot; Product HR &middot; <a href="https://emmanueldimarco.fr" target="_blank" style="color:var(--muted-lt);text-decoration:none;">emmanueldimarco.fr</a></div>
-    <button class="final-back-btn" onclick="goBackToStart()">Retourner au début</button>
+    <button class="final-back-btn" onclick="goBackToStart()">Recommencer depuis le début</button>
   </div>
 </div>
 
 <script>
 // ========================
-// CONSTANTS & DATA
+// CONSTANTS
 // ========================
 const PASSWORD = 'productRH2026';
+const TIMER_DURATION = 90;
+const DEFI_DURATION = 30;
+const MAX_SCORE = 650;
 
 const WELCOME_MESSAGES = [
-  {
-    title: 'Dans 3 ans, deux types de RH existeront.',
-    body: 'Ceux qui auront appris à confier à l\'IA ce qu\'elle fait mieux qu\'eux. Et ceux qui auront été remplacés par quelqu\'un qui l\'a fait.\nAujourd\'hui, tu construis ta première brique.'
-  },
-  {
-    title: 'L\'IA ne va pas remplacer les RH.',
-    body: 'Elle va remplacer les RH qui ne savent pas s\'en servir. Ce n\'est pas une menace. C\'est une fenêtre qui s\'ouvre, maintenant, pour toi.\nEn 3h30, tu passes de l\'autre côté.'
-  },
-  {
-    title: 'Le métier RH ne disparaît pas.',
-    body: 'Il se transforme, vite, maintenant, sous tes yeux. Les meilleurs RH de demain ne travailleront pas plus. Ils travailleront différemment. Avec de meilleurs outils. Et une pensée que peu ont encore.\nAujourd\'hui, on commence.'
-  }
+  { title: 'Dans 3 ans, deux types de RH existeront.', body: 'Ceux qui auront appris à confier à l\'IA ce qu\'elle fait mieux qu\'eux. Et ceux qui auront été remplacés par quelqu\'un qui l\'a fait.\nAujourd\'hui, tu construis ta première brique.' },
+  { title: 'L\'IA ne va pas remplacer les RH.', body: 'Elle va remplacer les RH qui ne savent pas s\'en servir. Ce n\'est pas une menace. C\'est une fenêtre qui s\'ouvre, maintenant, pour toi.\nEn 3h30, tu passes de l\'autre côté.' },
+  { title: 'Le métier RH ne disparaît pas.', body: 'Il se transforme, vite, maintenant, sous tes yeux. Les meilleurs RH de demain ne travailleront pas plus. Ils travailleront différemment. Avec de meilleurs outils. Et une pensée que peu ont encore.\nAujourd\'hui, on commence.' }
 ];
 
 const DEFI_DATA = {
-  1: { correct: 1, goodMsg: 'Exactement. La longueur ne change rien. Le contexte change tout. Ton IA est aussi précise que la réalité que tu lui donnes.', badMsg: 'Pas tout à fait. La longueur et le vocabulaire aident, mais ce qui transforme le résultat c\'est le contexte réel. Ton IA ne peut pas deviner où tu travailles et ce que tu traverses.' },
+  1: { correct: 1, goodMsg: 'Exactement. La longueur ne change rien. Le contexte change tout. Ton IA est aussi précise que la réalité que tu lui donnes.', badMsg: 'Pas tout à fait. La longueur et le vocabulaire aident, mais ce qui transforme le résultat c\'est le contexte réel. Ton IA ne peut pas deviner où tu travailles.' },
   2: { correct: 1, goodMsg: 'Bon réflexe. Tu penses déjà comme un RH augmenté et responsable. L\'efficacité ne justifie pas d\'exposer les données de tes collaborateurs.', badMsg: 'C\'est un risque réel. Les données RH sont sensibles par nature. Avant tout upload : anonymise. Toujours.' },
   3: { correct: 1, goodMsg: 'Exactement. Un prompt non sauvegardé est un prompt perdu. Ta bibliothèque de prompts, c\'est ton capital. Traite-la comme tel.', badMsg: 'Partager et utiliser souvent, c\'est même conseillé. Ce qui tue la valeur c\'est de ne pas garder trace de ce qui fonctionne.' }
 };
+
+const STEP_NAMES = ['', 'Comprendre le contexte', 'Construire ton identité IA', 'Les 3 prompts du lundi', 'Ta routine hebdomadaire'];
+
+const ANALYSIS_STEPS = [
+  { icon: '📊', text: 'Analyse de ta réflexion...' },
+  { icon: '🔍', text: 'Identification des patterns...' },
+  { icon: '✨', text: 'Construction du prompt optimal...' }
+];
+
+const DEMO_CONTENT = {
+  bad: {
+    prompt: '> Aide-moi à rédiger une offre d\'emploi pour un HRBP',
+    response: 'Offre d\'emploi — HRBP\nEntreprise : [Nom de l\'entreprise]\nNous recherchons un(e) HRBP expérimenté(e)...\nMissions : accompagner les managers, gérer les talents, piloter la performance...\nProfil : 5 ans d\'expérience minimum, master RH...',
+    msg: 'Générique. Interchangeable. Inutilisable tel quel.',
+    msgColor: 'rgba(255,80,80,.8)'
+  },
+  good: {
+    prompt: '> Je suis RH chez Spendesk, scale-up fintech 300 personnes,\n  culture très directe, on cherche un HRBP\n  pour accompagner nos 12 managers sur la performance\n  avant notre Serie C.',
+    response: 'HRBP · Spendesk\nRejoins l\'équipe qui prépare notre prochain chapitre.\n\nTu n\'es pas là pour gérer des process.\nTu es là pour armer 12 managers qui vont traverser\nune accélération qu\'ils n\'ont jamais vécue.\n\nCe qu\'on attend de toi :\n· Que tu sois dans les réunions CODIR, pas en dehors\n· Que tu parles cash, pas RH\n· Que tu construises avant que ça brûle',
+    msg: 'Adapté. Différenciant. Utilisable immédiatement.',
+    msgColor: 'rgba(76,175,80,.9)'
+  }
+};
+
+// ========================
+// STATE
+// ========================
+let currentStep = 1;
+let streak = 0;
+let reflectTimers = {}; // id -> { started, interval, remaining, done }
+let currentDefi = null;
+let defiTimerInterval = null;
+let defiTimerRemaining = 0;
+let currentTab = 'bad';
+let typingTimeout = null;
+let unlockPending = null;
 
 // ========================
 // UTILS
@@ -1947,14 +1909,38 @@ function showScreen(id) {
 }
 
 function getScore() { return parseInt(localStorage.getItem('starter_score') || '0'); }
-function addScore(pts) {
+
+function addScore(pts, x, y) {
   const s = getScore() + pts;
   localStorage.setItem('starter_score', s);
   updateScoreDisplay();
+  updateXPBar();
+  if (x !== undefined && y !== undefined) spawnScoreFloat(pts, x, y);
 }
+
 function updateScoreDisplay() {
   const el = document.getElementById('score-display');
-  if (el) el.textContent = '✦ ' + getScore() + ' pts';
+  if (el) {
+    el.textContent = '✦ ' + getScore() + ' pts';
+    el.classList.remove('bump');
+    void el.offsetWidth;
+    el.classList.add('bump');
+  }
+}
+
+function updateXPBar() {
+  const fill = document.getElementById('xp-bar-fill');
+  if (fill) fill.style.width = Math.min(100, (getScore() / MAX_SCORE) * 100) + '%';
+}
+
+function spawnScoreFloat(pts, x, y) {
+  const el = document.createElement('div');
+  el.className = 'score-float';
+  el.textContent = '+' + pts;
+  el.style.left = (x || window.innerWidth / 2) + 'px';
+  el.style.top = (y || window.innerHeight / 2) + 'px';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1600);
 }
 
 function copyText(btn, targetId) {
@@ -1978,7 +1964,7 @@ function copyText(btn, targetId) {
 }
 
 // ========================
-// SCREEN 1 — PASSWORD
+// PASSWORD
 // ========================
 const pwInput = document.getElementById('pw-input');
 const pwError = document.getElementById('pw-error');
@@ -1999,7 +1985,7 @@ document.getElementById('pw-btn').addEventListener('click', tryPassword);
 pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryPassword(); });
 
 // ========================
-// SCREEN PRENOM
+// PRENOM
 // ========================
 function enterPrenom() {
   const saved = localStorage.getItem('starter_prenom');
@@ -2010,7 +1996,7 @@ function enterPrenom() {
 
 function submitPrenom() {
   const val = document.getElementById('prenom-input').value.trim();
-  if (!val) { document.getElementById('prenom-input').classList.add('shake'); setTimeout(() => document.getElementById('prenom-input').classList.remove('shake'), 400); return; }
+  if (!val) return;
   localStorage.setItem('starter_prenom', val);
   enterWelcome();
 }
@@ -2018,19 +2004,16 @@ document.getElementById('prenom-btn').addEventListener('click', submitPrenom);
 document.getElementById('prenom-input').addEventListener('keydown', e => { if (e.key === 'Enter') submitPrenom(); });
 
 // ========================
-// SCREEN WELCOME
+// WELCOME
 // ========================
 function enterWelcome() {
   let idx = localStorage.getItem('starter_welcome_idx');
-  if (idx === null) {
-    idx = Math.floor(Math.random() * 3);
-    localStorage.setItem('starter_welcome_idx', idx);
-  }
+  if (idx === null) { idx = Math.floor(Math.random() * 3); localStorage.setItem('starter_welcome_idx', idx); }
   idx = parseInt(idx);
   const msg = WELCOME_MESSAGES[idx];
   const prenom = localStorage.getItem('starter_prenom') || '';
 
-  document.getElementById('welcome-prenom').textContent = prenom ? prenom + ',' : '';
+  document.getElementById('welcome-prenom').textContent = prenom ? prenom + '.' : '';
   document.getElementById('welcome-title').textContent = msg.title;
   document.getElementById('welcome-body').textContent = msg.body;
 
@@ -2045,37 +2028,36 @@ function enterWelcome() {
   setTimeout(() => {
     dot.style.display = 'none';
     btn.classList.add('visible');
-  }, 3000);
+  }, 2800);
 }
 
-document.getElementById('welcome-btn').addEventListener('click', () => enterCourse());
+document.getElementById('welcome-btn').addEventListener('click', enterCourse);
 
 // ========================
-// SCREEN COURSE
+// COURSE
 // ========================
-let currentStep = 1;
-
 function enterCourse() {
   showScreen('screen-course');
   updateScoreDisplay();
+  updateXPBar();
   const saved = parseInt(localStorage.getItem('starter_progress') || '1');
   currentStep = saved;
-  showStep(currentStep);
+  showStep(currentStep, false);
 }
 
-function showStep(n) {
+function showStep(n, animated) {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   const el = document.getElementById('step-' + n);
   if (el) el.classList.add('active');
   updateProgress(n);
   localStorage.setItem('starter_progress', n);
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  if (n === 1) { setTimeout(() => startDemo('bad'), 400); }
+  if (n === 1) setTimeout(() => startDemo('bad'), 400);
 }
 
 function goToStep(n) {
   currentStep = n;
-  showStep(n);
+  showStep(n, true);
   addScore(100);
 }
 
@@ -2089,59 +2071,168 @@ function updateProgress(n) {
 }
 
 // ========================
-// REFLECT BLOCKS
+// REFLECT TIMER
 // ========================
-function updateReflect(id) {
-  const ta = document.getElementById('reflect-textarea-' + id);
-  const counter = document.getElementById('reflect-counter-' + id);
-  const btn = document.getElementById('reveal-btn-' + id);
-  const len = ta.value.trim().length;
-  counter.textContent = len + ' / 50 minimum';
-  if (len >= 50) {
+function startReflectTimer(id) {
+  const key = String(id);
+  if (reflectTimers[key] && reflectTimers[key].started) return; // already running
+
+  reflectTimers[key] = { started: true, remaining: TIMER_DURATION, done: false, interval: null };
+
+  const updateDisplay = () => {
+    const t = reflectTimers[key];
+    const fill = document.getElementById('timer-fill-' + key);
+    const text = document.getElementById('timer-text-' + key);
+    const msg = document.getElementById('timer-msg-' + key);
+    const btn = document.getElementById('reveal-btn-' + key);
+
+    if (!fill || !text) return;
+
+    // Ring animation
+    const circumference = 138;
+    const pct = t.remaining / TIMER_DURATION;
+    fill.style.strokeDashoffset = circumference * (1 - pct);
+
+    const mins = Math.floor(t.remaining / 60);
+    const secs = t.remaining % 60;
+    text.textContent = mins + ':' + String(secs).padStart(2, '0');
+
+    const urgent = t.remaining <= 15;
+    fill.classList.toggle('urgent', urgent);
+    text.classList.toggle('urgent', urgent);
+
+    if (t.remaining > 0) {
+      if (msg) {
+        if (t.remaining <= 30) {
+          msg.innerHTML = '<span class="timer-italic">Plus que ' + t.remaining + ' secondes.</span> Continue d\'écrire.';
+        } else if (t.remaining <= 60) {
+          msg.innerHTML = 'Bien. <span class="timer-italic">Continue à approfondir ta pensée.</span>';
+        }
+      }
+      if (btn) btn.textContent = 'Réfléchis encore (' + t.remaining + 's) →';
+    } else {
+      // Timer done
+      t.done = true;
+      clearInterval(t.interval);
+      text.textContent = '✓';
+      text.classList.remove('urgent');
+      fill.style.stroke = 'var(--sage)';
+      if (msg) msg.innerHTML = '<strong>Temps écoulé.</strong> Tu peux maintenant voir le prompt.';
+      checkReflectUnlock(key);
+    }
+  };
+
+  reflectTimers[key].interval = setInterval(() => {
+    reflectTimers[key].remaining--;
+    updateDisplay();
+  }, 1000);
+
+  updateDisplay();
+}
+
+function onReflectInput(id) {
+  checkReflectUnlock(String(id));
+}
+
+function checkReflectUnlock(key) {
+  const t = reflectTimers[key];
+  const ta = document.getElementById('reflect-textarea-' + key);
+  const btn = document.getElementById('reveal-btn-' + key);
+  if (!btn || !ta) return;
+
+  const timerDone = t && t.done;
+  const hasText = ta.value.trim().length >= 20;
+
+  if (timerDone && hasText) {
     btn.classList.add('enabled');
-  } else {
-    btn.classList.remove('enabled');
+    btn.textContent = 'Voir le prompt →';
+  } else if (!timerDone && t && t.started) {
+    const r = t.remaining;
+    btn.textContent = r > 0 ? 'Réfléchis encore (' + r + 's) →' : 'Voir le prompt →';
   }
 }
 
+// ========================
+// REVEAL SEQUENCE
+// ========================
 function revealPrompt(id) {
-  const btn = document.getElementById('reveal-btn-' + id);
-  if (!btn.classList.contains('enabled')) return;
-  const section = document.getElementById('prompt-section-' + id);
-  const note = document.getElementById('reflect-note-' + id);
+  const key = String(id);
+  const btn = document.getElementById('reveal-btn-' + key);
+  if (!btn || !btn.classList.contains('enabled')) return;
+  btn.classList.remove('enabled');
+  btn.classList.add('used');
+  btn.textContent = 'Prompt débloqué ✓';
+
+  // Show analysis sequence
+  const seq = document.getElementById('analysis-' + key);
+  if (seq) {
+    seq.classList.add('active');
+    seq.innerHTML = ANALYSIS_STEPS.map((s, i) =>
+      `<div class="seq-line" id="seq-${key}-${i}"><span class="seq-icon">${s.icon}</span><span>${s.text}</span></div>`
+    ).join('');
+
+    // Animate through steps
+    let step = 0;
+    const next = () => {
+      if (step > 0) {
+        const prev = document.getElementById('seq-' + key + '-' + (step-1));
+        if (prev) { prev.classList.remove('current'); prev.classList.add('done'); prev.querySelector('.seq-icon').innerHTML = '✓'; }
+      }
+      if (step < ANALYSIS_STEPS.length) {
+        const cur = document.getElementById('seq-' + key + '-' + step);
+        if (cur) {
+          cur.classList.add('current');
+          cur.querySelector('.seq-icon').innerHTML = '<span class="seq-spin">⟳</span>';
+        }
+        step++;
+        setTimeout(next, step === 1 ? 1200 : step === 2 ? 900 : 700);
+      } else {
+        // All done — hide sequence, reveal content
+        setTimeout(() => {
+          seq.classList.remove('active');
+          doReveal(key);
+        }, 400);
+      }
+    };
+    next();
+  } else {
+    doReveal(key);
+  }
+}
+
+function doReveal(key) {
+  const section = document.getElementById('prompt-section-' + key);
+  const note = document.getElementById('reflect-note-' + key);
+  if (note) note.style.display = 'block';
   if (section) {
     section.classList.remove('prompt-hidden');
     section.classList.add('prompt-visible');
+    // Typewriter effect on first text element found
+    const target = section.querySelector('.template-content, .usage-prompt-text, .veille-prompt');
+    if (target) {
+      const original = target.textContent;
+      target.textContent = '';
+      typewriter(target, original, 18);
+    }
   }
-  if (note) { note.style.display = 'block'; }
-  btn.disabled = true;
-  btn.textContent = 'Prompt débloqué ✓';
-  btn.style.opacity = '0.6';
-  btn.style.cursor = 'default';
   addScore(25);
 }
 
-// ========================
-// DEMO INTERACTIVE
-// ========================
-let currentTab = 'bad';
-let typingTimeout = null;
+function typewriter(el, text, speed) {
+  let i = 0;
+  const tick = () => {
+    if (i < text.length) {
+      el.textContent += text[i];
+      i++;
+      setTimeout(tick, speed + (text[i] === '\n' ? 40 : 0));
+    }
+  };
+  tick();
+}
 
-const DEMO_CONTENT = {
-  bad: {
-    prompt: '> Aide-moi à rédiger une offre d\'emploi pour un HRBP',
-    response: 'Offre d\'emploi — HRBP\nEntreprise : [Nom de l\'entreprise]\nNous recherchons un(e) HRBP expérimenté(e)...\nMissions : accompagner les managers, gérer les talents, piloter la performance...\nProfil : 5 ans d\'expérience minimum, master RH...',
-    msg: 'Générique. Interchangeable. Inutilisable tel quel.',
-    msgColor: 'rgba(255,80,80,.8)'
-  },
-  good: {
-    prompt: '> Je suis RH chez Spendesk, scale-up fintech 300 personnes,\n  culture très directe, on cherche un HRBP\n  pour accompagner nos 12 managers sur la performance\n  avant notre Serie C.',
-    response: 'HRBP · Spendesk\nRejoins l\'équipe qui prépare notre prochain chapitre.\n\nTu n\'es pas là pour gérer des process.\nTu es là pour armer 12 managers qui vont traverser\nune accélération qu\'ils n\'ont jamais vécue.\n\nCe qu\'on attend de toi :\n· Que tu sois dans les réunions CODIR, pas en dehors\n· Que tu parles cash, pas RH\n· Que tu construises avant que ça brûle',
-    msg: 'Adapté. Différenciant. Utilisable immédiatement.',
-    msgColor: 'rgba(76,175,80,.9)'
-  }
-};
-
+// ========================
+// DEMO
+// ========================
 function switchTab(tab) {
   currentTab = tab;
   document.getElementById('tab-bad').classList.toggle('active', tab === 'bad');
@@ -2156,6 +2247,7 @@ function startDemo(tab) {
   if (typingTimeout) { clearTimeout(typingTimeout); typingTimeout = null; }
   const terminal = document.getElementById('demo-terminal');
   const resultMsg = document.getElementById('demo-result-msg');
+  if (!terminal) return;
   const data = DEMO_CONTENT[tab];
   terminal.innerHTML = '';
   resultMsg.textContent = '';
@@ -2164,15 +2256,14 @@ function startDemo(tab) {
   const promptLines = data.prompt.split('\n');
   const responseLines = data.response.split('\n');
   let allChars = [];
-
   promptLines.forEach((line, li) => {
-    line.split('').forEach(ch => allChars.push({ ch, type: 'prompt', newline: false }));
-    if (li < promptLines.length - 1) allChars.push({ ch: '\n', type: 'prompt', newline: true });
+    line.split('').forEach(ch => allChars.push({ ch, type: 'prompt' }));
+    if (li < promptLines.length - 1) allChars.push({ ch: '\n', type: 'prompt' });
   });
   allChars.push({ ch: null, type: 'pause' });
   responseLines.forEach((line, li) => {
-    line.split('').forEach(ch => allChars.push({ ch, type: 'response', newline: false }));
-    if (li < responseLines.length - 1) allChars.push({ ch: '\n', type: 'response', newline: true });
+    line.split('').forEach(ch => allChars.push({ ch, type: 'response' }));
+    if (li < responseLines.length - 1) allChars.push({ ch: '\n', type: 'response' });
   });
 
   let promptSpan = document.createElement('span');
@@ -2180,30 +2271,20 @@ function startDemo(tab) {
   terminal.appendChild(promptSpan);
   let responseSpan = null;
   let idx = 0;
-  let paused = false;
 
   function typeNext() {
-    if (idx >= allChars.length) {
-      resultMsg.textContent = data.msg;
-      return;
-    }
-    const item = allChars[idx];
-    idx++;
-
+    if (idx >= allChars.length) { resultMsg.textContent = data.msg; return; }
+    const item = allChars[idx++];
     if (item.type === 'pause') {
-      paused = true;
-      typingTimeout = setTimeout(() => { paused = false; typeNext(); }, 800);
+      typingTimeout = setTimeout(typeNext, 800);
       return;
     }
-
     if (item.type === 'prompt') {
       if (item.ch === '\n') {
         promptSpan = document.createElement('span');
         promptSpan.className = 'terminal-line terminal-prompt-color';
         terminal.appendChild(promptSpan);
-      } else {
-        promptSpan.textContent += item.ch;
-      }
+      } else { promptSpan.textContent += item.ch; }
     } else {
       if (!responseSpan) {
         responseSpan = document.createElement('span');
@@ -2215,85 +2296,219 @@ function startDemo(tab) {
         responseSpan = document.createElement('span');
         responseSpan.className = 'terminal-line terminal-response-color';
         terminal.appendChild(responseSpan);
-      } else {
-        responseSpan.textContent += item.ch;
-      }
+      } else { responseSpan.textContent += item.ch; }
     }
-    typingTimeout = setTimeout(typeNext, 30);
+    typingTimeout = setTimeout(typeNext, 28);
   }
   typeNext();
 }
 
 // ========================
-// MINI-DÉFIS
+// DÉFIS
 // ========================
-let defiNextStep = { 1: 2, 2: 3, 3: 4 };
-
 function openDefi(n) {
   const overlay = document.getElementById('defi-overlay-' + n);
   if (overlay) overlay.classList.add('active');
+  currentDefi = n;
   resetDefi(n);
+  startDefiTimer(n);
 }
 
 function resetDefi(n) {
   const choices = document.querySelectorAll('#defi-choices-' + n + ' .defi-choice');
   choices.forEach(c => { c.classList.remove('correct', 'wrong'); c.disabled = false; });
   const fb = document.getElementById('defi-feedback-' + n);
-  fb.classList.remove('visible', 'wrong-msg'); fb.textContent = '';
+  fb.classList.remove('visible', 'correct-msg', 'wrong-msg'); fb.textContent = '';
   document.getElementById('defi-continue-' + n).classList.remove('visible');
   document.getElementById('defi-retry-' + n).classList.remove('visible');
+  document.getElementById('defi-timeout-' + n).classList.remove('visible');
+  const flash = document.getElementById('defi-flash-' + n);
+  if (flash) { flash.className = 'defi-flash'; }
+}
+
+function startDefiTimer(n) {
+  if (defiTimerInterval) clearInterval(defiTimerInterval);
+  defiTimerRemaining = DEFI_DURATION;
+  updateDefiTimer(n);
+  defiTimerInterval = setInterval(() => {
+    defiTimerRemaining--;
+    updateDefiTimer(n);
+    if (defiTimerRemaining <= 0) {
+      clearInterval(defiTimerInterval);
+      onDefiTimeout(n);
+    }
+  }, 1000);
+}
+
+function updateDefiTimer(n) {
+  const fill = document.getElementById('defi-fill-' + n);
+  const num = document.getElementById('defi-num-' + n);
+  if (!fill || !num) return;
+  const circumference = 151;
+  const pct = defiTimerRemaining / DEFI_DURATION;
+  fill.style.strokeDashoffset = circumference * (1 - pct);
+  num.textContent = defiTimerRemaining;
+  const urgent = defiTimerRemaining <= 10;
+  fill.classList.toggle('urgent', urgent);
+  num.classList.toggle('urgent', urgent);
+}
+
+function onDefiTimeout(n) {
+  // Reveal correct answer without penalty
+  const data = DEFI_DATA[n];
+  const choices = document.querySelectorAll('#defi-choices-' + n + ' .defi-choice');
+  choices.forEach((c, i) => {
+    c.disabled = true;
+    if (i === data.correct) c.classList.add('correct');
+  });
+  document.getElementById('defi-timeout-' + n).classList.add('visible');
+  const fb = document.getElementById('defi-feedback-' + n);
+  fb.textContent = data.goodMsg;
+  fb.classList.add('visible', 'correct-msg');
+  document.getElementById('defi-continue-' + n).classList.add('visible');
 }
 
 function answerDefi(n, idx) {
+  if (defiTimerInterval) clearInterval(defiTimerInterval);
   const data = DEFI_DATA[n];
   const choices = document.querySelectorAll('#defi-choices-' + n + ' .defi-choice');
   choices.forEach(c => c.disabled = true);
   const fb = document.getElementById('defi-feedback-' + n);
+  const flash = document.getElementById('defi-flash-' + n);
 
   if (idx === data.correct) {
     choices[idx].classList.add('correct');
     fb.textContent = data.goodMsg;
-    fb.classList.add('visible');
+    fb.classList.add('visible', 'correct-msg');
     document.getElementById('defi-continue-' + n).classList.add('visible');
-    addScore(50);
+    if (flash) { flash.className = 'defi-flash correct-flash'; void flash.offsetWidth; }
+    addScore(50, window.innerWidth / 2, window.innerHeight / 2);
+    streak++;
+    if (streak >= 2) showStreakOverlay();
+    updateStreakBadge();
   } else {
     choices[idx].classList.add('wrong');
+    if (data.correct < choices.length) choices[data.correct].classList.add('correct');
     fb.textContent = data.badMsg;
     fb.classList.add('visible', 'wrong-msg');
     document.getElementById('defi-retry-' + n).classList.add('visible');
+    if (flash) { flash.className = 'defi-flash wrong-flash'; void flash.offsetWidth; }
+    streak = 0;
+    updateStreakBadge();
   }
 }
 
-function retryDefi(n) { resetDefi(n); }
+function retryDefi(n) {
+  resetDefi(n);
+  startDefiTimer(n);
+}
 
 function continueAfterDefi(n) {
   document.getElementById('defi-overlay-' + n).classList.remove('active');
-  const next = defiNextStep[n];
-  goToStep(next);
+  if (defiTimerInterval) clearInterval(defiTimerInterval);
+  const nextStep = n + 1;
+  showStepUnlock(nextStep, () => goToStep(nextStep));
 }
 
 // ========================
-// SCREEN FINAL
+// STREAK
+// ========================
+function updateStreakBadge() {
+  const badge = document.getElementById('streak-badge');
+  if (!badge) return;
+  if (streak >= 2) {
+    badge.textContent = '🔥 Série de ' + streak;
+    badge.classList.add('visible');
+  } else {
+    badge.classList.remove('visible');
+  }
+}
+
+function showStreakOverlay() {
+  const overlay = document.getElementById('streak-overlay');
+  overlay.classList.add('active');
+  setTimeout(() => overlay.classList.remove('active'), 2000);
+}
+
+// ========================
+// STEP UNLOCK OVERLAY
+// ========================
+function showStepUnlock(n, callback) {
+  const overlay = document.getElementById('step-unlock-overlay');
+  const eyebrow = document.getElementById('unlock-eyebrow');
+  const title = document.getElementById('unlock-title');
+  const bar = document.getElementById('unlock-bar-fill');
+
+  eyebrow.textContent = 'ÉTAPE ' + n + ' SUR 4 · DÉBLOQUÉE';
+  title.textContent = STEP_NAMES[n] || '';
+
+  // Reset bar animation
+  bar.style.width = '0%';
+  bar.style.animation = 'none';
+  void bar.offsetWidth;
+
+  // Reset child animations
+  [eyebrow, title].forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetWidth;
+    el.style.animation = '';
+  });
+
+  overlay.classList.add('active');
+  bar.style.animation = 'unlock-bar-grow 1.4s cubic-bezier(0.4,0,0.2,1) 0.9s forwards';
+
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    if (callback) callback();
+  }, 2400);
+}
+
+// ========================
+// FINAL SCREEN
 // ========================
 function showFinal() {
   const prenom = localStorage.getItem('starter_prenom') || '';
   const score = getScore();
-  const hl = document.getElementById('final-headline');
-  if (hl) hl.textContent = (prenom ? prenom + ', tu' : 'Tu') + ' viens de passer de RH à Product HR.';
-  const badge = document.getElementById('final-score-badge');
-  if (badge) badge.textContent = '✦ ' + score + ' pts sur 650 possibles';
+
+  let profileClass, profileLabel, headline, tagline, sub;
+
+  if (score >= 450) {
+    profileClass = 'profile-pro';
+    profileLabel = '✦ Product HR';
+    headline = (prenom ? prenom + ', tu' : 'Tu') + ' ne travailleras plus jamais pareil.';
+    tagline = 'Ce que tu viens d\'apprendre est irréversible. Tu sais maintenant ce que la majorité de tes collègues ignore encore.';
+    sub = 'Garde tes prompts. Construis ta routine. Dans 3 mois, la différence sera visible.';
+  } else if (score >= 200) {
+    profileClass = 'profile-transition';
+    profileLabel = '→ En transition';
+    headline = (prenom ? prenom + ', tu' : 'Tu') + ' es sur le bon chemin.';
+    tagline = 'Tu sens la différence. La ligne est juste devant toi. Une semaine de pratique réelle et tu la franchis.';
+    sub = 'Reviens. Recommence un prompt. Teste une nouvelle fois. C\'est comme ça que ça se construit.';
+  } else {
+    profileClass = 'profile-2023';
+    profileLabel = 'Mindset 2023';
+    headline = (prenom ? prenom + ', tu' : 'Tu') + ' as traversé la formation.';
+    tagline = 'Mais traverser n\'est pas maîtriser. Recommence. Prends le temps de réfléchir à chaque étape.';
+    sub = 'Les meilleurs ne réussissent pas du premier coup. Ils recommencent mieux.';
+  }
+
+  document.getElementById('final-profile-badge').className = 'final-profile-badge ' + profileClass;
+  document.getElementById('final-profile-badge').textContent = profileLabel;
+  document.getElementById('final-headline').textContent = headline;
+  document.getElementById('final-score-badge').textContent = '✦ ' + score + ' pts sur ' + MAX_SCORE + ' possibles';
+  document.getElementById('final-tagline').textContent = tagline;
+  document.getElementById('final-sub').textContent = sub;
 
   document.getElementById('screen-final').style.display = 'flex';
-  spawnConfetti();
+  spawnConfetti(score);
 }
 
 function goBackToStart() {
   document.getElementById('screen-final').style.display = 'none';
-  localStorage.removeItem('starter_progress');
-  localStorage.removeItem('starter_welcome_idx');
-  localStorage.removeItem('starter_prenom');
-  localStorage.removeItem('starter_score');
+  localStorage.clear();
   currentStep = 1;
+  streak = 0;
+  reflectTimers = {};
   pwInput.value = '';
   pwError.textContent = '';
   showScreen('screen-password');
@@ -2302,32 +2517,25 @@ function goBackToStart() {
 // ========================
 // CONFETTI
 // ========================
-function spawnConfetti() {
+function spawnConfetti(score) {
   const container = document.getElementById('confetti-container');
   container.innerHTML = '';
-  const colors = ['#C87542', '#F4EFE4', '#6E7E64', '#A85E2E', '#EBF0E7', '#F3E8D8'];
-  const shapes = ['rect', 'circle'];
-
-  for (let i = 0; i < 40; i++) {
+  const colors = ['#C87542', '#F4EFE4', '#6E7E64', '#A85E2E', '#EBF0E7', '#F3E8D8', '#fff'];
+  const count = score >= 450 ? 60 : score >= 200 ? 35 : 15;
+  for (let i = 0; i < count; i++) {
     const piece = document.createElement('div');
     piece.classList.add('confetti-piece');
     const color = colors[Math.floor(Math.random() * colors.length)];
-    const shape = shapes[Math.floor(Math.random() * shapes.length)];
     const size = 6 + Math.random() * 12;
     const left = Math.random() * 100;
-    const delay = Math.random() * 1.5;
+    const delay = Math.random() * 2;
     const duration = 2.5 + Math.random() * 2;
-    const w = shape === 'circle' ? size : size * (0.4 + Math.random() * 1.2);
-    const h = shape === 'circle' ? size : size * (0.4 + Math.random() * 1.2);
-    piece.style.left = left + '%';
-    piece.style.width = w + 'px';
-    piece.style.height = h + 'px';
-    piece.style.background = color;
-    piece.style.borderRadius = shape === 'circle' ? '50%' : '2px';
-    piece.style.animation = `confetti-fall ${duration}s ease ${delay}s forwards`;
+    const w = size * (0.5 + Math.random());
+    const h = size * (0.5 + Math.random());
+    piece.style.cssText = `left:${left}%;width:${w}px;height:${h}px;background:${color};border-radius:${Math.random()>0.5?'50%':'2px'};animation:confetti-fall ${duration}s ease ${delay}s forwards;`;
     container.appendChild(piece);
   }
-  setTimeout(() => { container.innerHTML = ''; }, 5000);
+  setTimeout(() => { container.innerHTML = ''; }, 6000);
 }
 
 // ========================
@@ -2335,6 +2543,7 @@ function spawnConfetti() {
 // ========================
 (function init() {
   updateScoreDisplay();
+  updateXPBar();
 })();
 </script>
 </body>
