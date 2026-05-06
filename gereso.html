@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>L'IA au service de la fonction RH | GERESO x Emmanuel Di Marco</title>
-<meta name="description" content="Formation GERESO : expérimenter et integrer l'intelligence artificielle dans les missions RH. Methode RCTC, RGPD, pratique interactive.">
+<meta name="description" content="Formation GERESO : experimenter et integrer l'intelligence artificielle dans les missions RH. Methode RCTC, RGPD, pratique interactive.">
 <meta name="author" content="Emmanuel Di Marco">
 <meta property="og:title" content="L'IA au service de la fonction RH | GERESO">
 <meta property="og:description" content="Formation interactive : comprendre, structurer et utiliser l'IA dans vos pratiques RH.">
@@ -17,7 +17,7 @@
 :root{
   --red:#C8102E;--red-dk:#9E0D24;--red-lt:#FFF0F2;
   --ink:#18181B;--ink2:#3F3F46;--muted:#71717A;--pale:#F4F4F5;
-  --warm:#FAFAF8;--white:#FFFFFF;--border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.13);
+  --warm:#FAFAF8;--border:rgba(0,0,0,.08);--border2:rgba(0,0,0,.13);
   --sora:'Sora',sans-serif;--lora:'Lora',Georgia,serif;
   --sidebar:256px;
 }
@@ -31,12 +31,14 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 .sb-sub{font-size:10px;color:var(--muted);}
 .sb-course{margin-top:10px;font-size:10px;font-weight:700;color:var(--red);letter-spacing:.07em;text-transform:uppercase;}
 #sb-nav{flex:1;overflow-y:auto;padding:10px 0;}
+#sb-nav::-webkit-scrollbar{width:3px;}
+#sb-nav::-webkit-scrollbar-thumb{background:var(--border2);}
 .sb-mod-hd{display:flex;align-items:center;gap:7px;padding:7px 14px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
 .sb-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
 .sbi{display:flex;align-items:center;padding:6px 14px 6px 27px;font-size:12px;color:var(--ink2);cursor:pointer;border-left:3px solid transparent;transition:all .15s;}
 .sbi:hover{background:var(--pale);}
 .sbi.active{background:var(--red-lt);border-left-color:var(--red);color:var(--red);font-weight:600;}
-.sbi.done::after{content:'✓';margin-left:auto;font-size:10px;color:#22C55E;}
+.sbi.done::after{content:'check';font-family:'Material Icons';font-size:11px;margin-left:auto;color:#22C55E;}
 #sb-ft{padding:12px 14px;border-top:1px solid var(--border);flex-shrink:0;font-size:10px;color:var(--muted);}
 #sb-prog-wrap{margin-top:6px;height:3px;background:var(--pale);border-radius:2px;overflow:hidden;}
 #sb-prog{height:100%;background:var(--red);border-radius:2px;transition:width .4s;}
@@ -86,7 +88,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 .prof-desc{font-size:13px;color:var(--muted);line-height:1.5;}
 .q-bubble{background:#fff;border:1px solid var(--border);border-radius:12px 12px 12px 4px;padding:13px 17px;font-size:15px;color:var(--ink2);line-height:1.55;}
 .q-num{font-size:10px;font-weight:700;color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;display:block;}
-.lim-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden;}
+.lim-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px 20px;position:relative;overflow:hidden;cursor:default;}
 .lim-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
 .lim-h::before{background:#F97316;}.lim-b::before{background:#EAB308;}.lim-c::before{background:var(--red);}
 .lim-ico{font-size:22px;margin-bottom:9px;}
@@ -94,6 +96,15 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 .lim-desc{font-size:13px;color:var(--muted);line-height:1.6;}
 .lim-tip{margin-top:11px;padding-top:9px;border-top:1px solid var(--border);font-size:11px;font-weight:700;}
 .lim-h .lim-tip{color:#C2410C;}.lim-b .lim-tip{color:#A16207;}.lim-c .lim-tip{color:var(--red);}
+.demo-btn-small{margin-top:10px;background:var(--pale);border:1px solid var(--border2);border-radius:6px;padding:5px 12px;font-family:var(--sora);font-size:11px;font-weight:600;color:var(--ink2);cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:5px;}
+.demo-btn-small:hover{background:#E4E4E7;}
+.hallu-demo{display:none;margin-top:12px;border-radius:8px;overflow:hidden;border:1px solid #E4E4E7;}
+.hallu-demo.open{display:block;}
+.hallu-head{background:#F4F4F5;padding:7px 12px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #E4E4E7;}
+.hallu-body{padding:12px;}
+.hallu-q{background:#18181B;color:#fff;border-radius:14px 14px 4px 14px;padding:7px 12px;font-size:12px;line-height:1.5;margin-bottom:8px;display:inline-block;max-width:90%;align-self:flex-end;}
+.hallu-a{font-size:12px;color:#27272A;line-height:1.65;padding:8px 10px;background:#F9F9F9;border-radius:6px;margin-bottom:8px;}
+.hallu-warn{background:#FFF0F2;border:1px solid rgba(200,16,46,.2);border-radius:6px;padding:8px 10px;font-size:11px;color:var(--red);font-weight:600;line-height:1.5;}
 .rgpd-row{display:flex;align-items:center;gap:9px;padding:8px 12px;background:var(--red-lt);border:1px solid rgba(200,16,46,.12);border-radius:7px;font-size:14px;color:var(--ink2);}
 .xmark{color:var(--red);font-weight:800;font-size:13px;flex-shrink:0;}
 .rctc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
@@ -110,13 +121,13 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 .plan-t{font-size:10px;font-weight:700;color:var(--red);letter-spacing:.05em;min-width:40px;padding-top:2px;}
 .plan-l{font-size:14px;color:var(--ink2);}.plan-s{font-size:11px;color:var(--muted);margin-top:2px;}
 .chat-wrap{background:#fff;border:1px solid #E4E4E7;border-radius:13px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.07);}
-.chat-hd{background:#F4F4F5;border-bottom:1px solid #E4E4E7;padding:9px 13px;display:flex;align-items:center;gap:7px;}
-.chat-ico{width:20px;height:20px;border-radius:50%;background:#19C37D;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;}
+.chat-hd{padding:9px 13px;display:flex;align-items:center;gap:7px;border-bottom:1px solid #E4E4E7;}
+.chat-ico{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;}
 .chat-hn{font-size:13px;font-weight:700;color:#18181B;}.chat-hm{font-size:10px;color:#A1A1AA;margin-left:2px;}
 .chat-body{padding:14px;display:flex;flex-direction:column;gap:11px;min-height:110px;}
 .msg-u{align-self:flex-end;background:#18181B;color:#fff;border-radius:15px 15px 4px 15px;padding:8px 13px;font-size:13px;line-height:1.5;max-width:88%;}
 .msg-a{align-self:flex-start;display:flex;gap:7px;max-width:100%;}
-.ai-av{width:22px;height:22px;border-radius:50%;background:#19C37D;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;}
+.ai-av{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px;}
 .ai-txt{font-size:13px;line-height:1.65;color:#27272A;flex:1;}
 .cursor{display:inline-block;width:2px;height:12px;background:#A1A1AA;animation:blink 1s infinite;vertical-align:middle;margin-left:1px;}
 @keyframes blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
@@ -134,8 +145,13 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 .ex-t{background:#F0F7FF;border-color:rgba(0,100,200,.22);}.ex-t label{color:#0064C8;}
 .ex-k{background:#F0FFF4;border-color:rgba(0,160,80,.22);}.ex-k label{color:#15803D;}
 #prompt-result{background:var(--pale);border:1.5px solid var(--border2);border-radius:9px;padding:13px 15px;font-size:14px;color:var(--muted);line-height:1.7;min-height:52px;transition:color .2s;font-family:var(--lora);font-style:italic;}
-.test-btn{background:var(--ink);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-family:var(--sora);font-size:13px;font-weight:600;cursor:pointer;transition:background .15s;display:flex;align-items:center;gap:7px;}
+.test-btn{background:var(--ink);color:#fff;border:none;border-radius:8px;padding:10px 20px;font-family:var(--sora);font-size:13px;font-weight:600;cursor:pointer;transition:background .15s;display:inline-flex;align-items:center;gap:7px;}
 .test-btn:hover{background:#3F3F46;}.test-btn:disabled{background:var(--pale);color:var(--muted);cursor:default;}
+.action-btn{background:var(--pale);color:var(--ink2);border:1px solid var(--border2);border-radius:8px;padding:9px 16px;font-family:var(--sora);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
+.action-btn:hover{background:#E4E4E7;}
+.action-btn.green{background:#F0FFF4;color:#15803D;border-color:rgba(21,128,61,.2);}
+.action-btn.green:hover{background:#DCFCE7;}
+.open-ai-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:7px;font-family:var(--sora);font-size:11px;font-weight:600;cursor:pointer;border:1px solid;transition:all .15s;text-decoration:none;}
 .niv-card{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:10px;background:#fff;border:1px solid var(--border);}
 .niv-tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;padding:3px 9px;flex-shrink:0;}
 .niv-1{background:var(--red-lt);color:var(--red);}.niv-2{background:#FFF4E5;color:#D47000;}.niv-3{background:#F0F7FF;color:#0064C8;}
@@ -150,6 +166,30 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 .spa{background:#fff;border:1px solid var(--border);border-radius:10px 10px 4px 10px;padding:13px 15px;font-size:14px;color:var(--ink2);line-height:1.65;}
 .sp-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:7px;}
 .sp-q{background:var(--pale);color:var(--muted);}.sp-a{background:#F0F7FF;color:#0064C8;}
+/* PANORAMA TOOLS */
+.tool-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
+.ttab{padding:7px 16px;border-radius:20px;font-family:var(--sora);font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border2);background:#fff;color:var(--muted);transition:all .15s;display:flex;align-items:center;gap:6px;}
+.ttab.active{border-color:transparent;color:#fff;}
+.ttab-gpt.active{background:#19C37D;}
+.ttab-claude.active{background:#CC785C;}
+.ttab-perp.active{background:#20808D;}
+.ttab-mistral.active{background:#FF7000;}
+.ttab-gemini.active{background:#4285F4;}
+.tool-panel{display:none;}
+.tool-panel.active{display:grid;grid-template-columns:1fr 1.3fr;gap:20px;align-items:start;}
+.tool-meta{display:flex;flex-direction:column;gap:10px;}
+.force-badge{display:flex;align-items:flex-start;gap:8px;padding:10px 13px;background:#F0FFF4;border:1px solid rgba(21,128,61,.18);border-radius:8px;}
+.force-ico{font-size:14px;flex-shrink:0;}
+.force-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#15803D;margin-bottom:3px;}
+.force-txt{font-size:13px;color:#15803D;line-height:1.5;}
+.weak-badge{display:flex;align-items:flex-start;gap:8px;padding:10px 13px;background:#FFF4E5;border:1px solid rgba(230,115,0,.2);border-radius:8px;}
+.weak-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#D47000;margin-bottom:3px;}
+.weak-txt{font-size:13px;color:#D47000;line-height:1.5;}
+.tool-demo-btn{background:var(--ink);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-family:var(--sora);font-size:12px;font-weight:600;cursor:pointer;transition:background .15s;display:flex;align-items:center;gap:6px;width:100%;}
+.tool-demo-btn:hover{background:#3F3F46;}
+/* COPY TOAST */
+#copy-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:8px 18px;border-radius:20px;font-size:12px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;}
+#copy-toast.show{opacity:1;}
 .screen.active .a1{animation:fadeUp .45s .05s both;}
 .screen.active .a2{animation:fadeUp .45s .15s both;}
 .screen.active .a3{animation:fadeUp .45s .25s both;}
@@ -159,6 +199,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 </style>
 </head>
 <body>
+<div id="copy-toast">Prompt copie dans le presse-papier</div>
 <div id="app">
 <nav id="sidebar">
   <div id="sb-hd">
@@ -172,21 +213,22 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
     <div class="sbi" data-s="2" onclick="go(2)">Votre formateur</div>
     <div class="sbi" data-s="3" onclick="go(3)">Programme et plan</div>
     <div class="sbi" data-s="4" onclick="go(4)">Tour de table</div>
-    <div class="sb-mod-hd"><div class="sb-dot" style="background:#F97316"></div>Module 1</div>
+    <div class="sb-mod-hd"><div class="sb-dot" style="background:#F97316"></div>Module 1 : Comprendre l'IA</div>
     <div class="sbi" data-s="5" onclick="go(5)">Ce qu'est vraiment l'IA</div>
     <div class="sbi" data-s="6" onclick="go(6)">Les 3 limites</div>
-    <div class="sbi" data-s="7" onclick="go(7)">Reflexe RGPD</div>
-    <div class="sb-mod-hd"><div class="sb-dot" style="background:var(--red)"></div>Module 2</div>
-    <div class="sbi" data-s="8" onclick="go(8)">Prompt vague</div>
-    <div class="sbi" data-s="9" onclick="go(9)">Methode RCTC</div>
-    <div class="sbi" data-s="10" onclick="go(10)">RCTC en action</div>
-    <div class="sbi" data-s="11" onclick="go(11)">Exercice : votre prompt</div>
-    <div class="sb-mod-hd"><div class="sb-dot" style="background:#0064C8"></div>Bonus et cloture</div>
-    <div class="sbi" data-s="12" onclick="go(12)">IA strategique (bonus)</div>
-    <div class="sbi" data-s="13" onclick="go(13)">Pour aller plus loin</div>
-    <div class="sbi" data-s="14" onclick="go(14)">3 a retenir</div>
-    <div class="sbi" data-s="15" onclick="go(15)">Action de la semaine</div>
-    <div class="sbi" data-s="16" onclick="go(16)">Au revoir</div>
+    <div class="sbi" data-s="7" onclick="go(7)">Les 5 outils du marche</div>
+    <div class="sbi" data-s="8" onclick="go(8)">Reflexe RGPD</div>
+    <div class="sb-mod-hd"><div class="sb-dot" style="background:var(--red)"></div>Module 2 : La methode RCTC</div>
+    <div class="sbi" data-s="9" onclick="go(9)">Prompt vague</div>
+    <div class="sbi" data-s="10" onclick="go(10)">Methode RCTC</div>
+    <div class="sbi" data-s="11" onclick="go(11)">RCTC en action</div>
+    <div class="sbi" data-s="12" onclick="go(12)">Exercice : votre prompt</div>
+    <div class="sb-mod-hd"><div class="sb-dot" style="background:#0064C8"></div>Cas pratique et cloture</div>
+    <div class="sbi" data-s="13" onclick="go(13)">Cas pratique GERESO</div>
+    <div class="sbi" data-s="14" onclick="go(14)">Pour aller plus loin</div>
+    <div class="sbi" data-s="15" onclick="go(15)">3 a retenir</div>
+    <div class="sbi" data-s="16" onclick="go(16)">Action de la semaine</div>
+    <div class="sbi" data-s="17" onclick="go(17)">Au revoir</div>
   </div>
   <div id="sb-ft">Progression<div id="sb-prog-wrap"><div id="sb-prog" style="width:0%"></div></div></div>
 </nav>
@@ -233,22 +275,35 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Bon a savoir</div><div class="a-text">GERESO est certifie Qualiopi depuis 2021, ce qui permet de financer votre formation via les OPCO, le CPF ou le plan de developpement des competences de votre organisation.</div></div></div>
 </div>
 
-<!-- S2 FORMATEUR -->
+<!-- S2 FORMATEUR (UPDATED) -->
 <div class="screen" id="s2">
   <div class="sbody">
     <div class="accent a1"></div>
     <span class="eyebrow a1">Votre formateur</span>
     <div class="a2" style="display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;margin-bottom:22px;">
       <img src="https://res.cloudinary.com/dtjcum3gb/image/upload/v1777113053/Capture_d_e%CC%81cran_2026-04-25_a%CC%80_12.30.37_simsay.png" alt="Emmanuel Di Marco" style="width:130px;height:130px;border-radius:50%;object-fit:cover;border:3px solid var(--red-lt);display:block;" onerror="this.style.display='none'">
-      <div><h2 class="stitle" style="margin-bottom:4px;">Emmanuel Di Marco</h2><p class="slead" style="font-size:15px;margin-bottom:0;">18 ans de terrain. Trois angles qui se nourrissent mutuellement.</p></div>
+      <div><h2 class="stitle" style="margin-bottom:4px;">Emmanuel Di Marco</h2><p class="slead" style="font-size:15px;margin-bottom:0;">18 ans de terrain. Quatre angles qui se nourrissent mutuellement.</p></div>
     </div>
     <div class="a3" style="background:#fff;border:1px solid var(--border);border-radius:13px;padding:6px 18px;margin-bottom:18px;">
-      <div class="prof-row"><div class="prof-num">01</div><div><div class="prof-name">7 ans RH en DSI et Big Data</div><div class="prof-desc">Allianz France, Veepee : 650 recrutements DSI, conduite du changement, interface entre DRH, CDO et Head of IT.</div></div></div>
-      <div class="prof-row"><div class="prof-num">02</div><div><div class="prof-name">Product Manager et IA en production</div><div class="prof-desc">MerciYanis (SaaS B2B) : premier agent IA workplace francais, utilisateurs terrain, C-level au quotidien.</div></div></div>
-      <div class="prof-row"><div class="prof-num">03</div><div><div class="prof-name">Stack IA active chaque jour</div><div class="prof-desc">Claude, ChatGPT, Perplexity. Pas pour des demonstrations : pour livrer des resultats reels dans des contextes exigeants.</div></div></div>
+      <div class="prof-row">
+        <div class="prof-num">01</div>
+        <div><div class="prof-name">7 ans RH en DSI et direction Big Data</div><div class="prof-desc">Allianz France, Veepee : 650 recrutements d'ingenieurs et data scientists, interface entre DRH, directeur des donnees et directeur informatique, conduite du changement a grande echelle.</div></div>
+      </div>
+      <div class="prof-row">
+        <div class="prof-num">02</div>
+        <div><div class="prof-name">Entrepreneur : fondateur d'une marketplace RH</div><div class="prof-desc">L'Autre RH : plateforme permettant aux salaries du secteur prive de consulter des professionnels RH independants pour des conseils confidentiels. 200 utilisateurs, 5 cabinets partenaires.</div></div>
+      </div>
+      <div class="prof-row">
+        <div class="prof-num">03</div>
+        <div><div class="prof-name">Senior Product Manager, chef de produit digital</div><div class="prof-desc">MerciYanis, logiciel B2B utilise par Danone, TF1, Total et d'autres grands comptes : j'ai pilote la strategie, les priorites et lance le premier agent IA de l'ecosysteme de gestion de services en entreprise en France.</div></div>
+      </div>
+      <div class="prof-row">
+        <div class="prof-num">04</div>
+        <div><div class="prof-name">Utilisateur quotidien des outils IA depuis 3 ans</div><div class="prof-desc">Claude, ChatGPT, Perplexity. Pas pour des demonstrations : pour livrer des resultats reels dans des contextes exigeants.</div></div>
+      </div>
     </div>
   </div>
-  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Ce qui change avec ce profil</div><div class="a-text">Un formateur hybride RH et tech est rare. La valeur : comprendre vos problematiques metier ET pratiquer l'IA en production. Pas de theorie. Du terrain.</div></div></div>
+  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Ce qui change avec ce profil</div><div class="a-text">Un formateur hybride RH, entrepreneur et expert IA est rare. La valeur : comprendre vos problematiques metier, avoir fonde une entreprise RH, ET pratiquer l'IA en production. Pas de theorie. Du terrain.</div></div></div>
 </div>
 
 <!-- S3 PROGRAMME -->
@@ -257,7 +312,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
     <div class="accent a1"></div>
     <div class="a1" style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;">
       <div><span class="eyebrow">Formation complete : 2 jours</span><h2 class="stitle" style="font-size:20px;margin-bottom:16px;">L'IA au service de la fonction RH</h2><div><div class="plan-row"><div class="plan-t">J1-1</div><div><div class="plan-l">Comprendre l'IA et ses applications RH</div><div class="plan-s">Panorama, ethique, RGPD, usages metiers</div></div></div><div class="plan-row"><div class="plan-t">J1-2</div><div><div class="plan-l">Maitrise du Prompt Engineering RH</div><div class="plan-s">Structure, bibliotheque de prompts</div></div></div><div class="plan-row"><div class="plan-t">J1-3</div><div><div class="plan-l">L'IA au service de la Formation</div><div class="plan-s">Plans de formation, onboarding</div></div></div><div class="plan-row"><div class="plan-t">J2-1</div><div><div class="plan-l">GEPP : anticiper les competences</div><div class="plan-s">Cartographie, ecarts, parcours carriere</div></div></div><div class="plan-row"><div class="plan-t">J2-2</div><div><div class="plan-l">Construire ses KPI RH avec l'IA</div><div class="plan-s">Tableaux de bord, SIRH, pilotage</div></div></div><div class="plan-row"><div class="plan-t">J2-3</div><div><div class="plan-l">Creer son assistant IA RH</div><div class="plan-s">GPTs personnalises, plan d'action</div></div></div></div></div>
-      <div><span class="eyebrow">Notre sequence : 45 min</span><h3 style="font-family:var(--sora);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:14px;">Extrait de J1 : Modules 1 et 2</h3><div style="display:flex;flex-direction:column;gap:7px;"><div class="tag-box" style="background:var(--red-lt);border:1.5px solid rgba(200,16,46,.18);"><div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--red);margin-bottom:3px;">Ouverture : 13 min</div><div style="font-size:14px;color:var(--ink2);">Presentation, plan, tour de table, attentes</div></div><div class="tag-box" style="background:var(--pale);border:1px solid var(--border);"><div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">Sequence 1 : 10 min</div><div style="font-size:14px;color:var(--ink2);">L'IA : limites et reflexe RGPD</div></div><div class="tag-box" style="background:var(--pale);border:1px solid var(--border);"><div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">Sequence 2 : 17 min</div><div style="font-size:14px;color:var(--ink2);">Methode RCTC, simulation, exercice</div></div><div class="tag-box" style="background:var(--pale);border:1px solid var(--border);"><div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">Bonus et cloture : 5 min</div><div style="font-size:14px;color:var(--ink2);">IA strategique, 3 a retenir, action</div></div></div></div>
+      <div><span class="eyebrow">Notre sequence : 45 min</span><h3 style="font-family:var(--sora);font-size:18px;font-weight:600;color:var(--ink);margin-bottom:14px;">Extrait de J1 : Modules 1 et 2</h3><div style="display:flex;flex-direction:column;gap:7px;"><div class="tag-box" style="background:var(--red-lt);border:1.5px solid rgba(200,16,46,.18);"><div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--red);margin-bottom:3px;">Ouverture : 13 min</div><div style="font-size:14px;color:var(--ink2);">Presentation, plan, tour de table, attentes</div></div><div class="tag-box" style="background:var(--pale);border:1px solid var(--border);"><div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">Sequence 1 : 10 min</div><div style="font-size:14px;color:var(--ink2);">L'IA : limites, outils du marche, reflexe RGPD</div></div><div class="tag-box" style="background:var(--pale);border:1px solid var(--border);"><div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">Sequence 2 : 17 min</div><div style="font-size:14px;color:var(--ink2);">Methode RCTC, simulation, exercice, cas pratique</div></div><div class="tag-box" style="background:var(--pale);border:1px solid var(--border);"><div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">Cloture : 5 min</div><div style="font-size:14px;color:var(--ink2);">3 a retenir, votre plan IA telechargeable</div></div></div></div>
     </div>
   </div>
 </div>
@@ -275,7 +330,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
       <div class="q-bubble a5"><span class="q-num">Question 03</span>Votre rapport actuel a l'IA : jamais utilise · parfois · regulierement ?</div>
     </div>
   </div>
-  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Pourquoi cette question ?</div><div class="a-text">Connaitre votre niveau de depart permet d'adapter les exemples a votre realite terrain. Il n'y a pas de bonne ou mauvaise reponse.</div></div></div>
+  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Pourquoi ces questions ?</div><div class="a-text">Connaitre votre niveau de depart permet d'adapter les exemples a votre realite terrain. Il n'y a pas de bonne ou mauvaise reponse.</div></div></div>
 </div>
 
 <!-- S5 CE QU'EST L'IA -->
@@ -290,23 +345,135 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">A retenir</div><div class="a-text">Les outils changent vite : ChatGPT, Claude, Mistral, Gemini. La logique reste la meme. Ce que vous apprenez ici s'applique a tous ces outils.</div></div></div>
 </div>
 
-<!-- S6 3 LIMITES -->
+<!-- S6 3 LIMITES (UPDATED avec demo hallucination) -->
 <div class="screen" id="s6">
   <div class="sbody">
     <div class="accent a1"></div>
     <span class="eyebrow a1">Module 1 : Les limites</span>
     <h2 class="stitle a2">3 choses a savoir avant<br>d'utiliser l'IA au travail.</h2>
-    <div class="g3 a3" style="margin-bottom:18px;">
-      <div class="lim-card lim-h"><div class="lim-ico">🔶</div><div class="lim-name">L'hallucination</div><p class="lim-desc">L'IA peut inventer des faits, des chiffres, des sources avec une confiance totale. Elle n'a pas conscience de ses erreurs.</p><div class="lim-tip">Toujours verifier les affirmations factuelles</div></div>
-      <div class="lim-card lim-b"><div class="lim-ico">⚠️</div><div class="lim-name">Les biais</div><p class="lim-desc">L'IA reflete les inegalites de ses donnees d'entrainement. En recrutement, elle peut reproduire des discriminations invisibles.</p><div class="lim-tip">Toujours relire avec un regard humain</div></div>
-      <div class="lim-card lim-c"><div class="lim-ico">🔒</div><div class="lim-name">La confidentialite</div><p class="lim-desc">Ce que vous saisissez dans une IA grand public peut nourrir ses modeles. Les donnees sensibles doivent rester hors de l'IA.</p><div class="lim-tip">Reflexe RGPD : ecran suivant</div></div>
+    <div class="g3 a3" style="margin-bottom:12px;">
+      <div class="lim-card lim-h">
+        <div class="lim-ico">🔶</div>
+        <div class="lim-name">L'hallucination</div>
+        <p class="lim-desc">L'IA peut inventer des faits, des chiffres, des sources avec une confiance totale. Elle n'a pas conscience de ses erreurs.</p>
+        <div class="lim-tip">Toujours verifier les affirmations factuelles</div>
+        <button class="demo-btn-small" onclick="toggleHallu()">▶ Voir un exemple en direct</button>
+        <div class="hallu-demo" id="hallu-demo">
+          <div class="hallu-head"><div class="chat-ico" style="background:#19C37D;">✦</div><span style="font-size:12px;font-weight:700;color:#18181B;">ChatGPT</span></div>
+          <div class="hallu-body">
+            <div style="text-align:right;margin-bottom:8px;"><div class="hallu-q">Quel est le taux de turnover moyen en France dans les services RH en 2024 ?</div></div>
+            <div class="hallu-a">Selon l'etude RH Benchmark 2024 publiee conjointement par l'ANDRH et Deloitte, le taux de turnover moyen dans les services RH francais atteint <strong>23,4%</strong> en 2024, contre 19,8% en 2023, soit une hausse de 3,6 points. Cette progression s'explique principalement par la pression des recrutements technologiques et la concurrence accrue des ESN sur les profils HRBP digitalises.</div>
+            <div class="hallu-warn">⚠️ Cette statistique est inventee. Aucune etude ANDRH/Deloitte avec ces chiffres n'existe. L'IA a repondu avec une confiance totale, sans incertitude, sans source verifiable. C'est ca, l'hallucination.</div>
+          </div>
+        </div>
+      </div>
+      <div class="lim-card lim-b"><div class="lim-ico">⚠️</div><div class="lim-name">Les biais</div><p class="lim-desc">L'IA reflete les inegalites de ses donnees d'entrainement. En recrutement, elle peut reproduire des discriminations invisibles : favoriser certains profils, certains styles de CV, certaines ecoles.</p><div class="lim-tip">Toujours relire avec un regard humain</div></div>
+      <div class="lim-card lim-c"><div class="lim-ico">🔒</div><div class="lim-name">La confidentialite</div><p class="lim-desc">Ce que vous saisissez dans une IA grand public peut nourrir ses modeles. Les donnees personnelles des salaries et candidats doivent rester hors de l'IA.</p><div class="lim-tip">Reflexe RGPD : ecran suivant apres le panorama</div></div>
     </div>
   </div>
-  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Dans vos missions RH</div><div class="a-text">Ces 3 limites sont particulierement sensibles en RH : evaluation des candidats (biais), redaction (hallucination), entretiens et donnees salaries (confidentialite).</div></div></div>
+  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Dans vos missions RH</div><div class="a-text">Ces 3 limites sont particulierement critiques en RH : biais en recrutement (discrimination legalement interdite), hallucination sur le droit du travail (risque juridique), confidentialite des donnees salaries (RGPD).</div></div></div>
 </div>
 
-<!-- S7 RGPD -->
+<!-- S7 PANORAMA DES OUTILS (NEW) -->
 <div class="screen" id="s7">
+  <div class="sbody">
+    <div class="accent a1"></div>
+    <span class="eyebrow a1">Module 1 : Panorama des outils</span>
+    <h2 class="stitle a2" style="margin-bottom:6px;">Les 5 outils du marche.<br>Leurs forces. Leurs limites.</h2>
+    <p class="slead a2" style="font-size:14px;margin-bottom:16px;">Cliquez sur un outil pour decouvrir son point fort, son point faible, et une demonstration scriptee.</p>
+    <div class="tool-tabs a3">
+      <button class="ttab ttab-gpt active" onclick="showTool('gpt')">✦ ChatGPT</button>
+      <button class="ttab ttab-claude" onclick="showTool('claude')">◆ Claude</button>
+      <button class="ttab ttab-perp" onclick="showTool('perp')">⊕ Perplexity</button>
+      <button class="ttab ttab-mistral" onclick="showTool('mistral')">▲ Mistral</button>
+      <button class="ttab ttab-gemini" onclick="showTool('gemini')">✧ Gemini</button>
+    </div>
+    <!-- ChatGPT -->
+    <div class="tool-panel active a4" id="tp-gpt">
+      <div class="tool-meta">
+        <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Le plus polyvalent du marche. Leader depuis 2022. Des milliers de cas d'usage, une comunaute immense, des integrations partout.</div></div></div>
+        <div class="weak-badge"><div class="force-ico" style="color:#D47000;">⚠</div><div><div class="weak-lbl">Point faible</div><div class="weak-txt">Donnees non actualisees en temps reel sans abonnement premium. Peut halluciner sur des faits recents.</div></div></div>
+        <button class="tool-demo-btn" onclick="runToolDemo('gpt')">▶ Lancer la demo</button>
+        <div id="ann-gpt" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Email RH professionnel en 10 secondes.</div></div>
+      </div>
+      <div>
+        <div class="chat-wrap">
+          <div class="chat-hd" style="background:#F4F4F5;"><div class="chat-ico" style="background:#19C37D;">✦</div><span class="chat-hn">ChatGPT</span><span class="chat-hm">4o</span></div>
+          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Redige un email RH pour annoncer a mon equipe une nouvelle politique de teletravail : 3 jours max par semaine, avec accord du manager, a partir du 1er juin.</div><div class="msg-a" id="gpt-msg" style="display:none;"><div class="ai-av" style="background:#19C37D;">✦</div><div class="ai-txt" id="gpt-txt"><span class="cursor"></span></div></div></div>
+          <div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Claude -->
+    <div class="tool-panel" id="tp-claude">
+      <div class="tool-meta">
+        <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Champion de l'analyse de documents longs et complexes. Nuance, rigueur, ethique integree. Ideal pour analyser des textes juridiques ou des contrats.</div></div></div>
+        <div class="weak-badge"><div class="force-ico" style="color:#D47000;">⚠</div><div><div class="weak-lbl">Point faible</div><div class="weak-txt">Moins d'integrations tierces que ChatGPT. Interface moins familiere pour les debutants.</div></div></div>
+        <button class="tool-demo-btn" onclick="runToolDemo('claude')">▶ Lancer la demo</button>
+        <div id="ann-claude" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Analyse juridique nuancee en quelques secondes.</div></div>
+      </div>
+      <div>
+        <div class="chat-wrap">
+          <div class="chat-hd" style="background:#F7F4F0;"><div class="chat-ico" style="background:#CC785C;">◆</div><span class="chat-hn">Claude</span><span class="chat-hm">Sonnet</span></div>
+          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Analyse cette clause de mon reglement interieur et identifie les ambiguites : "Tout manquement aux regles de ponctualite pourra etre sanctionne selon les circonstances et l'appreciation de la direction."</div><div class="msg-a" id="claude-msg" style="display:none;"><div class="ai-av" style="background:#CC785C;">◆</div><div class="ai-txt" id="claude-txt"><span class="cursor"></span></div></div></div>
+          <div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Perplexity -->
+    <div class="tool-panel" id="tp-perp">
+      <div class="tool-meta">
+        <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Google killer. Connecte a internet en temps reel, il cite ses sources automatiquement. Ideal pour toute veille juridique, sectorielle ou reglementaire.</div></div></div>
+        <div class="weak-badge"><div class="force-ico" style="color:#D47000;">⚠</div><div><div class="weak-lbl">Point faible</div><div class="weak-txt">Moins performant que ChatGPT ou Claude pour la redaction creative et les taches de generation longue.</div></div></div>
+        <button class="tool-demo-btn" onclick="runToolDemo('perp')">▶ Lancer la demo</button>
+        <div id="ann-perp" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Reponse sourcee et verifiable instantanement.</div></div>
+      </div>
+      <div>
+        <div class="chat-wrap">
+          <div class="chat-hd" style="background:#EEF9FA;"><div class="chat-ico" style="background:#20808D;">⊕</div><span class="chat-hn">Perplexity</span><span class="chat-hm">Pro</span></div>
+          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Quelles sont les obligations legales actuelles de l'employeur en matiere d'entretien professionnel en France ?</div><div class="msg-a" id="perp-msg" style="display:none;"><div class="ai-av" style="background:#20808D;">⊕</div><div class="ai-txt" id="perp-txt"><span class="cursor"></span></div></div></div>
+          <div class="chat-ft"><div class="chat-fake">Rechercher...</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Mistral -->
+    <div class="tool-panel" id="tp-mistral">
+      <div class="tool-meta">
+        <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Europeen et open source. Souverainete des donnees garantie pour les organisations publiques et sensibles. Peut etre deploye en interne, sans envoyer vos donnees a l'etranger.</div></div></div>
+        <div class="weak-badge"><div class="force-ico" style="color:#D47000;">⚠</div><div><div class="weak-lbl">Point faible</div><div class="weak-txt">Ecosysteme moins mature. Moins de ressources pedagogiques et d'integrations que les leaders americains.</div></div></div>
+        <button class="tool-demo-btn" onclick="runToolDemo('mistral')">▶ Lancer la demo</button>
+        <div id="ann-mistral" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Grille RGPD-conforme, souveraineté europeenne.</div></div>
+      </div>
+      <div>
+        <div class="chat-wrap">
+          <div class="chat-hd" style="background:#FFF4EE;"><div class="chat-ico" style="background:#FF7000;">▲</div><span class="chat-hn">Mistral</span><span class="chat-hm">Le Chat</span></div>
+          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Genere une grille d'evaluation de candidats pour un poste RH, conforme au droit francais anti-discrimination et au RGPD. Criteres objectifs uniquement.</div><div class="msg-a" id="mistral-msg" style="display:none;"><div class="ai-av" style="background:#FF7000;">▲</div><div class="ai-txt" id="mistral-txt"><span class="cursor"></span></div></div></div>
+          <div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div>
+        </div>
+      </div>
+    </div>
+    <!-- Gemini -->
+    <div class="tool-panel" id="tp-gemini">
+      <div class="tool-meta">
+        <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Natif dans l'ecosysteme Google. S'integre directement avec Gmail, Google Drive, Docs, Sheets et Meet. Ideal si votre organisation est sur Google Workspace.</div></div></div>
+        <div class="weak-badge"><div class="force-ico" style="color:#D47000;">⚠</div><div><div class="weak-lbl">Point faible</div><div class="weak-txt">Moins precis que Claude sur les analyses complexes. Performances variables selon les versions.</div></div></div>
+        <button class="tool-demo-btn" onclick="runToolDemo('gemini')">▶ Lancer la demo</button>
+        <div id="ann-gemini" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Integration Google Workspace native.</div></div>
+      </div>
+      <div>
+        <div class="chat-wrap">
+          <div class="chat-hd" style="background:#F0F4FF;"><div class="chat-ico" style="background:#4285F4;">✧</div><span class="chat-hn">Gemini</span><span class="chat-hm">Advanced</span></div>
+          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Comment puis-je utiliser Google Sheets pour construire un tableau de bord RH suivi du turnover, de l'absenteisme et de l'avancement des recrutements ?</div><div class="msg-a" id="gemini-msg" style="display:none;"><div class="ai-av" style="background:#4285F4;">✧</div><div class="ai-txt" id="gemini-txt"><span class="cursor"></span></div></div></div>
+          <div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Quel outil choisir ?</div><div class="a-text">Commencez par ChatGPT ou Claude si vous debutez. Ajoutez Perplexity des que vous avez besoin d'information juridique ou sectorielle recente. Mistral si votre organisation impose la souverainete des donnees.</div></div></div>
+</div>
+
+<!-- S8 RGPD -->
+<div class="screen" id="s8">
   <div class="sbody">
     <div class="accent a1"></div>
     <div class="a1" style="display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;">
@@ -326,20 +493,20 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Bonne pratique concrete</div><div class="a-text">Avant d'envoyer un prompt : remplacez les noms propres par des fonctions anonymisees. "Sophie Martin, RRH" devient "une responsable RH". Le resultat est identique, le risque inexistant.</div></div></div>
 </div>
 
-<!-- S8 MAUVAIS PROMPT -->
-<div class="screen" id="s8">
+<!-- S9 MAUVAIS PROMPT -->
+<div class="screen" id="s9">
   <div class="sbody">
     <div class="accent a1"></div>
     <div class="a1" style="display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start;">
       <div><span class="eyebrow">Module 2 : Le prompt</span><h2 class="stitle">Le probleme du<br>prompt vague.</h2><p class="slead" style="font-size:15px;">Que se passe-t-il quand on demande a l'IA quelque chose sans lui donner de contexte ?</p><button class="test-btn a2" onclick="runBad()" style="margin-bottom:14px;">▶ Lancer la demonstration</button><div id="ann-bad" style="display:none;"><div class="ann ann-bad">✕ Correct. Mais pas exploitable tel quel.</div></div></div>
-      <div class="a2"><div class="chat-wrap"><div class="chat-hd"><div class="chat-ico">✦</div><span class="chat-hn">ChatGPT</span><span class="chat-hm">4o</span></div><div class="chat-body" id="bad-body"><div class="msg-u">Aide-moi a preparer un entretien annuel</div><div class="msg-a" id="bad-msg" style="display:none;"><div class="ai-av">✦</div><div class="ai-txt" id="bad-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
+      <div class="a2"><div class="chat-wrap"><div class="chat-hd" style="background:#F4F4F5;"><div class="chat-ico" style="background:#19C37D;">✦</div><span class="chat-hn">ChatGPT</span><span class="chat-hm">4o</span></div><div class="chat-body" id="bad-body"><div class="msg-u">Aide-moi a preparer un entretien annuel</div><div class="msg-a" id="bad-msg" style="display:none;"><div class="ai-av" style="background:#19C37D;">✦</div><div class="ai-txt" id="bad-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
     </div>
   </div>
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Ce que vous voyez</div><div class="a-text">La reponse est grammaticalement correcte. Mais elle ne sait pas qui vous etes, pour qui c'est, dans quel contexte. Elle fait du remplissage intelligent. Pas de la reflexion.</div></div></div>
 </div>
 
-<!-- S9 METHODE RCTC -->
-<div class="screen" id="s9">
+<!-- S10 METHODE RCTC -->
+<div class="screen" id="s10">
   <div class="sbody">
     <div class="accent a1"></div>
     <span class="eyebrow a1">Module 2 : La methode</span>
@@ -356,20 +523,20 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Memorisation facile</div><div class="a-text">RCTC se retient comme un reflexe. Avant d'envoyer un prompt : "Est-ce que j'ai donne un Role, un Contexte, une Tache claire, et une Contrainte de securite ?"</div></div></div>
 </div>
 
-<!-- S10 BON PROMPT -->
-<div class="screen" id="s10">
+<!-- S11 BON PROMPT -->
+<div class="screen" id="s11">
   <div class="sbody">
     <div class="accent a1"></div>
     <div class="a1" style="display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start;">
       <div><span class="eyebrow">Module 2 : RCTC en action</span><h2 class="stitle">Le meme besoin.<br><span style="color:var(--red);">Avec RCTC.</span></h2><div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:13px 15px;margin-bottom:14px;font-size:12px;color:var(--muted);line-height:1.65;"><strong style="color:var(--ink);font-size:10px;letter-spacing:.09em;text-transform:uppercase;display:block;margin-bottom:5px;">Le prompt RCTC</strong>Tu es expert RH senior. Dans le cadre d'un entretien annuel avec un manager en poste depuis 3 ans qui montre des signes de demotivation, aide-moi a construire 5 questions ouvertes pour explorer ses motivations et aspirations. Questions neutres, sans donnees personnelles identifiables, sans biais discriminatoire.</div><button class="test-btn a2" onclick="runGood()" style="margin-bottom:12px;">▶ Lancer la demonstration</button><div id="ann-good" style="display:none;"><div class="ann ann-good">✓ Precis. Exploitable des maintenant.</div></div></div>
-      <div class="a2"><div class="chat-wrap"><div class="chat-hd"><div class="chat-ico">✦</div><span class="chat-hn">ChatGPT</span><span class="chat-hm">4o</span></div><div class="chat-body" id="good-body"><div class="msg-u" style="font-size:11px;">Tu es expert RH senior. Dans le cadre d'un entretien annuel avec un manager en poste depuis 3 ans qui montre des signes de demotivation, aide-moi a construire 5 questions ouvertes pour explorer ses motivations. Questions neutres, sans donnees personnelles, sans biais discriminatoire.</div><div class="msg-a" id="good-msg" style="display:none;"><div class="ai-av">✦</div><div class="ai-txt" id="good-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
+      <div class="a2"><div class="chat-wrap"><div class="chat-hd" style="background:#F4F4F5;"><div class="chat-ico" style="background:#19C37D;">✦</div><span class="chat-hn">ChatGPT</span><span class="chat-hm">4o</span></div><div class="chat-body" id="good-body"><div class="msg-u" style="font-size:11px;">Tu es expert RH senior. Dans le cadre d'un entretien annuel avec un manager en poste depuis 3 ans qui montre des signes de demotivation, aide-moi a construire 5 questions ouvertes pour explorer ses motivations. Questions neutres, sans donnees personnelles, sans biais discriminatoire.</div><div class="msg-a" id="good-msg" style="display:none;"><div class="ai-av" style="background:#19C37D;">✦</div><div class="ai-txt" id="good-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
     </div>
   </div>
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Ce que la Contrainte a fait</div><div class="a-text">Les questions sont neutres, sans donnees personnelles, sans biais. Ce n'est pas l'IA qui a pense au RGPD : c'est vous qui avez integre la contrainte dans le prompt. C'est ca, reflechir avec l'IA.</div></div></div>
 </div>
 
-<!-- S11 EXERCICE -->
-<div class="screen" id="s11">
+<!-- S12 EXERCICE (UPDATED avec copy + open AI) -->
+<div class="screen" id="s12">
   <div class="sbody">
     <div class="accent a1"></div>
     <div class="a1" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;"><span class="eyebrow" style="margin:0;">Exercice : a vous de jouer</span><span style="font-size:12px;font-weight:600;color:var(--muted);">⏱ 4 minutes</span></div>
@@ -382,36 +549,52 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
       <div class="ex-box ex-k"><label>C : Contrainte · En tenant compte de...</label><textarea id="ex-c2" rows="2" placeholder="Ex: sans biais de genre, sans donnees personnelles identifiables..." oninput="assemble()"></textarea></div>
     </div>
     <div class="a4" style="margin-bottom:10px;"><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Votre prompt assemble</div><div id="prompt-result">Remplissez les cases ci-dessus. Votre prompt apparaitra ici.</div></div>
-    <div class="a5" style="display:flex;gap:10px;align-items:center;margin-bottom:14px;"><button class="test-btn" id="test-btn" onclick="testPrompt()" disabled>🤖 Tester mon prompt</button><span style="font-size:12px;color:var(--muted);">Remplissez au moins 2 cases pour activer</span></div>
-    <div id="test-result" style="display:none;"><div class="chat-wrap"><div class="chat-hd"><div class="chat-ico">✦</div><span class="chat-hn">ChatGPT</span><span class="chat-hm">4o</span></div><div class="chat-body"><div class="msg-u" id="test-user-msg" style="font-size:12px;"></div><div class="msg-a" id="test-ai-msg" style="display:none;"><div class="ai-av">✦</div><div class="ai-txt" id="test-ai-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
+    <div class="a5" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px;">
+      <button class="test-btn" id="test-btn" onclick="testPrompt()" disabled>🤖 Tester (simulation)</button>
+      <button class="action-btn" id="copy-btn" onclick="copyPrompt()" disabled>📋 Copier mon prompt</button>
+      <span style="font-size:11px;color:var(--muted);">Puis tester dans votre IA :</span>
+      <a class="open-ai-btn" id="ai-gpt" href="https://chat.openai.com/" target="_blank" style="background:#F0FFF8;color:#19C37D;border-color:rgba(25,195,61,.25);opacity:.4;pointer-events:none;">✦ ChatGPT</a>
+      <a class="open-ai-btn" id="ai-claude" href="https://claude.ai/new" target="_blank" style="background:#FDF3EF;color:#CC785C;border-color:rgba(204,120,92,.25);opacity:.4;pointer-events:none;">◆ Claude</a>
+      <a class="open-ai-btn" id="ai-perp" href="https://www.perplexity.ai/" target="_blank" style="background:#EEF9FA;color:#20808D;border-color:rgba(32,128,141,.25);opacity:.4;pointer-events:none;">⊕ Perplexity</a>
+    </div>
+    <div id="test-result" style="display:none;"><div class="chat-wrap"><div class="chat-hd" style="background:#F4F4F5;"><div class="chat-ico" style="background:#19C37D;">✦</div><span class="chat-hn">ChatGPT</span><span class="chat-hm">Simulation</span></div><div class="chat-body"><div class="msg-u" id="test-user-msg" style="font-size:12px;"></div><div class="msg-a" id="test-ai-msg" style="display:none;"><div class="ai-av" style="background:#19C37D;">✦</div><div class="ai-txt" id="test-ai-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
   </div>
-  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Le secret des bons prompts</div><div class="a-text">Personne n'ecrit un prompt parfait du premier coup. Apres la premiere reponse, ajoutez une contrainte, affinez le contexte. C'est un dialogue, pas une commande.</div></div></div>
+  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Le secret des bons prompts</div><div class="a-text">Personne n'ecrit un prompt parfait du premier coup. Copiez votre prompt, ouvrez votre IA preferee, collez, observez. Puis affinez la Contrainte ou le Contexte. C'est un dialogue, pas une commande.</div></div></div>
 </div>
 
-<!-- S12 BONUS : IA STRATEGIQUE -->
-<div class="screen" id="s12">
+<!-- S13 CAS PRATIQUE GERESO (REPLACED sparring partner) -->
+<div class="screen" id="s13">
   <div class="sbody">
     <div class="accent a1"></div>
-    <span class="eyebrow a1">Bonus : au-dela des usages RH courants</span>
-    <h2 class="stitle a2">L'IA comme sparring partner strategique.</h2>
-    <p class="slead a2" style="max-width:600px;font-size:15px;">La meme logique RCTC appliquee a la decision et au pilotage. Pour les managers et dirigeants RH qui veulent aller plus loin.</p>
-    <div class="a3" style="background:#fff;border:1px solid var(--border);border-radius:13px;padding:22px;margin-bottom:18px;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Exemple : preparer un CODIR avec l'IA</div>
-      <div class="sp-tag sp-q">DRH</div>
-      <div class="spq">Tu es un consultant en transformation organisationnelle experimente. Dans le cadre de ma presentation au CODIR dans 48h sur notre strategie de montee en competences IA des 200 personnes de la DSI, identifie les 3 objections les plus probables et propose pour chacune une reponse argumentee. Reste factuel, sans jargon.</div>
-      <div class="sp-tag sp-a">IA (Claude)</div>
-      <div class="spa"><strong>Objection 1 : "On n'a pas le temps."</strong><br>Reponse : La montee en competences progressive prend 2h par semaine sur 3 mois. Le cout du non-faire se mesure en perte de productivite des que les concurrents automatisent des taches que vos equipes font encore manuellement.<br><br><strong>Objection 2 : "Nos outils internes ne sont pas compatibles avec l'IA."</strong><br>Reponse : Les cas d'usage les plus rapides a valeur (redaction, synthese, analyse) ne necessitent aucune integration systeme. On commence la, on mesure, on etend.<br><br><strong>Objection 3 : "Comment on mesure le ROI ?"</strong><br>Reponse : Trois indicateurs concrets : temps de redaction de specs, taux de relecture des comptes-rendus, nombre de decisions eclairees par une veille structuree. Tous mesurables des le mois 1.</div>
+    <span class="eyebrow a1">Cas pratique GERESO</span>
+    <h2 class="stitle a2">Identifier les besoins IA<br>de votre service RH.</h2>
+    <p class="slead a2" style="font-size:14px;max-width:640px;">La meme methode RCTC pour cartographier les usages IA prioritaires de votre service. Voyons ce que ca donne en live.</p>
+    <div class="a3" style="background:#fff;border:1px solid var(--border);border-radius:13px;padding:20px;margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Demo : cartographier les besoins IA d'une equipe RH de 8 personnes</div>
+      <div class="sp-tag sp-q">Prompt RCTC</div>
+      <div class="spq">Tu es expert en transformation numerique des fonctions RH. Dans le cadre d'une equipe RH de 8 personnes gerant 300 salaries, dont les missions principales sont le recrutement, la formation, la paie et la gestion administrative. Identifie les 4 usages IA les plus impactants a mettre en place en priorite. Pour chacun : l'outil recommande, le benefice concret, et le risque RGPD a surveiller.</div>
+      <div class="sp-tag sp-a" style="margin-top:10px;">Reponse IA</div>
+      <div class="spa">
+        <strong>1. Recrutement : redaction et analyse de CV (ChatGPT ou Claude)</strong><br>
+        Benefice : -60% de temps sur la pre-selection. Risque RGPD : ne jamais soumettre les CV bruts. Anonymiser avant analyse.<br><br>
+        <strong>2. Formation : generation de plans de formation personnalises (ChatGPT)</strong><br>
+        Benefice : plans adaptes aux profils en 5 minutes au lieu de 2h. Risque RGPD : utiliser des profils anonymises, pas des noms reels.<br><br>
+        <strong>3. Veille juridique : suivi des evolutions du droit du travail (Perplexity)</strong><br>
+        Benefice : alertes en temps reel sur les nouvelles obligations. Risque RGPD : aucun, il s'agit de donnees publiques.<br><br>
+        <strong>4. Communication interne : redaction d'emails et annonces RH (Claude)</strong><br>
+        Benefice : ton adapte, coherence de communication garantie. Risque RGPD : ne pas mentionner d'individus identifiables dans les prompts.
+      </div>
     </div>
     <div class="a4" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <div style="padding:13px 15px;background:var(--pale);border-radius:10px;font-size:13px;color:var(--ink2);line-height:1.6;"><strong>Ce que l'IA vient de faire :</strong> anticiper, structurer, argumenter. Pas a votre place. Avec vous.</div>
-      <div style="padding:13px 15px;background:var(--red-lt);border-radius:10px;font-size:13px;color:var(--ink2);line-height:1.6;border:1px solid rgba(200,16,46,.12);"><strong>Ce que ca requiert :</strong> maitriser le prompt (RCTC), connaitre son sujet, garder le jugement final. L'IA assiste. Vous decidez.</div>
+      <div style="padding:13px 15px;background:var(--pale);border-radius:10px;font-size:13px;color:var(--ink2);line-height:1.6;"><strong>Ce que RCTC a permis :</strong> une reponse structuree, adaptee a VOTRE contexte, avec les garde-fous RGPD integres d'emblee.</div>
+      <div style="padding:13px 15px;background:var(--red-lt);border-radius:10px;font-size:13px;color:var(--ink2);line-height:1.6;border:1px solid rgba(200,16,46,.12);">Dans la formation complete : vous faites cet exercice avec votre propre service RH, vos vraies contraintes, vos vrais besoins.</div>
     </div>
   </div>
-  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Ce niveau correspond a</div><div class="a-text">La formation "IA et prise de decision strategique" (IADE) au catalogue GERESO. Cible : managers et dirigeants qui souhaitent aller au-dela des usages operationnels.</div></div></div>
+  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Pour votre organisation</div><div class="a-text">Adaptez ce prompt a votre equipe : remplacez "8 personnes / 300 salaries" par votre contexte reel. Vous obtenez une cartographie des usages IA sur mesure en moins de 2 minutes.</div></div></div>
 </div>
 
-<!-- S13 POUR ALLER PLUS LOIN -->
-<div class="screen" id="s13">
+<!-- S14 POUR ALLER PLUS LOIN -->
+<div class="screen" id="s14">
   <div class="sbody">
     <div class="accent a1"></div>
     <span class="eyebrow a1">Perspectives</span>
@@ -420,14 +603,15 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
     <div style="display:flex;flex-direction:column;gap:9px;">
       <div class="niv-card a3"><div class="niv-tag niv-1">Niveau 1</div><div><div class="niv-name">L'IA au service de la fonction RH · IARH</div><div class="niv-desc">Recrutement, GEPP, formation, KPI, assistants personnalises</div></div></div>
       <div class="niv-card a4"><div class="niv-tag niv-2">Niveau 2</div><div><div class="niv-name">IA et Management · IAMA</div><div class="niv-desc">Accompagner le changement, piloter l'adoption IA dans les equipes</div></div></div>
-      <div class="niv-card a5"><div class="niv-tag niv-3">Niveau 3</div><div><div class="niv-name">IA et prise de decision strategique · IADE</div><div class="niv-desc">IA comme sparring partner pour CODIR, arbitrages, feuilles de route, veille</div></div></div>
+      <div class="niv-card a5"><div class="niv-tag niv-3">Niveau 3</div><div><div class="niv-name">IA et prise de decision strategique · IADE</div><div class="niv-desc">IA comme sparring partner pour CODIR, arbitrages, feuilles de route, veille strategique</div></div></div>
     </div>
+    <div class="a5" style="margin-top:14px;padding:11px 15px;background:var(--pale);border-radius:8px;font-size:13px;color:var(--muted);">Ces trois niveaux correspondent a des formations distinctes au catalogue GERESO. Si l'un d'eux correspond a vos enjeux, nous pouvons en parler dans le temps qui reste.</div>
   </div>
-  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Pour aller plus loin aujourd'hui</div><div class="a-text">Ces trois niveaux correspondent a des formations distinctes au catalogue GERESO. Si l'un d'eux correspond a vos enjeux, nous pouvons en parler dans le temps qui reste.</div></div></div>
+  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Le point commun entre les 3 niveaux</div><div class="a-text">RCTC. La meme structure de prompt, appliquee a des enjeux de plus en plus strategiques. Ce que vous avez appris aujourd'hui est le fondement de tout le reste.</div></div></div>
 </div>
 
-<!-- S14 3 A RETENIR -->
-<div class="screen" id="s14">
+<!-- S15 3 A RETENIR -->
+<div class="screen" id="s15">
   <div class="sbody">
     <div class="accent a1"></div>
     <span class="eyebrow a1">Synthese</span>
@@ -441,21 +625,28 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Pour ancrer ces 3 principes</div><div class="a-text">Avant chaque utilisation de l'IA cette semaine, posez-vous : "Est-ce que je reflechis avec elle, ou est-ce que je lui delegue ma reflexion ?" La nuance est tout.</div></div></div>
 </div>
 
-<!-- S15 ACTION -->
-<div class="screen" id="s15">
+<!-- S16 ACTION DE LA SEMAINE (UPDATED avec download .md) -->
+<div class="screen" id="s16">
   <div class="sbody">
     <div class="accent a1"></div>
-    <span class="eyebrow a1">Avant de partir</span>
-    <h2 class="stitle a2">Votre action de la semaine.</h2>
-    <p class="slead a2" style="font-size:15px;max-width:560px;margin-bottom:20px;">La premiere chose concrete que vous allez tester avec la methode RCTC dans les 7 prochains jours.</p>
-    <div class="a3" style="max-width:600px;margin-bottom:14px;"><textarea id="action-ta" placeholder="Ex: Je vais utiliser un prompt RCTC pour preparer ma prochaine grille d'entretien pour le recrutement en cours..."></textarea></div>
-    <div class="a4" style="max-width:600px;padding:13px 15px;background:#fff;border:1px solid var(--border);border-radius:10px;display:flex;gap:9px;align-items:flex-start;"><span style="font-size:15px;flex-shrink:0;">💡</span><p style="font-size:13px;color:var(--muted);line-height:1.55;">Le meilleur prompt n'est pas le plus elabore. C'est celui que vous utilisez vraiment demain matin. Commencez petit. Iterez.</p></div>
+    <span class="eyebrow a1">Votre livrable</span>
+    <h2 class="stitle a2">Votre plan IA RH personnel.</h2>
+    <p class="slead a2" style="font-size:15px;max-width:600px;margin-bottom:18px;">Notez votre premiere action concrete. Telechargez ensuite votre plan : il contient votre prompt RCTC ET les garde-fous a donner a votre IA pour qu'elle travaille avec vous comme un vrai partenaire.</p>
+    <div class="a3" style="max-width:640px;margin-bottom:14px;"><div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Votre action dans les 7 prochains jours</div><textarea id="action-ta" placeholder="Ex: Je vais utiliser un prompt RCTC pour preparer ma prochaine grille d'entretien pour le recrutement en cours..."></textarea></div>
+    <div class="a4" style="max-width:640px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;">
+      <button class="action-btn green" onclick="downloadMD()" style="font-size:13px;padding:11px 20px;border-radius:8px;">⬇ Telecharger mon plan IA (.md)</button>
+      <span style="font-size:12px;color:var(--muted);">Contient votre prompt, votre action et les instructions pour votre IA</span>
+    </div>
+    <div class="a5" style="max-width:640px;padding:13px 15px;background:var(--pale);border-radius:10px;border-left:4px solid #F59E0B;">
+      <div style="font-size:10px;font-weight:700;color:#B45309;letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px;">Ce que contient votre plan telechargeable</div>
+      <p style="font-size:13px;color:var(--ink2);line-height:1.6;">Votre prompt RCTC + votre action + un bloc d'instructions a donner a votre IA pour qu'elle adopte automatiquement les bons reflexes RGPD, anti-biais et de verification a chaque session de travail.</p>
+    </div>
   </div>
-  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">La regle des 7 jours</div><div class="a-text">Si vous ne testez pas dans les 7 jours, vous ne le ferez probablement jamais. Le seul antidote : une action concrete et datee. Choisissez-la maintenant.</div></div></div>
+  <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Comment utiliser le fichier .md</div><div class="a-text">Ouvrez le fichier dans un editeur de texte. Copiez le bloc "Instructions pour votre IA" et collez-le au debut de votre prochaine conversation avec ChatGPT ou Claude. Votre IA devient alors votre partenaire RH avec tous les garde-fous actives.</div></div></div>
 </div>
 
-<!-- S16 CLOTURE -->
-<div class="screen" id="s16">
+<!-- S17 CLOTURE -->
+<div class="screen" id="s17">
   <div class="sbody" style="display:flex;align-items:center;justify-content:center;height:100%;">
     <div style="max-width:760px;width:100%;display:grid;grid-template-columns:1.05fr 1fr;border-radius:16px;overflow:hidden;">
       <div style="background:linear-gradient(145deg,#0F0F14 0%,#1A0A0D 100%);padding:48px 44px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;">
@@ -464,7 +655,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
         <div class="a2"><h2 style="font-size:clamp(26px,3vw,38px);font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px;">Merci.<br><span style="color:var(--red);">A vous de jouer.</span></h2><p style="font-size:15px;color:rgba(255,255,255,.5);line-height:1.7;max-width:280px;">Ce que vous avez appris aujourd'hui ne vaut que si vous l'utilisez demain.</p></div>
         <div class="a3" style="border-top:1px solid rgba(255,255,255,.1);padding-top:18px;"><div style="font-size:13px;font-weight:600;color:#fff;">Emmanuel Di Marco</div><div style="font-size:12px;color:rgba(255,255,255,.4);margin-top:2px;">Consultant Formateur IA et RH</div></div>
       </div>
-      <div style="background:var(--red);padding:48px 38px;display:flex;flex-direction:column;justify-content:center;gap:0;">
+      <div style="background:var(--red);padding:48px 38px;display:flex;flex-direction:column;justify-content:center;">
         <div class="a3" style="display:flex;flex-direction:column;gap:18px;">
           <div><div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:6px;">La methode</div><div style="font-size:22px;font-weight:800;color:#fff;">RCTC</div><div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:2px;">Role · Contexte · Tache · Contrainte</div></div>
           <div style="height:1px;background:rgba(255,255,255,.18);"></div>
@@ -477,33 +668,34 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   </div>
 </div>
 
-  </div><!-- /screen-area -->
+  </div>
   <div id="bottom-nav">
     <button class="nbtn nprev" onclick="go(cur-1)">← Precedent</button>
-    <span class="nctr" id="nctr">1 / 17</span>
+    <span class="nctr" id="nctr">1 / 18</span>
     <button class="nbtn nnext" id="btn-next" onclick="go(cur+1)">Suivant →</button>
   </div>
-</div><!-- /main -->
-</div><!-- /app -->
+</div>
+</div>
 
 <script>
-const TOTAL=17;let cur=0,sec=0,timerOn=false,timerInt=null;
+const TOTAL=18;let cur=0,sec=0,timerOn=false,timerInt=null;
 const META=[
   {mod:"Ouverture",scr:"Bienvenue"},{mod:"Ouverture",scr:"GERESO en chiffres"},
   {mod:"Ouverture",scr:"Votre formateur"},{mod:"Ouverture",scr:"Programme et plan"},
   {mod:"Ouverture",scr:"Tour de table"},
-  {mod:"Module 1 : Comprendre l'IA",scr:"Ce qu'est vraiment l'IA"},
-  {mod:"Module 1 : Comprendre l'IA",scr:"Les 3 limites"},
-  {mod:"Module 1 : Comprendre l'IA",scr:"Reflexe RGPD"},
-  {mod:"Module 2 : La methode RCTC",scr:"Prompt vague"},
-  {mod:"Module 2 : La methode RCTC",scr:"Methode RCTC"},
-  {mod:"Module 2 : La methode RCTC",scr:"RCTC en action"},
-  {mod:"Module 2 : La methode RCTC",scr:"Exercice : votre prompt"},
-  {mod:"Bonus et cloture",scr:"IA strategique"},
-  {mod:"Bonus et cloture",scr:"Pour aller plus loin"},
-  {mod:"Bonus et cloture",scr:"3 a retenir"},
-  {mod:"Bonus et cloture",scr:"Action de la semaine"},
-  {mod:"Bonus et cloture",scr:"Au revoir"},
+  {mod:"Module 1",scr:"Ce qu'est vraiment l'IA"},
+  {mod:"Module 1",scr:"Les 3 limites"},
+  {mod:"Module 1",scr:"Les 5 outils du marche"},
+  {mod:"Module 1",scr:"Reflexe RGPD"},
+  {mod:"Module 2",scr:"Prompt vague"},
+  {mod:"Module 2",scr:"Methode RCTC"},
+  {mod:"Module 2",scr:"RCTC en action"},
+  {mod:"Module 2",scr:"Exercice : votre prompt"},
+  {mod:"Cas pratique",scr:"Identifier les besoins IA"},
+  {mod:"Cloture",scr:"Pour aller plus loin"},
+  {mod:"Cloture",scr:"3 a retenir"},
+  {mod:"Cloture",scr:"Action de la semaine"},
+  {mod:"Cloture",scr:"Au revoir"},
 ];
 function go(n){
   if(n<0||n>=TOTAL)return;
@@ -522,7 +714,10 @@ function go(n){
   document.getElementById('tb-scr').textContent=META[cur].scr;
   document.getElementById('nctr').textContent=(cur+1)+' / '+TOTAL;
   document.getElementById('btn-next').disabled=cur===TOTAL-1;
-  if(cur!==8)resetBad();if(cur!==10)resetGood();if(cur!==11)resetTest();
+  if(cur!==9)resetBad();
+  if(cur!==11)resetGood();
+  if(cur!==12)resetTest();
+  if(cur!==7)resetToolDemos();
 }
 document.addEventListener('keydown',e=>{
   if(['TEXTAREA','INPUT'].includes(e.target.tagName))return;
@@ -535,6 +730,44 @@ function toggleTimer(){
   const el=document.getElementById('tb-timer');el.classList.toggle('on',timerOn);
   if(timerOn&&!timerInt){timerInt=setInterval(()=>{sec++;const m=String(Math.floor(sec/60)).padStart(2,'0'),s=String(sec%60).padStart(2,'0');el.textContent=m+':'+s;el.classList.toggle('warn',sec>=2400&&sec<2640);el.classList.toggle('danger',sec>=2640);},1000);}
 }
+// HALLUCINATION DEMO
+function toggleHallu(){document.getElementById('hallu-demo').classList.toggle('open');}
+// TOOL PANORAMA
+let activeToolDemos={};
+const TOOL_RESPONSES={
+  gpt:`Objet : Nouvelle politique de teletravail - Information importante\n\nBonjour a toutes et tous,\n\nJe vous informe de la mise en place de notre nouvelle politique de teletravail, applicable a compter du 1er juin.\n\n**Les nouvelles modalites :**\n- Maximum 3 jours de teletravail par semaine\n- Accord prealable de votre manager requis\n- Formalisation via notre outil RH habituel\n\nVotre manager reviendra vers vous individuellement pour organiser la transition. Cette politique vise a concilier flexibilite et cohesion d'equipe.\n\nRestez disponibles pour toute question,\n[Votre nom], RH`,
+  claude:`Cette clause presente **3 ambiguites juridiques majeures** :\n\n**1. "Pourra etre sanctionne"** : le conditionnel cree une obligation discretionnaire qui peut contrevenir au principe d'egalite de traitement. Deux salaries commettant la meme infraction pourraient etre traites differemment.\n\n**2. "Selon les circonstances"** : notion floue non definie dans le reglement. Sans criteres objectifs, la sanction devient impredictible et potentiellement contestable aux Prud'hommes.\n\n**3. "Appreciation de la direction"** : l'absence de procedure contradictoire documentee fragilise la decision. Le Code du travail impose un entretien prealable pour toute sanction disciplinaire (art. L1332-2).\n\nRecommandation : reformuler avec des criteres objectifs, une procedure et une proportionnalite des sanctions clairement definies.`,
+  perp:`D'apres la loi du 5 septembre 2018 pour la liberte de choisir son avenir professionnel :\n\n**Obligations legales en vigueur :**\n- Entretien professionnel tous les **2 ans** (non l'entretien annuel d'evaluation, qui lui n'est pas oblige par la loi)\n- Bilan tous les **6 ans** : verifier qu'au moins 2 des 3 criteres sont remplis (formation, certification, progression salariale/professionnelle)\n- En cas de non-respect : abondement de 3 000 EUR au CPF du salarie\n\n**Sources :**\n[1] Legifrance - Art. L6315-1 Code du Travail\n[2] Service-public.fr - Entretien professionnel\n[3] Ministere du Travail - Guide pratique 2024\n\nNota : les dispositions peuvent avoir ete modifiees. Verifier sur Legifrance.gouv.fr`,
+  mistral:`**Grille d'evaluation - Poste RH | Conforme droit francais et RGPD**\n\n| Critere objectif | Methode d'evaluation | Poids |\n|---|---|---|\n| Maitrise du droit du travail | QCM anonymise | 25% |\n| Competences relationnelles | Mise en situation jeu de role | 25% |\n| Gestion de projet RH | Etude de cas fictive | 25% |\n| Outils SIRH | Test pratique anonymise | 25% |\n\n**Criteres strictement exclus (Art. L1132-1 Code du travail) :**\nAge, origine, genre, situation familiale, handicap, religion, opinions politiques\n\n**Mesures RGPD :**\nConservation des notes : 2 ans maximum. Acces limite aux seuls evaluateurs. Droit d'acces et de rectification garanti.`,
+  gemini:`Je peux vous aider a construire ce tableau de bord directement dans Google Sheets ! Voici la structure recommandee :\n\n**Feuille 1 : Dashboard principal**\nConnectez vos feuilles de donnees avec des formules IMPORTRANGE si vos donnees viennent de plusieurs fichiers Drive.\n\n**KPIs a tracker :**\n- Turnover : =NBVAL(Departs)/Effectif_moyen*100\n- Absenteisme : Jours absences/Jours travailles theoriques\n- Recrutements : tableau croise dynamique par statut (Candidature/Entretien/Offre/Embauche)\n\n**Conseil Google Workspace :**\nActivez Gemini dans Sheets (via le menu Extensions) pour generer automatiquement des graphiques et des analyses a partir de vos donnees existantes dans Drive.\n\nSouhaitez-vous que je vous genere la formule complete pour le calcul du taux de turnover annualise ?`
+};
+function showTool(tool){
+  document.querySelectorAll('.ttab').forEach(t=>t.classList.remove('active'));
+  document.querySelector('.ttab-'+tool).classList.add('active');
+  document.querySelectorAll('.tool-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tp-'+tool).classList.add('active');
+}
+function runToolDemo(tool){
+  if(activeToolDemos[tool])return;
+  activeToolDemos[tool]=true;
+  const msg=document.getElementById(tool+'-msg');
+  const txt=document.getElementById(tool+'-txt');
+  const ann=document.getElementById('ann-'+tool);
+  if(msg)msg.style.display='flex';
+  if(txt)stream(txt,TOOL_RESPONSES[tool],9,()=>{if(ann)ann.style.display='block';});
+}
+function resetToolDemos(){
+  const tools=['gpt','claude','perp','mistral','gemini'];
+  tools.forEach(t=>{
+    activeToolDemos[t]=false;
+    const m=document.getElementById(t+'-msg'),tx=document.getElementById(t+'-txt'),a=document.getElementById('ann-'+t);
+    if(m)m.style.display='none';
+    if(tx)tx.innerHTML='<span class="cursor"></span>';
+    if(a)a.style.display='none';
+  });
+  showTool('gpt');
+}
+// MAIN CHAT DEMOS
 const BAD=`Bien sur ! Voici comment preparer un entretien annuel :\n\n1. Planifiez a l'avance et bloquez du temps suffisant, idealement 1h.\n\n2. Preparez vos questions sur les objectifs, les points forts, les axes d'amelioration.\n\n3. Rassemblez les elements : revoyez les objectifs fixes en debut d'annee.\n\n4. Creez un cadre bienveillant : l'entretien doit etre un moment d'echange constructif.\n\n5. Pensez a l'avenir et discutez des perspectives de developpement du collaborateur.\n\nSouhaitez-vous des questions-types a utiliser ?`;
 const GOOD=`Voici 5 questions ouvertes, concues pour favoriser un echange authentique :\n\n**1.** "Quelles sont les missions qui vous donnent le plus d'energie en ce moment, et pourquoi ?"\n\n**2.** "Si vous pouviez faire evoluer votre role dans les 12 prochains mois, dans quelle direction iriez-vous ?"\n\n**3.** "Qu'est-ce qui vous permettrait de vous sentir encore plus efficace ou epanoui dans votre poste ?"\n\n**4.** "Y a-t-il des competences que vous aimeriez developper ou des projets que vous aimeriez porter ?"\n\n**5.** "Comment percevez-vous l'equilibre entre vos responsabilites actuelles et vos aspirations ?"\n\nCes questions invitent a la reflexion sans orienter la reponse. Elles respectent l'autonomie et la vie privee du collaborateur.`;
 let badDone=false,goodDone=false,testDone=false;
@@ -544,31 +777,116 @@ function runBad(){if(badDone)return;badDone=true;const m=document.getElementById
 function resetBad(){badDone=false;const m=document.getElementById('bad-msg'),t=document.getElementById('bad-txt'),a=document.getElementById('ann-bad');if(m)m.style.display='none';if(t)t.innerHTML='<span class="cursor"></span>';if(a)a.style.display='none';}
 function runGood(){if(goodDone)return;goodDone=true;const m=document.getElementById('good-msg'),t=document.getElementById('good-txt');m.style.display='flex';stream(t,GOOD,9,()=>{document.getElementById('ann-good').style.display='block';});}
 function resetGood(){goodDone=false;const m=document.getElementById('good-msg'),t=document.getElementById('good-txt'),a=document.getElementById('ann-good');if(m)m.style.display='none';if(t)t.innerHTML='<span class="cursor"></span>';if(a)a.style.display='none';}
+// EXERCISE
 function assemble(){
   const r=document.getElementById('ex-r').value.trim(),c=document.getElementById('ex-c').value.trim(),t=document.getElementById('ex-t').value.trim(),k=document.getElementById('ex-c2').value.trim();
   const parts=[];if(r)parts.push('Tu es '+r+'.');if(c)parts.push('Dans le cadre de '+c+'.');if(t)parts.push('Aide-moi a '+t+'.');if(k)parts.push('En tenant compte de : '+k+'.');
   const el=document.getElementById('prompt-result');
   if(!parts.length){el.textContent='Remplissez les cases ci-dessus. Votre prompt apparaitra ici.';el.style.color='';el.style.fontStyle='italic';}
   else{el.textContent=parts.join(' ');el.style.color='var(--ink)';el.style.fontStyle='normal';}
-  const filled=[r,c,t,k].filter(Boolean).length;document.getElementById('test-btn').disabled=filled<2;
+  const filled=[r,c,t,k].filter(Boolean).length>=2;
+  document.getElementById('test-btn').disabled=!filled;
+  document.getElementById('copy-btn').disabled=!filled;
+  ['ai-gpt','ai-claude','ai-perp'].forEach(id=>{const a=document.getElementById(id);if(a){a.style.opacity=filled?'1':'0.4';a.style.pointerEvents=filled?'auto':'none';}});
+}
+function copyPrompt(){
+  const text=document.getElementById('prompt-result').textContent;
+  if(text.includes('Remplissez'))return;
+  navigator.clipboard.writeText(text).then(()=>{
+    const t=document.getElementById('copy-toast');
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2000);
+  });
 }
 function genResp(){
   const all=[document.getElementById('ex-r').value,document.getElementById('ex-c').value,document.getElementById('ex-t').value].join(' ').toLowerCase();
-  if(all.match(/recrut|candidat|offre|poste|cv/))return`Voici ce que je vous propose pour votre contexte de recrutement :\n\n**Question comportementale 1 :** "Decrivez-moi une situation ou vous avez du prendre une decision difficile sans avoir toutes les informations. Comment avez-vous procede ?"\n\n**Question comportementale 2 :** "Quel type d'environnement de travail vous permet d'etre le plus efficace, et pourquoi ?"\n\n**Question comportementale 3 :** "Qu'est-ce qui vous a attire vers ce poste en particulier, au-dela de la fiche de fonction ?"\n\nChaque question evalue un critere comportemental sans donnees personnelles identifiables. Votre contrainte RGPD a bien ete respectee.`;
-  if(all.match(/entretien|annuel|professionnel|manager/))return`Voici 5 questions ouvertes adaptees a votre contexte :\n\n**1.** "Quelles missions vous ont le plus mobilise cette annee, et pour quelles raisons ?"\n\n**2.** "Qu'est-ce que vous auriez aime faire differemment sur les 12 derniers mois ?"\n\n**3.** "Quelles competences souhaiteriez-vous developper en priorite dans la prochaine periode ?"\n\n**4.** "Comment vous projetez-vous dans ce poste dans 2 ans ?"\n\n**5.** "Y a-t-il quelque chose que vous souhaiteriez que je sache sur votre situation actuelle ?"\n\nQuestions neutres, respectant la vie privee du collaborateur.`;
-  if(all.match(/formation|learning|competence|onboarding|parcours/))return`Voici une proposition structuree pour votre enjeu formation :\n\n**Semaine 1 :** Diagnostic des acquis (auto-evaluation guidee)\n\n**Semaines 2 et 3 :** Modules courts cibles sur les ecarts identifies (format 20 minutes maximum)\n\n**Semaine 4 :** Mise en pratique sur un cas reel du poste\n\n**Semaine 5 :** Bilan et ajustements\n\nChaque etape inclut un livrable observable pour mesurer la progression sans evaluation formelle intrusive.`;
-  if(all.match(/gepp|cartograph|gap|ecart/))return`Pour votre analyse GEPP, voici une approche en 3 etapes :\n\n**Etape 1 : Cartographie actuelle**\nIdentifier pour chaque collaborateur les 5 competences cles du poste (niveau de 1 a 4).\n\n**Etape 2 : Projection a 18 mois**\nPour chaque competence : quelle evolution est attendue ? Quelles nouvelles competences le poste va-t-il exiger ?\n\n**Etape 3 : Plan d'actions**\nPour chaque ecart : formation, mentorat, mobilite interne ou recrutement ?\n\nCette grille peut etre construite en moins d'une heure avec un modele adapte.`;
-  return`Voici une reponse structuree selon votre demande :\n\n**Axe 1 :** Cadrer precisement l'objectif vise et les criteres de succes mesurables.\n\n**Axe 2 :** Identifier les parties prenantes concernees et leur niveau d'information a date.\n\n**Axe 3 :** Definir 2 ou 3 actions concretes a lancer dans les 7 prochains jours.\n\nVotre Contrainte a bien ete prise en compte : aucune donnee personnelle n'a ete requise. Souhaitez-vous que j'approfondisse l'un des axes ?`;
+  if(all.match(/recrut|candidat|offre|poste|cv/))return`Pour votre contexte de recrutement :\n\n**Question 1 :** "Decrivez une situation ou vous avez du prendre une decision difficile avec des informations incompletes. Comment avez-vous procede ?"\n\n**Question 2 :** "Quel type d'environnement vous permet d'etre le plus efficace, et pourquoi ?"\n\n**Question 3 :** "Qu'est-ce qui vous a attire vers ce poste au-dela de la fiche de poste ?"\n\nCriteres evalues sans donnees personnelles. Contrainte RGPD respectee.`;
+  if(all.match(/entretien|annuel|professionnel|manager/))return`5 questions ouvertes pour votre entretien :\n\n**1.** "Quelles missions vous ont le plus mobilise cette annee ?"\n\n**2.** "Qu'est-ce que vous auriez aime faire differemment ?"\n\n**3.** "Quelles competences souhaitez-vous developper en priorite ?"\n\n**4.** "Comment vous projetez-vous dans ce poste dans 2 ans ?"\n\n**5.** "Y a-t-il quelque chose que vous souhaiteriez partager ?"\n\nQuestions neutres, respectant la vie privee du collaborateur.`;
+  if(all.match(/formation|learning|competence|onboarding|parcours/))return`Plan de formation sur mesure :\n\n**Semaine 1 :** Diagnostic des acquis\n**Semaines 2-3 :** Modules cibles (20 min maximum par session)\n**Semaine 4 :** Mise en pratique sur un cas reel\n**Semaine 5 :** Bilan et ajustements\n\nChaque etape inclut un livrable observable. Progression mesurable sans evaluation intrusive.`;
+  if(all.match(/gepp|cartograph|gap|ecart/))return`Analyse GEPP en 3 etapes :\n\n**Etape 1 :** Cartographie actuelle (5 competences cles, note 1-4 par collaborateur)\n**Etape 2 :** Projection 18 mois (competences requises vs disponibles)\n**Etape 3 :** Plan d'actions (formation, mentorat, mobilite, recrutement)\n\nGrille constructible en moins d'une heure. Aucune donnee personnelle requise pour ce premier diagnostic.`;
+  return`Reponse structuree selon votre demande :\n\n**Point 1 :** Cadrer l'objectif et les criteres de succes mesurables.\n**Point 2 :** Identifier les parties prenantes et leur niveau d'information.\n**Point 3 :** Definir 2 ou 3 actions concretes dans les 7 prochains jours.\n\nVotre Contrainte RGPD a ete prise en compte : aucune donnee personnelle requise. Affinez le Contexte pour une reponse encore plus precise.`;
 }
 function testPrompt(){
   if(testDone)return;testDone=true;
   const prompt=document.getElementById('prompt-result').textContent;
-  if(!prompt||prompt.includes('Remplissez'))return;
+  if(prompt.includes('Remplissez'))return;
   const wrap=document.getElementById('test-result'),uMsg=document.getElementById('test-user-msg'),aMsg=document.getElementById('test-ai-msg'),aTxt=document.getElementById('test-ai-txt');
   uMsg.textContent=prompt;wrap.style.display='block';
   setTimeout(()=>{aMsg.style.display='flex';stream(aTxt,genResp(),10,null);},600);
 }
 function resetTest(){testDone=false;const w=document.getElementById('test-result'),a=document.getElementById('test-ai-msg'),t=document.getElementById('test-ai-txt');if(w)w.style.display='none';if(a)a.style.display='none';if(t)t.innerHTML='<span class="cursor"></span>';}
+// DOWNLOAD MD
+function downloadMD(){
+  const prompt=document.getElementById('prompt-result').textContent;
+  const action=document.getElementById('action-ta').value||'(a completer)';
+  const date=new Date().toLocaleDateString('fr-FR');
+  const md=`# Mon plan IA-RH | Formation GERESO
+Date : ${date}
+
+---
+
+## Mon prompt RCTC
+${prompt.includes('Remplissez')?'(prompt non encore cree - retourner a l\'exercice)':prompt}
+
+## Mon action de la semaine
+${action}
+
+---
+
+## Instructions pour votre assistant IA
+Copiez-collez ce bloc au debut de votre prochaine session de travail avec ChatGPT, Claude ou Perplexity :
+
+---
+CONTEXTE ET GARDE-FOUS POUR MON USAGE IA EN RH
+
+Je suis professionnel·le RH. Dans nos echanges, applique systematiquement les regles suivantes :
+
+### RGPD et confidentialite (non negociable)
+- Si je mentionne un prenom, un matricule ou une information personnelle identifiable, rappelle-le-moi immediatement et propose une formulation anonymisee
+- Prefere toujours "un collaborateur" ou "une responsable RH" plutot que des noms propres
+- Ne jamais reproduire ou analyser des donnees personnelles sans m'avertir du risque juridique
+
+### Ethique et prevention des biais
+- Si une de mes demandes risque de creer un biais discriminatoire (age, genre, origine, situation familiale, etat de sante, religion), signale-le avant de repondre
+- Rappelle-moi les criteres proteges par la loi francaise (Art. L1132-1 du Code du Travail)
+- Ne propose jamais de critere de selection base sur une caracteristique personnelle protegee
+
+### Rigueur et verification
+- Quand tu cites un chiffre, une loi ou une date, precise ton niveau de certitude
+- Sur le droit du travail, recommande toujours de verifier sur Legifrance.gouv.fr ou avec un juriste
+- Rappelle-moi que tu peux te tromper (hallucination) sur les donnees juridiques et chiffrees recentes
+
+### Mode sparring partner
+- Agis comme un pair senior qui me questionne et me fait progresser, pas comme un executant qui valide tout
+- Propose systematiquement 2 options plutot qu'une seule
+- Si ma demande est vague, pose 1 question de clarification avant de repondre
+- Signale quand ma demande pourrait etre amelioree avec plus de contexte
+
+---
+
+## La methode RCTC (rappel)
+R = Role : definir qui est l'IA dans cet echange
+C = Contexte : donner les elements de situation anonymises
+T = Tache : formuler une demande precise et actionnable
+C = Contrainte : ajouter les garde-fous RGPD, ethiques et de format
+
+## Ressources de reference
+- CNIL Guide IA et donnees personnelles : cnil.fr/fr/intelligence-artificielle
+- Legifrance (droit du travail) : legifrance.gouv.fr
+- Defenseur des droits (discrimination) : defenseurdesdroits.fr
+- Art. L1132-1 Code du Travail : criteres de discrimination interdits
+
+---
+*Document genere lors de la formation GERESO - L'IA au service de la fonction RH*
+*Formateur : Emmanuel Di Marco | emmanueldimarco.fr/gereso*
+`;
+  const blob=new Blob([md],{type:'text/markdown;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='mon-plan-ia-rh-gereso.md';
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);
+}
 go(0);
 </script>
 </body>
