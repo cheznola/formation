@@ -200,6 +200,30 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 </style>
 </head>
 <body>
+<div id="gate" style="position:fixed;inset:0;z-index:99999;background:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;">
+  <div style="width:100%;max-width:400px;padding:40px 36px;border:1px solid rgba(0,0,0,.08);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.07);text-align:center;">
+    <div style="width:36px;height:36px;background:#C8102E;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;margin:0 auto 20px;">G</div>
+    <h2 style="font-size:20px;font-weight:700;color:#18181B;margin-bottom:6px;">Formation GERESO</h2>
+    <p style="font-size:14px;color:#71717A;margin-bottom:24px;line-height:1.6;">Accès réservé.<br>Contactez-moi pour obtenir le mot de passe.</p>
+    <input id="gate-input" type="password" placeholder="Mot de passe" autocomplete="off"
+      style="width:100%;padding:12px 14px;border:1.5px solid rgba(0,0,0,.13);border-radius:8px;font-family:'Sora',sans-serif;font-size:15px;color:#18181B;outline:none;margin-bottom:10px;transition:border-color .2s;"
+      oninput="gateReset()" onkeydown="if(event.key==='Enter')gateCheck()">
+    <div id="gate-err" style="display:none;font-size:13px;color:#C8102E;margin-bottom:10px;">Mot de passe incorrect.</div>
+    <button onclick="gateCheck()"
+      style="width:100%;padding:12px;background:#C8102E;color:#fff;border:none;border-radius:8px;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-bottom:20px;transition:background .15s;"
+      onmouseover="this.style.background='#9E0D24'" onmouseout="this.style.background='#C8102E'">
+      Accéder à la formation →
+    </button>
+    <div style="border-top:1px solid rgba(0,0,0,.07);padding-top:18px;">
+      <p style="font-size:12px;color:#A1A1AA;margin-bottom:8px;">Pas encore d'accès ?</p>
+      <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Demande d'accès — Formation GERESO IA"
+        style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#C8102E;text-decoration:none;padding:8px 16px;border:1.5px solid rgba(200,16,46,.25);border-radius:7px;transition:background .15s;"
+        onmouseover="this.style.background='#FFF0F2'" onmouseout="this.style.background='transparent'">
+        ✉ Écrire à Emmanuel Di Marco
+      </a>
+    </div>
+  </div>
+</div>
 <div id="copy-toast">Prompt copie dans le presse-papier</div>
 <div id="app">
 <nav id="sidebar">
