@@ -912,7 +912,30 @@ C = Contrainte : ajouter les garde-fous RGPD, ethiques et de format
   document.body.appendChild(a);a.click();
   document.body.removeChild(a);URL.revokeObjectURL(url);
 }
+if(localStorage.getItem(GATE_KEY)==='1'){
+  document.getElementById('gate').style.display='none';
+}
 go(0);
+  // GATE
+const GATE_KEY='gereso_access';
+const GATE_PASS='BonjourGERESO31';
+function gateCheck(){
+  const v=document.getElementById('gate-input').value;
+  if(v===GATE_PASS){
+    localStorage.setItem(GATE_KEY,'1');
+    document.getElementById('gate').style.display='none';
+  } else {
+    document.getElementById('gate-err').style.display='block';
+    document.getElementById('gate-input').style.borderColor='#C8102E';
+  }
+}
+function gateReset(){
+  document.getElementById('gate-err').style.display='none';
+  document.getElementById('gate-input').style.borderColor='rgba(0,0,0,.13)';
+}
+if(localStorage.getItem(GATE_KEY)==='1'){
+  document.getElementById('gate').style.display='none';
+}
 </script>
 </body>
 </html>
