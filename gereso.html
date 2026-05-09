@@ -167,7 +167,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 .spa{background:#fff;border:1px solid var(--border);border-radius:10px 10px 4px 10px;padding:13px 15px;font-size:14px;color:var(--ink2);line-height:1.65;}
 .sp-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:7px;}
 .sp-q{background:var(--pale);color:var(--muted);}.sp-a{background:#F0F7FF;color:#0064C8;}
-/* PANORAMA TOOLS */
 .tool-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;}
 .ttab{padding:7px 16px;border-radius:20px;font-family:var(--sora);font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--border2);background:#fff;color:var(--muted);transition:all .15s;display:flex;align-items:center;gap:6px;}
 .ttab.active{border-color:transparent;color:#fff;}
@@ -188,7 +187,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 .weak-txt{font-size:13px;color:#D47000;line-height:1.5;}
 .tool-demo-btn{background:var(--ink);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-family:var(--sora);font-size:12px;font-weight:600;cursor:pointer;transition:background .15s;display:flex;align-items:center;gap:6px;width:100%;}
 .tool-demo-btn:hover{background:#3F3F46;}
-/* COPY TOAST */
 #copy-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:8px 18px;border-radius:20px;font-size:12px;font-weight:600;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9999;}
 #copy-toast.show{opacity:1;}
 .screen.active .a1{animation:fadeUp .45s .05s both;}
@@ -200,6 +198,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 </style>
 </head>
 <body>
+
 <div id="gate" style="position:fixed;inset:0;z-index:99999;background:#fff;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;">
   <div style="width:100%;max-width:400px;padding:40px 36px;border:1px solid rgba(0,0,0,.08);border-radius:16px;box-shadow:0 8px 40px rgba(0,0,0,.07);text-align:center;">
     <div style="width:36px;height:36px;background:#C8102E;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;margin:0 auto 20px;">G</div>
@@ -224,6 +223,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
     </div>
   </div>
 </div>
+
 <div id="copy-toast">Prompt copie dans le presse-papier</div>
 <div id="app">
 <nav id="sidebar">
@@ -300,7 +300,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Bon a savoir</div><div class="a-text">GERESO est certifie Qualiopi depuis 2021, ce qui permet de financer votre formation via les OPCO, le CPF ou le plan de developpement des competences de votre organisation.</div></div></div>
 </div>
 
-<!-- S2 FORMATEUR (UPDATED) -->
+<!-- S2 FORMATEUR -->
 <div class="screen" id="s2">
   <div class="sbody">
     <div class="accent a1"></div>
@@ -310,22 +310,10 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
       <div><h2 class="stitle" style="margin-bottom:4px;">Emmanuel Di Marco</h2><p class="slead" style="font-size:15px;margin-bottom:0;">18 ans de terrain. Quatre angles qui se nourrissent mutuellement.</p></div>
     </div>
     <div class="a3" style="background:#fff;border:1px solid var(--border);border-radius:13px;padding:6px 18px;margin-bottom:18px;">
-      <div class="prof-row">
-        <div class="prof-num">01</div>
-        <div><div class="prof-name">7 ans RH en DSI et direction Big Data</div><div class="prof-desc">Allianz France, Veepee : 650 recrutements d'ingenieurs et data scientists, interface entre DRH, directeur des donnees et directeur informatique, conduite du changement a grande echelle.</div></div>
-      </div>
-      <div class="prof-row">
-        <div class="prof-num">02</div>
-        <div><div class="prof-name">Entrepreneur : fondateur d'une marketplace RH</div><div class="prof-desc">L'Autre RH : plateforme permettant aux salaries du secteur prive de consulter des professionnels RH independants pour des conseils confidentiels. 200 utilisateurs, 5 cabinets partenaires.</div></div>
-      </div>
-      <div class="prof-row">
-        <div class="prof-num">03</div>
-        <div><div class="prof-name">Senior Product Manager, chef de produit digital</div><div class="prof-desc">MerciYanis, logiciel B2B utilise par Danone, TF1, Total et d'autres grands comptes : j'ai pilote la strategie, les priorites et lance le premier agent IA de l'ecosysteme de gestion de services en entreprise en France.</div></div>
-      </div>
-      <div class="prof-row">
-        <div class="prof-num">04</div>
-        <div><div class="prof-name">Utilisateur quotidien des outils IA depuis 3 ans</div><div class="prof-desc">Claude, ChatGPT, Perplexity. Pas pour des demonstrations : pour livrer des resultats reels dans des contextes exigeants.</div></div>
-      </div>
+      <div class="prof-row"><div class="prof-num">01</div><div><div class="prof-name">7 ans RH en DSI et direction Big Data</div><div class="prof-desc">Allianz France, Veepee : 650 recrutements d'ingenieurs et data scientists, interface entre DRH, directeur des donnees et directeur informatique, conduite du changement a grande echelle.</div></div></div>
+      <div class="prof-row"><div class="prof-num">02</div><div><div class="prof-name">Entrepreneur : fondateur d'une marketplace RH</div><div class="prof-desc">L'Autre RH : plateforme permettant aux salaries du secteur prive de consulter des professionnels RH independants pour des conseils confidentiels. 200 utilisateurs, 5 cabinets partenaires.</div></div></div>
+      <div class="prof-row"><div class="prof-num">03</div><div><div class="prof-name">Senior Product Manager, chef de produit digital</div><div class="prof-desc">MerciYanis, logiciel B2B utilise par Danone, TF1, Total et d'autres grands comptes : j'ai pilote la strategie, les priorites et lance le premier agent IA de l'ecosysteme de gestion de services en entreprise en France.</div></div></div>
+      <div class="prof-row"><div class="prof-num">04</div><div><div class="prof-name">Utilisateur quotidien des outils IA depuis 3 ans</div><div class="prof-desc">Claude, ChatGPT, Perplexity. Pas pour des demonstrations : pour livrer des resultats reels dans des contextes exigeants.</div></div></div>
     </div>
   </div>
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Ce qui change avec ce profil</div><div class="a-text">Un formateur hybride RH, entrepreneur et expert IA est rare. La valeur : comprendre vos problematiques metier, avoir fonde une entreprise RH, ET pratiquer l'IA en production. Pas de theorie. Du terrain.</div></div></div>
@@ -370,7 +358,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">A retenir</div><div class="a-text">Les outils changent vite : ChatGPT, Claude, Mistral, Gemini. La logique reste la meme. Ce que vous apprenez ici s'applique a tous ces outils.</div></div></div>
 </div>
 
-<!-- S6 3 LIMITES (UPDATED avec demo hallucination) -->
+<!-- S6 3 LIMITES -->
 <div class="screen" id="s6">
   <div class="sbody">
     <div class="accent a1"></div>
@@ -399,7 +387,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Dans vos missions RH</div><div class="a-text">Ces 3 limites sont particulierement critiques en RH : biais en recrutement (discrimination legalement interdite), hallucination sur le droit du travail (risque juridique), confidentialite des donnees salaries (RGPD).</div></div></div>
 </div>
 
-<!-- S7 PANORAMA DES OUTILS (NEW) -->
+<!-- S7 PANORAMA DES OUTILS -->
 <div class="screen" id="s7">
   <div class="sbody">
     <div class="accent a1"></div>
@@ -413,23 +401,15 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
       <button class="ttab ttab-mistral" onclick="showTool('mistral')">▲ Mistral</button>
       <button class="ttab ttab-gemini" onclick="showTool('gemini')">✧ Gemini</button>
     </div>
-    <!-- ChatGPT -->
     <div class="tool-panel active a4" id="tp-gpt">
       <div class="tool-meta">
-        <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Le plus polyvalent du marche. Leader depuis 2022. Des milliers de cas d'usage, une comunaute immense, des integrations partout.</div></div></div>
+        <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Le plus polyvalent du marche. Leader depuis 2022. Des milliers de cas d'usage, une communaute immense, des integrations partout.</div></div></div>
         <div class="weak-badge"><div class="force-ico" style="color:#D47000;">⚠</div><div><div class="weak-lbl">Point faible</div><div class="weak-txt">Donnees non actualisees en temps reel sans abonnement premium. Peut halluciner sur des faits recents.</div></div></div>
         <button class="tool-demo-btn" onclick="runToolDemo('gpt')">▶ Lancer la demo</button>
         <div id="ann-gpt" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Email RH professionnel en 10 secondes.</div></div>
       </div>
-      <div>
-        <div class="chat-wrap">
-          <div class="chat-hd" style="background:#F4F4F5;"><div class="chat-ico" style="background:#19C37D;">✦</div><span class="chat-hn">ChatGPT</span><span class="chat-hm">4o</span></div>
-          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Redige un email RH pour annoncer a mon equipe une nouvelle politique de teletravail : 3 jours max par semaine, avec accord du manager, a partir du 1er juin.</div><div class="msg-a" id="gpt-msg" style="display:none;"><div class="ai-av" style="background:#19C37D;">✦</div><div class="ai-txt" id="gpt-txt"><span class="cursor"></span></div></div></div>
-          <div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div>
-        </div>
-      </div>
+      <div><div class="chat-wrap"><div class="chat-hd" style="background:#F4F4F5;"><div class="chat-ico" style="background:#19C37D;">✦</div><span class="chat-hn">ChatGPT</span><span class="chat-hm">4o</span></div><div class="chat-body"><div class="msg-u" style="font-size:12px;">Redige un email RH pour annoncer a mon equipe une nouvelle politique de teletravail : 3 jours max par semaine, avec accord du manager, a partir du 1er juin.</div><div class="msg-a" id="gpt-msg" style="display:none;"><div class="ai-av" style="background:#19C37D;">✦</div><div class="ai-txt" id="gpt-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
     </div>
-    <!-- Claude -->
     <div class="tool-panel" id="tp-claude">
       <div class="tool-meta">
         <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Champion de l'analyse de documents longs et complexes. Nuance, rigueur, ethique integree. Ideal pour analyser des textes juridiques ou des contrats.</div></div></div>
@@ -437,15 +417,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
         <button class="tool-demo-btn" onclick="runToolDemo('claude')">▶ Lancer la demo</button>
         <div id="ann-claude" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Analyse juridique nuancee en quelques secondes.</div></div>
       </div>
-      <div>
-        <div class="chat-wrap">
-          <div class="chat-hd" style="background:#F7F4F0;"><div class="chat-ico" style="background:#CC785C;">◆</div><span class="chat-hn">Claude</span><span class="chat-hm">Sonnet</span></div>
-          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Analyse cette clause de mon reglement interieur et identifie les ambiguites : "Tout manquement aux regles de ponctualite pourra etre sanctionne selon les circonstances et l'appreciation de la direction."</div><div class="msg-a" id="claude-msg" style="display:none;"><div class="ai-av" style="background:#CC785C;">◆</div><div class="ai-txt" id="claude-txt"><span class="cursor"></span></div></div></div>
-          <div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div>
-        </div>
-      </div>
+      <div><div class="chat-wrap"><div class="chat-hd" style="background:#F7F4F0;"><div class="chat-ico" style="background:#CC785C;">◆</div><span class="chat-hn">Claude</span><span class="chat-hm">Sonnet</span></div><div class="chat-body"><div class="msg-u" style="font-size:12px;">Analyse cette clause de mon reglement interieur et identifie les ambiguites : "Tout manquement aux regles de ponctualite pourra etre sanctionne selon les circonstances et l'appreciation de la direction."</div><div class="msg-a" id="claude-msg" style="display:none;"><div class="ai-av" style="background:#CC785C;">◆</div><div class="ai-txt" id="claude-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
     </div>
-    <!-- Perplexity -->
     <div class="tool-panel" id="tp-perp">
       <div class="tool-meta">
         <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Google killer. Connecte a internet en temps reel, il cite ses sources automatiquement. Ideal pour toute veille juridique, sectorielle ou reglementaire.</div></div></div>
@@ -453,31 +426,17 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
         <button class="tool-demo-btn" onclick="runToolDemo('perp')">▶ Lancer la demo</button>
         <div id="ann-perp" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Reponse sourcee et verifiable instantanement.</div></div>
       </div>
-      <div>
-        <div class="chat-wrap">
-          <div class="chat-hd" style="background:#EEF9FA;"><div class="chat-ico" style="background:#20808D;">⊕</div><span class="chat-hn">Perplexity</span><span class="chat-hm">Pro</span></div>
-          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Quelles sont les obligations legales actuelles de l'employeur en matiere d'entretien professionnel en France ?</div><div class="msg-a" id="perp-msg" style="display:none;"><div class="ai-av" style="background:#20808D;">⊕</div><div class="ai-txt" id="perp-txt"><span class="cursor"></span></div></div></div>
-          <div class="chat-ft"><div class="chat-fake">Rechercher...</div></div>
-        </div>
-      </div>
+      <div><div class="chat-wrap"><div class="chat-hd" style="background:#EEF9FA;"><div class="chat-ico" style="background:#20808D;">⊕</div><span class="chat-hn">Perplexity</span><span class="chat-hm">Pro</span></div><div class="chat-body"><div class="msg-u" style="font-size:12px;">Quelles sont les obligations legales actuelles de l'employeur en matiere d'entretien professionnel en France ?</div><div class="msg-a" id="perp-msg" style="display:none;"><div class="ai-av" style="background:#20808D;">⊕</div><div class="ai-txt" id="perp-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Rechercher...</div></div></div></div>
     </div>
-    <!-- Mistral -->
     <div class="tool-panel" id="tp-mistral">
       <div class="tool-meta">
         <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Europeen et open source. Souverainete des donnees garantie pour les organisations publiques et sensibles. Peut etre deploye en interne, sans envoyer vos donnees a l'etranger.</div></div></div>
         <div class="weak-badge"><div class="force-ico" style="color:#D47000;">⚠</div><div><div class="weak-lbl">Point faible</div><div class="weak-txt">Ecosysteme moins mature. Moins de ressources pedagogiques et d'integrations que les leaders americains.</div></div></div>
         <button class="tool-demo-btn" onclick="runToolDemo('mistral')">▶ Lancer la demo</button>
-        <div id="ann-mistral" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Grille RGPD-conforme, souveraineté europeenne.</div></div>
+        <div id="ann-mistral" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Grille RGPD-conforme, souverainete europeenne.</div></div>
       </div>
-      <div>
-        <div class="chat-wrap">
-          <div class="chat-hd" style="background:#FFF4EE;"><div class="chat-ico" style="background:#FF7000;">▲</div><span class="chat-hn">Mistral</span><span class="chat-hm">Le Chat</span></div>
-          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Genere une grille d'evaluation de candidats pour un poste RH, conforme au droit francais anti-discrimination et au RGPD. Criteres objectifs uniquement.</div><div class="msg-a" id="mistral-msg" style="display:none;"><div class="ai-av" style="background:#FF7000;">▲</div><div class="ai-txt" id="mistral-txt"><span class="cursor"></span></div></div></div>
-          <div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div>
-        </div>
-      </div>
+      <div><div class="chat-wrap"><div class="chat-hd" style="background:#FFF4EE;"><div class="chat-ico" style="background:#FF7000;">▲</div><span class="chat-hn">Mistral</span><span class="chat-hm">Le Chat</span></div><div class="chat-body"><div class="msg-u" style="font-size:12px;">Genere une grille d'evaluation de candidats pour un poste RH, conforme au droit francais anti-discrimination et au RGPD. Criteres objectifs uniquement.</div><div class="msg-a" id="mistral-msg" style="display:none;"><div class="ai-av" style="background:#FF7000;">▲</div><div class="ai-txt" id="mistral-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
     </div>
-    <!-- Gemini -->
     <div class="tool-panel" id="tp-gemini">
       <div class="tool-meta">
         <div class="force-badge"><div class="force-ico">⚡</div><div><div class="force-lbl">Point fort</div><div class="force-txt">Natif dans l'ecosysteme Google. S'integre directement avec Gmail, Google Drive, Docs, Sheets et Meet. Ideal si votre organisation est sur Google Workspace.</div></div></div>
@@ -485,13 +444,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
         <button class="tool-demo-btn" onclick="runToolDemo('gemini')">▶ Lancer la demo</button>
         <div id="ann-gemini" style="display:none;margin-top:8px;"><div class="ann ann-good">✓ Integration Google Workspace native.</div></div>
       </div>
-      <div>
-        <div class="chat-wrap">
-          <div class="chat-hd" style="background:#F0F4FF;"><div class="chat-ico" style="background:#4285F4;">✧</div><span class="chat-hn">Gemini</span><span class="chat-hm">Advanced</span></div>
-          <div class="chat-body"><div class="msg-u" style="font-size:12px;">Comment puis-je utiliser Google Sheets pour construire un tableau de bord RH suivi du turnover, de l'absenteisme et de l'avancement des recrutements ?</div><div class="msg-a" id="gemini-msg" style="display:none;"><div class="ai-av" style="background:#4285F4;">✧</div><div class="ai-txt" id="gemini-txt"><span class="cursor"></span></div></div></div>
-          <div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div>
-        </div>
-      </div>
+      <div><div class="chat-wrap"><div class="chat-hd" style="background:#F0F4FF;"><div class="chat-ico" style="background:#4285F4;">✧</div><span class="chat-hn">Gemini</span><span class="chat-hm">Advanced</span></div><div class="chat-body"><div class="msg-u" style="font-size:12px;">Comment puis-je utiliser Google Sheets pour construire un tableau de bord RH suivi du turnover, de l'absenteisme et de l'avancement des recrutements ?</div><div class="msg-a" id="gemini-msg" style="display:none;"><div class="ai-av" style="background:#4285F4;">✧</div><div class="ai-txt" id="gemini-txt"><span class="cursor"></span></div></div></div><div class="chat-ft"><div class="chat-fake">Envoyer un message...</div></div></div></div>
     </div>
   </div>
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Quel outil choisir ?</div><div class="a-text">Commencez par ChatGPT ou Claude si vous debutez. Ajoutez Perplexity des que vous avez besoin d'information juridique ou sectorielle recente. Mistral si votre organisation impose la souverainete des donnees.</div></div></div>
@@ -560,7 +513,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Ce que la Contrainte a fait</div><div class="a-text">Les questions sont neutres, sans donnees personnelles, sans biais. Ce n'est pas l'IA qui a pense au RGPD : c'est vous qui avez integre la contrainte dans le prompt. C'est ca, reflechir avec l'IA.</div></div></div>
 </div>
 
-<!-- S12 EXERCICE (UPDATED avec copy + open AI) -->
+<!-- S12 EXERCICE -->
 <div class="screen" id="s12">
   <div class="sbody">
     <div class="accent a1"></div>
@@ -587,7 +540,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Le secret des bons prompts</div><div class="a-text">Personne n'ecrit un prompt parfait du premier coup. Copiez votre prompt, ouvrez votre IA preferee, collez, observez. Puis affinez la Contrainte ou le Contexte. C'est un dialogue, pas une commande.</div></div></div>
 </div>
 
-<!-- S13 CAS PRATIQUE GERESO (REPLACED sparring partner) -->
+<!-- S13 CAS PRATIQUE GERESO -->
 <div class="screen" id="s13">
   <div class="sbody">
     <div class="accent a1"></div>
@@ -650,7 +603,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
   <div class="astuce"><div class="astuce-icon">💡</div><div><div class="a-label">Pour ancrer ces 3 principes</div><div class="a-text">Avant chaque utilisation de l'IA cette semaine, posez-vous : "Est-ce que je reflechis avec elle, ou est-ce que je lui delegue ma reflexion ?" La nuance est tout.</div></div></div>
 </div>
 
-<!-- S16 ACTION DE LA SEMAINE (UPDATED avec download .md) -->
+<!-- S16 ACTION DE LA SEMAINE -->
 <div class="screen" id="s16">
   <div class="sbody">
     <div class="accent a1"></div>
@@ -703,6 +656,29 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:var(--sora);backgro
 </div>
 
 <script>
+// ── GATE (déclaré en premier, avant tout) ──────────────────────────────────
+const GATE_KEY = 'gereso_access';
+const GATE_PASS = 'BonjourGERESO31';
+
+function gateCheck() {
+  const v = document.getElementById('gate-input').value;
+  if (v === GATE_PASS) {
+    localStorage.setItem(GATE_KEY, '1');
+    document.getElementById('gate').style.display = 'none';
+  } else {
+    document.getElementById('gate-err').style.display = 'block';
+    document.getElementById('gate-input').style.borderColor = '#C8102E';
+  }
+}
+function gateReset() {
+  document.getElementById('gate-err').style.display = 'none';
+  document.getElementById('gate-input').style.borderColor = 'rgba(0,0,0,.13)';
+}
+if (localStorage.getItem(GATE_KEY) === '1') {
+  document.getElementById('gate').style.display = 'none';
+}
+
+// ── APP ────────────────────────────────────────────────────────────────────
 const TOTAL=18;let cur=0,sec=0,timerOn=false,timerInt=null;
 const META=[
   {mod:"Ouverture",scr:"Bienvenue"},{mod:"Ouverture",scr:"GERESO en chiffres"},
@@ -755,9 +731,7 @@ function toggleTimer(){
   const el=document.getElementById('tb-timer');el.classList.toggle('on',timerOn);
   if(timerOn&&!timerInt){timerInt=setInterval(()=>{sec++;const m=String(Math.floor(sec/60)).padStart(2,'0'),s=String(sec%60).padStart(2,'0');el.textContent=m+':'+s;el.classList.toggle('warn',sec>=2400&&sec<2640);el.classList.toggle('danger',sec>=2640);},1000);}
 }
-// HALLUCINATION DEMO
 function toggleHallu(){document.getElementById('hallu-demo').classList.toggle('open');}
-// TOOL PANORAMA
 let activeToolDemos={};
 const TOOL_RESPONSES={
   gpt:`Objet : Nouvelle politique de teletravail - Information importante\n\nBonjour a toutes et tous,\n\nJe vous informe de la mise en place de notre nouvelle politique de teletravail, applicable a compter du 1er juin.\n\n**Les nouvelles modalites :**\n- Maximum 3 jours de teletravail par semaine\n- Accord prealable de votre manager requis\n- Formalisation via notre outil RH habituel\n\nVotre manager reviendra vers vous individuellement pour organiser la transition. Cette politique vise a concilier flexibilite et cohesion d'equipe.\n\nRestez disponibles pour toute question,\n[Votre nom], RH`,
@@ -792,7 +766,6 @@ function resetToolDemos(){
   });
   showTool('gpt');
 }
-// MAIN CHAT DEMOS
 const BAD=`Bien sur ! Voici comment preparer un entretien annuel :\n\n1. Planifiez a l'avance et bloquez du temps suffisant, idealement 1h.\n\n2. Preparez vos questions sur les objectifs, les points forts, les axes d'amelioration.\n\n3. Rassemblez les elements : revoyez les objectifs fixes en debut d'annee.\n\n4. Creez un cadre bienveillant : l'entretien doit etre un moment d'echange constructif.\n\n5. Pensez a l'avenir et discutez des perspectives de developpement du collaborateur.\n\nSouhaitez-vous des questions-types a utiliser ?`;
 const GOOD=`Voici 5 questions ouvertes, concues pour favoriser un echange authentique :\n\n**1.** "Quelles sont les missions qui vous donnent le plus d'energie en ce moment, et pourquoi ?"\n\n**2.** "Si vous pouviez faire evoluer votre role dans les 12 prochains mois, dans quelle direction iriez-vous ?"\n\n**3.** "Qu'est-ce qui vous permettrait de vous sentir encore plus efficace ou epanoui dans votre poste ?"\n\n**4.** "Y a-t-il des competences que vous aimeriez developper ou des projets que vous aimeriez porter ?"\n\n**5.** "Comment percevez-vous l'equilibre entre vos responsabilites actuelles et vos aspirations ?"\n\nCes questions invitent a la reflexion sans orienter la reponse. Elles respectent l'autonomie et la vie privee du collaborateur.`;
 let badDone=false,goodDone=false,testDone=false;
@@ -802,7 +775,6 @@ function runBad(){if(badDone)return;badDone=true;const m=document.getElementById
 function resetBad(){badDone=false;const m=document.getElementById('bad-msg'),t=document.getElementById('bad-txt'),a=document.getElementById('ann-bad');if(m)m.style.display='none';if(t)t.innerHTML='<span class="cursor"></span>';if(a)a.style.display='none';}
 function runGood(){if(goodDone)return;goodDone=true;const m=document.getElementById('good-msg'),t=document.getElementById('good-txt');m.style.display='flex';stream(t,GOOD,9,()=>{document.getElementById('ann-good').style.display='block';});}
 function resetGood(){goodDone=false;const m=document.getElementById('good-msg'),t=document.getElementById('good-txt'),a=document.getElementById('ann-good');if(m)m.style.display='none';if(t)t.innerHTML='<span class="cursor"></span>';if(a)a.style.display='none';}
-// EXERCISE
 function assemble(){
   const r=document.getElementById('ex-r').value.trim(),c=document.getElementById('ex-c').value.trim(),t=document.getElementById('ex-t').value.trim(),k=document.getElementById('ex-c2').value.trim();
   const parts=[];if(r)parts.push('Tu es '+r+'.');if(c)parts.push('Dans le cadre de '+c+'.');if(t)parts.push('Aide-moi a '+t+'.');if(k)parts.push('En tenant compte de : '+k+'.');
@@ -840,7 +812,6 @@ function testPrompt(){
   setTimeout(()=>{aMsg.style.display='flex';stream(aTxt,genResp(),10,null);},600);
 }
 function resetTest(){testDone=false;const w=document.getElementById('test-result'),a=document.getElementById('test-ai-msg'),t=document.getElementById('test-ai-txt');if(w)w.style.display='none';if(a)a.style.display='none';if(t)t.innerHTML='<span class="cursor"></span>';}
-// DOWNLOAD MD
 function downloadMD(){
   const prompt=document.getElementById('prompt-result').textContent;
   const action=document.getElementById('action-ta').value||'(a completer)';
@@ -912,30 +883,8 @@ C = Contrainte : ajouter les garde-fous RGPD, ethiques et de format
   document.body.appendChild(a);a.click();
   document.body.removeChild(a);URL.revokeObjectURL(url);
 }
-if(localStorage.getItem(GATE_KEY)==='1'){
-  document.getElementById('gate').style.display='none';
-}
+
 go(0);
-  // GATE
-const GATE_KEY='gereso_access';
-const GATE_PASS='BonjourGERESO31';
-function gateCheck(){
-  const v=document.getElementById('gate-input').value;
-  if(v===GATE_PASS){
-    localStorage.setItem(GATE_KEY,'1');
-    document.getElementById('gate').style.display='none';
-  } else {
-    document.getElementById('gate-err').style.display='block';
-    document.getElementById('gate-input').style.borderColor='#C8102E';
-  }
-}
-function gateReset(){
-  document.getElementById('gate-err').style.display='none';
-  document.getElementById('gate-input').style.borderColor='rgba(0,0,0,.13)';
-}
-if(localStorage.getItem(GATE_KEY)==='1'){
-  document.getElementById('gate').style.display='none';
-}
 </script>
 </body>
 </html>
