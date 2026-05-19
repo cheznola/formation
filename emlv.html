@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FARO — Candidate Intelligence</title>
+  <title>VERO · Candidate Intelligence Suite</title>
+  <meta name="description" content="VERO analyse vos offres d'emploi et révèle le processus de recrutement des entreprises. Intelligence recruteur et candidat.">
+  <meta property="og:title" content="VERO · Candidate Intelligence">
+  <meta property="og:description" content="VERO Score analyse vos offres d'emploi. VERO Scout révèle le processus de recrutement des entreprises avant de postuler.">
+  <meta name="theme-color" content="#E05219">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23E05219'/><path d='M9 15l6 7 9-10' stroke='white' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sidebar:      #111827;
+      --sb:           #0D1F2E;
       --sb-border:    rgba(255,255,255,0.07);
-      --sb-active:    rgba(99,102,241,0.22);
-      --sb-active-t:  #C7D2FE;
+      --sb-active:    rgba(224,82,25,0.22);
+      --sb-active-t:  #FAC8B0;
       --bg:           #F4F5F7;
       --surface:      #FFFFFF;
-      --accent:       #4F46E5;
-      --accent-h:     #4338CA;
-      --accent-light: #EEF2FF;
-      --accent-mid:   #818CF8;
+      --accent:       #E05219;
+      --accent-h:     #C44715;
+      --accent-light: #FEF3EE;
+      --accent-mid:   #F08060;
       --text:         #111827;
       --muted:        #6B7280;
       --dim:          #9CA3AF;
       --border:       #E5E7EB;
-      --border-f:     #4F46E5;
       --green:        #10B981;
       --green-bg:     #ECFDF5;
       --red:          #EF4444;
@@ -36,284 +40,308 @@
       --sh-md:        0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
       --r:            8px;
       --r-lg:         12px;
-      --fb: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --fb: 'DM Sans', -apple-system, sans-serif;
       --fm: 'JetBrains Mono', monospace;
     }
 
-    html, body { height:100%; font-family:var(--fb); background:var(--bg); color:var(--text); font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+    [data-theme="dark"] {
+      --bg:      #0D1117;
+      --surface: #161B22;
+      --text:    #E6EDF3;
+      --muted:   #8B949E;
+      --dim:     #484F58;
+      --border:  #30363D;
+      --sh:      0 1px 3px rgba(0,0,0,0.3);
+      --sh-md:   0 4px 12px rgba(0,0,0,0.3);
+    }
 
-    ::-webkit-scrollbar { width:4px; } ::-webkit-scrollbar-track { background:transparent; } ::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
-    ::selection { background:var(--accent-light); color:var(--accent); }
+    html, body { height:100%; font-family:var(--fb); background:var(--bg); color:var(--text); font-size:14px; line-height:1.5; -webkit-font-smoothing:antialiased; transition:background .2s, color .2s; }
+    ::-webkit-scrollbar{width:4px} ::-webkit-scrollbar-track{background:transparent} ::-webkit-scrollbar-thumb{background:var(--border)}
+    ::selection{background:var(--accent-light);color:var(--accent)}
 
     /* ═══ LOGIN ═══ */
     #login {
       position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-      background:#F4F5F7;
-      background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
-      background-size: 24px 24px;
-      z-index:200; transition:opacity .45s ease, transform .45s ease;
+      background:var(--bg); z-index:200; transition:opacity .45s ease, transform .45s ease;
+      background-image:radial-gradient(circle, var(--border) 1px, transparent 1px);
+      background-size:24px 24px;
     }
     #login.out { opacity:0; pointer-events:none; transform:scale(.97); }
 
-    .lc {
-      background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--sh-md), 0 0 0 1px rgba(0,0,0,0.05);
-      padding:2.5rem 2rem; width:100%; max-width:380px;
-      display:flex; flex-direction:column; align-items:center; gap:1.5rem;
-      animation:fadeUp .5s ease both;
-    }
-    .lc-logo { display:flex; align-items:center; gap:.6rem; }
-    .lc-icon { width:36px; height:36px; }
-    .lc-wordmark { font-size:1.5rem; font-weight:800; letter-spacing:.04em; color:var(--text); }
-    .lc-sub { font-size:.8rem; color:var(--muted); text-align:center; line-height:1.6; }
-    .lc-form { width:100%; display:flex; flex-direction:column; gap:.75rem; }
-    .lc-label { font-size:.75rem; font-weight:600; color:var(--muted); letter-spacing:.03em; text-transform:uppercase; }
-    .lc-input { width:100%; border:1.5px solid var(--border); border-radius:var(--r); padding:.7rem .9rem; font-family:var(--fb); font-size:.9rem; color:var(--text); background:var(--surface); outline:none; transition:border-color .15s, box-shadow .15s; }
+    .lc { background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--sh-md),0 0 0 1px rgba(0,0,0,.05); padding:2.5rem 2rem; width:100%; max-width:400px; animation:fadeUp .5s ease both; }
+    .lc-logo { display:flex; align-items:center; gap:.6rem; justify-content:center; margin-bottom:.5rem; }
+    .lc-wordmark { font-size:1.6rem; font-weight:800; letter-spacing:.04em; color:var(--text); }
+    .lc-tagline { font-size:.78rem; color:var(--muted); text-align:center; margin-bottom:1.75rem; }
+    .lc-step { display:none; }
+    .lc-step.on { display:block; animation:fadeUp .3s ease both; }
+    .lc-label { font-size:.72rem; font-weight:700; color:var(--muted); letter-spacing:.05em; text-transform:uppercase; display:block; margin-bottom:.4rem; }
+    .lc-input { width:100%; border:1.5px solid var(--border); border-radius:var(--r); padding:.7rem .9rem; font-family:var(--fb); font-size:.9rem; color:var(--text); background:var(--surface); outline:none; transition:border-color .15s, box-shadow .15s; margin-bottom:.75rem; }
     .lc-input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
-    .lc-btn { width:100%; background:var(--accent); color:#fff; border:none; border-radius:var(--r); padding:.75rem; font-family:var(--fb); font-size:.875rem; font-weight:700; cursor:pointer; transition:background .15s, transform .1s; }
-    .lc-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
-    .lc-err { font-size:.78rem; color:var(--red); height:.9rem; }
+    .lc-btn-main { width:100%; background:var(--accent); color:#fff; border:none; border-radius:var(--r); padding:.75rem; font-family:var(--fb); font-size:.875rem; font-weight:700; cursor:pointer; transition:background .15s, transform .1s; }
+    .lc-btn-main:hover { background:var(--accent-h); transform:translateY(-1px); }
+    .lc-err { font-size:.75rem; color:var(--red); min-height:.9rem; margin-top:.25rem; }
+    .lc-path-title { font-size:.85rem; font-weight:700; color:var(--text); text-align:center; margin-bottom:1.25rem; }
+    .lc-paths { display:grid; grid-template-columns:1fr 1fr; gap:.75rem; }
+    .lc-path-btn { border:1.5px solid var(--border); border-radius:var(--r-lg); padding:1.25rem .75rem; background:var(--surface); cursor:pointer; text-align:center; transition:all .15s; font-family:var(--fb); }
+    .lc-path-btn:hover { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
+    .lc-path-icon { font-size:1.5rem; display:block; margin-bottom:.4rem; }
+    .lc-path-name { font-size:.85rem; font-weight:700; color:var(--text); display:block; }
+    .lc-path-sub { font-size:.7rem; color:var(--muted); display:block; margin-top:.1rem; }
 
-    /* ═══ APP LAYOUT ═══ */
-    #app { display:none; height:100vh; }
-    #app.on { display:flex; animation:fadeIn .3s ease both; }
+    /* ═══ APP ═══ */
+    #app-rh, #app-cand { display:none; height:100vh; }
+    #app-rh.on, #app-cand.on { display:flex; animation:fadeIn .3s ease both; }
 
-    /* ═══ SIDEBAR ═══ */
-    .sb {
-      width:220px; min-width:220px; background:var(--sidebar); display:flex; flex-direction:column;
-      height:100vh; overflow:hidden; position:sticky; top:0;
-    }
+    /* SIDEBAR */
+    .sb { width:220px; min-width:220px; background:var(--sb); display:flex; flex-direction:column; height:100vh; position:sticky; top:0; }
     .sb-top { padding:1.25rem 1rem 1rem; border-bottom:1px solid var(--sb-border); }
-    .sb-logo { display:flex; align-items:center; gap:.6rem; cursor:pointer; }
-    .sb-logo-icon { width:28px; height:28px; flex-shrink:0; }
-    .sb-logo-text { font-size:1.05rem; font-weight:800; color:#fff; letter-spacing:.05em; }
-    .sb-logo-badge { font-size:.55rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; background:rgba(99,102,241,.35); color:var(--accent-mid); padding:.15rem .45rem; border-radius:3px; margin-left:.25rem; }
-
-    .sb-nav { flex:1; padding:.75rem .75rem; display:flex; flex-direction:column; gap:.25rem; overflow-y:auto; }
-    .sb-section-label { font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,255,255,.3); padding:.5rem .5rem .25rem; margin-top:.25rem; }
-    .sb-item {
-      display:flex; align-items:center; gap:.65rem; padding:.55rem .75rem; border-radius:6px;
-      color:rgba(255,255,255,.58); cursor:pointer; font-size:.83rem; font-weight:500;
-      transition:all .15s; user-select:none; border:none; background:none; width:100%; text-align:left;
-    }
+    .sb-logo { display:flex; align-items:center; gap:.55rem; }
+    .sb-wm { font-size:1.05rem; font-weight:800; color:#fff; letter-spacing:.05em; }
+    .sb-badge { font-size:.5rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; background:rgba(224,82,25,.35); color:#FAC8B0; padding:.12rem .4rem; border-radius:3px; }
+    .sb-nav { flex:1; padding:.75rem; display:flex; flex-direction:column; gap:.2rem; overflow-y:auto; }
+    .sb-sec { font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,255,255,.28); padding:.5rem .5rem .25rem; margin-top:.25rem; }
+    .sb-item { display:flex; align-items:center; gap:.65rem; padding:.55rem .75rem; border-radius:6px; color:rgba(255,255,255,.55); cursor:pointer; font-size:.82rem; font-weight:500; transition:all .15s; border:none; background:none; width:100%; text-align:left; }
     .sb-item:hover { background:rgba(255,255,255,.06); color:rgba(255,255,255,.85); }
     .sb-item.on { background:var(--sb-active); color:var(--sb-active-t); font-weight:600; }
-    .sb-item svg { flex-shrink:0; opacity:.75; }
-    .sb-item.on svg { opacity:1; }
+    .sb-foot { padding:.85rem 1rem; border-top:1px solid var(--sb-border); display:flex; flex-direction:column; gap:.5rem; }
+    .sb-controls { display:flex; gap:.4rem; }
+    .sb-ctrl-btn { flex:1; background:rgba(255,255,255,.07); border:none; color:rgba(255,255,255,.55); border-radius:5px; padding:.38rem .5rem; font-family:var(--fb); font-size:.65rem; font-weight:600; cursor:pointer; transition:all .15s; text-align:center; }
+    .sb-ctrl-btn:hover { background:rgba(255,255,255,.12); color:rgba(255,255,255,.85); }
+    .sb-ctrl-btn.on { background:rgba(224,82,25,.3); color:#FAC8B0; }
+    .sb-foot-user { font-size:.7rem; color:rgba(255,255,255,.35); }
+    .sb-logout { background:none; border:none; color:rgba(255,255,255,.3); font-family:var(--fb); font-size:.65rem; cursor:pointer; padding:0; text-decoration:underline; }
+    .sb-logout:hover { color:rgba(255,255,255,.6); }
 
-    .sb-foot { padding:.75rem 1rem; border-top:1px solid var(--sb-border); }
-    .sb-foot-label { font-size:.7rem; color:rgba(255,255,255,.35); }
-    .sb-foot-product { font-size:.75rem; font-weight:600; color:rgba(255,255,255,.55); margin-top:.15rem; }
-
-    /* ═══ MAIN ═══ */
+    /* MAIN */
     .main { flex:1; display:flex; flex-direction:column; overflow:hidden; }
     .main-body { flex:1; overflow-y:auto; padding:2rem 2.25rem; }
-
     .page-header { margin-bottom:1.75rem; }
-    .page-tag { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin-bottom:.35rem; }
-    .page-title { font-size:1.5rem; font-weight:800; color:var(--text); margin-bottom:.3rem; }
-    .page-sub { font-size:.875rem; color:var(--muted); max-width:540px; line-height:1.65; }
-
+    .pg-tag { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin-bottom:.3rem; }
+    .pg-title { font-size:1.45rem; font-weight:800; color:var(--text); margin-bottom:.3rem; }
+    .pg-sub { font-size:.875rem; color:var(--muted); max-width:560px; line-height:1.65; }
     .tab { display:none; }
     .tab.on { display:block; animation:fadeUp .3s ease both; }
 
     /* ═══ SHARED COMPONENTS ═══ */
     .card { background:var(--surface); border-radius:var(--r); box-shadow:var(--sh); border:1px solid rgba(0,0,0,0.045); }
+    [data-theme="dark"] .card { border-color:var(--border); }
     .card-pad { padding:1.5rem; }
-
-    .btn-primary {
-      display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.25rem;
-      background:var(--accent); color:#fff; border:none; border-radius:var(--r); font-family:var(--fb);
-      font-size:.8rem; font-weight:700; cursor:pointer; transition:background .15s, transform .1s;
-    }
-    .btn-primary:hover { background:var(--accent-h); transform:translateY(-1px); }
-    .btn-primary:disabled { opacity:.4; cursor:not-allowed; transform:none; }
-
-    .btn-secondary {
-      display:inline-flex; align-items:center; gap:.5rem; padding:.6rem 1.25rem;
-      background:var(--surface); color:var(--muted); border:1.5px solid var(--border); border-radius:var(--r);
-      font-family:var(--fb); font-size:.8rem; font-weight:600; cursor:pointer; transition:all .15s;
-    }
-    .btn-secondary:hover { border-color:var(--accent); color:var(--accent); }
-
-    .form-label { display:block; font-size:.75rem; font-weight:600; color:var(--muted); margin-bottom:.4rem; letter-spacing:.02em; }
-    .form-input { width:100%; border:1.5px solid var(--border); border-radius:var(--r); padding:.65rem .85rem; font-family:var(--fb); font-size:.875rem; color:var(--text); background:var(--surface); outline:none; transition:border-color .15s, box-shadow .15s; }
-    .form-input:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
-    .form-input::placeholder { color:var(--dim); }
-    .form-textarea { width:100%; border:1.5px solid var(--border); border-radius:var(--r); padding:.75rem .9rem; font-family:var(--fb); font-size:.875rem; color:var(--text); background:var(--surface); line-height:1.7; resize:vertical; min-height:220px; outline:none; transition:border-color .15s, box-shadow .15s; }
-    .form-textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
-    .form-textarea::placeholder { color:var(--dim); }
-
-    .badge { display:inline-flex; align-items:center; gap:.3rem; padding:.2rem .55rem; border-radius:4px; font-size:.7rem; font-weight:700; letter-spacing:.02em; }
-    .badge-green { background:var(--green-bg); color:#059669; }
-    .badge-red { background:var(--red-bg); color:#DC2626; }
-    .badge-yellow { background:var(--yellow-bg); color:#D97706; }
-    .badge-accent { background:var(--accent-light); color:var(--accent); }
-    .badge-gray { background:#F3F4F6; color:var(--muted); }
-
-    .loading-bar { display:none; align-items:center; gap:.75rem; padding:1rem 1.25rem; background:var(--accent-light); border-radius:var(--r); border:1px solid rgba(79,70,229,.15); font-size:.8rem; font-weight:600; color:var(--accent); margin-top:1rem; }
-    .loading-bar.on { display:flex; }
-    .spin { width:14px; height:14px; border:2px solid rgba(79,70,229,.2); border-top-color:var(--accent); border-radius:50%; animation:spin .75s linear infinite; flex-shrink:0; }
+    .btn-p { display:inline-flex; align-items:center; gap:.45rem; padding:.6rem 1.2rem; background:var(--accent); color:#fff; border:none; border-radius:var(--r); font-family:var(--fb); font-size:.8rem; font-weight:700; cursor:pointer; transition:background .15s, transform .1s; }
+    .btn-p:hover { background:var(--accent-h); transform:translateY(-1px); }
+    .btn-p:disabled { opacity:.4; cursor:not-allowed; transform:none; }
+    .btn-s { display:inline-flex; align-items:center; gap:.45rem; padding:.6rem 1.2rem; background:var(--surface); color:var(--muted); border:1.5px solid var(--border); border-radius:var(--r); font-family:var(--fb); font-size:.8rem; font-weight:600; cursor:pointer; transition:all .15s; }
+    .btn-s:hover { border-color:var(--accent); color:var(--accent); }
+    .form-lbl { display:block; font-size:.72rem; font-weight:700; color:var(--muted); margin-bottom:.38rem; letter-spacing:.02em; }
+    .form-in { width:100%; border:1.5px solid var(--border); border-radius:var(--r); padding:.65rem .85rem; font-family:var(--fb); font-size:.875rem; color:var(--text); background:var(--surface); outline:none; transition:border-color .15s, box-shadow .15s; }
+    .form-in:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
+    .form-in::placeholder { color:var(--dim); }
+    .form-ta { width:100%; border:1.5px solid var(--border); border-radius:var(--r); padding:.75rem .9rem; font-family:var(--fb); font-size:.875rem; color:var(--text); background:var(--surface); line-height:1.7; resize:vertical; min-height:220px; outline:none; transition:border-color .15s, box-shadow .15s; }
+    .form-ta:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-light); }
+    .form-ta::placeholder { color:var(--dim); }
+    .loading-row { display:none; align-items:center; gap:.75rem; padding:.85rem 1.1rem; background:var(--accent-light); border-radius:var(--r); border:1px solid rgba(224,82,25,.15); font-size:.8rem; font-weight:600; color:var(--accent); margin-top:1rem; }
+    .loading-row.on { display:flex; }
+    .spinner { width:14px; height:14px; border:2px solid rgba(224,82,25,.2); border-top-color:var(--accent); border-radius:50%; animation:spin .75s linear infinite; flex-shrink:0; }
+    .badge-pill { display:inline-flex; align-items:center; gap:.25rem; padding:.18rem .55rem; border-radius:20px; font-size:.68rem; font-weight:700; }
+    .bp-green { background:var(--green-bg); color:#059669; }
+    .bp-red { background:var(--red-bg); color:#DC2626; }
+    .bp-yellow { background:var(--yellow-bg); color:#D97706; }
+    .bp-orange { background:var(--accent-light); color:var(--accent); }
+    .bp-gray { background:#F3F4F6; color:var(--muted); }
+    [data-theme="dark"] .bp-gray { background:#21262D; }
 
     /* ═══ SCORE TAB ═══ */
-    .score-layout { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; align-items:start; }
-    @media(max-width:860px){.score-layout{grid-template-columns:1fr}}
-
-    .score-form-wrap { display:flex; flex-direction:column; gap:1rem; }
-    .form-actions { display:flex; gap:.65rem; margin-top:.25rem; }
-
-    #score-results { display:none; }
-    #score-results.on { display:flex; flex-direction:column; gap:1.25rem; animation:fadeUp .35s ease both; }
-
-    .score-number-block { display:flex; align-items:center; gap:1.25rem; padding:1.25rem 1.5rem; }
-    .score-circle { width:72px; height:72px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-direction:column; flex-shrink:0; }
-    .score-circle.high { background:var(--green-bg); }
-    .score-circle.mid  { background:var(--yellow-bg); }
-    .score-circle.low  { background:var(--red-bg); }
-    .score-num { font-family:var(--fm); font-size:1.5rem; font-weight:500; line-height:1; }
-    .score-num.high { color:var(--green); }
-    .score-num.mid  { color:var(--yellow); }
-    .score-num.low  { color:var(--red); }
-    .score-denom { font-family:var(--fm); font-size:.65rem; color:var(--dim); }
-    .score-text-block { flex:1; }
-    .score-verdict { font-size:.82rem; color:var(--muted); line-height:1.6; }
-    .score-bench { display:inline-block; margin-top:.4rem; }
-
-    .dims-block { padding:1.25rem 1.5rem; display:flex; flex-direction:column; gap:.85rem; }
-    .dims-title { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.25rem; }
+    .score-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; align-items:start; }
+    @media(max-width:860px){.score-grid{grid-template-columns:1fr}}
+    .score-form-stack { display:flex; flex-direction:column; gap:.85rem; }
+    .form-actions { display:flex; gap:.65rem; margin-top:.1rem; }
+    #score-res { display:none; }
+    #score-res.on { display:flex; flex-direction:column; gap:1.1rem; animation:fadeUp .35s ease both; }
+    .score-num-block { display:flex; align-items:center; gap:1.1rem; padding:1.25rem 1.5rem; }
+    .s-circle { width:68px; height:68px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; }
+    .s-circle.high { background:var(--green-bg); } .s-circle.mid { background:var(--yellow-bg); } .s-circle.low { background:var(--red-bg); }
+    .s-num { font-family:var(--fm); font-size:1.45rem; font-weight:500; line-height:1; }
+    .s-num.high{color:var(--green)} .s-num.mid{color:var(--yellow)} .s-num.low{color:var(--red)}
+    .s-denom { font-family:var(--fm); font-size:.6rem; color:var(--dim); }
+    .s-text { flex:1; }
+    .s-verdict { font-size:.82rem; color:var(--muted); line-height:1.6; margin-bottom:.4rem; }
+    .dims-wrap { padding:1.25rem 1.5rem; display:flex; flex-direction:column; gap:.8rem; }
+    .dims-title { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.1rem; }
     .dim-row {}
-    .dim-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:.3rem; }
-    .dim-name { font-size:.8rem; color:var(--text); font-weight:500; }
-    .dim-score-label { font-family:var(--fm); font-size:.72rem; }
-    .dim-bar-bg { height:5px; background:#F3F4F6; border-radius:3px; overflow:hidden; }
-    .dim-bar-fill { height:100%; width:0; border-radius:3px; transition:width .85s cubic-bezier(.4,0,.2,1); }
-    .dim-detail { font-size:.72rem; color:var(--dim); margin-top:.2rem; }
-
-    .recos-title { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:0 1.5rem 0.75rem; border-bottom:1px solid var(--border); }
-    .recos-list { display:flex; flex-direction:column; }
-    .reco-item { padding:1rem 1.5rem; border-bottom:1px solid var(--border); opacity:0; transform:translateY(6px); transition:opacity .3s ease, transform .3s ease; }
+    .dim-top { display:flex; justify-content:space-between; margin-bottom:.28rem; }
+    .dim-name { font-size:.78rem; color:var(--text); font-weight:500; }
+    .dim-val { font-family:var(--fm); font-size:.72rem; }
+    .bar-bg { height:5px; background:var(--border); border-radius:3px; overflow:hidden; }
+    .bar-fill { height:100%; width:0; border-radius:3px; transition:width .85s cubic-bezier(.4,0,.2,1); }
+    .dim-det { font-size:.7rem; color:var(--dim); margin-top:.18rem; }
+    .recos-hd { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); padding:1rem 1.5rem .65rem; border-bottom:1px solid var(--border); }
+    .reco-item { padding:.85rem 1.5rem; border-bottom:1px solid var(--border); opacity:0; transform:translateY(5px); transition:opacity .3s, transform .3s; }
     .reco-item:last-child { border-bottom:none; }
-    .reco-item.on { opacity:1; transform:translateY(0); }
-    .reco-rank { font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin-bottom:.3rem; }
-    .reco-title-text { font-size:.85rem; font-weight:700; margin-bottom:.3rem; }
-    .reco-desc { font-size:.78rem; color:var(--muted); line-height:1.65; margin-bottom:.6rem; }
-    .reco-pills { display:flex; gap:.4rem; flex-wrap:wrap; }
-    .pill { font-size:.62rem; font-weight:600; letter-spacing:.03em; padding:.18rem .55rem; border-radius:20px; }
-    .pill-impact { background:var(--accent-light); color:var(--accent); }
-    .pill-roi { background:var(--green-bg); color:#059669; }
+    .reco-item.on { opacity:1; transform:none; }
+    .reco-rank { font-size:.58rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin-bottom:.25rem; }
+    .reco-t { font-size:.84rem; font-weight:700; margin-bottom:.25rem; }
+    .reco-d { font-size:.77rem; color:var(--muted); line-height:1.65; margin-bottom:.55rem; }
+    .reco-pills { display:flex; gap:.35rem; flex-wrap:wrap; }
+    .rp { font-size:.6rem; font-weight:600; padding:.15rem .5rem; border-radius:20px; }
+    .rp-i { background:var(--accent-light); color:var(--accent); }
+    .rp-r { background:var(--green-bg); color:#059669; }
 
     /* ═══ SCOUT TAB ═══ */
-    .scout-search-row { display:grid; grid-template-columns:1fr 1fr auto; gap:.75rem; align-items:end; margin-bottom:1rem; }
-    @media(max-width:640px){.scout-search-row{grid-template-columns:1fr}}
-
-    .suggestions-block { margin-bottom:1.5rem; }
-    .sug-label { font-size:.72rem; font-weight:600; color:var(--muted); margin-bottom:.5rem; display:block; }
-    .sug-chips { display:flex; flex-wrap:wrap; gap:.4rem; }
-    .sug-chip {
-      font-size:.75rem; font-weight:600; color:var(--accent); background:var(--accent-light);
-      border:none; border-radius:20px; padding:.25rem .75rem; cursor:pointer; transition:all .15s;
-      font-family:var(--fb);
-    }
-    .sug-chip:hover { background:var(--accent); color:#fff; transform:translateY(-1px); }
-
-    #scout-results { display:none; animation:fadeUp .35s ease both; }
-    #scout-results.on { display:flex; flex-direction:column; gap:1.25rem; }
-
-    .scout-header-card { padding:1.5rem; display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; }
-    .scout-co-name { font-size:1.35rem; font-weight:800; margin-bottom:.3rem; }
-    .scout-co-verd { font-size:.82rem; color:var(--muted); line-height:1.65; max-width:480px; }
-    .scout-score-badge { width:72px; height:72px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; }
-    .scout-score-badge.high { background:var(--green-bg); }
-    .scout-score-badge.mid  { background:var(--yellow-bg); }
-    .scout-score-badge.low  { background:var(--red-bg); }
-    .scout-score-num { font-family:var(--fm); font-size:1.5rem; font-weight:500; line-height:1; }
-    .scout-score-sub { font-family:var(--fm); font-size:.5rem; color:var(--dim); margin-top:.1rem; }
-
+    .scout-row { display:grid; grid-template-columns:1fr 1fr auto; gap:.75rem; align-items:end; margin-bottom:1rem; }
+    @media(max-width:640px){.scout-row{grid-template-columns:1fr}}
+    .sug-block { margin-bottom:1.5rem; }
+    .sug-lbl { font-size:.7rem; font-weight:700; color:var(--muted); margin-bottom:.45rem; display:block; }
+    .sug-chips { display:flex; flex-wrap:wrap; gap:.38rem; }
+    .sug-chip { font-size:.73rem; font-weight:600; color:var(--accent); background:var(--accent-light); border:none; border-radius:20px; padding:.22rem .7rem; cursor:pointer; transition:all .15s; font-family:var(--fb); }
+    .sug-chip:hover { background:var(--accent); color:#fff; }
+    #scout-res, #scout-res-c { display:none; animation:fadeUp .35s ease both; }
+    #scout-res.on, #scout-res-c.on { display:flex; flex-direction:column; gap:1.1rem; }
+    .scout-hd-card { padding:1.5rem; display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; }
+    .scout-co { font-size:1.3rem; font-weight:800; margin-bottom:.3rem; }
+    .scout-verd { font-size:.82rem; color:var(--muted); line-height:1.65; max-width:460px; }
+    .scout-badge { width:68px; height:68px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; flex-shrink:0; }
+    .scout-badge.high{background:var(--green-bg)} .scout-badge.mid{background:var(--yellow-bg)} .scout-badge.low{background:var(--red-bg)}
+    .scout-n { font-family:var(--fm); font-size:1.45rem; font-weight:500; line-height:1; }
+    .scout-nl { font-family:var(--fm); font-size:.5rem; color:var(--dim); margin-top:.1rem; }
     .metrics-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); }
     @media(max-width:600px){.metrics-4{grid-template-columns:repeat(2,1fr)}}
-    .metric-box { background:var(--surface); padding:1.1rem 1.25rem; }
-    .metric-value { font-family:var(--fm); font-size:1.25rem; font-weight:500; margin-bottom:.2rem; }
-    .metric-name { font-size:.72rem; color:var(--muted); }
+    .m-cell { background:var(--surface); padding:1.1rem 1.2rem; }
+    .m-val { font-family:var(--fm); font-size:1.2rem; font-weight:500; margin-bottom:.2rem; }
+    .m-lbl { font-size:.7rem; color:var(--muted); }
+    .process-wrap { padding:1.25rem 1.5rem; }
+    .process-title { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.75rem; }
+    .p-steps { display:flex; overflow-x:auto; gap:0; padding-bottom:.25rem; }
+    .p-step { display:flex; align-items:center; flex-shrink:0; }
+    .p-box { background:var(--accent-light); border:1px solid rgba(224,82,25,.15); border-radius:6px; padding:.38rem .75rem; font-size:.68rem; font-weight:600; color:var(--accent); white-space:nowrap; }
+    .p-arr { color:var(--dim); padding:0 .35rem; font-size:.75rem; }
+    .s-2col { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+    @media(max-width:640px){.s-2col{grid-template-columns:1fr}}
+    .s-col-t { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.75rem; }
+    .s-ul { list-style:none; display:flex; flex-direction:column; gap:.45rem; }
+    .s-ul li { font-size:.8rem; color:var(--muted); display:flex; gap:.5rem; line-height:1.5; }
+    .s-ul li::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:.42rem; }
+    .advice-wrap { padding:1.25rem 1.5rem; background:linear-gradient(135deg,var(--accent-light) 0%,var(--surface) 100%); border:1px solid rgba(224,82,25,.1); }
+    .advice-t { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); margin-bottom:.75rem; }
+    .advice-row { display:flex; gap:.75rem; align-items:flex-start; }
+    .advice-row + .advice-row { margin-top:.55rem; }
+    .advice-num { width:19px; height:19px; border-radius:50%; background:var(--accent); color:#fff; font-size:.62rem; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .advice-txt { font-size:.8rem; color:var(--muted); line-height:1.6; }
 
-    .process-flow { padding:1.25rem 1.5rem; }
-    .process-title { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.85rem; }
-    .process-steps { display:flex; align-items:center; overflow-x:auto; gap:0; padding-bottom:.25rem; }
-    .p-step { display:flex; align-items:center; gap:0; flex-shrink:0; }
-    .p-step-box { background:var(--accent-light); border:1px solid rgba(79,70,229,.15); border-radius:6px; padding:.4rem .8rem; font-size:.7rem; font-weight:600; color:var(--accent); white-space:nowrap; }
-    .p-step-arr { color:var(--dim); font-size:.75rem; padding:0 .4rem; flex-shrink:0; }
-
-    .scout-2col { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
-    @media(max-width:640px){.scout-2col{grid-template-columns:1fr}}
-    .scout-col-title { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.85rem; }
-    .scout-ul { list-style:none; display:flex; flex-direction:column; gap:.5rem; }
-    .scout-ul li { font-size:.82rem; color:var(--muted); display:flex; gap:.5rem; line-height:1.55; }
-    .scout-ul li::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:.45rem; }
-
-    .scout-advice { padding:1.25rem 1.5rem; background:linear-gradient(135deg, var(--accent-light) 0%, #fff 100%); border:1px solid rgba(79,70,229,.12); }
-    .scout-advice-title { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); margin-bottom:.85rem; }
-    .advice-list { display:flex; flex-direction:column; gap:.65rem; }
-    .advice-row { display:flex; gap:.85rem; align-items:flex-start; }
-    .advice-num { width:20px; height:20px; border-radius:50%; background:var(--accent); color:#fff; font-size:.65rem; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:.05rem; }
-    .advice-text { font-size:.82rem; color:var(--muted); line-height:1.6; }
-
-    /* ═══ TARIFS TAB ═══ */
-    .plans-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-bottom:2rem; }
+    /* ═══ TARIFS ═══ */
+    .plans-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.1rem; margin-bottom:1.75rem; }
     @media(max-width:780px){.plans-grid{grid-template-columns:1fr}}
-    .plan-card { background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--sh); border:1.5px solid var(--border); padding:1.75rem; display:flex; flex-direction:column; position:relative; }
-    .plan-card.featured { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent), var(--sh-md); }
-    .plan-card.featured::before { content:'Recommandé'; position:absolute; top:-1px; right:1.25rem; background:var(--accent); color:#fff; font-size:.62rem; font-weight:700; letter-spacing:.04em; padding:.2rem .7rem; border-radius:0 0 6px 6px; }
-    .plan-name { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.85rem; }
-    .plan-price { font-size:2.25rem; font-weight:800; color:var(--text); line-height:1; }
-    .plan-period { font-size:.75rem; color:var(--dim); margin-top:.2rem; margin-bottom:1.5rem; }
-    .plan-feats { list-style:none; flex:1; display:flex; flex-direction:column; gap:.5rem; margin-bottom:1.5rem; }
-    .plan-feats li { font-size:.82rem; color:var(--muted); display:flex; gap:.5rem; align-items:flex-start; }
-    .plan-feats li::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:.45rem; }
+    .plan-c { background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--sh); border:1.5px solid var(--border); padding:1.65rem; display:flex; flex-direction:column; position:relative; }
+    .plan-c.feat { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent),var(--sh-md); }
+    .plan-c.feat::before { content:'Recommandé'; position:absolute; top:-1px; right:1.25rem; background:var(--accent); color:#fff; font-size:.6rem; font-weight:700; letter-spacing:.04em; padding:.18rem .65rem; border-radius:0 0 6px 6px; }
+    .plan-n { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.75rem; }
+    .plan-p { font-size:2.1rem; font-weight:800; color:var(--text); line-height:1; }
+    .plan-per { font-size:.72rem; color:var(--dim); margin-top:.15rem; margin-bottom:1.25rem; }
+    .plan-fs { list-style:none; flex:1; display:flex; flex-direction:column; gap:.45rem; margin-bottom:1.35rem; }
+    .plan-fs li { font-size:.8rem; color:var(--muted); display:flex; gap:.45rem; align-items:flex-start; }
+    .plan-fs li::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:.42rem; }
     .plan-cta { text-decoration:none; display:block; }
-
-    .roi-card { background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--sh); border:1px solid rgba(0,0,0,.05); padding:2rem; display:grid; grid-template-columns:1fr 1fr; gap:3rem; }
-    @media(max-width:640px){.roi-card{grid-template-columns:1fr}}
-    .roi-tag { font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); margin-bottom:.65rem; }
-    .roi-headline { font-size:1.2rem; font-weight:800; line-height:1.35; margin-bottom:.75rem; }
-    .roi-headline em { color:var(--accent); font-style:normal; }
-    .roi-body { font-size:.82rem; color:var(--muted); line-height:1.8; }
-    .roi-table { display:flex; flex-direction:column; gap:0; }
-    .roi-row { display:flex; justify-content:space-between; align-items:center; padding:.6rem 0; border-bottom:1px solid var(--border); }
+    .roi-c { background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--sh); border:1px solid rgba(0,0,0,.045); padding:2rem; display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; }
+    @media(max-width:640px){.roi-c{grid-template-columns:1fr}}
+    .roi-tag { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); margin-bottom:.6rem; }
+    .roi-hl { font-size:1.15rem; font-weight:800; line-height:1.35; margin-bottom:.65rem; }
+    .roi-hl em { color:var(--accent); font-style:normal; }
+    .roi-body { font-size:.8rem; color:var(--muted); line-height:1.8; }
+    .roi-tbl { display:flex; flex-direction:column; }
+    .roi-row { display:flex; justify-content:space-between; align-items:center; padding:.55rem 0; border-bottom:1px solid var(--border); }
     .roi-row:last-child { border-bottom:none; }
-    .roi-key { font-size:.82rem; color:var(--muted); }
-    .roi-val { font-family:var(--fm); font-size:.82rem; font-weight:500; }
+    .roi-k { font-size:.8rem; color:var(--muted); }
+    .roi-v { font-family:var(--fm); font-size:.8rem; font-weight:500; }
 
-    /* ═══ MAKING-OF TAB ═══ */
-    .mo-problem { background:linear-gradient(135deg, #1E1B4B 0%, #2E1065 100%); border-radius:var(--r-lg); padding:2.5rem; margin-bottom:2rem; color:rgba(255,255,255,.9); }
-    .mo-problem-tag { font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--accent-mid); margin-bottom:.85rem; }
-    .mo-problem-title { font-size:1.5rem; font-weight:800; color:#fff; line-height:1.3; margin-bottom:1rem; }
-    .mo-problem-body { font-size:.875rem; line-height:1.9; color:rgba(255,255,255,.72); }
-    .mo-problem-body p + p { margin-top:.85rem; }
+    /* ═══ CANDIDAT-SPECIFIC TABS ═══ */
+    .partner-card { padding:2rem; display:flex; flex-direction:column; gap:1.25rem; }
+    .partner-logo-row { display:flex; align-items:center; gap:.75rem; }
+    .partner-logo { width:40px; height:40px; border-radius:8px; background:#000; display:flex; align-items:center; justify-content:center; font-size:.6rem; font-weight:800; color:#fff; }
+    .partner-name { font-size:1rem; font-weight:800; }
+    .partner-sub { font-size:.82rem; color:var(--muted); line-height:1.7; max-width:540px; }
+    .partner-link-big { display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1.4rem; background:var(--accent); color:#fff; border-radius:var(--r); text-decoration:none; font-size:.85rem; font-weight:700; transition:background .15s; }
+    .partner-link-big:hover { background:var(--accent-h); }
+    .partner-features { display:grid; grid-template-columns:repeat(3,1fr); gap:.85rem; }
+    @media(max-width:640px){.partner-features{grid-template-columns:1fr}}
+    .pf-item { background:var(--bg); border-radius:var(--r); padding:.85rem 1rem; }
+    .pf-emoji { font-size:1.2rem; margin-bottom:.3rem; }
+    .pf-name { font-size:.8rem; font-weight:700; margin-bottom:.15rem; }
+    .pf-desc { font-size:.72rem; color:var(--muted); line-height:1.5; }
 
-    .mo-chain { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; margin-bottom:2rem; }
-    .mo-step { font-size:.7rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
-    .mo-arr { color:var(--dim); font-size:.75rem; }
+    .ext-card { padding:2rem; display:flex; flex-direction:column; gap:1.25rem; }
+    .ext-header { display:flex; align-items:flex-start; gap:1rem; }
+    .ext-icon { width:52px; height:52px; border-radius:12px; background:linear-gradient(135deg,#4285F4,#34A853); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+    .ext-meta { flex:1; }
+    .ext-name { font-size:1.1rem; font-weight:800; margin-bottom:.2rem; }
+    .ext-desc { font-size:.82rem; color:var(--muted); line-height:1.6; max-width:500px; }
+    .ext-how { background:var(--bg); border-radius:var(--r); padding:1.1rem; }
+    .ext-how-t { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.75rem; }
+    .ext-steps { display:flex; flex-direction:column; gap:.5rem; }
+    .ext-step { display:flex; gap:.75rem; align-items:flex-start; }
+    .ext-step-n { width:20px; height:20px; border-radius:50%; background:var(--accent); color:#fff; font-size:.62rem; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .ext-step-t { font-size:.8rem; color:var(--muted); line-height:1.5; }
+    .ext-badge-cs { display:inline-flex; align-items:center; gap:.4rem; background:var(--yellow-bg); color:#D97706; border-radius:20px; padding:.3rem .85rem; font-size:.72rem; font-weight:700; border:1px solid rgba(217,119,6,.2); }
 
-    .exp-list { display:flex; flex-direction:column; gap:1.25rem; }
-    .exp-card { background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--sh); border:1px solid rgba(0,0,0,.045); overflow:hidden; }
-    .exp-header { display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; border-bottom:1px solid var(--border); }
-    .exp-avatar { width:40px; height:40px; border-radius:10px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem; }
+    /* ═══ PROFIL ═══ */
+    .profil-grid { display:grid; grid-template-columns:240px 1fr; gap:1.5rem; }
+    @media(max-width:720px){.profil-grid{grid-template-columns:1fr}}
+    .profil-card { padding:1.75rem; display:flex; flex-direction:column; align-items:center; text-align:center; gap:.85rem; }
+    .profil-avatar { width:72px; height:72px; border-radius:50%; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-size:1.75rem; }
+    .profil-name { font-size:1rem; font-weight:800; }
+    .profil-role { font-size:.78rem; color:var(--muted); }
+    .profil-email { font-size:.75rem; color:var(--accent); text-decoration:none; }
+    .profil-info-card { padding:1.5rem; }
+    .profil-section-t { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:1rem; }
+    .profil-rows { display:flex; flex-direction:column; gap:0; }
+    .profil-row { display:flex; justify-content:space-between; align-items:center; padding:.7rem 0; border-bottom:1px solid var(--border); }
+    .profil-row:last-child { border-bottom:none; }
+    .profil-row-k { font-size:.8rem; color:var(--muted); }
+    .profil-row-v { font-size:.8rem; font-weight:600; text-align:right; }
+    .profil-stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.85rem; margin-top:1.25rem; }
+    .profil-stat { background:var(--bg); border-radius:var(--r); padding:.85rem 1rem; text-align:center; }
+    .ps-num { font-family:var(--fm); font-size:1.35rem; font-weight:500; color:var(--accent); }
+    .ps-lbl { font-size:.7rem; color:var(--muted); margin-top:.15rem; }
+    .profil-cand-extra { margin-top:1.25rem; padding:1.25rem; background:var(--accent-light); border-radius:var(--r); border:1px solid rgba(224,82,25,.12); }
+    .pce-t { font-size:.78rem; font-weight:700; color:var(--accent); margin-bottom:.5rem; }
+    .pce-sub { font-size:.76rem; color:var(--muted); line-height:1.6; }
+
+    /* ═══ MAKING-OF ═══ */
+    .mo-problem { background:linear-gradient(135deg,#0D1F2E 0%,#1A3350 100%); border-radius:var(--r-lg); padding:2.5rem; margin-bottom:2rem; color:rgba(255,255,255,.88); }
+    .mo-p-tag { font-size:.62rem; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:#FAC8B0; margin-bottom:.75rem; }
+    .mo-p-title { font-size:1.45rem; font-weight:800; color:#fff; line-height:1.3; margin-bottom:.85rem; }
+    .mo-p-body { font-size:.855rem; line-height:1.9; color:rgba(255,255,255,.68); }
+    .mo-p-body p + p { margin-top:.8rem; }
+    .mo-prod-badge { display:inline-flex; align-items:center; gap:.5rem; margin-top:1.25rem; background:rgba(224,82,25,.25); border:1px solid rgba(224,82,25,.4); border-radius:20px; padding:.35rem .9rem; font-size:.72rem; font-weight:700; color:#FAC8B0; }
+    .mo-chain { display:flex; align-items:center; gap:.45rem; flex-wrap:wrap; margin-bottom:2rem; }
+    .mo-step { font-size:.68rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+    .mo-arr { color:var(--dim); }
+    .exp-list { display:flex; flex-direction:column; gap:1.1rem; }
+    .exp-c { background:var(--surface); border-radius:var(--r-lg); box-shadow:var(--sh); border:1px solid rgba(0,0,0,.045); overflow:hidden; }
+    [data-theme="dark"] .exp-c { border-color:var(--border); }
+    .exp-hd { display:flex; align-items:center; gap:.85rem; padding:1.1rem 1.4rem; border-bottom:1px solid var(--border); }
+    .exp-av { width:38px; height:38px; border-radius:9px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-size:.9rem; flex-shrink:0; }
     .exp-meta { flex:1; }
-    .exp-badge { font-size:.6rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin-bottom:.15rem; }
-    .exp-name-text { font-size:.9rem; font-weight:700; color:var(--text); }
-    .exp-role-text { font-size:.75rem; color:var(--muted); }
-    .exp-fws { display:flex; gap:.4rem; flex-wrap:wrap; }
-    .fw-tag { font-size:.62rem; font-weight:600; background:#F3F4F6; color:var(--muted); padding:.2rem .55rem; border-radius:4px; }
-
-    .exp-body-wrap { padding:1.5rem; }
-    .exp-quote-text { font-size:.95rem; font-style:italic; font-weight:600; color:var(--accent); border-left:3px solid var(--accent); padding-left:1rem; margin-bottom:1.1rem; line-height:1.55; }
-    .exp-body-text { font-size:.845rem; color:var(--muted); line-height:1.9; }
-    .exp-body-text p + p { margin-top:.8rem; }
-
+    .exp-b { font-size:.58rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); margin-bottom:.12rem; }
+    .exp-n { font-size:.88rem; font-weight:700; }
+    .exp-r { font-size:.72rem; color:var(--muted); }
+    .exp-fws { display:flex; gap:.35rem; flex-wrap:wrap; }
+    .fw-t { font-size:.6rem; font-weight:600; background:#F3F4F6; color:var(--muted); padding:.18rem .5rem; border-radius:4px; }
+    [data-theme="dark"] .fw-t { background:#21262D; }
+    .exp-bw { padding:1.4rem; }
+    .exp-q { font-size:.9rem; font-style:italic; font-weight:600; color:var(--accent); border-left:3px solid var(--accent); padding-left:1rem; margin-bottom:1rem; line-height:1.55; }
+    .exp-bt { font-size:.835rem; color:var(--muted); line-height:1.9; }
+    .exp-bt p + p { margin-top:.75rem; }
+    .sources-block { margin-top:.9rem; padding-top:.9rem; border-top:1px solid var(--border); display:flex; flex-wrap:wrap; gap:.4rem; }
+    .src-link { font-size:.65rem; font-weight:600; color:var(--accent); text-decoration:none; background:var(--accent-light); padding:.18rem .55rem; border-radius:4px; }
+    .src-link:hover { text-decoration:underline; }
+    .audio-block { padding:1.4rem; border-top:1px solid var(--border); background:var(--bg); border-radius:0 0 var(--r-lg) var(--r-lg); }
+    .audio-t { font-size:.68rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin-bottom:.65rem; }
+    .audio-player { width:100%; border-radius:6px; }
+    .audio-note { font-size:.72rem; color:var(--dim); margin-top:.4rem; }
     .mo-footer { text-align:center; padding:2.5rem 0 1rem; border-top:1px solid var(--border); margin-top:1rem; }
-    .mo-footer-by { font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; color:var(--dim); font-weight:700; margin-bottom:.5rem; }
-    .mo-footer-name { font-size:1.2rem; font-weight:800; margin-bottom:.3rem; }
-    .mo-footer-sub { font-size:.8rem; color:var(--muted); }
-    .mo-footer-link { display:inline-block; margin-top:.85rem; font-size:.78rem; font-weight:700; color:var(--accent); text-decoration:none; }
-    .mo-footer-link:hover { text-decoration:underline; }
+    .mo-fb { font-size:.65rem; text-transform:uppercase; letter-spacing:.1em; color:var(--dim); font-weight:700; margin-bottom:.5rem; }
+    .mo-fn { font-size:1.15rem; font-weight:800; margin-bottom:.3rem; }
+    .mo-fs { font-size:.78rem; color:var(--muted); }
+    .mo-fl { display:inline-block; margin-top:.85rem; font-size:.75rem; font-weight:700; color:var(--accent); text-decoration:none; }
+    .mo-fl:hover { text-decoration:underline; }
 
     /* ═══ ANIMATIONS ═══ */
     @keyframes fadeIn  { from{opacity:0}                            to{opacity:1} }
@@ -327,447 +355,613 @@
 <div id="login">
   <div class="lc">
     <div class="lc-logo">
-      <svg class="lc-icon" viewBox="0 0 36 36" fill="none">
-        <rect width="36" height="36" rx="9" fill="#4F46E5"/>
-        <path d="M18 7l5 11H13l5-11z" fill="white"/>
-        <rect x="15" y="18" width="6" height="8" rx="1.5" fill="white" opacity=".85"/>
-        <rect x="11.5" y="26" width="13" height="2" rx="1" fill="white" opacity=".55"/>
-        <circle cx="18" cy="12" r="2" fill="#818CF8"/>
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <rect width="34" height="34" rx="9" fill="#E05219"/>
+        <path d="M10 16l7 8 9-11" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      <span class="lc-wordmark">FARO</span>
+      <span class="lc-wordmark">VERO</span>
     </div>
-    <p class="lc-sub">Démo EMLV · Mai 2026</p>
-    <div class="lc-form">
-      <label class="lc-label">Mot de passe</label>
+    <p class="lc-tagline" data-fr="Candidate Intelligence Suite" data-en="Candidate Intelligence Suite">Candidate Intelligence Suite</p>
+
+    <div class="lc-step on" id="lc-pw">
+      <label class="lc-label" data-fr="Mot de passe" data-en="Password">Mot de passe</label>
       <input type="password" id="pw" class="lc-input" placeholder="Entrez le mot de passe" autocomplete="current-password">
-      <button class="lc-btn" onclick="doLogin()">Accéder à la démo</button>
+      <button class="lc-btn-main" onclick="doLogin()" data-fr="Accéder" data-en="Enter">Accéder</button>
       <div class="lc-err" id="pw-err"></div>
+    </div>
+
+    <div class="lc-step" id="lc-path">
+      <div class="lc-path-title" data-fr="Quel est votre profil ?" data-en="What's your profile?">Quel est votre profil ?</div>
+      <div class="lc-paths">
+        <button class="lc-path-btn" onclick="enterApp('rh')">
+          <span class="lc-path-icon">👔</span>
+          <span class="lc-path-name" data-fr="Professionnel RH" data-en="HR Professional">Professionnel RH</span>
+          <span class="lc-path-sub" data-fr="Score, Scout, Tarifs" data-en="Score, Scout, Pricing">Score, Scout, Tarifs</span>
+        </button>
+        <button class="lc-path-btn" onclick="enterApp('cand')">
+          <span class="lc-path-icon">🎯</span>
+          <span class="lc-path-name" data-fr="Candidat" data-en="Candidate">Candidat</span>
+          <span class="lc-path-sub" data-fr="Scout, Offres, Extension" data-en="Scout, Jobs, Extension">Scout, Offres, Extension</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══ APP ══ -->
-<div id="app">
-
-  <!-- SIDEBAR -->
+<!-- ══ APP RH ══ -->
+<div id="app-rh">
   <aside class="sb">
     <div class="sb-top">
       <div class="sb-logo">
-        <svg class="sb-logo-icon" viewBox="0 0 28 28" fill="none">
-          <rect width="28" height="28" rx="7" fill="#4F46E5"/>
-          <path d="M14 5l4 9H10l4-9z" fill="white"/>
-          <rect x="11.5" y="14" width="5" height="6.5" rx="1" fill="white" opacity=".82"/>
-          <rect x="9" y="20.5" width="10" height="1.5" rx=".75" fill="white" opacity=".5"/>
-          <circle cx="14" cy="9" r="1.5" fill="#818CF8"/>
-        </svg>
-        <span class="sb-logo-text">FARO</span>
-        <span class="sb-logo-badge">bêta</span>
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect width="26" height="26" rx="7" fill="#E05219"/><path d="M7 12l6 7 7-9" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="sb-wm">VERO</span>
+        <span class="sb-badge">RH</span>
       </div>
     </div>
-
     <nav class="sb-nav">
-      <span class="sb-section-label">Outils</span>
-      <button class="sb-item on" onclick="sw('score',this)">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="8" width="3" height="7" rx="1"/><rect x="6" y="5" width="3" height="10" rx="1"/><rect x="11" y="2" width="3" height="13" rx="1"/></svg>
-        Score
+      <span class="sb-sec" data-fr="Outils" data-en="Tools">Outils</span>
+      <button class="sb-item on" onclick="sw('rh','score',this)">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="currentColor"><rect x="1" y="8" width="3" height="6" rx="1"/><rect x="6" y="5" width="3" height="9" rx="1"/><rect x="11" y="2" width="3" height="12" rx="1"/></svg>
+        <span data-fr="Score" data-en="Score">Score</span>
       </button>
-      <button class="sb-item" onclick="sw('scout',this)">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="6.5" cy="6.5" r="4.5"/><path d="M10 10l3.5 3.5" stroke-linecap="round"/></svg>
-        Scout
+      <button class="sb-item" onclick="sw('rh','scout',this)">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="6" r="4"/><path d="M9 9l3.5 3.5" stroke-linecap="round"/></svg>
+        <span data-fr="Scout" data-en="Scout">Scout</span>
       </button>
-      <span class="sb-section-label">Produit</span>
-      <button class="sb-item" onclick="sw('tarifs',this)">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M2 9L7.5 3 13 3.5 13.5 9 8 14.5z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10.5" cy="5.5" r="1" fill="currentColor" stroke="none"/></svg>
-        Tarifs
+      <span class="sb-sec" data-fr="Produit" data-en="Product">Produit</span>
+      <button class="sb-item" onclick="sw('rh','tarifs',this)">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 8.5L7 3.5 12.5 4 13 9.5 8 14z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="5.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span data-fr="Tarifs" data-en="Pricing">Tarifs</span>
       </button>
-      <button class="sb-item" onclick="sw('making',this)">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 14 6.5 8.5 2 7l4.5-1.5z"/></svg>
-        Making-of
+      <button class="sb-item" onclick="sw('rh','making',this)">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="currentColor"><path d="M7.5 1l1.4 4.2L13 6.5l-4.1 1.4L7.5 12l-1.4-4.1L2 6.5l4.1-1.3z"/></svg>
+        <span data-fr="Making-of" data-en="Behind the scenes">Making-of</span>
+      </button>
+      <span class="sb-sec" data-fr="Compte" data-en="Account">Compte</span>
+      <button class="sb-item" onclick="sw('rh','profil',this)">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7.5" cy="5" r="3"/><path d="M2 13c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke-linecap="round"/></svg>
+        <span data-fr="Mon profil" data-en="My profile">Mon profil</span>
       </button>
     </nav>
-
     <div class="sb-foot">
-      <div class="sb-foot-label">Demo</div>
-      <div class="sb-foot-product">EMLV · Mai 2026</div>
+      <div class="sb-controls">
+        <button class="sb-ctrl-btn" id="rh-theme-btn" onclick="toggleTheme()" title="Mode sombre / clair">☀</button>
+        <button class="sb-ctrl-btn" id="rh-lang-btn" onclick="toggleLang()">FR</button>
+        <button class="sb-ctrl-btn" onclick="switchPath()" title="Changer de profil">⇄</button>
+      </div>
+      <div class="sb-foot-user">VERO RH · Demo EMLV 2026</div>
     </div>
   </aside>
-
-  <!-- MAIN -->
   <div class="main">
     <div class="main-body">
 
-      <!-- ══ SCORE ══ -->
-      <div class="tab on" id="tab-score">
+      <!-- SCORE -->
+      <div class="tab on" id="rh-tab-score">
         <div class="page-header">
-          <div class="page-tag">FARO Score</div>
-          <h1 class="page-title">Votre offre d'emploi, vue par vos candidats</h1>
-          <p class="page-sub">Collez le texte d'une offre. L'analyse retourne un score sur 100 avec 6 dimensions et 3 recommandations priorisées avec ROI estimé.</p>
+          <div class="pg-tag" data-fr="VERO Score" data-en="VERO Score">VERO Score</div>
+          <h1 class="pg-title" data-fr="Votre offre d'emploi, vue par vos candidats" data-en="Your job posting, seen by your candidates">Votre offre d'emploi, vue par vos candidats</h1>
+          <p class="pg-sub" data-fr="Collez le texte d'une offre. L'analyse retourne un score sur 100 avec 6 dimensions et 3 recommandations priorisées avec ROI estimé." data-en="Paste job posting text. Get a score out of 100 with 6 dimensions and 3 prioritized recommendations with ROI estimates.">Collez le texte d'une offre. L'analyse retourne un score sur 100 avec 6 dimensions et 3 recommandations priorisées avec ROI estimé.</p>
         </div>
-
-        <div class="score-layout">
-          <!-- Form -->
-          <div class="score-form-wrap">
+        <div class="score-grid">
+          <div class="score-form-stack">
             <div>
-              <label class="form-label" for="job-txt">Texte de l'offre d'emploi</label>
-              <textarea id="job-txt" class="form-textarea" placeholder="Collez ici le texte complet de votre offre d'emploi — titre, missions, profil, conditions, processus de recrutement..." rows="12"></textarea>
+              <label class="form-lbl" data-fr="Texte de l'offre d'emploi" data-en="Job posting text">Texte de l'offre d'emploi</label>
+              <textarea id="job-txt" class="form-ta" placeholder="Collez ici le texte complet de votre offre d'emploi..." rows="11"></textarea>
             </div>
             <div class="form-actions">
-              <button class="btn-primary" id="score-btn" onclick="doScore()">
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 14 6.5 8.5 2 7l4.5-1.5z"/></svg>
-                Analyser l'offre
+              <button class="btn-p" id="score-btn" onclick="doScore()">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="currentColor"><path d="M6.5 1l1.2 3.5L11 5.5l-3.3 1.2L6.5 10l-1.2-3.3L2 5.5l3.3-1z"/></svg>
+                <span data-fr="Analyser l'offre" data-en="Analyze posting">Analyser l'offre</span>
               </button>
-              <button class="btn-secondary" onclick="resetScore()">Effacer</button>
+              <button class="btn-s" onclick="resetScore()" data-fr="Effacer" data-en="Clear">Effacer</button>
             </div>
-            <div class="loading-bar" id="score-load">
-              <div class="spin"></div>
-              <span id="score-ltxt">Analyse en cours...</span>
-            </div>
+            <div class="loading-row" id="score-load"><div class="spinner"></div><span id="score-ltxt">Analyse en cours...</span></div>
           </div>
-
-          <!-- Results -->
-          <div id="score-results">
-            <!-- Score number -->
+          <div id="score-res">
             <div class="card">
-              <div class="score-number-block">
-                <div class="score-circle" id="score-circle">
-                  <span class="score-num" id="score-num">0</span>
-                  <span class="score-denom">/100</span>
-                </div>
-                <div class="score-text-block">
-                  <div class="score-verdict" id="score-verd"></div>
-                  <span class="score-bench badge badge-accent" id="score-bench"></span>
+              <div class="score-num-block">
+                <div class="s-circle" id="s-circle"><span class="s-num" id="s-num">0</span><span class="s-denom">/100</span></div>
+                <div class="s-text">
+                  <div class="s-verdict" id="s-verd"></div>
+                  <span class="badge-pill bp-orange" id="s-bench" style="margin-top:.4rem;display:inline-flex"></span>
                 </div>
               </div>
             </div>
-
-            <!-- Dimensions -->
             <div class="card">
-              <div class="dims-block">
-                <div class="dims-title">Analyse par dimension</div>
+              <div class="dims-wrap">
+                <div class="dims-title" data-fr="Analyse par dimension" data-en="Analysis by dimension">Analyse par dimension</div>
                 <div id="dim-list"></div>
               </div>
             </div>
-
-            <!-- Recommendations -->
             <div class="card">
-              <div class="recos-title">3 recommandations prioritaires</div>
-              <div class="recos-list" id="reco-list"></div>
+              <div class="recos-hd" data-fr="3 recommandations prioritaires" data-en="3 priority recommendations">3 recommandations prioritaires</div>
+              <div id="reco-list"></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ══ SCOUT ══ -->
-      <div class="tab" id="tab-scout">
+      <!-- SCOUT (RH) -->
+      <div class="tab" id="rh-tab-scout">
         <div class="page-header">
-          <div class="page-tag">FARO Scout</div>
-          <h1 class="page-title">Le processus de recrutement d'une entreprise, avant de postuler</h1>
-          <p class="page-sub">Scout compile les signaux publics pour générer une fiche complète : délais, entretiens, taux de feedback, ghosting, et conseils pour votre candidature.</p>
+          <div class="pg-tag">VERO Scout</div>
+          <h1 class="pg-title" data-fr="Le processus de recrutement d'une entreprise" data-en="A company's recruitment process">Le processus de recrutement d'une entreprise</h1>
+          <p class="pg-sub" data-fr="Comparez votre processus à celui de vos concurrents. Identifiez vos forces et vos angles morts." data-en="Compare your process to competitors. Identify your strengths and blind spots.">Comparez votre processus à celui de vos concurrents. Identifiez vos forces et vos angles morts.</p>
         </div>
-
-        <div class="scout-search-row">
-          <div>
-            <label class="form-label" for="co-name">Entreprise</label>
-            <input type="text" id="co-name" class="form-input" placeholder="Ex : L'Oréal, Decathlon, BNP Paribas...">
-          </div>
-          <div>
-            <label class="form-label" for="co-sect">Secteur (optionnel)</label>
-            <input type="text" id="co-sect" class="form-input" placeholder="Ex : Retail, Finance, Tech...">
-          </div>
-          <div style="padding-top:1.45rem">
-            <button class="btn-primary" id="scout-btn" onclick="doScout()">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6.5" cy="6.5" r="4.5"/><path d="M10 10l3.5 3.5" stroke-linecap="round"/></svg>
-              Explorer
-            </button>
-          </div>
+        <div class="scout-row">
+          <div><label class="form-lbl" data-fr="Entreprise" data-en="Company">Entreprise</label><input type="text" id="co-name-rh" class="form-in" placeholder="Ex : L'Oréal, Decathlon..."></div>
+          <div><label class="form-lbl" data-fr="Secteur (optionnel)" data-en="Sector (optional)">Secteur (optionnel)</label><input type="text" id="co-sect-rh" class="form-in" placeholder="Ex : Retail, Finance..."></div>
+          <div style="padding-top:1.4rem"><button class="btn-p" id="scout-btn-rh" onclick="doScout('rh')"><span data-fr="Explorer" data-en="Explore">Explorer</span></button></div>
         </div>
-
-        <div class="suggestions-block">
-          <span class="sug-label">Suggestions rapides</span>
+        <div class="sug-block">
+          <span class="sug-lbl" data-fr="Suggestions rapides" data-en="Quick suggestions">Suggestions rapides</span>
           <div class="sug-chips">
-            <button class="sug-chip" onclick="fillCo('L\'Oréal')">L'Oréal</button>
-            <button class="sug-chip" onclick="fillCo('Decathlon')">Decathlon</button>
-            <button class="sug-chip" onclick="fillCo('BNP Paribas')">BNP Paribas</button>
-            <button class="sug-chip" onclick="fillCo('Danone')">Danone</button>
-            <button class="sug-chip" onclick="fillCo('Airbus')">Airbus</button>
-            <button class="sug-chip" onclick="fillCo('Capgemini')">Capgemini</button>
-            <button class="sug-chip" onclick="fillCo('LVMH')">LVMH</button>
-            <button class="sug-chip" onclick="fillCo('Orange')">Orange</button>
-            <button class="sug-chip" onclick="fillCo('TotalEnergies')">TotalEnergies</button>
-            <button class="sug-chip" onclick="fillCo('AXA')">AXA</button>
-            <button class="sug-chip" onclick="fillCo('SNCF')">SNCF</button>
-            <button class="sug-chip" onclick="fillCo('Accenture')">Accenture</button>
+            <button class="sug-chip" onclick="fillCo('rh','L\'Oréal')">L'Oréal</button>
+            <button class="sug-chip" onclick="fillCo('rh','Decathlon')">Decathlon</button>
+            <button class="sug-chip" onclick="fillCo('rh','BNP Paribas')">BNP Paribas</button>
+            <button class="sug-chip" onclick="fillCo('rh','Danone')">Danone</button>
+            <button class="sug-chip" onclick="fillCo('rh','Airbus')">Airbus</button>
+            <button class="sug-chip" onclick="fillCo('rh','Capgemini')">Capgemini</button>
+            <button class="sug-chip" onclick="fillCo('rh','LVMH')">LVMH</button>
+            <button class="sug-chip" onclick="fillCo('rh','Orange')">Orange</button>
+            <button class="sug-chip" onclick="fillCo('rh','TotalEnergies')">TotalEnergies</button>
+            <button class="sug-chip" onclick="fillCo('rh','AXA')">AXA</button>
           </div>
         </div>
-
-        <div class="loading-bar" id="scout-load" style="margin-bottom:1rem">
-          <div class="spin"></div>
-          <span id="scout-ltxt">Compilation des signaux...</span>
-        </div>
-
-        <div id="scout-results"></div>
+        <div class="loading-row" id="scout-load-rh" style="margin-bottom:1rem"><div class="spinner"></div><span id="scout-ltxt-rh">Compilation des signaux...</span></div>
+        <div id="scout-res"></div>
       </div>
 
-      <!-- ══ TARIFS ══ -->
-      <div class="tab" id="tab-tarifs">
+      <!-- TARIFS RH -->
+      <div class="tab" id="rh-tab-tarifs">
         <div class="page-header">
-          <div class="page-tag">Tarification</div>
-          <h1 class="page-title">Simple et prévisible</h1>
-          <p class="page-sub">Pas de frais cachés. Pas de contrat annuel imposé. Résiliable à tout moment.</p>
+          <div class="pg-tag" data-fr="Tarification" data-en="Pricing">Tarification</div>
+          <h1 class="pg-title" data-fr="Accès professionnel RH" data-en="HR Professional access">Accès professionnel RH</h1>
+          <p class="pg-sub" data-fr="Pour les recruteurs, DRH et Employer Brand Managers. Sans engagement annuel." data-en="For recruiters, HRDs and Employer Brand Managers. No annual commitment.">Pour les recruteurs, DRH et Employer Brand Managers. Sans engagement annuel.</p>
         </div>
-
         <div class="plans-grid">
-          <div class="plan-card">
-            <div class="plan-name">Découverte</div>
-            <div class="plan-price">0 €</div>
-            <div class="plan-period">pour toujours</div>
-            <ul class="plan-feats">
-              <li>3 analyses Score par mois</li>
-              <li>3 fiches Scout par mois</li>
-              <li>Recommandations essentielles</li>
-              <li>Sans carte bancaire</li>
+          <div class="plan-c">
+            <div class="plan-n" data-fr="Découverte" data-en="Discovery">Découverte</div>
+            <div class="plan-p">0 €</div>
+            <div class="plan-per" data-fr="pour toujours" data-en="forever">pour toujours</div>
+            <ul class="plan-fs">
+              <li data-fr="3 analyses Score par mois" data-en="3 Score analyses per month">3 analyses Score par mois</li>
+              <li data-fr="3 fiches Scout par mois" data-en="3 Scout reports per month">3 fiches Scout par mois</li>
+              <li data-fr="Recommandations essentielles" data-en="Essential recommendations">Recommandations essentielles</li>
+              <li data-fr="Sans carte bancaire" data-en="No credit card">Sans carte bancaire</li>
             </ul>
-            <a href="#" class="plan-cta"><button class="btn-secondary" style="width:100%">Commencer gratuitement</button></a>
+            <a href="mailto:emmanuel.dimarco1@gmail.com?subject=VERO Découverte" class="plan-cta"><button class="btn-s" style="width:100%" data-fr="Commencer gratuitement" data-en="Start for free">Commencer gratuitement</button></a>
           </div>
-
-          <div class="plan-card featured">
-            <div class="plan-name">Growth</div>
-            <div class="plan-price">149 €</div>
-            <div class="plan-period">par mois, sans engagement</div>
-            <ul class="plan-feats">
-              <li>Analyses Score illimitées</li>
-              <li>Fiches Scout illimitées</li>
-              <li>Historique et suivi de progression</li>
-              <li>Alertes concurrents</li>
-              <li>Benchmarks sectoriels</li>
-              <li>Export PDF des rapports</li>
+          <div class="plan-c feat">
+            <div class="plan-n">Growth</div>
+            <div class="plan-p">149 €</div>
+            <div class="plan-per" data-fr="par mois, sans engagement" data-en="per month, no commitment">par mois, sans engagement</div>
+            <ul class="plan-fs">
+              <li data-fr="Score illimité" data-en="Unlimited Score">Score illimité</li>
+              <li data-fr="Scout illimité" data-en="Unlimited Scout">Scout illimité</li>
+              <li data-fr="Historique et suivi de progression" data-en="History and progress tracking">Historique et suivi de progression</li>
+              <li data-fr="Alertes concurrents" data-en="Competitor alerts">Alertes concurrents</li>
+              <li data-fr="Benchmarks sectoriels" data-en="Sector benchmarks">Benchmarks sectoriels</li>
+              <li data-fr="Export PDF" data-en="PDF export">Export PDF</li>
             </ul>
-            <a id="stripe-btn" href="STRIPE_LINK_ICI" class="plan-cta" target="_blank">
-              <button class="btn-primary" style="width:100%">Commencer pour 149 €/mois</button>
-            </a>
+            <a href="mailto:emmanuel.dimarco1@gmail.com?subject=VERO Growth 149€" class="plan-cta"><button class="btn-p" style="width:100%" data-fr="Nous contacter" data-en="Contact us">Nous contacter</button></a>
           </div>
-
-          <div class="plan-card">
-            <div class="plan-name">Entreprise</div>
-            <div class="plan-price">999 €</div>
-            <div class="plan-period">par mois, sur devis</div>
-            <ul class="plan-feats">
-              <li>Tout Growth inclus</li>
-              <li>API REST complète</li>
-              <li>Intégration ATS</li>
-              <li>Tableau de bord multi-entités</li>
-              <li>Benchmarks sur-mesure</li>
-              <li>Support dédié</li>
+          <div class="plan-c">
+            <div class="plan-n" data-fr="Entreprise" data-en="Enterprise">Entreprise</div>
+            <div class="plan-p">999 €</div>
+            <div class="plan-per" data-fr="par mois, sur devis" data-en="per month, custom">par mois, sur devis</div>
+            <ul class="plan-fs">
+              <li data-fr="Tout Growth inclus" data-en="All Growth included">Tout Growth inclus</li>
+              <li>API REST</li>
+              <li data-fr="Intégration ATS" data-en="ATS integration">Intégration ATS</li>
+              <li data-fr="Multi-entités" data-en="Multi-entity">Multi-entités</li>
+              <li data-fr="Support dédié" data-en="Dedicated support">Support dédié</li>
             </ul>
-            <a href="mailto:hello@getfaro.fr" class="plan-cta">
-              <button class="btn-secondary" style="width:100%">Nous contacter</button>
-            </a>
+            <a href="mailto:emmanuel.dimarco1@gmail.com?subject=VERO Enterprise" class="plan-cta"><button class="btn-s" style="width:100%" data-fr="Nous contacter" data-en="Contact us">Nous contacter</button></a>
           </div>
         </div>
-
-        <div class="roi-card">
+        <div class="roi-c">
           <div>
-            <div class="roi-tag">Calcul ROI</div>
-            <div class="roi-headline">Passer de 38 à 70 sur 100, c'est <em>60 000 euros économisés par an.</em></div>
-            <p class="roi-body">Une amélioration de 25 points réduit le temps de recrutement de 25 % et le coût par embauche d'environ 1 200 euros. Pour une entreprise qui recrute 50 personnes par an, l'impact est direct et mesurable. Le plan Growth revient à 1 788 euros par an.</p>
+            <div class="roi-tag" data-fr="Calcul ROI" data-en="ROI Calculation">Calcul ROI</div>
+            <div class="roi-hl" data-fr="Passer de 38 à 70 sur 100, c'est <em>60 000 euros économisés par an.</em>" data-en="Going from 38 to 70 out of 100 means <em>60,000 euros saved per year.</em>">Passer de 38 à 70 sur 100, c'est <em>60 000 euros économisés par an.</em></div>
+            <p class="roi-body" data-fr="Une amélioration de 25 points réduit le time-to-hire de 25 % et le coût par embauche d'environ 1 200 euros. Pour 50 recrutements par an, l'impact est direct. Le plan Growth coûte 1 788 euros par an." data-en="A 25-point improvement reduces time-to-hire by 25% and cost-per-hire by approximately €1,200. For 50 hires per year, the impact is direct. The Growth plan costs €1,788 per year.">Une amélioration de 25 points réduit le time-to-hire de 25 % et le coût par embauche d'environ 1 200 euros. Pour 50 recrutements par an, l'impact est direct. Le plan Growth coûte 1 788 euros par an.</p>
           </div>
-          <div class="roi-table">
-            <div class="roi-row"><span class="roi-key">Recrutements par an</span><span class="roi-val">50</span></div>
-            <div class="roi-row"><span class="roi-key">Économie par embauche</span><span class="roi-val" style="color:var(--green)">1 200 €</span></div>
-            <div class="roi-row"><span class="roi-key">Économie totale estimée</span><span class="roi-val" style="color:var(--green)">60 000 €</span></div>
-            <div class="roi-row"><span class="roi-key">Coût FARO Growth / an</span><span class="roi-val" style="color:var(--accent)">1 788 €</span></div>
-            <div class="roi-row" style="border-bottom:none"><span class="roi-key" style="font-weight:700;color:var(--text)">ROI estimé</span><span class="roi-val" style="color:var(--green);font-size:.9rem;font-weight:800">x 33</span></div>
+          <div class="roi-tbl">
+            <div class="roi-row"><span class="roi-k" data-fr="Recrutements / an" data-en="Hires / year">Recrutements / an</span><span class="roi-v">50</span></div>
+            <div class="roi-row"><span class="roi-k" data-fr="Économie / embauche" data-en="Savings / hire">Économie / embauche</span><span class="roi-v" style="color:var(--green)">1 200 €</span></div>
+            <div class="roi-row"><span class="roi-k" data-fr="Économie totale" data-en="Total savings">Économie totale</span><span class="roi-v" style="color:var(--green)">60 000 €</span></div>
+            <div class="roi-row"><span class="roi-k" data-fr="Coût VERO Growth" data-en="VERO Growth cost">Coût VERO Growth</span><span class="roi-v" style="color:var(--accent)">1 788 €</span></div>
+            <div class="roi-row" style="border-bottom:none"><span class="roi-k" style="font-weight:700;color:var(--text)">ROI</span><span class="roi-v" style="color:var(--green);font-size:.9rem;font-weight:800">x 33</span></div>
           </div>
         </div>
       </div>
 
-      <!-- ══ MAKING-OF ══ -->
-      <div class="tab" id="tab-making">
+      <!-- MAKING-OF -->
+      <div class="tab" id="rh-tab-making">
         <div class="page-header">
-          <div class="page-tag">Making-of</div>
-          <h1 class="page-title">Pourquoi FARO existe, et comment il a été construit</h1>
+          <div class="pg-tag" data-fr="Making-of" data-en="Behind the scenes">Making-of</div>
+          <h1 class="pg-title" data-fr="Pourquoi VERO existe, et comment il a été construit" data-en="Why VERO exists, and how it was built">Pourquoi VERO existe, et comment il a été construit</h1>
         </div>
-
-        <!-- Problem block -->
         <div class="mo-problem">
-          <div class="mo-problem-tag">Le problème de départ</div>
-          <div class="mo-problem-title">L'offre d'emploi est le document le plus lu du recrutement. Et le moins évalué.</div>
-          <div class="mo-problem-body">
-            <p>Un recruteur publie une offre d'emploi. Il y passe 18 minutes, en moyenne. Il utilise un modèle hérité de son prédécesseur. L'offre est mise en ligne. Elle reçoit 52 candidatures. 43 sont non qualifiées. 4 candidats intéressants ne postulent pas après avoir lu le processus de recrutement. 3 abandonnent en cours de route faute de feedback. 1 offre est finalement acceptée, après 8 semaines et 6 200 euros dépensés. Personne ne remet en question l'offre d'emploi elle-même.</p>
-            <p>C'est le paradoxe central du recrutement moderne : le document le plus consulté de tout le processus, celui qui détermine qui postule et qui passe son chemin, est aussi le moins outillé, le moins pensé, le moins mesuré. On mesure le coût par embauche. Le time-to-hire. Le taux d'acceptation des offres. On ne mesure jamais la qualité du message envoyé au marché.</p>
-            <p>De l'autre côté, les candidats naviguent à l'aveugle. Ils postulent sans savoir si l'entreprise répond, si le processus dure 3 semaines ou 3 mois, si les entretiens sont des conversations ou des interrogatoires. Cette asymétrie d'information crée de la frustration des deux côtés. Et elle coûte cher. FARO a été construit pour rendre visible ce qui est invisible.</p>
+          <div class="mo-p-tag" data-fr="Le problème de départ" data-en="The starting problem">Le problème de départ</div>
+          <div class="mo-p-title" data-fr="L'offre d'emploi est le document le plus lu du recrutement. Et le moins évalué." data-en="The job posting is the most read document in recruitment. And the least evaluated.">L'offre d'emploi est le document le plus lu du recrutement. Et le moins évalué.</div>
+          <div class="mo-p-body">
+            <p>Un recruteur publie une offre d'emploi. Il y passe 18 minutes en moyenne. Il utilise un modèle hérité de son prédécesseur. L'offre est mise en ligne, reçoit 52 candidatures, 43 non qualifiées. 4 candidats intéressants ne postulent pas après avoir lu le processus de recrutement. 3 abandonnent en cours de route faute de feedback. 1 offre acceptée, 8 semaines, 6 200 euros dépensés. Personne ne remet en question l'offre elle-même.</p>
+            <p>C'est le paradoxe central du recrutement moderne : le document le plus consulté de tout le processus, celui qui détermine qui postule et qui passe son chemin, est aussi le moins outillé, le moins mesuré. On mesure le coût par embauche, le time-to-hire, le taux d'acceptation. On ne mesure jamais la qualité du message envoyé au marché.</p>
+            <p>De l'autre côté, les candidats naviguent à l'aveugle : sans savoir si l'entreprise répond, si le processus dure 3 semaines ou 3 mois, si les entretiens sont des vraies conversations ou des interrogatoires. Cette asymétrie d'information crée de la frustration des deux côtés. VERO a été construit pour rendre visible ce qui est invisible.</p>
           </div>
+          <div class="mo-prod-badge">⚡ <span data-fr="De l'idée au MVP en production : 1h30 — Démo EMLV, Mai 2026" data-en="From idea to live MVP: 1h30 — EMLV Demo, May 2026">De l'idée au MVP en production : 1h30 — Démo EMLV, Mai 2026</span></div>
         </div>
 
-        <!-- Chain -->
         <div class="mo-chain">
-          <span class="mo-step">Discovery</span><span class="mo-arr">›</span>
-          <span class="mo-step">Vision</span><span class="mo-arr">›</span>
-          <span class="mo-step">PM Craft</span><span class="mo-arr">›</span>
-          <span class="mo-step">Livraison</span><span class="mo-arr">›</span>
-          <span class="mo-step">Design</span><span class="mo-arr">›</span>
-          <span class="mo-step">Expérience utilisateur</span>
+          <span class="mo-step" data-fr="Discovery" data-en="Discovery">Discovery</span><span class="mo-arr">›</span>
+          <span class="mo-step" data-fr="Vision" data-en="Vision">Vision</span><span class="mo-arr">›</span>
+          <span class="mo-step" data-fr="PM Craft" data-en="PM Craft">PM Craft</span><span class="mo-arr">›</span>
+          <span class="mo-step" data-fr="Livraison" data-en="Delivery">Livraison</span><span class="mo-arr">›</span>
+          <span class="mo-step" data-fr="Design" data-en="Design">Design</span><span class="mo-arr">›</span>
+          <span class="mo-step" data-fr="Expérience" data-en="Experience">Expérience</span>
         </div>
 
         <div class="exp-list">
-
-          <!-- Teresa Torres -->
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-avatar">🔍</div>
-              <div class="exp-meta">
-                <div class="exp-badge">Discovery</div>
-                <div class="exp-name-text">Teresa Torres</div>
-                <div class="exp-role-text">Discovery Coach</div>
-              </div>
-              <div class="exp-fws">
-                <span class="fw-tag">Opportunity Solution Tree</span>
-                <span class="fw-tag">Continuous Discovery</span>
-                <span class="fw-tag">Story Interviews</span>
-              </div>
+          <div class="exp-c">
+            <div class="exp-hd">
+              <div class="exp-av">🔍</div>
+              <div class="exp-meta"><div class="exp-b">Discovery</div><div class="exp-n">Teresa Torres</div><div class="exp-r">Discovery Coach</div></div>
+              <div class="exp-fws"><span class="fw-t">Opportunity Solution Tree</span><span class="fw-t">Continuous Discovery</span></div>
             </div>
-            <div class="exp-body-wrap">
-              <div class="exp-quote-text">"La solution juste naît toujours d'une question mieux posée."</div>
-              <div class="exp-body-text">
-                <p>Avant d'écrire une seule ligne de code, j'ai construit un Opportunity Solution Tree. Cette méthode, développée par Teresa Torres, oblige à cartographier toutes les opportunités possibles avant de choisir une solution. L'outcome ciblé : améliorer la qualité de l'expérience candidat dans le recrutement en France.</p>
-                <p>Six opportunités ont émergé : le feedback post-refus, la transparence du processus, la qualité intrinsèque des offres d'emploi, les délais de réponse, la personnalisation des communications, et l'équité dans l'évaluation. Chacune représentait un problème réel, documenté, vécu. La question était : laquelle adresser en priorité ?</p>
-                <p>Les interviews exploratoires ont révélé un insight central : candidats et entreprises opèrent en aveugle l'un vis-à-vis de l'autre. Le candidat ne sait pas comment son profil est perçu. L'entreprise ne sait pas comment son processus est vécu. L'opportunité convergente était là, à l'intersection des deux frustrations : réduire cette asymétrie d'information. Score et Scout sont nés de ce constat symétrique.</p>
+            <div class="exp-bw">
+              <div class="exp-q">"La solution juste naît toujours d'une question mieux posée."</div>
+              <div class="exp-bt">
+                <p>Avant d'écrire une seule ligne de code, j'ai construit un Opportunity Solution Tree. Cette méthode oblige à cartographier toutes les opportunités possibles avant de choisir une solution. L'outcome ciblé : améliorer l'expérience candidat dans le recrutement en France.</p>
+                <p>Six opportunités ont émergé : feedback post-refus, transparence du processus, qualité des offres, délais de réponse, personnalisation, équité dans l'évaluation. Les interviews exploratoires ont révélé l'insight central : candidats et entreprises opèrent en aveugle l'un vis-à-vis de l'autre. Score et Scout sont nés de ce constat symétrique.</p>
+                <div class="sources-block">
+                  <a class="src-link" href="https://www.producttalk.org/2023/12/opportunity-solution-trees/" target="_blank">OST by Teresa Torres</a>
+                  <a class="src-link" href="https://www.producttalk.org/continuous-discovery-habits/" target="_blank">Continuous Discovery Habits</a>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Marty Cagan -->
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-avatar">🎯</div>
-              <div class="exp-meta">
-                <div class="exp-badge">Vision Produit</div>
-                <div class="exp-name-text">Marty Cagan</div>
-                <div class="exp-role-text">Product Visionary</div>
-              </div>
-              <div class="exp-fws">
-                <span class="fw-tag">Product Vision Board</span>
-                <span class="fw-tag">Empowered Teams</span>
-                <span class="fw-tag">Product Operating Model</span>
-              </div>
+          <div class="exp-c">
+            <div class="exp-hd">
+              <div class="exp-av">🎯</div>
+              <div class="exp-meta"><div class="exp-b">Vision Produit</div><div class="exp-n">Marty Cagan</div><div class="exp-r">Product Visionary</div></div>
+              <div class="exp-fws"><span class="fw-t">Product Vision Board</span><span class="fw-t">Empowered Teams</span></div>
             </div>
-            <div class="exp-body-wrap">
-              <div class="exp-quote-text">"La vraie question n'est pas 'que peut-on construire ?' mais 'quel changement dans le monde justifie ce produit ?'"</div>
-              <div class="exp-body-text">
-                <p>Inspiré par le Product Operating Model de Marty Cagan, j'ai commencé par la vision avant toute chose. FARO existe pour réduire l'asymétrie d'information dans le recrutement. Pas pour ajouter une couche technologique supplémentaire dans une pile RH déjà surchargée.</p>
-                <p>L'insight stratégique : les entreprises investissent des millions en campagnes de marque employeur, mais ignorent leur premier vrai point de contact avec le candidat. L'offre d'emploi est lue par des milliers de candidats potentiels avant tout entretien, toute conversation, toute expérience directe de la culture. C'est le moment de vérité initial, et personne ne le mesure.</p>
-                <p>FARO a été conçu comme un outil d'empowerment, pas de contrôle. L'équipe avait un problème à résoudre, pas une liste de features à livrer. C'est la différence fondamentale entre une feature factory et un produit qui crée un impact mesurable dans le monde réel.</p>
+            <div class="exp-bw">
+              <div class="exp-q">"La vraie question n'est pas 'que peut-on construire ?' mais 'quel changement dans le monde justifie ce produit ?'"</div>
+              <div class="exp-bt">
+                <p>VERO existe pour réduire l'asymétrie d'information dans le recrutement. L'offre d'emploi est le premier vrai point de contact avec le candidat. Elle est lue par des milliers de profils avant tout entretien, toute conversation directe. C'est le moment de vérité initial, et personne ne le mesure.</p>
+                <p>VERO a été conçu comme un outil d'empowerment, pas de contrôle. L'équipe avait un problème à résoudre, pas une liste de features à livrer. C'est la différence entre une feature factory et un produit qui crée un impact mesurable.</p>
+                <div class="sources-block">
+                  <a class="src-link" href="https://www.svpg.com/inspired-how-to-create-tech-products-customers-love/" target="_blank">Inspired — Marty Cagan</a>
+                  <a class="src-link" href="https://www.svpg.com/empowered-ordinary-people-extraordinary-products/" target="_blank">Empowered — SVPG</a>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Lenny Rachitsky -->
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-avatar">📊</div>
-              <div class="exp-meta">
-                <div class="exp-badge">PM Craft</div>
-                <div class="exp-name-text">Lenny Rachitsky</div>
-                <div class="exp-role-text">Senior PM</div>
-              </div>
-              <div class="exp-fws">
-                <span class="fw-tag">North Star Metric</span>
-                <span class="fw-tag">RICE Scoring</span>
-                <span class="fw-tag">Freemium Growth</span>
-              </div>
+          <div class="exp-c">
+            <div class="exp-hd">
+              <div class="exp-av">📊</div>
+              <div class="exp-meta"><div class="exp-b">PM Craft</div><div class="exp-n">Lenny Rachitsky</div><div class="exp-r">Senior PM</div></div>
+              <div class="exp-fws"><span class="fw-t">North Star Metric</span><span class="fw-t">Freemium Growth</span></div>
             </div>
-            <div class="exp-body-wrap">
-              <div class="exp-quote-text">"Si vous ne pouvez pas nommer votre North Star Metric en une phrase, vous ne savez pas encore ce que vous construisez."</div>
-              <div class="exp-body-text">
-                <p>La North Star Metric de FARO : "nombre d'entreprises ayant amélioré leur FARO Score de plus de 15 points en 90 jours." Pas le nombre d'analyses réalisées — ça, c'est de l'activité. Le nombre d'améliorations réelles et mesurées, c'est de l'impact. Cette distinction a guidé chaque décision produit.</p>
-                <p>L'analyse concurrentielle a révélé une fenêtre d'opportunité réelle. Textio existe — mais c'est un outil américain à 30 000 dollars par an minimum, inaccessible aux PME françaises. Glassdoor mesure la perception globale de la culture, pas la qualité du processus de recrutement. En France, personne ne fait ce que fait FARO. La fenêtre first-mover est ouverte.</p>
-                <p>Le modèle business repose sur une logique freemium-to-enterprise. Le freemium n'est pas une concession commerciale : c'est la stratégie de distribution et le data moat. Chaque analyse gratuite alimente les benchmarks sectoriels qui rendent le produit payant plus puissant. L'avantage compétitif se construit à chaque utilisation.</p>
+            <div class="exp-bw">
+              <div class="exp-q">"Si vous ne pouvez pas nommer votre North Star Metric en une phrase, vous ne savez pas encore ce que vous construisez."</div>
+              <div class="exp-bt">
+                <p>North Star Metric de VERO : "nombre d'entreprises ayant amélioré leur VERO Score de plus de 15 points en 90 jours." Pas le nombre d'analyses, de l'impact. Textio existe (US, 30 000 $ minimum par an), Glassdoor mesure la perception globale — personne ne fait ce que fait VERO en France.</p>
+                <p>Le freemium n'est pas une concession : c'est la stratégie de distribution et le data moat. Chaque analyse gratuite alimente les benchmarks sectoriels qui rendent le produit payant plus puissant.</p>
+                <div class="sources-block">
+                  <a class="src-link" href="https://www.lennysnewsletter.com/p/north-star-metric" target="_blank">North Star Metric — Lenny</a>
+                  <a class="src-link" href="https://textio.com/" target="_blank">Textio (concurrent US)</a>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Roman Pichler -->
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-avatar">🗺️</div>
-              <div class="exp-meta">
-                <div class="exp-badge">Livraison</div>
-                <div class="exp-name-text">Roman Pichler</div>
-                <div class="exp-role-text">PO Lead</div>
-              </div>
-              <div class="exp-fws">
-                <span class="fw-tag">GO Product Roadmap</span>
-                <span class="fw-tag">INVEST Stories</span>
-                <span class="fw-tag">Sprint Goals</span>
-              </div>
+          <div class="exp-c">
+            <div class="exp-hd">
+              <div class="exp-av">🗺️</div>
+              <div class="exp-meta"><div class="exp-b">Livraison</div><div class="exp-n">Roman Pichler</div><div class="exp-r">PO Lead</div></div>
+              <div class="exp-fws"><span class="fw-t">GO Product Roadmap</span><span class="fw-t">MVP Definition</span></div>
             </div>
-            <div class="exp-body-wrap">
-              <div class="exp-quote-text">"Un MVP mal défini n'est pas un MVP. C'est un produit raté qui coûte moins cher."</div>
-              <div class="exp-body-text">
-                <p>La GO Roadmap appliquée à FARO. Goal : réduire l'asymétrie d'information dans le recrutement en France. Product : FARO, avec Score et Scout. Target Group : DRH et Employer Brand Managers dans des entreprises de 100 à 500 salariés, et candidats actifs en recherche d'emploi. Needs : visualiser son score en temps réel, comprendre ce qui le dégrade, agir avec des recommandations priorisées et chiffrées.</p>
-                <p>Ce qui a été délibérément exclu du MVP : l'intégration avec les ATS (Workday, Lever, Greenhouse), les alertes email automatiques, l'API publique pour développeurs, le mode équipe multi-utilisateurs. Ces features existent dans le backlog. Elles attendent que le MVP prouve une chose fondamentale : que l'analyse est perçue comme utile et juste par ses utilisateurs.</p>
-                <p>Sprint de référence : 4 jours. Scope : analyseur d'offre d'emploi (Score), fiche de processus de recrutement (Scout), page tarifaire avec ROI intégré. Chaque story a été évaluée sur le ratio impact sur effort. Tout ce qui ne passait pas ce test a été impitoyablement coupé. Ce que vous voyez est ce qui restait après cette discipline.</p>
+            <div class="exp-bw">
+              <div class="exp-q">"Un MVP mal défini n'est pas un MVP. C'est un produit raté qui coûte moins cher."</div>
+              <div class="exp-bt">
+                <p>GO Roadmap : Goal (réduire l'asymétrie dans le recrutement en France), Product (VERO Score + Scout), Target Group (DRH et Employer Brand Managers 100-500 salariés, candidats actifs), Needs (score en temps réel, recommandations priorisées, intelligence processus).</p>
+                <p>Ce qui a été exclu du MVP : intégration ATS, alertes email, API publique, mode équipe. Sprint de référence : 4 jours. Le produit que vous voyez est ce qui restait après un tri rigoureux par ratio impact sur effort.</p>
               </div>
             </div>
           </div>
 
-          <!-- Julie Zhuo -->
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-avatar">✏️</div>
-              <div class="exp-meta">
-                <div class="exp-badge">Design</div>
-                <div class="exp-name-text">Julie Zhuo</div>
-                <div class="exp-role-text">VP Design</div>
-              </div>
-              <div class="exp-fws">
-                <span class="fw-tag">Design Review Method</span>
-                <span class="fw-tag">Problem-First</span>
-                <span class="fw-tag">Design Maturity</span>
-              </div>
+          <div class="exp-c">
+            <div class="exp-hd">
+              <div class="exp-av">✏️</div>
+              <div class="exp-meta"><div class="exp-b">Design</div><div class="exp-n">Julie Zhuo</div><div class="exp-r">VP Design</div></div>
+              <div class="exp-fws"><span class="fw-t">Design Review Method</span><span class="fw-t">Problem-First</span></div>
             </div>
-            <div class="exp-body-wrap">
-              <div class="exp-quote-text">"Le meilleur design ne se remarque pas. Il rend l'évidence évidente."</div>
-              <div class="exp-body-text">
-                <p>Trois règles ont guidé chaque décision d'interface. Règle numéro 1 : un seul call-to-action par écran. La tentation dans un outil analytique est de multiplier les options, les exports, les filtres. Chaque fois que cette tentation s'est présentée, la réponse a été non, pas maintenant. Le focus crée la confiance.</p>
-                <p>Règle numéro 2 : les données brutes n'existent pas. Tout score est accompagné d'un contexte, d'un benchmark sectoriel, d'une interprétation en langage naturel. Un chiffre seul ne signifie rien. Un chiffre contextualisé crée une décision. Règle numéro 3 : la clarté engendre la confiance. Un outil qui prétend révéler la vérité sur vos offres d'emploi ne peut pas être lui-même opaque. L'interface de FARO est claire parce que le produit doit l'être.</p>
-                <p>L'univers visuel startup a été choisi délibérément. Les DRH et recruteurs français utilisent Lucca, PayFit, Notion, Linear. Ils reconnaissent instinctivement les codes visuels d'un SaaS professionnel. FARO parle ce langage : familier mais distinctif, sobre mais moderne. Un outil de confiance qui s'intègre dans leur quotidien, pas un objet de démonstration.</p>
+            <div class="exp-bw">
+              <div class="exp-q">"Le meilleur design ne se remarque pas. Il rend l'évidence évidente."</div>
+              <div class="exp-bt">
+                <p>Trois règles : 1. Un seul call-to-action par écran. 2. Les données brutes n'existent pas — tout score est contextualisé. 3. La clarté engendre la confiance. Un outil qui révèle la vérité sur vos offres ne peut pas être lui-même opaque.</p>
+                <p>L'univers visuel VERO s'inspire de Lucca et PayFit : des outils que les RH et recruteurs français utilisent déjà quotidiennement. VERO parle ce langage : familier, sobre, professionnel. Un outil de confiance qui s'intègre dans leur quotidien.</p>
+                <div class="sources-block">
+                  <a class="src-link" href="https://www.juliezhuo.com/book/manager.html" target="_blank">The Making of a Manager — Julie Zhuo</a>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Don Norman -->
-          <div class="exp-card">
-            <div class="exp-header">
-              <div class="exp-avatar">🧠</div>
-              <div class="exp-meta">
-                <div class="exp-badge">Expérience utilisateur</div>
-                <div class="exp-name-text">Don Norman</div>
-                <div class="exp-role-text">Design Advisor</div>
-              </div>
-              <div class="exp-fws">
-                <span class="fw-tag">Seven Design Principles</span>
-                <span class="fw-tag">Gulf of Execution</span>
-                <span class="fw-tag">Affordances</span>
-              </div>
+          <div class="exp-c">
+            <div class="exp-hd">
+              <div class="exp-av">🧠</div>
+              <div class="exp-meta"><div class="exp-b">Expérience</div><div class="exp-n">Don Norman</div><div class="exp-r">Design Advisor</div></div>
+              <div class="exp-fws"><span class="fw-t">Gulf of Execution</span><span class="fw-t">Affordances</span></div>
             </div>
-            <div class="exp-body-wrap">
-              <div class="exp-quote-text">"Quand un utilisateur échoue, ce n'est jamais la faute de l'utilisateur."</div>
-              <div class="exp-body-text">
-                <p>Le modèle mental d'un recruteur est construit autour d'un pattern profondément familier : lire un texte, l'évaluer, obtenir un retour structuré. C'est exactement ce qu'il fait chaque jour avec des CV, des lettres de motivation, des rapports d'entretien. FARO Score a été mappé sur ce modèle existant — pas sur un nouveau modèle d'interaction à apprendre.</p>
-                <p>Les affordances ont été pensées avec précision. La zone de texte grande signale naturellement "mets quelque chose de long ici." Le bouton change d'état visuel pendant le traitement — feedback immédiat qui réduit l'anxiété de l'attente. Le score affiché en grand est le signifier principal : c'est la donnée qui compte, tout le reste est secondaire.</p>
-                <p>La contrainte la plus importante de ce MVP : on n'accepte que du texte collé, dans cette version. Ce choix réduit la friction technique tout en forçant l'utilisateur à s'engager activement avec le contenu de son offre. Le Gulf of Execution atteint son minimum absolu : coller, cliquer, voir. Trois actions. Zéro apprentissage requis.</p>
+            <div class="exp-bw">
+              <div class="exp-q">"Quand un utilisateur échoue, ce n'est jamais la faute de l'utilisateur."</div>
+              <div class="exp-bt">
+                <p>Le modèle mental d'un recruteur : lire, évaluer, obtenir un retour structuré. VERO Score mappe exactement sur ce modèle. La zone de texte grande signale "mets quelque chose de long ici." Le bouton change d'état pendant le traitement. Le score affiché en grand est le signifier principal.</p>
+                <p>Gulf of Execution réduit au minimum absolu : coller, cliquer, voir. Trois actions. Zéro apprentissage requis.</p>
+                <div class="sources-block">
+                  <a class="src-link" href="https://jnd.org/books/the-design-of-everyday-things-revised-and-expanded-edition/" target="_blank">The Design of Everyday Things — Norman</a>
+                </div>
               </div>
             </div>
           </div>
 
+          <!-- Audio pitch -->
+          <div class="exp-c">
+            <div class="exp-hd">
+              <div class="exp-av">🎙️</div>
+              <div class="exp-meta"><div class="exp-b">Pitch Oral</div><div class="exp-n">Emmanuel Di Marco</div><div class="exp-r">PM Senior, Formateur IA</div></div>
+              <div class="exp-fws"><span class="fw-t">Enregistrement — 2 min</span></div>
+            </div>
+            <div class="audio-block">
+              <div class="audio-t" data-fr="Pitch oral du projet (non scripté)" data-en="Oral project pitch (unscripted)">Pitch oral du projet (non scripté)</div>
+              <audio id="pitch-audio" controls class="audio-player">
+                <source src="pitch-vero.mp3" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'audio HTML5.
+              </audio>
+              <p class="audio-note" data-fr="Enregistrement à intégrer : remplacez 'pitch-vero.mp3' par votre fichier audio." data-en="Recording to integrate: replace 'pitch-vero.mp3' with your audio file.">Enregistrement à intégrer : remplacez 'pitch-vero.mp3' par votre fichier audio.</p>
+            </div>
+          </div>
         </div>
 
         <div class="mo-footer">
-          <div class="mo-footer-by">Construit par</div>
-          <div class="mo-footer-name">Emmanuel Di Marco</div>
-          <div class="mo-footer-sub">Product Manager Senior · Formateur IA et Produit · EMLV — Mai 2026</div>
-          <a href="https://emmanueldimarco.fr" class="mo-footer-link">emmanueldimarco.fr</a>
+          <div class="mo-fb" data-fr="Construit par" data-en="Built by">Construit par</div>
+          <div class="mo-fn">Emmanuel Di Marco</div>
+          <div class="mo-fs" data-fr="Product Manager Senior · Formateur IA et Produit · EMLV — Mai 2026" data-en="Senior Product Manager · AI and Product Trainer · EMLV — May 2026">Product Manager Senior · Formateur IA et Produit · EMLV — Mai 2026</div>
+          <a href="https://emmanueldimarco.fr" class="mo-fl">emmanueldimarco.fr</a>
+        </div>
+      </div>
+
+      <!-- PROFIL RH -->
+      <div class="tab" id="rh-tab-profil">
+        <div class="page-header">
+          <div class="pg-tag" data-fr="Mon profil" data-en="My profile">Mon profil</div>
+          <h1 class="pg-title" data-fr="Profil Professionnel RH" data-en="HR Professional Profile">Profil Professionnel RH</h1>
+        </div>
+        <div class="profil-grid">
+          <div class="card profil-card">
+            <div class="profil-avatar">👔</div>
+            <div class="profil-name">Emmanuel Di Marco</div>
+            <div class="profil-role">PM Senior · Formateur IA</div>
+            <a class="profil-email" href="mailto:emmanuel.dimarco1@gmail.com">emmanuel.dimarco1@gmail.com</a>
+          </div>
+          <div class="card profil-info-card">
+            <div class="profil-section-t" data-fr="Informations du compte" data-en="Account information">Informations du compte</div>
+            <div class="profil-rows">
+              <div class="profil-row"><span class="profil-row-k" data-fr="Abonnement" data-en="Plan">Abonnement</span><span class="profil-row-v"><span class="badge-pill bp-orange">Démo</span></span></div>
+              <div class="profil-row"><span class="profil-row-k" data-fr="Accès" data-en="Access">Accès</span><span class="profil-row-v" data-fr="Score + Scout + Tarifs + Making-of" data-en="Score + Scout + Pricing + Making-of">Score + Scout + Tarifs + Making-of</span></div>
+              <div class="profil-row"><span class="profil-row-k" data-fr="Analyses Score réalisées" data-en="Score analyses done">Analyses Score réalisées</span><span class="profil-row-v" id="rh-score-count">0</span></div>
+              <div class="profil-row"><span class="profil-row-k" data-fr="Fiches Scout générées" data-en="Scout reports generated">Fiches Scout générées</span><span class="profil-row-v" id="rh-scout-count">0</span></div>
+              <div class="profil-row"><span class="profil-row-k" data-fr="Période" data-en="Period">Période</span><span class="profil-row-v">Mai 2026</span></div>
+            </div>
+            <div class="profil-stats">
+              <div class="profil-stat"><div class="ps-num" id="rh-score-stat">0</div><div class="ps-lbl" data-fr="Scores réalisés" data-en="Scores done">Scores réalisés</div></div>
+              <div class="profil-stat"><div class="ps-num" id="rh-scout-stat">0</div><div class="ps-lbl" data-fr="Scouts générés" data-en="Scouts generated">Scouts générés</div></div>
+              <div class="profil-stat"><div class="ps-num" style="color:var(--green)">VERO</div><div class="ps-lbl" data-fr="Intelligence active" data-en="Active intelligence">Intelligence active</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ APP CANDIDAT ══ -->
+<div id="app-cand">
+  <aside class="sb">
+    <div class="sb-top">
+      <div class="sb-logo">
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect width="26" height="26" rx="7" fill="#E05219"/><path d="M7 12l6 7 7-9" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="sb-wm">VERO</span>
+        <span class="sb-badge" style="background:rgba(99,102,241,.35);color:#C7D2FE">Candidat</span>
+      </div>
+    </div>
+    <nav class="sb-nav">
+      <span class="sb-sec" data-fr="Outils" data-en="Tools">Outils</span>
+      <button class="sb-item on" onclick="sw('cand','scout',this)">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="6" r="4"/><path d="M9 9l3.5 3.5" stroke-linecap="round"/></svg>
+        <span data-fr="Scout" data-en="Scout">Scout</span>
+      </button>
+      <button class="sb-item" onclick="sw('cand','offres',this)">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="11" height="11" rx="2"/><path d="M5 7.5h5M7.5 5v5" stroke-linecap="round"/></svg>
+        <span data-fr="Offres d'emploi" data-en="Job offers">Offres d'emploi</span>
+      </button>
+      <button class="sb-item" onclick="sw('cand','ext',this)">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="11" height="11" rx="2"/><circle cx="7.5" cy="7.5" r="2"/></svg>
+        <span data-fr="Extension Chrome" data-en="Chrome Extension">Extension Chrome</span>
+      </button>
+      <span class="sb-sec" data-fr="Compte" data-en="Account">Compte</span>
+      <button class="sb-item" onclick="sw('cand','profil',this)">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7.5" cy="5" r="3"/><path d="M2 13c0-3 2.5-5 5.5-5s5.5 2 5.5 5" stroke-linecap="round"/></svg>
+        <span data-fr="Mon profil" data-en="My profile">Mon profil</span>
+      </button>
+    </nav>
+    <div class="sb-foot">
+      <div class="sb-controls">
+        <button class="sb-ctrl-btn" onclick="toggleTheme()">☀</button>
+        <button class="sb-ctrl-btn" id="cand-lang-btn" onclick="toggleLang()">FR</button>
+        <button class="sb-ctrl-btn" onclick="switchPath()">⇄</button>
+      </div>
+      <div class="sb-foot-user" data-fr="Accès candidat · Gratuit" data-en="Candidate access · Free">Accès candidat · Gratuit</div>
+    </div>
+  </aside>
+  <div class="main">
+    <div class="main-body">
+
+      <!-- SCOUT (CANDIDAT) -->
+      <div class="tab on" id="cand-tab-scout">
+        <div class="page-header">
+          <div class="pg-tag">VERO Scout</div>
+          <h1 class="pg-title" data-fr="Découvrez le processus de recrutement avant de postuler" data-en="Discover the recruitment process before applying">Découvrez le processus de recrutement avant de postuler</h1>
+          <p class="pg-sub" data-fr="Délais, entretiens, feedback, ghosting. Tout ce que vous devriez savoir avant le premier contact." data-en="Timelines, interviews, feedback, ghosting. Everything you should know before first contact.">Délais, entretiens, feedback, ghosting. Tout ce que vous devriez savoir avant le premier contact.</p>
+        </div>
+        <div class="scout-row">
+          <div><label class="form-lbl" data-fr="Entreprise" data-en="Company">Entreprise</label><input type="text" id="co-name-c" class="form-in" placeholder="Ex : L'Oréal, Decathlon..."></div>
+          <div><label class="form-lbl" data-fr="Secteur (optionnel)" data-en="Sector (optional)">Secteur (optionnel)</label><input type="text" id="co-sect-c" class="form-in" placeholder="Ex : Tech, Finance..."></div>
+          <div style="padding-top:1.4rem"><button class="btn-p" id="scout-btn-c" onclick="doScout('cand')"><span data-fr="Explorer" data-en="Explore">Explorer</span></button></div>
+        </div>
+        <div class="sug-block">
+          <span class="sug-lbl" data-fr="Suggestions rapides" data-en="Quick suggestions">Suggestions rapides</span>
+          <div class="sug-chips">
+            <button class="sug-chip" onclick="fillCo('cand','L\'Oréal')">L'Oréal</button>
+            <button class="sug-chip" onclick="fillCo('cand','Decathlon')">Decathlon</button>
+            <button class="sug-chip" onclick="fillCo('cand','BNP Paribas')">BNP Paribas</button>
+            <button class="sug-chip" onclick="fillCo('cand','Danone')">Danone</button>
+            <button class="sug-chip" onclick="fillCo('cand','Airbus')">Airbus</button>
+            <button class="sug-chip" onclick="fillCo('cand','Capgemini')">Capgemini</button>
+            <button class="sug-chip" onclick="fillCo('cand','LVMH')">LVMH</button>
+            <button class="sug-chip" onclick="fillCo('cand','Orange')">Orange</button>
+            <button class="sug-chip" onclick="fillCo('cand','TotalEnergies')">TotalEnergies</button>
+            <button class="sug-chip" onclick="fillCo('cand','AXA')">AXA</button>
+            <button class="sug-chip" onclick="fillCo('cand','SNCF')">SNCF</button>
+            <button class="sug-chip" onclick="fillCo('cand','Accenture')">Accenture</button>
+          </div>
+        </div>
+        <div class="loading-row" id="scout-load-c" style="margin-bottom:1rem"><div class="spinner"></div><span id="scout-ltxt-c" data-fr="Compilation des signaux..." data-en="Compiling signals...">Compilation des signaux...</span></div>
+        <div id="scout-res-c"></div>
+      </div>
+
+      <!-- OFFRES D'EMPLOI -->
+      <div class="tab" id="cand-tab-offres">
+        <div class="page-header">
+          <div class="pg-tag" data-fr="Partenaire" data-en="Partner">Partenaire</div>
+          <h1 class="pg-title" data-fr="Toutes les offres d'emploi au même endroit" data-en="All job offers in one place">Toutes les offres d'emploi au même endroit</h1>
+          <p class="pg-sub" data-fr="VERO s'associe à Hiring Cafe, l'agrégateur qui compile les offres de centaines de plateformes. Beaucoup de candidats ne connaissent pas encore ce site." data-en="VERO partners with Hiring Cafe, the aggregator that compiles offers from hundreds of platforms. Many candidates don't know this site yet.">VERO s'associe à Hiring Cafe, l'agrégateur qui compile les offres de centaines de plateformes. Beaucoup de candidats ne connaissent pas encore ce site.</p>
+        </div>
+        <div class="card partner-card">
+          <div class="partner-logo-row">
+            <div class="partner-logo" style="background:#0A0A0A;font-size:.85rem">☕</div>
+            <div>
+              <div class="partner-name">Hiring Cafe</div>
+              <div style="font-size:.75rem;color:var(--muted)" data-fr="Agrégateur d'offres d'emploi — Accès gratuit" data-en="Job offer aggregator — Free access">Agrégateur d'offres d'emploi — Accès gratuit</div>
+            </div>
+          </div>
+          <p class="partner-sub" data-fr="Hiring Cafe agrège les offres d'emploi de LinkedIn, Indeed, Glassdoor, Welcome to the Jungle, et des centaines d'autres sources. Une interface simple, rapide, sans publicité intrusive. Et surtout, beaucoup d'offres que vous ne trouveriez pas ailleurs." data-en="Hiring Cafe aggregates job offers from LinkedIn, Indeed, Glassdoor, Welcome to the Jungle, and hundreds of other sources. A simple, fast interface without intrusive ads. And above all, many offers you won't find elsewhere.">Hiring Cafe agrège les offres d'emploi de LinkedIn, Indeed, Glassdoor, Welcome to the Jungle, et des centaines d'autres sources. Une interface simple, rapide, sans publicité intrusive. Et surtout, beaucoup d'offres que vous ne trouveriez pas ailleurs.</p>
+          <div>
+            <a class="partner-link-big" href="https://hiring.cafe/" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1h6v6M13 1L5.5 8.5M2 4H1v9h9v-1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span data-fr="Accéder à Hiring Cafe" data-en="Go to Hiring Cafe">Accéder à Hiring Cafe</span>
+            </a>
+          </div>
+          <div class="partner-features">
+            <div class="pf-item">
+              <div class="pf-emoji">🔍</div>
+              <div class="pf-name" data-fr="Recherche unifiée" data-en="Unified search">Recherche unifiée</div>
+              <div class="pf-desc" data-fr="Toutes les plateformes dans une seule recherche. Gagnez des heures chaque semaine." data-en="All platforms in one search. Save hours each week.">Toutes les plateformes dans une seule recherche. Gagnez des heures chaque semaine.</div>
+            </div>
+            <div class="pf-item">
+              <div class="pf-emoji">📡</div>
+              <div class="pf-name" data-fr="Offres en temps réel" data-en="Real-time offers">Offres en temps réel</div>
+              <div class="pf-desc" data-fr="Les offres sont mises à jour en continu. Soyez parmi les premiers à postuler." data-en="Offers are continuously updated. Be among the first to apply.">Les offres sont mises à jour en continu. Soyez parmi les premiers à postuler.</div>
+            </div>
+            <div class="pf-item">
+              <div class="pf-emoji">🆓</div>
+              <div class="pf-name" data-fr="100% gratuit" data-en="100% free">100% gratuit</div>
+              <div class="pf-desc" data-fr="Aucun abonnement requis. Accès complet sans compte obligatoire." data-en="No subscription required. Full access without a mandatory account.">Aucun abonnement requis. Accès complet sans compte obligatoire.</div>
+            </div>
+          </div>
+          <div style="padding:.85rem 1rem;background:var(--accent-light);border-radius:var(--r);border:1px solid rgba(224,82,25,.12)">
+            <p style="font-size:.78rem;color:var(--accent);font-weight:700;margin-bottom:.25rem" data-fr="Astuce VERO" data-en="VERO Tip">Astuce VERO</p>
+            <p style="font-size:.78rem;color:var(--muted);line-height:1.6" data-fr="Trouvez une offre sur Hiring Cafe, notez le nom de l'entreprise, puis revenez sur VERO Scout pour découvrir leur processus de recrutement avant de postuler." data-en="Find an offer on Hiring Cafe, note the company name, then come back to VERO Scout to discover their recruitment process before applying.">Trouvez une offre sur Hiring Cafe, notez le nom de l'entreprise, puis revenez sur VERO Scout pour découvrir leur processus de recrutement avant de postuler.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXTENSION CHROME -->
+      <div class="tab" id="cand-tab-ext">
+        <div class="page-header">
+          <div class="pg-tag" data-fr="Bientôt disponible" data-en="Coming soon">Bientôt disponible</div>
+          <h1 class="pg-title" data-fr="L'extension Chrome VERO Scout" data-en="The VERO Scout Chrome Extension">L'extension Chrome VERO Scout</h1>
+          <p class="pg-sub" data-fr="Obtenez le score Scout d'une entreprise directement depuis n'importe quel site web où elle est mentionnée. En un clic, depuis la page LinkedIn, Indeed, ou le site de l'entreprise." data-en="Get a company's Scout score directly from any website where it's mentioned. One click, from LinkedIn, Indeed, or the company's website.">Obtenez le score Scout d'une entreprise directement depuis n'importe quel site web où elle est mentionnée. En un clic, depuis la page LinkedIn, Indeed, ou le site de l'entreprise.</p>
+        </div>
+        <div class="card ext-card">
+          <div class="ext-header">
+            <div class="ext-icon">🔌</div>
+            <div class="ext-meta">
+              <div class="ext-name" data-fr="VERO Scout — Extension Chrome" data-en="VERO Scout — Chrome Extension">VERO Scout — Extension Chrome</div>
+              <div class="ext-badge-cs" style="margin-top:.5rem">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1l1.1 3.3L10.5 5 7.1 6.4 6 9.5 4.9 6.4 1.5 5l3.4-0.7z"/></svg>
+                <span data-fr="En développement — Rejoignez la liste d'attente" data-en="In development — Join the waiting list">En développement — Rejoignez la liste d'attente</span>
+              </div>
+            </div>
+          </div>
+          <div class="ext-how">
+            <div class="ext-how-t" data-fr="Comment ça fonctionne" data-en="How it works">Comment ça fonctionne</div>
+            <div class="ext-steps">
+              <div class="ext-step"><div class="ext-step-n">1</div><div class="ext-step-t" data-fr="Vous naviguez sur LinkedIn, Indeed, ou le site carrière d'une entreprise." data-en="You browse LinkedIn, Indeed, or a company's careers page.">Vous naviguez sur LinkedIn, Indeed, ou le site carrière d'une entreprise.</div></div>
+              <div class="ext-step"><div class="ext-step-n">2</div><div class="ext-step-t" data-fr="L'extension détecte automatiquement le nom de l'entreprise depuis l'URL ou le contenu de la page." data-en="The extension automatically detects the company name from the URL or page content.">L'extension détecte automatiquement le nom de l'entreprise depuis l'URL ou le contenu de la page.</div></div>
+              <div class="ext-step"><div class="ext-step-n">3</div><div class="ext-step-t" data-fr="Cliquez sur l'icône VERO : la fiche Scout s'affiche en sidebar. Score, processus, conseils, en 3 secondes." data-en="Click the VERO icon: the Scout report appears in a sidebar. Score, process, tips, in 3 seconds.">Cliquez sur l'icône VERO : la fiche Scout s'affiche en sidebar. Score, processus, conseils, en 3 secondes.</div></div>
+              <div class="ext-step"><div class="ext-step-n">4</div><div class="ext-step-t" data-fr="Décidez de postuler ou non en connaissance de cause, sans quitter la page." data-en="Decide whether to apply with full information, without leaving the page.">Décidez de postuler ou non en connaissance de cause, sans quitter la page.</div></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:.75rem;align-items:center">
+            <a href="mailto:emmanuel.dimarco1@gmail.com?subject=VERO Extension - Liste d'attente" class="btn-p" style="text-decoration:none">
+              <span data-fr="Rejoindre la liste d'attente" data-en="Join the waiting list">Rejoindre la liste d'attente</span>
+            </a>
+            <span style="font-size:.75rem;color:var(--muted)" data-fr="Gratuit pour les candidats" data-en="Free for candidates">Gratuit pour les candidats</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFIL CANDIDAT -->
+      <div class="tab" id="cand-tab-profil">
+        <div class="page-header">
+          <div class="pg-tag" data-fr="Mon profil" data-en="My profile">Mon profil</div>
+          <h1 class="pg-title" data-fr="Espace candidat" data-en="Candidate space">Espace candidat</h1>
+        </div>
+        <div class="profil-grid">
+          <div class="card profil-card">
+            <div class="profil-avatar">🎯</div>
+            <div class="profil-name" data-fr="Candidat VERO" data-en="VERO Candidate">Candidat VERO</div>
+            <div class="profil-role" data-fr="Accès gratuit complet" data-en="Full free access">Accès gratuit complet</div>
+            <a class="profil-email" href="mailto:emmanuel.dimarco1@gmail.com">emmanuel.dimarco1@gmail.com</a>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:1.1rem">
+            <div class="card profil-info-card">
+              <div class="profil-section-t" data-fr="Votre accès" data-en="Your access">Votre accès</div>
+              <div class="profil-rows">
+                <div class="profil-row"><span class="profil-row-k" data-fr="Plan" data-en="Plan">Plan</span><span class="profil-row-v"><span class="badge-pill bp-green" data-fr="Gratuit" data-en="Free">Gratuit</span></span></div>
+                <div class="profil-row"><span class="profil-row-k">Scout</span><span class="profil-row-v"><span class="badge-pill bp-green" data-fr="Illimité" data-en="Unlimited">Illimité</span></span></div>
+                <div class="profil-row"><span class="profil-row-k" data-fr="Fiches Scout générées" data-en="Scout reports generated">Fiches Scout générées</span><span class="profil-row-v" id="cand-scout-count">0</span></div>
+              </div>
+              <div class="profil-stats">
+                <div class="profil-stat"><div class="ps-num" id="cand-scout-stat">0</div><div class="ps-lbl" data-fr="Scouts réalisés" data-en="Scouts done">Scouts réalisés</div></div>
+                <div class="profil-stat"><div class="ps-num" style="color:var(--green)">∞</div><div class="ps-lbl" data-fr="Analyses restantes" data-en="Remaining analyses">Analyses restantes</div></div>
+                <div class="profil-stat"><div class="ps-num" style="color:var(--accent)">🆓</div><div class="ps-lbl" data-fr="Toujours gratuit" data-en="Always free">Toujours gratuit</div></div>
+              </div>
+            </div>
+            <div class="card profil-cand-extra" style="background:none">
+              <div class="pce-t" data-fr="Pour aller plus loin" data-en="Going further">Pour aller plus loin</div>
+              <p class="pce-sub" data-fr="VERO Score analyse les offres d'emploi du côté recruteur. Si vous travaillez en RH ou recrutement, créez un compte professionnel pour y accéder." data-en="VERO Score analyzes job postings from the recruiter's side. If you work in HR or recruitment, create a professional account to access it.">VERO Score analyse les offres d'emploi du côté recruteur. Si vous travaillez en RH ou recrutement, créez un compte professionnel pour y accéder.</p>
+              <button class="btn-s" style="margin-top:.75rem;font-size:.75rem" onclick="switchPath()" data-fr="Passer en mode Professionnel RH" data-en="Switch to HR Professional mode">Passer en mode Professionnel RH</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -776,17 +970,22 @@
 </div>
 
 <script>
-/* ──────────────────────────────────────
+/* ════════════════════════════════════
+   STATE
+════════════════════════════════════ */
+const state = { path: null, lang: 'fr', theme: 'light', rhScores: 0, rhScouts: 0, candScouts: 0 };
+
+/* ════════════════════════════════════
    LOGIN
-────────────────────────────────────── */
+════════════════════════════════════ */
 function doLogin() {
-  if (document.getElementById('pw').value === 'Bonjour2') {
-    const l = document.getElementById('login');
-    l.classList.add('out');
-    setTimeout(() => { l.style.display='none'; document.getElementById('app').classList.add('on'); }, 460);
+  const v = document.getElementById('pw').value;
+  if (v === 'Bonjour2') {
+    document.getElementById('lc-pw').classList.remove('on');
+    document.getElementById('lc-path').classList.add('on');
   } else {
     const e = document.getElementById('pw-err');
-    e.textContent = 'Mot de passe incorrect.';
+    e.textContent = state.lang === 'fr' ? 'Mot de passe incorrect.' : 'Wrong password.';
     document.getElementById('pw').style.borderColor = 'var(--red)';
     setTimeout(() => { e.textContent=''; document.getElementById('pw').style.borderColor=''; }, 2000);
   }
@@ -794,293 +993,253 @@ function doLogin() {
 document.addEventListener('keydown', e => {
   if (e.key !== 'Enter') return;
   const l = document.getElementById('login');
-  if (l && !l.classList.contains('out') && l.style.display !== 'none') doLogin();
+  if (l && !l.classList.contains('out')) {
+    if (document.getElementById('lc-pw').classList.contains('on')) doLogin();
+  }
 });
 
-/* ──────────────────────────────────────
-   TABS
-────────────────────────────────────── */
-function sw(name, btn) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
-  document.querySelectorAll('.sb-item').forEach(t => t.classList.remove('on'));
-  document.getElementById('tab-' + name).classList.add('on');
-  btn.classList.add('on');
-}
-
-/* ──────────────────────────────────────
-   UTILS
-────────────────────────────────────── */
-function h32(s) {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
-  return h;
-}
-function noise(seed, r) { return ((h32(String(seed)) % (r*2+1)) - r); }
-function clamp(v, a, b) { return Math.max(a, Math.min(b, Math.round(v))); }
-function animCount(el, to, dur) {
-  const start = performance.now();
-  (function tick(now) {
-    const p = Math.min((now-start)/dur, 1), e = 1-Math.pow(1-p, 3);
-    el.textContent = Math.round(to*e);
-    if (p<1) requestAnimationFrame(tick);
-  })(performance.now());
-}
-
-/* ──────────────────────────────────────
-   SCORE ENGINE
-────────────────────────────────────── */
-const DIMS = [
-  'Clarté du rôle',
-  'Inclusivité',
-  'Transparence salariale',
-  'Ton humain',
-  'Clarté du processus',
-  'Proposition de valeur employeur'
-];
-
-function scoreJob(txt) {
-  const t = txt.toLowerCase();
-  const wc = t.split(/\s+/).filter(w => w.length > 2).length;
-  const seed = h32(t.slice(0, 100));
-  const hit = ks => ks.filter(k => t.includes(k)).length;
-
-  const d0 = clamp(22 + hit(['mission','responsabilit','objectif','enjeux','rattaché','vous serez','vous ferez','vous aurez','vos missions','votre rôle','piloter','gérer','développer','assurer','coordonner','contribuer','périmètre'])*5 + Math.min(18, Math.floor(wc/25)) + noise(seed+'0',4), 15, 95);
-  const d1 = clamp(8  + hit(['h/f','f/h','diversit','inclusiv','handicap','handi','rqth','égalit','quelle que soit','toutes les candidatures','sans distinction','mixité'])*15 + noise(seed+'1',3), 5, 92);
-  const hasSR = /\d+\s*[k€].*à.*\d+\s*[k€]|\d+\s*k€?\s*[àa-]\s*\d+\s*k€?/.test(t);
-  const hasSal = /\d+\s*k€?|\bsalaire\b|rémunér|package|fourchette/.test(t);
-  const d2 = clamp((hasSR ? 74 : hasSal ? 44 : 11) + hit(['intéressement','participation','variable','bonus','prime'])*5 + noise(seed+'2',5), 5, 95);
-  const vous=(t.match(/\bvous\b/g)||[]).length, nous=(t.match(/\bnous\b/g)||[]).length, cand=(t.match(/\ble candidat\b/g)||[]).length;
-  const d3 = clamp(18 + vous*2.2 + nous*3 - cand*7 + hit(['rejoindre','ensemble','équipe','bienveill','dynamiq','passionn','autonome','collaboratif'])*4 + noise(seed+'3',4), 10, 95);
-  const d4 = clamp(8  + hit(['entretien','process','étape','délai','réponse','recruteur','convocation','sélection','test','cas pratique','assessment','retour sous','vous serez contacté'])*9 + noise(seed+'4',4), 5, 90);
-  const d5 = clamp(12 + hit(['télétravail','remote','flex','rtt','mutuelle','prévoyance','formation','budget','avantage','ticket','restaurant','transport','intéressement','participation','culture','valeur','bien-être','onboarding','évolution','coaching'])*5 + noise(seed+'5',4), 8, 92);
-
-  const dims = [d0, d1, d2, d3, d4, d5];
-  const g = clamp(d0*.22 + d1*.12 + d2*.18 + d3*.18 + d4*.15 + d5*.15, 10, 97);
-  return { g, dims };
-}
-
-const VERD_POOL = {
-  high: ['Cette offre se distingue nettement : claire, humaine et transparente. Les candidats qualifiés comprennent immédiatement pourquoi postuler.','Excellente offre — le rôle est bien défini, le ton est engageant, le processus est explicité. Elle capte les candidats passifs là où la plupart des offres les laissent indifférents.'],
-  mid:  ['Cette offre remplit les critères de base mais manque d\'éléments différenciants. À ce niveau, elle se perd dans la masse des annonces disponibles sur le marché.','Score dans la moyenne : des points forts réels, mais des lacunes qui freinent les candidatures qualifiées. Le potentiel d\'amélioration est significatif.'],
-  low:  ['Cette offre présente des lacunes majeures qui réduisent significativement son attractivité. Les candidats les plus qualifiés passent généralement leur chemin.','Score en dessous de la médiane nationale. Cette offre génère des candidatures non qualifiées et décourage les profils les plus recherchés.']
-};
-function getVerdict(g) {
-  const pool = g>=65 ? VERD_POOL.high : g>=42 ? VERD_POOL.mid : VERD_POOL.low;
-  return pool[g % 2];
-}
-function getBench(g) {
-  const d = Math.abs(g-52);
-  return g>57 ? `+${d} pts vs médiane nationale (52/100)` : g<47 ? `-${d} pts vs médiane nationale (52/100)` : 'Dans la médiane nationale';
-}
-
-const DIM_DET = {
-  'Clarté du rôle':               { h:'Le périmètre du poste est bien défini avec des missions concrètes et des verbes d\'action.', m:'Quelques missions sont citées, mais le périmètre réel reste flou pour le candidat.', l:'L\'offre manque de précision sur les responsabilités effectives du poste.' },
-  'Inclusivité':                  { h:'Formulation inclusive et ouverture à la diversité des profils explicitement signalées.', m:'Quelques signaux inclusifs présents, mais le langage reste genré ou neutre par défaut.', l:'Aucune mention de l\'inclusivité. L\'offre peut décourager des profils sous-représentés.' },
-  'Transparence salariale':       { h:'La fourchette salariale est clairement indiquée, ce qui filtre efficacement et respecte le candidat.', m:'Une mention salariale est présente mais sans fourchette précise. Le candidat reste dans l\'incertitude.', l:'Aucune information sur la rémunération. Les candidats qualifiés évitent souvent ces offres.' },
-  'Ton humain':                   { h:'Le ton est direct et chaleureux. Le candidat se projette facilement dans l\'équipe.', m:'Le ton oscille entre chaleur et formalisme. L\'identité de l\'entreprise reste peu lisible.', l:'Ton froid et impersonnel. L\'offre ressemble à une fiche de poste interne plutôt qu\'à une invitation à rejoindre une équipe.' },
-  'Clarté du processus':          { h:'Le processus de recrutement est explicité. Le candidat sait à quoi s\'attendre dès la lecture.', m:'Quelques étapes mentionnées, mais le processus global et les délais restent opaques.', l:'Aucune information sur le processus de sélection. C\'est une source d\'anxiété pour le candidat.' },
-  'Proposition de valeur employeur':{ h:'La proposition employeur est riche et concrète. Les avantages sont clairement listés.', m:'Quelques avantages mentionnés, mais la proposition de valeur manque de substance pour se démarquer.', l:'Proposition absente ou trop vague pour susciter l\'intérêt des candidats passifs.' }
-};
-function getDimDet(name, s) { const d = DIM_DET[name]; return d ? (s>=65 ? d.h : s>=42 ? d.m : d.l) : ''; }
-
-const RECOS = {
-  'Clarté du rôle':               { t:'Structurer les missions avec des verbes d\'action', d:'Réorganisez en 4 à 6 points commençant par un verbe d\'action (piloter, développer, analyser). Ajoutez le contexte de l\'équipe et les enjeux business réels. Les candidats décident de postuler en moins de 90 secondes de lecture.', i:'+28 % de candidatures qualifiées', r:'~450 € économisés en tri de CV par recrutement' },
-  'Inclusivité':                  { t:'Ajouter une mention d\'inclusion explicite', d:'Ajoutez "Ce poste est ouvert aux personnes en situation de handicap" et adoptez la formulation H/F/X dans le titre. Deux minutes de travail, impact immédiat sur le bassin de candidatures et sur la perception de la culture d\'entreprise.', i:'+15 % de diversité dans les profils reçus', r:'Signal marque employeur positif sur les plateformes de notation' },
-  'Transparence salariale':       { t:'Publier la fourchette salariale', d:'Ajoutez une fourchette claire, par exemple "45 à 55 k€ selon expérience". Les offres avec fourchette reçoivent en moyenne 30 % de candidatures supplémentaires et réduisent les abandons en processus liés au sujet salaire.', i:'+30 % de candidatures, -40 % d\'abandons en cours de process', r:'~800 € économisés sur le coût total d\'un recrutement' },
-  'Ton humain':                   { t:'Réécrire à la deuxième personne du pluriel', d:'Remplacez "le candidat devra" par "vous devrez". Ajoutez 2 à 3 phrases sur ce qui rend l\'équipe unique. Le ton est le premier indicateur de culture perçu par le candidat — il filtre les bonnes candidatures avant le premier entretien.', i:'+22 % de taux d\'engagement sur l\'offre', r:'Réduction du time-to-hire de 5 à 8 jours en moyenne' },
-  'Clarté du processus':          { t:'Décrire le processus de recrutement en 3 étapes', d:'Ajoutez un bloc "Notre processus" avec le nombre d\'entretiens, leur format (téléphone, visio, présentiel) et le délai de retour garanti. Cette transparence réduit les abandons en cours de process de 35 %.', i:'-35 % d\'abandons en cours de processus', r:'~600 € économisés par recrutement sur les relances et le re-sourcing' },
-  'Proposition de valeur employeur':{ t:'Articuler 5 avantages concrets et vérifiables', d:'Listez 5 avantages réels : télétravail (jours par semaine), RTT, mutuelle (taux de prise en charge), formation (budget annuel), équipement. Évitez les formulations vagues comme "ambiance sympa". Les candidats expérimentés ne leur accordent plus aucun crédit.', i:'+18 % d\'attractivité sur les profils passifs', r:'Réduction de 12 % du budget sourcing annuel' }
-};
-
-/* ──────────────────────────────────────
-   SCORE ACTIONS
-────────────────────────────────────── */
-function doScore() {
-  const txt = document.getElementById('job-txt').value.trim();
-  if (txt.length < 80) { alert('Collez une offre d\'emploi complète (au moins quelques phrases).'); return; }
-  const btn = document.getElementById('score-btn');
-  const load = document.getElementById('score-load');
-  btn.disabled = true; load.classList.add('on');
-  document.getElementById('score-results').classList.remove('on');
-
-  const ph = ['Analyse du ton et du registre...','Détection des signaux d\'inclusivité...','Évaluation de la clarté des missions...','Calibration sectorielle...','Génération des recommandations...'];
-  let pi = 0; const pt = setInterval(() => { document.getElementById('score-ltxt').textContent = ph[++pi % ph.length]; }, 900);
-
+function enterApp(path) {
+  state.path = path;
+  document.getElementById('login').classList.add('out');
   setTimeout(() => {
-    clearInterval(pt); load.classList.remove('on'); btn.disabled = false;
-    const { g, dims } = scoreJob(txt);
-    renderScore(g, dims);
-  }, 2200);
+    document.getElementById('login').style.display = 'none';
+    document.getElementById(path === 'rh' ? 'app-rh' : 'app-cand').classList.add('on');
+  }, 460);
 }
 
-function renderScore(g, dims) {
-  const cls = g >= 65 ? 'high' : g >= 42 ? 'mid' : 'low';
-  const numC = g >= 65 ? 'var(--green)' : g >= 42 ? 'var(--yellow)' : 'var(--red)';
+function switchPath() {
+  const current = state.path;
+  document.getElementById(current === 'rh' ? 'app-rh' : 'app-cand').classList.remove('on');
+  state.path = current === 'rh' ? 'cand' : 'rh';
+  document.getElementById(state.path === 'rh' ? 'app-rh' : 'app-cand').classList.add('on');
+  // Reset tabs
+  if (state.path === 'rh') sw('rh','score',document.querySelector('#app-rh .sb-item'));
+  else sw('cand','scout',document.querySelector('#app-cand .sb-item'));
+}
 
-  const circle = document.getElementById('score-circle');
-  circle.className = 'score-circle ' + cls;
-  const numEl = document.getElementById('score-num');
-  numEl.className = 'score-num ' + cls;
-  animCount(numEl, g, 1400);
+/* ════════════════════════════════════
+   TABS
+════════════════════════════════════ */
+function sw(appId, tabName, btn) {
+  const prefix = appId === 'rh' ? 'rh-tab-' : 'cand-tab-';
+  document.querySelectorAll('#app-'+appId+' .tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('#app-'+appId+' .sb-item').forEach(t => t.classList.remove('on'));
+  const tab = document.getElementById(prefix + tabName);
+  if (tab) tab.classList.add('on');
+  if (btn) btn.classList.add('on');
+}
 
-  document.getElementById('score-verd').textContent = getVerdict(g);
-  const bench = document.getElementById('score-bench');
-  bench.textContent = getBench(g);
-
-  const dl = document.getElementById('dim-list'); dl.innerHTML = '';
-  dims.forEach((s, i) => {
-    const barC = s >= 65 ? 'var(--green)' : s >= 42 ? 'var(--yellow)' : 'var(--red)';
-    const txtC = s >= 65 ? 'var(--green)' : s >= 42 ? 'var(--yellow)' : 'var(--red)';
-    const d = document.createElement('div'); d.className = 'dim-row';
-    d.innerHTML = `<div class="dim-top"><span class="dim-name">${DIMS[i]}</span><span class="dim-score-label" style="color:${txtC}">${s}/100</span></div><div class="dim-bar-bg"><div class="dim-bar-fill" style="background:${barC}" data-w="${s}"></div></div><div class="dim-detail">${getDimDet(DIMS[i], s)}</div>`;
-    dl.appendChild(d);
-    setTimeout(() => { d.querySelector('.dim-bar-fill').style.width = s + '%'; }, i * 100 + 200);
+/* ════════════════════════════════════
+   DARK MODE
+════════════════════════════════════ */
+function toggleTheme() {
+  state.theme = state.theme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', state.theme);
+  document.querySelectorAll('#rh-theme-btn').forEach(b => {
+    b.textContent = state.theme === 'dark' ? '☾' : '☀';
+    b.classList.toggle('on', state.theme === 'dark');
   });
+}
 
-  const ranked = dims.map((s, i) => ({i, s})).sort((a, b) => a.s - b.s);
-  const rl = document.getElementById('reco-list'); rl.innerHTML = '';
-  ranked.slice(0, 3).forEach(({i}, ri) => {
-    const r = RECOS[DIMS[i]]; if (!r) return;
-    const el = document.createElement('div'); el.className = 'reco-item';
-    el.innerHTML = `<div class="reco-rank">Recommandation ${ri+1}</div><div class="reco-title-text">${r.t}</div><div class="reco-desc">${r.d}</div><div class="reco-pills"><span class="pill pill-impact">${r.i}</span><span class="pill pill-roi">ROI : ${r.r}</span></div>`;
-    rl.appendChild(el);
-    setTimeout(() => el.classList.add('on'), 900 + ri * 160);
+/* ════════════════════════════════════
+   LANGUAGE
+════════════════════════════════════ */
+function toggleLang() {
+  state.lang = state.lang === 'fr' ? 'en' : 'fr';
+  document.documentElement.setAttribute('lang', state.lang);
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    const txt = state.lang === 'fr' ? el.dataset.fr : el.dataset.en;
+    if (txt !== undefined) el.textContent = txt;
   });
-
-  document.getElementById('score-results').classList.add('on');
+  document.querySelectorAll('.sb-ctrl-btn[onclick*="toggleLang"]').forEach(b => {
+    b.textContent = state.lang === 'fr' ? 'FR' : 'EN';
+    b.classList.toggle('on', state.lang === 'en');
+  });
+  // Update placeholders
+  updatePlaceholders();
 }
-
-function resetScore() {
-  document.getElementById('job-txt').value = '';
-  document.getElementById('score-results').classList.remove('on');
-}
-
-/* ──────────────────────────────────────
-   SCOUT ENGINE
-────────────────────────────────────── */
-const DB = {
-  'loreal':{score:74,delai:'14 à 21 jours',ent:4,fb:72,gh:22,etapes:['Screening CV','Entretien RH (visio 30 min)','Business case (48h)','Entretien manager','Entretien VP / HRBP'],forts:['Process structuré et communiqué en amont','Retour systématique après chaque étape','Interlocuteurs RH identifiés et joignables'],faibles:['Délai total souvent supérieur à 6 semaines','Business case chronophage et non rémunéré','Décision finale centralisée à Paris'],verd:'L\'Oréal offre une expérience candidat au-dessus de la moyenne pour un grand groupe. Le processus est bien cadré mais long : anticipez 4 à 6 semaines entre candidature et offre.',conseils:['Préparez une présentation sur un cas concret de leur marché : connaissez l\'ensemble du groupe, pas uniquement L\'Oréal Paris.','Envoyez un email de remerciement personnalisé dans les 24h après chaque entretien.','Le business case est éliminatoire : soignez la présentation autant que le contenu analytique.']},
-  'decathlon':{score:80,delai:'5 à 10 jours',ent:2,fb:85,gh:10,etapes:['CV screening','Entretien découverte (terrain ou visio)','Entretien décisionnel manager'],forts:['Processus parmi les plus courts du marché (sous 3 semaines)','Feedback quasi-systématique même en cas de refus','Culture de la promotion interne visible dès le recrutement'],faibles:['Entretiens parfois peu structurés selon le manager','Peu de négociation salariale sur les grilles fixes','Mobilité géographique parfois attendue implicitement'],verd:'Decathlon est une référence en matière d\'expérience candidat en France. Le processus est humain, rapide et transparent. Un modèle pour la distribution.',conseils:['Valorisez votre pratique sportive : elle parle autant que votre CV dans ce contexte.','Préparez des exemples concrets d\'initiative et d\'autonomie.','Renseignez-vous précisément sur le magasin ou la filière où vous postulez.']},
-  'bnp paribas':{score:58,delai:'21 à 35 jours',ent:3,fb:54,gh:38,etapes:['ATS screening','Entretien RH compétences','Test psychométrique en ligne','Entretien métier','Validation HRBP'],forts:['Process structuré avec grille de compétences claire','Interlocuteurs RH dédiés par filière','Accompagnement onboarding reconnu'],faibles:['Processus long, souvent 5 à 8 semaines','Taux de ghosting après le premier entretien non négligeable','Décisions centralisées avec peu de marge locale'],verd:'BNP Paribas propose un processus rigoureux mais lent. L\'expérience varie significativement selon la filière. Préparez-vous à la patience et relancez proactivement.',conseils:['Les tests psychométriques sont éliminatoires : entraînez-vous en amont avec des ressources dédiées.','Connaître la stratégie de transformation numérique de BNP est indispensable.','Relancez si vous n\'avez pas de retour après 15 jours : c\'est attendu et bien vécu.']},
-  'danone':{score:70,delai:'10 à 18 jours',ent:3,fb:68,gh:25,etapes:['CV et lettre de motivation','Entretien RH valeurs (45 min)','Étude de cas (2 à 3 jours)','Entretien manager et N+2'],forts:['Forte culture du feedback, même en cas de refus','Étude de cas réaliste sur leurs marques','Onboarding reconnu comme structurant'],faibles:['Étude de cas chronophage et non rémunérée','Processus parfois redondant entre les étapes','Peu de flexibilité sur les timelines annoncées'],verd:'Danone soigne son expérience candidat en cohérence avec sa mission B-Corp. L\'étude de cas est le point de friction principal du parcours.',conseils:['Maîtrisez le manifeste Danone et la stratégie Renew Danone avant l\'entretien RH.','L\'étude de cas doit démontrer sens business ET impact sociétal simultanément.','Valorisez vos engagements personnels ou associatifs : ils comptent vraiment ici.']},
-  'orange':{score:52,delai:'21 à 42 jours',ent:3,fb:46,gh:44,etapes:['ATS screening','Entretien RH téléphonique','Tests en ligne (psychotechniques)','Entretien technique ou métier','Validation finale'],forts:['Grilles de rémunération transparentes en interne','Stabilité de l\'emploi reconnue','Programme de mobilité interne actif'],faibles:['Processus parmi les plus longs du marché, 6 à 10 semaines','Taux de ghosting élevé après les premières étapes','Culture encore marquée par l\'historique service public'],verd:'Orange présente un processus en cours de modernisation, mais toujours perfectible sur les délais et la communication proactive entre les étapes.',conseils:['La patience est requise : relancez toutes les 2 semaines, c\'est normal dans ce contexte.','Préparez des exemples concrets d\'adaptation au changement organisationnel.','Montrez votre capacité à travailler dans des organisations matricielles complexes.']},
-  'airbus':{score:68,delai:'21 à 35 jours',ent:3,fb:62,gh:28,etapes:['ATS et screening habilitation','Entretien RH compétences','Test technique ou simulation','Entretien manager et expert','Validation sécurité'],forts:['Process rigoureux et équitable','Feedback structuré par compétences','Environnement technique stimulant valorisé en entretien'],faibles:['Délai long lié aux vérifications d\'habilitation','Process standardisé avec peu de place pour la créativité','Mobilité Toulouse ou Hambourg souvent implicitement attendue'],verd:'Airbus offre une expérience candidat sérieuse et équitable, en particulier pour les profils techniques. Le processus est plus long en raison des contraintes réglementaires.',conseils:['L\'habilitation de sécurité peut prendre 4 à 8 semaines : anticipez dans votre planning.','Une vraie passion pour l\'aéronautique ou l\'espace est vérifiée à l\'oral et peut être éliminatoire.','Préparez des exemples STAR structurés sur vos projets techniques les plus complexes.']},
-  'lvmh':{score:62,delai:'14 à 28 jours',ent:3,fb:55,gh:35,etapes:['CV screening','Entretien RH marque employeur','Entretien métier par maison','Rencontre direction'],forts:['Prestige de la marque comme attrait candidat fort','Entretiens par les maisons avec une personnalité unique','Opportunités internationales réelles'],faibles:['Expérience très hétérogène selon les maisons','Taux de ghosting après le premier entretien notable','Concurrence interne entre candidats extrêmement forte'],verd:'LVMH présente une expérience candidat variable selon les maisons : l\'expérience chez Dior diffère de celle chez Moët. Le prestige masque parfois un manque de structure.',conseils:['Ciblez une maison spécifique et montrez que vous la connaissez en profondeur, pas LVMH en général.','Le code vestimentaire lors des entretiens est un signal non-dit important à ne pas négliger.','Préparez une vision concrète de la façon dont vous contribueriez à l\'identité de la maison.']},
-  'capgemini':{score:64,delai:'7 à 14 jours',ent:3,fb:64,gh:28,etapes:['Screening CV et LinkedIn','Entretien RH téléphonique (30 min)','Entretien technique ou métier','Entretien manager de practice'],forts:['Process rapide pour le conseil, souvent sous 3 semaines','Interlocuteurs RH disponibles et réactifs','Feedback post-entretien généralement fourni'],faibles:['Entretiens très standardisés avec peu de différenciation','Pression sur le staffing parfois visible dès l\'entretien','Variabilité de qualité selon le bureau et la practice'],verd:'Capgemini maintient un processus correct pour le secteur conseil et IT, avec des délais raisonnables. La standardisation reste le principal point faible d\'une expérience souvent impersonnelle.',conseils:['Connaître les offres de services de la practice visée est absolument indispensable.','Préparez un retour d\'expérience chiffré sur un projet complexe : périmètre, équipe, résultat.','Posez des questions sur le projet d\'affectation prévu : cela montre une vraie maturité conseil.']},
-  'accenture':{score:71,delai:'7 à 14 jours',ent:3,fb:70,gh:22,etapes:['CV screening et test en ligne','Entretien fit RH','Case interview ou test technique','Entretien manager senior'],forts:['Process structuré avec matériau de préparation fourni','Feedback post-case souvent détaillé et utile','Délais parmi les meilleurs du secteur conseil'],faibles:['Cases exigeants qui nécessitent une préparation longue','Turnover élevé parfois déjà perceptible lors des entretiens','Fort jargon interne présent dès les premières interactions'],verd:'Accenture propose une des meilleures expériences candidat du secteur conseil en France. Le process est exigeant mais transparent, avec des retours de qualité réelle.',conseils:['Pratiquez 10 à 15 cases avant l\'entretien : c\'est le standard attendu dans le secteur.','Connaître la stratégie "360 Value" d\'Accenture est un avantage très apprécié.','Montrez votre adaptabilité : les équipes projets changent souvent et rapidement.']},
-  'sncf':{score:48,delai:'28 à 56 jours',ent:3,fb:42,gh:50,etapes:['Candidature sur job.sncf.com','Tests psychotechniques et aptitude','Entretien RH compétences','Visite médicale d\'aptitude','Entretien final direction'],forts:['Stabilité et avantages sociaux étendus','Mobilité géographique nationale large','Grilles de rémunération transparentes en interne'],faibles:['Processus parmi les plus longs du marché, 2 à 3 mois','Taux de ghosting élevé entre les étapes du processus','Communication peu proactive sur l\'avancement du dossier'],verd:'La SNCF présente un processus encore fortement marqué par la culture grande organisation publique. L\'expérience candidat est en cours de modernisation mais reste en dessous des standards du secteur privé.',conseils:['Anticipez 2 à 3 mois de délai total et planifiez votre recherche d\'emploi en conséquence.','Les tests psychotechniques sont décisifs : entraînez-vous avec des annales SNCF spécifiques.','Montrez un intérêt sincère et documenté pour la mobilité durable et la transformation ferroviaire.']},
-  'totalenergies':{score:65,delai:'14 à 28 jours',ent:3,fb:60,gh:30,etapes:['CV screening','Entretien RH compétences','Assessment technique ou cas','Entretien manager opérationnel'],forts:['Packages et avantages financiers attractifs','Structuration rigoureuse des entretiens par compétences','Mobilité internationale réelle et valorisée'],faibles:['Process parfois bureaucratique selon la direction','Délais variables selon la business line','Peu de transparence sur les critères de sélection intermédiaires'],verd:'TotalEnergies offre une expérience candidat correcte, supérieure à la moyenne des grands groupes industriels français. Le délai total reste long : comptez 4 à 7 semaines.',conseils:['Intégrez la dimension transition énergétique dans toutes vos réponses : c\'est un critère de sélection.','Préparez des exemples de travail dans des environnements complexes, multiculturels ou sous pression.','Relancez votre interlocuteur RH 10 jours après le dernier entretien, sans attendre.']},
-  'axa':{score:62,delai:'14 à 21 jours',ent:3,fb:60,gh:30,etapes:['Screening ATS','Entretien RH (30 à 45 min)','Entretien métier avec mise en situation','Entretien décisionnel'],forts:['Process bien cadré avec délais généralement respectés','Entretiens métier avec des cas concrets et utiles','Politique de diversité visible et active dans le process'],faibles:['Communication proactive entre les étapes perfectible','Variabilité notable selon la filiale visée','Décisions parfois longues à formaliser après validation orale'],verd:'AXA offre une expérience candidat dans la moyenne haute du secteur assurance. Le process est professionnel mais la communication entre les étapes gagnerait à être plus proactive.',conseils:['Maîtrisez les grands sujets de l\'assurance en 2025 et 2026 : IA, cyber, changement climatique.','Préparez des exemples concrets de gestion de situations complexes pour les mises en situation.','Mentionnez la stratégie "Driving Progress 2026" pour les fonctions corporate : c\'est apprécié.']}
-};
-
-function normalize(n) {
-  return n.toLowerCase()
-    .replace(/[éèêë]/g,'e').replace(/[àâ]/g,'a').replace(/[ùûü]/g,'u')
-    .replace(/[ôö]/g,'o').replace(/[îï]/g,'i').replace(/[ç]/g,'c')
-    .replace(/['']/g,"'").trim().replace(/^(l['']|la |le |les )/,'');
-}
-
-function fallback(name, sector) {
-  const s = sector.toLowerCase(), h = h32(normalize(name));
-  const S = /tech|digital|soft|it\b|data|ia\b|saas|start/.test(s) ? {base:68,da:7,db:14,ent:3,fb:72,gh:22}
-    : /finance|banque|assur|invest/.test(s) ? {base:58,da:14,db:28,ent:3,fb:54,gh:36}
-    : /retail|distrib|commerc/.test(s) ? {base:62,da:5,db:10,ent:2,fb:66,gh:26}
-    : /sante|santé|pharma/.test(s) ? {base:56,da:14,db:35,ent:3,fb:50,gh:40}
-    : /industri|manufactur/.test(s) ? {base:54,da:14,db:28,ent:3,fb:52,gh:42}
-    : /luxe|mode|cosmét/.test(s) ? {base:62,da:10,db:21,ent:3,fb:58,gh:32}
-    : {base:60,da:7,db:21,ent:3,fb:60,gh:30};
-  const v = salt => ((h32(String(h)+salt)%20)-10);
-  const score=clamp(S.base+v('s'),30,90), fb=clamp(S.fb+v('f'),25,90), gh=clamp(S.gh-v('g'),5,70);
-  const n0 = name.charAt(0).toUpperCase()+name.slice(1);
-  const etPool = [['CV et lettre de motivation','Entretien RH découverte','Entretien manager N+1','Décision finale'],['Screening ATS','Entretien téléphonique RH','Test ou étude de cas','Entretien décisionnel'],['Candidature en ligne','Préqualification téléphonique','Entretien binôme RH et métier','Entretien final']];
-  return { score, delai:`${S.da} à ${S.db} jours`, ent:S.ent, fb, gh, etapes:etPool[h%3],
-    forts:['Process globalement respectueux des délais annoncés','Interlocuteurs RH accessibles sur les questions de processus','Retour fourni dans la majorité des cas après entretien'],
-    faibles:['Communication proactive entre les étapes perfectible','Délai de décision finale parfois plus long que prévu','Critères de sélection peu formalisés à l\'externe'],
-    verd:`${n0} présente un processus de recrutement dans la moyenne du marché. Comptez ${S.da} à ${S.db} jours entre votre candidature et un premier retour.`,
-    conseils:[`Personnalisez avec une référence à un projet ou une actualité récente de ${n0}.`,'Envoyez un email de remerciement dans les 24h après chaque entretien : c\'est rare et remarqué.',`Relancez sans hésitation si vous n\'avez pas de retour après ${Math.round(S.db*.65)} jours.`]
+function updatePlaceholders() {
+  const maps = {
+    'job-txt': { fr: 'Collez ici le texte complet de votre offre d\'emploi...', en: 'Paste your full job posting text here...' },
+    'co-name-rh': { fr: 'Ex : L\'Oréal, Decathlon...', en: 'Ex: L\'Oréal, Decathlon...' },
+    'co-sect-rh': { fr: 'Ex : Retail, Finance...', en: 'Ex: Retail, Finance...' },
+    'co-name-c':  { fr: 'Ex : L\'Oréal, Decathlon...', en: 'Ex: L\'Oréal, Decathlon...' },
+    'co-sect-c':  { fr: 'Ex : Tech, Finance...', en: 'Ex: Tech, Finance...' },
   };
+  for (const [id, vals] of Object.entries(maps)) {
+    const el = document.getElementById(id);
+    if (el) el.placeholder = state.lang === 'fr' ? vals.fr : vals.en;
+  }
 }
 
-/* ──────────────────────────────────────
-   SCOUT ACTIONS
-────────────────────────────────────── */
-function fillCo(name) {
-  document.getElementById('co-name').value = name;
-  setTimeout(() => doScout(), 250);
+/* ════════════════════════════════════
+   UTILS
+════════════════════════════════════ */
+function h32(s){let h=0x811c9dc5;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0;}return h;}
+function noise(seed,r){return((h32(String(seed))%(r*2+1))-r);}
+function clamp(v,a,b){return Math.max(a,Math.min(b,Math.round(v)));}
+function animCount(el,to,dur){const start=performance.now();(function tick(now){const p=Math.min((now-start)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(tick);})(performance.now());}
+function updateCounts(){
+  document.getElementById('rh-score-count').textContent=state.rhScores;
+  document.getElementById('rh-scout-count').textContent=state.rhScouts;
+  document.getElementById('rh-score-stat').textContent=state.rhScores;
+  document.getElementById('rh-scout-stat').textContent=state.rhScouts;
+  document.getElementById('cand-scout-count').textContent=state.candScouts;
+  document.getElementById('cand-scout-stat').textContent=state.candScouts;
 }
 
-function doScout() {
-  const co = document.getElementById('co-name').value.trim(); if (!co) return;
-  const sect = document.getElementById('co-sect').value.trim();
-  const btn = document.getElementById('scout-btn'), load = document.getElementById('scout-load'), res = document.getElementById('scout-results');
-  btn.disabled=true; load.classList.add('on'); res.classList.remove('on'); res.innerHTML='';
-  const ph=['Compilation des signaux...','Analyse des avis candidats...','Modélisation du processus...','Calcul du score...'];
-  let pi=0; const pt=setInterval(()=>{ document.getElementById('scout-ltxt').textContent=ph[++pi%ph.length]; },900);
+/* ════════════════════════════════════
+   SCORE ENGINE
+════════════════════════════════════ */
+const DIMS=['Clarté du rôle','Inclusivité','Transparence salariale','Ton humain','Clarté du processus','Proposition de valeur employeur'];
+const DIMS_EN=['Role clarity','Inclusivity','Salary transparency','Human tone','Process clarity','Employer value proposition'];
+
+function scoreJob(txt){
+  const t=txt.toLowerCase(),wc=t.split(/\s+/).filter(w=>w.length>2).length,seed=h32(t.slice(0,100));
+  const hit=ks=>ks.filter(k=>t.includes(k)).length;
+  const d0=clamp(22+hit(['mission','responsabilit','objectif','enjeux','rattaché','vous serez','vous ferez','vous aurez','vos missions','votre rôle','piloter','gérer','développer','assurer','coordonner','périmètre'])*5+Math.min(18,Math.floor(wc/25))+noise(seed+'0',4),15,95);
+  const d1=clamp(8+hit(['h/f','f/h','diversit','inclusiv','handicap','handi','rqth','égalit','quelle que soit','toutes les candidatures','sans distinction','mixité'])*15+noise(seed+'1',3),5,92);
+  const hasSR=/\d+\s*[k€].*à.*\d+\s*[k€]|\d+\s*k€?\s*[àa-]\s*\d+\s*k€?/.test(t),hasSal=/\d+\s*k€?|\bsalaire\b|rémunér|package|fourchette/.test(t);
+  const d2=clamp((hasSR?74:hasSal?44:11)+hit(['intéressement','participation','variable','bonus','prime'])*5+noise(seed+'2',5),5,95);
+  const vous=(t.match(/\bvous\b/g)||[]).length,nous=(t.match(/\bnous\b/g)||[]).length,cand=(t.match(/\ble candidat\b/g)||[]).length;
+  const d3=clamp(18+vous*2.2+nous*3-cand*7+hit(['rejoindre','ensemble','équipe','bienveill','dynamiq','passionn','autonome','collaboratif'])*4+noise(seed+'3',4),10,95);
+  const d4=clamp(8+hit(['entretien','process','étape','délai','réponse','recruteur','convocation','sélection','test','cas pratique','assessment','retour sous','vous serez contacté'])*9+noise(seed+'4',4),5,90);
+  const d5=clamp(12+hit(['télétravail','remote','flex','rtt','mutuelle','prévoyance','formation','budget','avantage','ticket','restaurant','transport','intéressement','culture','valeur','bien-être','onboarding','évolution','coaching'])*5+noise(seed+'5',4),8,92);
+  const dims=[d0,d1,d2,d3,d4,d5];
+  const g=clamp(d0*.22+d1*.12+d2*.18+d3*.18+d4*.15+d5*.15,10,97);
+  return{g,dims};
+}
+const VERD={high:['Cette offre se distingue nettement : claire, humaine et transparente. Les candidats qualifiés comprennent immédiatement pourquoi postuler.','Excellente offre. Le rôle est bien défini, le ton est engageant, le processus est explicité. Elle capte les candidats passifs là où la plupart des offres les laissent indifférents.'],mid:['Cette offre remplit les critères de base mais manque d\'éléments différenciants. À ce niveau, elle se perd dans la masse des annonces disponibles.','Score dans la moyenne. Des points forts réels, mais des lacunes qui freinent les candidatures qualifiées. Le potentiel d\'amélioration est significatif.'],low:['Cette offre présente des lacunes majeures qui réduisent significativement son attractivité. Les candidats les plus qualifiés passent généralement leur chemin.','Score en dessous de la médiane nationale. Cette offre génère des candidatures non qualifiées et décourage les profils les plus recherchés.']};
+const VERD_EN={high:['This posting stands out clearly: clear, human and transparent. Qualified candidates immediately understand why to apply.','Excellent posting. The role is well-defined, the tone is engaging, the process is explained.'],mid:['This posting meets basic criteria but lacks differentiating elements. At this level, it gets lost among available listings.','Average score. Real strengths, but gaps that hinder quality applications.'],low:['This posting has major gaps that significantly reduce its attractiveness.','Below national median. Generates unqualified applications and discourages the best profiles.']};
+function getVerdict(g){const pool=g>=65?(state.lang==='fr'?VERD.high:VERD_EN.high):g>=42?(state.lang==='fr'?VERD.mid:VERD_EN.mid):(state.lang==='fr'?VERD.low:VERD_EN.low);return pool[g%2];}
+function getBench(g){const d=Math.abs(g-52);return state.lang==='fr'?(g>57?`+${d} pts vs médiane nationale (52/100)`:g<47?`-${d} pts vs médiane nationale (52/100)`:'Dans la médiane nationale'):(g>57?`+${d} pts vs national median (52/100)`:g<47?`-${d} pts vs national median (52/100)`:'At national median');}
+const DIM_DET={fr:{'Clarté du rôle':{h:'Le périmètre est bien défini avec des missions concrètes.',m:'Quelques missions citées, mais le périmètre réel reste flou.',l:'Manque de précision sur les responsabilités effectives.'},'Inclusivité':{h:'Formulation inclusive et ouverture à la diversité explicitement signalées.',m:'Quelques signaux inclusifs, mais langage genré par défaut.',l:'Aucune mention d\'inclusivité. Peut décourager des profils sous-représentés.'},'Transparence salariale':{h:'Fourchette salariale clairement indiquée.',m:'Mention salariale sans fourchette précise.',l:'Aucune information sur la rémunération.'},'Ton humain':{h:'Ton direct et chaleureux. Le candidat se projette facilement.',m:'Ton oscillant entre chaleur et formalisme.',l:'Ton froid et impersonnel. Ressemble à une fiche de poste interne.'},'Clarté du processus':{h:'Le processus est explicité. Le candidat sait à quoi s\'attendre.',m:'Quelques étapes mentionnées, délais opaques.',l:'Aucune information sur le processus de sélection.'},'Proposition de valeur employeur':{h:'Proposition riche et concrète. Avantages clairement listés.',m:'Quelques avantages, mais proposition insuffisante.',l:'Proposition absente ou trop vague.'}},en:{'Clarté du rôle':{h:'Scope well defined with concrete missions.',m:'Some missions listed, but real scope unclear.',l:'Lacks precision on actual responsibilities.'},'Inclusivité':{h:'Inclusive wording and diversity openness clearly signaled.',m:'Some inclusive signals, but gendered language by default.',l:'No mention of inclusivity.'},'Transparence salariale':{h:'Salary range clearly stated.',m:'Salary mention without precise range.',l:'No salary information.'},'Ton humain':{h:'Direct and warm tone. Candidate can project themselves.',m:'Tone oscillates between warmth and formalism.',l:'Cold and impersonal. Reads like an internal job description.'},'Clarté du processus':{h:'Process explained. Candidate knows what to expect.',m:'Some steps mentioned, timelines opaque.',l:'No information on selection process.'},'Proposition de valeur employeur':{h:'Rich and concrete employer proposition.',m:'Some benefits, but insufficient value proposition.',l:'Absent or too vague.'}}};
+function getDimDet(name,s){const lang=state.lang;const d=(DIM_DET[lang]||DIM_DET.fr)[name];return d?(s>=65?d.h:s>=42?d.m:d.l):'';}
+const RECOS={fr:{'Clarté du rôle':{t:'Structurer les missions avec des verbes d\'action',d:'Réorganisez en 4 à 6 points commençant par un verbe d\'action (piloter, développer, analyser). Ajoutez le contexte de l\'équipe et les enjeux business réels. Les candidats décident de postuler en moins de 90 secondes.',i:'+28 % de candidatures qualifiées',r:'~450 € économisés en tri de CV par recrutement'},'Inclusivité':{t:'Ajouter une mention d\'inclusion explicite',d:'Ajoutez "Ce poste est ouvert aux personnes en situation de handicap" et adoptez la formulation H/F/X dans le titre. Impact immédiat sur le bassin de candidatures.',i:'+15 % de diversité dans les profils reçus',r:'Signal marque employeur positif'},'Transparence salariale':{t:'Publier la fourchette salariale',d:'Ajoutez une fourchette claire, ex : "45 à 55 k€ selon expérience". Les offres avec fourchette reçoivent 30 % de candidatures supplémentaires en moyenne.',i:'+30 % de candidatures, -40 % d\'abandons',r:'~800 € économisés par recrutement'},'Ton humain':{t:'Réécrire à la deuxième personne',d:'Remplacez "le candidat devra" par "vous devrez". Ajoutez 2 à 3 phrases sur ce qui rend l\'équipe unique. Le ton filtre les bonnes candidatures avant le premier entretien.',i:'+22 % de taux d\'engagement',r:'Réduction du time-to-hire de 5 à 8 jours'},'Clarté du processus':{t:'Décrire le processus en 3 étapes',d:'Ajoutez un bloc "Notre processus" avec le nombre d\'entretiens, leur format et le délai de retour garanti. Cette transparence réduit les abandons en cours de process de 35 %.',i:'-35 % d\'abandons en cours de processus',r:'~600 € économisés par recrutement'},'Proposition de valeur employeur':{t:'Articuler 5 avantages concrets',d:'Listez 5 avantages réels et vérifiables : télétravail (jours par semaine), RTT, mutuelle, formation (budget annuel), équipement. Évitez les formulations vagues.',i:'+18 % d\'attractivité sur les profils passifs',r:'Réduction de 12 % du budget sourcing'}},en:{'Clarté du rôle':{t:'Structure missions with action verbs',d:'Reorganize into 4-6 bullet points starting with an action verb (lead, develop, analyze). Add team context and real business stakes.',i:'+28% qualified applications',r:'~€450 saved in CV screening per hire'},'Inclusivité':{t:'Add explicit inclusion mention',d:'Add "This role is open to people with disabilities" and use H/F/X wording in the title.',i:'+15% diversity in applications received',r:'Positive employer brand signal'},'Transparence salariale':{t:'Publish salary range',d:'Add a clear range, e.g. "€45k to €55k depending on experience". Postings with ranges receive 30% more applications on average.',i:'+30% applications, -40% process drop-offs',r:'~€800 saved per hire'},'Ton humain':{t:'Rewrite in second person',d:'Replace "the candidate must" with "you will". Add 2-3 sentences about what makes the team unique.',i:'+22% engagement rate',r:'5-8 day reduction in time-to-hire'},'Clarté du processus':{t:'Describe process in 3 steps',d:'Add a "Our process" section with interview count, format and guaranteed response time.',i:'-35% process drop-offs',r:'~€600 saved per hire'},'Proposition de valeur employeur':{t:'Articulate 5 concrete benefits',d:'List 5 real verifiable benefits: remote work (days/week), extra days off, health insurance, training budget, equipment.',i:'+18% attractiveness for passive profiles',r:'12% reduction in sourcing budget'}}};
+function getReco(name){const r=(RECOS[state.lang]||RECOS.fr)[name];return r;}
+
+function doScore(){
+  const txt=document.getElementById('job-txt').value.trim();
+  if(txt.length<80){alert(state.lang==='fr'?'Collez une offre d\'emploi complète.':'Paste a complete job posting.');return;}
+  const btn=document.getElementById('score-btn'),load=document.getElementById('score-load');
+  btn.disabled=true;load.classList.add('on');document.getElementById('score-res').classList.remove('on');
+  const ph=state.lang==='fr'?['Analyse du ton...','Détection des signaux...','Évaluation des missions...','Calibration sectorielle...','Génération des recommandations...']:['Analyzing tone...','Detecting signals...','Evaluating missions...','Sector calibration...','Generating recommendations...'];
+  let pi=0;const pt=setInterval(()=>{document.getElementById('score-ltxt').textContent=ph[++pi%ph.length];},900);
   setTimeout(()=>{
-    clearInterval(pt); load.classList.remove('on'); btn.disabled=false;
-    const key=normalize(co);
-    let data=null;
-    for(const [k,v] of Object.entries(DB)){
-      if(key===k||key.includes(k)||k.includes(key)){data=v;break;}
-    }
-    if(!data) data=fallback(co,sect);
-    renderScout(data,co);
-  }, 2400);
+    clearInterval(pt);load.classList.remove('on');btn.disabled=false;
+    const{g,dims}=scoreJob(txt);
+    renderScore(g,dims);
+    state.rhScores++;updateCounts();
+  },2200);
+}
+function renderScore(g,dims){
+  const cls=g>=65?'high':g>=42?'mid':'low';
+  const c=document.getElementById('s-circle');c.className='s-circle '+cls;
+  const n=document.getElementById('s-num');n.className='s-num '+cls;animCount(n,g,1400);
+  document.getElementById('s-verd').textContent=getVerdict(g);
+  document.getElementById('s-bench').textContent=getBench(g);
+  const dl=document.getElementById('dim-list');dl.innerHTML='';
+  const dimNames=state.lang==='fr'?DIMS:DIMS_EN;
+  dims.forEach((s,i)=>{
+    const bc=s>=65?'var(--green)':s>=42?'var(--yellow)':'var(--red)';
+    const d=document.createElement('div');d.className='dim-row';
+    d.innerHTML=`<div class="dim-top"><span class="dim-name">${dimNames[i]}</span><span class="dim-val" style="color:${bc}">${s}/100</span></div><div class="bar-bg"><div class="bar-fill" style="background:${bc}" data-w="${s}"></div></div><div class="dim-det">${getDimDet(DIMS[i],s)}</div>`;
+    dl.appendChild(d);
+    setTimeout(()=>{d.querySelector('.bar-fill').style.width=s+'%';},i*100+200);
+  });
+  const ranked=dims.map((s,i)=>({i,s})).sort((a,b)=>a.s-b.s);
+  const rl=document.getElementById('reco-list');rl.innerHTML='';
+  ranked.slice(0,3).forEach(({i},ri)=>{
+    const r=getReco(DIMS[i]);if(!r)return;
+    const el=document.createElement('div');el.className='reco-item';
+    el.innerHTML=`<div class="reco-rank">${state.lang==='fr'?'Recommandation':'Recommendation'} ${ri+1}</div><div class="reco-t">${r.t}</div><div class="reco-d">${r.d}</div><div class="reco-pills"><span class="rp rp-i">${r.i}</span><span class="rp rp-r">ROI : ${r.r}</span></div>`;
+    rl.appendChild(el);
+    setTimeout(()=>el.classList.add('on'),900+ri*160);
+  });
+  document.getElementById('score-res').classList.add('on');
+}
+function resetScore(){document.getElementById('job-txt').value='';document.getElementById('score-res').classList.remove('on');}
+
+/* ════════════════════════════════════
+   SCOUT ENGINE
+════════════════════════════════════ */
+const DB={'loreal':{score:74,delai:'14 à 21 jours',ent:4,fb:72,gh:22,etapes:['Screening CV','Entretien RH (visio)','Business case','Entretien manager','Entretien VP'],forts:['Process structuré et communiqué','Retour systématique','Interlocuteurs identifiés'],faibles:['Délai total souvent supérieur à 6 semaines','Business case non rémunéré','Décision centralisée à Paris'],verd:'L\'Oréal offre une expérience candidat au-dessus de la moyenne. Le processus est bien cadré mais long : anticipez 4 à 6 semaines entre candidature et offre.',conseils:['Connaissez le groupe entier, pas uniquement L\'Oréal Paris.','Envoyez un email de remerciement personnalisé sous 24h après chaque entretien.','Le business case est éliminatoire : soignez la présentation autant que le contenu.'],'loreal':1},'decathlon':{score:80,delai:'5 à 10 jours',ent:2,fb:85,gh:10,etapes:['Screening CV','Entretien découverte','Entretien manager'],forts:['Processus parmi les plus courts du marché','Feedback quasi-systématique','Culture de la promotion interne visible'],faibles:['Entretiens peu structurés selon le manager','Peu de négociation salariale','Mobilité géographique parfois attendue'],verd:'Decathlon est une référence en matière d\'expérience candidat en France. Processus humain, rapide, transparent.',conseils:['Valorisez votre pratique sportive : elle compte autant que votre CV.','Préparez des exemples concrets d\'initiative et d\'autonomie.','Renseignez-vous sur le magasin ou la filière visée.']},'bnp paribas':{score:58,delai:'21 à 35 jours',ent:3,fb:54,gh:38,etapes:['ATS screening','Entretien RH','Test psychométrique','Entretien métier','Validation HRBP'],forts:['Process structuré avec grille de compétences','Interlocuteurs RH dédiés par filière','Onboarding reconnu'],faibles:['Processus long, souvent 5 à 8 semaines','Taux de ghosting notable','Décisions centralisées'],verd:'BNP Paribas propose un processus rigoureux mais lent. L\'expérience varie selon la filière. Patience requise.',conseils:['Les tests psychométriques sont éliminatoires : entraînez-vous.','Connaître la stratégie de transformation numérique de BNP est indispensable.','Relancez après 15 jours sans réponse.']},'danone':{score:70,delai:'10 à 18 jours',ent:3,fb:68,gh:25,etapes:['CV et motivation','Entretien RH valeurs','Étude de cas','Entretien manager'],forts:['Feedback même en cas de refus','Étude de cas réaliste','Onboarding structurant'],faibles:['Étude de cas chronophage et non rémunérée','Redondances entre étapes','Peu de flexibilité sur les timelines'],verd:'Danone soigne son expérience candidat en cohérence avec sa mission B-Corp. L\'étude de cas est le point de friction principal.',conseils:['Maîtrisez le manifeste Danone et la stratégie Renew Danone.','L\'étude de cas doit démontrer sens business ET impact sociétal.','Valorisez vos engagements personnels ou associatifs.']},'airbus':{score:68,delai:'21 à 35 jours',ent:3,fb:62,gh:28,etapes:['ATS et habilitation','Entretien RH','Test technique','Entretien manager','Validation sécurité'],forts:['Process rigoureux et équitable','Feedback structuré','Environnement stimulant'],faibles:['Délai long lié aux vérifications','Process standardisé','Mobilité Toulouse ou Hambourg souvent attendue'],verd:'Airbus offre une expérience sérieuse et équitable, surtout pour les profils techniques. Plus long en raison des contraintes réglementaires.',conseils:['L\'habilitation peut prendre 4 à 8 semaines : anticipez.','La passion pour l\'aéronautique est vérifiée à l\'oral.','Préparez des exemples STAR sur vos projets techniques.']},'capgemini':{score:64,delai:'7 à 14 jours',ent:3,fb:64,gh:28,etapes:['Screening CV','Entretien RH (30 min)','Entretien technique','Entretien manager'],forts:['Process rapide pour le conseil','Interlocuteurs réactifs','Feedback post-entretien'],faibles:['Entretiens très standardisés','Pression sur le staffing visible','Variabilité selon le bureau'],verd:'Capgemini maintient un processus correct pour le conseil et l\'IT. La standardisation reste le principal point faible.',conseils:['Connaître les offres de services de la practice visée est indispensable.','Préparez un retour d\'expérience chiffré sur un projet complexe.','Posez des questions sur le projet d\'affectation.']},'lvmh':{score:62,delai:'14 à 28 jours',ent:3,fb:55,gh:35,etapes:['CV screening','Entretien RH','Entretien maison','Rencontre direction'],forts:['Prestige de la marque','Entretiens par les maisons','Opportunités internationales'],faibles:['Expérience hétérogène selon les maisons','Taux de ghosting notable','Concurrence interne très forte'],verd:'LVMH présente une expérience variable selon les maisons. Le prestige masque parfois un manque de structure.',conseils:['Ciblez une maison spécifique : connaissez-la en profondeur.','Le code vestimentaire lors des entretiens est un signal important.','Préparez comment vous contribueriez à l\'identité de la maison.']},'orange':{score:52,delai:'21 à 42 jours',ent:3,fb:46,gh:44,etapes:['ATS screening','Entretien RH','Tests en ligne','Entretien métier','Validation finale'],forts:['Grilles de rémunération transparentes','Stabilité de l\'emploi','Mobilité interne active'],faibles:['Processus parmi les plus longs, 6 à 10 semaines','Taux de ghosting élevé','Culture marquée par l\'historique service public'],verd:'Orange modernise son processus mais reste perfectible sur les délais et la communication proactive.',conseils:['Relancez toutes les 2 semaines : c\'est normal dans ce contexte.','Préparez des exemples d\'adaptation au changement organisationnel.','Montrez votre capacité à travailler dans des organisations matricielles.']},'totalenergies':{score:65,delai:'14 à 28 jours',ent:3,fb:60,gh:30,etapes:['Screening CV','Entretien RH','Assessment','Entretien manager'],forts:['Packages attractifs','Structuration rigoureuse','Mobilité internationale réelle'],faibles:['Process bureaucratique selon la direction','Délais variables','Critères intermédiaires peu clairs'],verd:'TotalEnergies offre une expérience correcte, supérieure à la moyenne des grands groupes industriels. Délai total : 4 à 7 semaines.',conseils:['Intégrez la transition énergétique dans toutes vos réponses.','Préparez des exemples de travail dans des environnements complexes.','Relancez 10 jours après le dernier entretien.']},'axa':{score:62,delai:'14 à 21 jours',ent:3,fb:60,gh:30,etapes:['Screening ATS','Entretien RH','Entretien métier','Entretien décisionnel'],forts:['Délais généralement respectés','Mises en situation concrètes','Politique de diversité active'],faibles:['Communication inter-étapes perfectible','Variabilité selon la filiale','Décisions longues à formaliser'],verd:'AXA offre une expérience dans la moyenne haute du secteur assurance. Professional mais la communication entre étapes gagnerait à être plus proactive.',conseils:['Maîtrisez les sujets clés de l\'assurance 2025/2026 : IA, cyber, changement climatique.','Préparez des mises en situation sur la gestion de complexité.','Mentionnez la stratégie "Driving Progress 2026" pour les fonctions corporate.']},'sncf':{score:48,delai:'28 à 56 jours',ent:3,fb:42,gh:50,etapes:['Candidature job.sncf.com','Tests psychotechniques','Entretien RH','Visite médicale','Entretien final'],forts:['Stabilité et avantages étendus','Mobilité nationale large','Grilles transparentes en interne'],faibles:['Parmi les processus les plus longs du marché (2 à 3 mois)','Taux de ghosting élevé','Communication peu proactive'],verd:'La SNCF modernise son processus mais reste en dessous des standards du secteur privé sur l\'expérience candidat.',conseils:['Anticipez 2 à 3 mois de délai total.','Les tests psychotechniques sont décisifs : entraînez-vous avec des annales SNCF.','Montrez un intérêt sincère pour la mobilité durable.']},'accenture':{score:71,delai:'7 à 14 jours',ent:3,fb:70,gh:22,etapes:['Screening + test','Entretien fit RH','Case interview','Entretien senior'],forts:['Process structuré avec matériau fourni','Feedback post-case utile','Délais parmi les meilleurs du conseil'],faibles:['Cases exigeants, longue préparation','Turnover perceptible dès les entretiens','Fort jargon interne'],verd:'Accenture propose une des meilleures expériences candidat du conseil en France. Exigeant mais transparent.',conseils:['Pratiquez 10 à 15 cases avant l\'entretien.','Connaître la stratégie "360 Value" est très apprécié.','Montrez votre adaptabilité : les équipes changent souvent.']}};
+
+function normalize(n){return n.toLowerCase().replace(/[éèêë]/g,'e').replace(/[àâ]/g,'a').replace(/[ùûü]/g,'u').replace(/[ôö]/g,'o').replace(/[îï]/g,'i').replace(/[ç]/g,'c').replace(/['']/g,"'").trim().replace(/^(l['']|la |le |les )/,'');}
+function fallback(name,sector){
+  const s=sector.toLowerCase(),h=h32(normalize(name));
+  const S=/tech|digital|soft|it\b|data|ia\b|saas|start/.test(s)?{base:68,da:7,db:14,ent:3,fb:72,gh:22}:/finance|banque|assur|invest/.test(s)?{base:58,da:14,db:28,ent:3,fb:54,gh:36}:/retail|distrib|commerc/.test(s)?{base:62,da:5,db:10,ent:2,fb:66,gh:26}:/sante|santé|pharma/.test(s)?{base:56,da:14,db:35,ent:3,fb:50,gh:40}:/industri|manufactur/.test(s)?{base:54,da:14,db:28,ent:3,fb:52,gh:42}:/luxe|mode|cosmét/.test(s)?{base:62,da:10,db:21,ent:3,fb:58,gh:32}:{base:60,da:7,db:21,ent:3,fb:60,gh:30};
+  const v=salt=>((h32(String(h)+salt)%20)-10);
+  const score=clamp(S.base+v('s'),30,90),fb=clamp(S.fb+v('f'),25,90),gh=clamp(S.gh-v('g'),5,70);
+  const n0=name.charAt(0).toUpperCase()+name.slice(1);
+  const etPool=[['CV et motivation','Entretien RH','Entretien manager','Décision'],['Screening ATS','Entretien RH','Test ou cas','Entretien final'],['Candidature','Préqualification','Entretien binôme','Décision']];
+  return{score,delai:`${S.da} à ${S.db} jours`,ent:S.ent,fb,gh,etapes:etPool[h%3],forts:['Process globalement respectueux des délais','Interlocuteurs accessibles','Retour fourni après entretien'],faibles:['Communication proactive perfectible','Délai de décision parfois plus long','Critères peu formalisés à l\'externe'],verd:`${n0} présente un processus dans la moyenne du marché. Comptez ${S.da} à ${S.db} jours pour un premier retour.`,conseils:[`Personnalisez avec une référence récente à ${n0}.`,'Envoyez un email de remerciement sous 24h après chaque entretien.',`Relancez sans hésitation après ${Math.round(S.db*.65)} jours sans réponse.`]};
 }
 
-function renderScout(d, co) {
+function fillCo(app,name){
+  const id=app==='rh'?'co-name-rh':'co-name-c';
+  document.getElementById(id).value=name;
+  setTimeout(()=>doScout(app),250);
+}
+
+function doScout(app){
+  const isRh=app==='rh';
+  const coId=isRh?'co-name-rh':'co-name-c',sectId=isRh?'co-sect-rh':'co-sect-c';
+  const btnId=isRh?'scout-btn-rh':'scout-btn-c',loadId=isRh?'scout-load-rh':'scout-load-c';
+  const ltxtId=isRh?'scout-ltxt-rh':'scout-ltxt-c',resId=isRh?'scout-res':'scout-res-c';
+  const co=document.getElementById(coId).value.trim();if(!co)return;
+  const sect=document.getElementById(sectId).value.trim();
+  const btn=document.getElementById(btnId),load=document.getElementById(loadId),res=document.getElementById(resId);
+  btn.disabled=true;load.classList.add('on');res.classList.remove('on');res.innerHTML='';
+  const ph=state.lang==='fr'?['Compilation des signaux...','Analyse des avis candidats...','Modélisation du processus...','Calcul du score...']:['Compiling signals...','Analyzing candidate reviews...','Modeling the process...','Calculating score...'];
+  let pi=0;const pt=setInterval(()=>{document.getElementById(ltxtId).textContent=ph[++pi%ph.length];},900);
+  setTimeout(()=>{
+    clearInterval(pt);load.classList.remove('on');btn.disabled=false;
+    const key=normalize(co);let data=null;
+    for(const[k,v] of Object.entries(DB)){if(key===k||key.includes(k)||k.includes(key)){data=v;break;}}
+    if(!data)data=fallback(co,sect);
+    renderScout(data,co,resId);
+    if(isRh){state.rhScouts++;}else{state.candScouts++;}
+    updateCounts();
+  },2400);
+}
+
+function renderScout(d,co,resId){
   const sc=d.score;
   const cls=sc>=65?'high':sc>=42?'mid':'low';
   const fbC=d.fb>=60?'var(--green)':'var(--red)';
   const ghC=d.gh<=30?'var(--green)':'var(--red)';
-  const etHTML=d.etapes.map((e,i)=>`<div class="p-step"><div class="p-step-box">${String(i+1).padStart(2,'0')} ${e}</div>${i<d.etapes.length-1?'<span class="p-step-arr">›</span>':''}</div>`).join('');
-
-  document.getElementById('scout-results').innerHTML=`
-    <div class="card">
-      <div class="scout-header-card">
-        <div>
-          <div class="scout-co-name">${co}</div>
-          <div class="scout-co-verd">${d.verd}</div>
-        </div>
-        <div class="scout-score-badge ${cls}" id="scout-circle">
-          <div class="scout-score-num ${cls==='high'?'':cls==='mid'?'':''}" id="scout-num" style="color:${sc>=65?'var(--green)':sc>=42?'var(--yellow)':'var(--red)'}">0</div>
-          <div class="scout-score-sub">/ 100</div>
-        </div>
+  const fLabel=state.lang==='fr'?'Points forts':'Strengths';
+  const wLabel=state.lang==='fr'?'Points de vigilance':'Watch points';
+  const aLabel=state.lang==='fr'?'Conseils pour votre candidature':'Tips for your application';
+  const pLabel=state.lang==='fr'?'Processus type':'Typical process';
+  const etHTML=d.etapes.map((e,i)=>`<div class="p-step"><div class="p-box">${String(i+1).padStart(2,'0')} ${e}</div>${i<d.etapes.length-1?'<span class="p-arr">›</span>':''}</div>`).join('');
+  document.getElementById(resId).innerHTML=`
+    <div class="card"><div class="scout-hd-card">
+      <div><div class="scout-co">${co}</div><div class="scout-verd">${d.verd}</div></div>
+      <div class="scout-badge ${cls}">
+        <div class="scout-n" id="scout-num-${resId}" style="color:${sc>=65?'var(--green)':sc>=42?'var(--yellow)':'var(--red)'}">0</div>
+        <div class="scout-nl">/ 100</div>
       </div>
+    </div></div>
+    <div class="card"><div class="metrics-4">
+      <div class="m-cell"><div class="m-val" style="font-family:var(--fm)">${d.delai}</div><div class="m-lbl">${state.lang==='fr'?'Délai de réponse':'Response time'}</div></div>
+      <div class="m-cell"><div class="m-val" style="font-family:var(--fm)">${d.ent}</div><div class="m-lbl">${state.lang==='fr'?'Entretiens en moyenne':'Avg interviews'}</div></div>
+      <div class="m-cell"><div class="m-val" style="font-family:var(--fm);color:${fbC}">${d.fb}%</div><div class="m-lbl">${state.lang==='fr'?'Taux de feedback':'Feedback rate'}</div></div>
+      <div class="m-cell"><div class="m-val" style="font-family:var(--fm);color:${ghC}">${d.gh}%</div><div class="m-lbl">${state.lang==='fr'?'Taux de ghosting':'Ghosting rate'}</div></div>
+    </div></div>
+    <div class="card"><div class="process-wrap"><div class="process-title">${pLabel}</div><div class="p-steps">${etHTML}</div></div></div>
+    <div class="s-2col">
+      <div class="card card-pad"><div class="s-col-t">${fLabel}</div><ul class="s-ul">${d.forts.map(p=>`<li>${p}</li>`).join('')}</ul></div>
+      <div class="card card-pad"><div class="s-col-t">${wLabel}</div><ul class="s-ul">${d.faibles.map(p=>`<li>${p}</li>`).join('')}</ul></div>
     </div>
-    <div class="card">
-      <div class="metrics-4">
-        <div class="metric-box"><div class="metric-value" style="font-family:var(--fm)">${d.delai}</div><div class="metric-name">Délai de réponse</div></div>
-        <div class="metric-box"><div class="metric-value" style="font-family:var(--fm)">${d.ent}</div><div class="metric-name">Entretiens en moyenne</div></div>
-        <div class="metric-box"><div class="metric-value" style="font-family:var(--fm);color:${fbC}">${d.fb}%</div><div class="metric-name">Taux de feedback</div></div>
-        <div class="metric-box"><div class="metric-value" style="font-family:var(--fm);color:${ghC}">${d.gh}%</div><div class="metric-name">Taux de ghosting</div></div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="process-flow">
-        <div class="process-title">Processus type</div>
-        <div class="process-steps">${etHTML}</div>
-      </div>
-    </div>
-    <div class="scout-2col">
-      <div class="card card-pad">
-        <div class="scout-col-title">Points forts</div>
-        <ul class="scout-ul">${d.forts.map(p=>`<li>${p}</li>`).join('')}</ul>
-      </div>
-      <div class="card card-pad">
-        <div class="scout-col-title">Points de vigilance</div>
-        <ul class="scout-ul">${d.faibles.map(p=>`<li>${p}</li>`).join('')}</ul>
-      </div>
-    </div>
-    <div class="card">
-      <div class="scout-advice">
-        <div class="scout-advice-title">3 conseils pour votre candidature</div>
-        <div class="advice-list">${d.conseils.map((c,i)=>`<div class="advice-row"><div class="advice-num">${i+1}</div><div class="advice-text">${c}</div></div>`).join('')}</div>
-      </div>
-    </div>`;
-
-  document.getElementById('scout-results').classList.add('on');
-  animCount(document.getElementById('scout-num'), sc, 1200);
+    <div class="card"><div class="advice-wrap">
+      <div class="advice-t">${aLabel}</div>
+      <div class="advice-list">${d.conseils.map((c,i)=>`<div class="advice-row"><div class="advice-num">${i+1}</div><div class="advice-txt">${c}</div></div>`).join('')}
+      </div></div></div>`;
+  document.getElementById(resId).classList.add('on');
+  const numEl=document.getElementById(`scout-num-${resId}`);
+  if(numEl)animCount(numEl,sc,1200);
 }
 </script>
 </body>
