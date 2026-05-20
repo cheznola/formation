@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#080808">
 <meta name="description" content="Emmanuel Di Marco — Product Manager senior, intervenant IA × RH, fondateur de Nola. Paris.">
 <meta property="og:title" content="Emmanuel Di Marco">
-<meta property="og:description" content="Product. People. Projets.">
+<meta property="og:description" content="Builder. Product. Ex-RH. Founder.">
 <meta property="og:url" content="https://emmanueldimarco.fr">
 <meta property="og:type" content="website">
 <title>Emmanuel Di Marco</title>
@@ -21,14 +21,12 @@
   --white:#f5f2ee;
   --muted:rgba(245,242,238,.35);
   --border:rgba(245,242,238,.07);
-  --border-2:rgba(245,242,238,.13);
   --door-a:#2563c4;
   --door-c:#3d7a57;
   --door-d:#c4603a;
   --wa:#25D366;
 }
 body{background:var(--black);color:var(--white);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 
 /* LOADER */
@@ -46,59 +44,129 @@ a{color:inherit;text-decoration:none}
 
 /* NAV */
 nav{display:flex;justify-content:space-between;align-items:center;padding:28px 48px;position:relative;z-index:10}
-.nav-name{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.nav-name{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
 .nav-status{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);letter-spacing:.05em}
-.status-dot{width:7px;height:7px;border-radius:50%;background:#3d7a57;animation:pulse-dot 2s ease infinite}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#3d7a57;animation:pulse-dot 2s ease infinite;flex-shrink:0}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* HERO */
-.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 48px 60px;text-align:center;position:relative}
-.hero-title{font-family:'Syne',sans-serif;font-size:clamp(52px,8vw,96px);font-weight:800;line-height:1.0;letter-spacing:-.025em;margin-bottom:24px}
-.hero-title em{font-style:normal;color:transparent;-webkit-text-stroke:1px rgba(245,242,238,.2)}
-.hero-sub{font-family:'Lora',serif;font-style:italic;font-size:clamp(15px,2vw,19px);color:rgba(245,242,238,.5);max-width:480px;line-height:1.65;margin-bottom:72px}
+.hero{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:0 48px 48px;
+  text-align:center;
+  position:relative;
+}
+
+/* TICKER */
+.ticker-wrap{
+  position:relative;
+  height:clamp(72px,13vw,148px);
+  overflow:hidden;
+  margin-bottom:12px;
+  display:flex;align-items:center;justify-content:center;
+}
+/* fade masks top/bottom */
+.ticker-wrap::before,.ticker-wrap::after{
+  content:'';position:absolute;left:0;right:0;height:30%;z-index:2;pointer-events:none;
+}
+.ticker-wrap::before{top:0;background:linear-gradient(to bottom,var(--black),transparent)}
+.ticker-wrap::after{bottom:0;background:linear-gradient(to top,var(--black),transparent)}
+
+.ticker{
+  display:flex;flex-direction:column;
+  align-items:center;
+  animation:ticker-slide 14s cubic-bezier(.4,0,.2,1) infinite;
+}
+.ticker-word{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(64px,13vw,148px);
+  font-weight:800;
+  line-height:1.0;
+  letter-spacing:-.03em;
+  color:var(--white);
+  white-space:nowrap;
+  height:clamp(72px,13vw,148px);
+  display:flex;align-items:center;justify-content:center;
+}
+.ticker-word.outline{
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(245,242,238,.2);
+}
+
+/* 7 mots + repeat du 1er pour boucle fluide = 8 items */
+/* chaque mot reste visible ~1.5s, transition ~0.5s → step = 2s, total = 14s */
+@keyframes ticker-slide{
+  0%       {transform:translateY(0)}
+  10%      {transform:translateY(0)}
+  14.28%   {transform:translateY(calc(-1 * clamp(72px,13vw,148px)))}
+  24.28%   {transform:translateY(calc(-1 * clamp(72px,13vw,148px)))}
+  28.57%   {transform:translateY(calc(-2 * clamp(72px,13vw,148px)))}
+  38.57%   {transform:translateY(calc(-2 * clamp(72px,13vw,148px)))}
+  42.85%   {transform:translateY(calc(-3 * clamp(72px,13vw,148px)))}
+  52.85%   {transform:translateY(calc(-3 * clamp(72px,13vw,148px)))}
+  57.14%   {transform:translateY(calc(-4 * clamp(72px,13vw,148px)))}
+  67.14%   {transform:translateY(calc(-4 * clamp(72px,13vw,148px)))}
+  71.42%   {transform:translateY(calc(-5 * clamp(72px,13vw,148px)))}
+  81.42%   {transform:translateY(calc(-5 * clamp(72px,13vw,148px)))}
+  85.71%   {transform:translateY(calc(-6 * clamp(72px,13vw,148px)))}
+  95.71%   {transform:translateY(calc(-6 * clamp(72px,13vw,148px)))}
+  100%     {transform:translateY(calc(-7 * clamp(72px,13vw,148px)))}
+}
+
+.hero-sub{
+  font-family:'Lora',serif;
+  font-style:italic;
+  font-size:clamp(15px,2vw,19px);
+  color:rgba(245,242,238,.5);
+  max-width:520px;
+  line-height:1.65;
+  margin-bottom:72px;
+}
 
 /* DOORS */
-.doors{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;width:100%;max-width:880px;margin:0 auto}
-
-.door{position:relative;cursor:pointer;padding:36px 28px 32px;background:var(--black);transition:background .35s ease,transform .25s ease;overflow:hidden;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;border:none;text-align:left;font-family:'Syne',sans-serif;color:var(--white)}
+.doors{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  width:100%;max-width:880px;margin:0 auto;
+}
+.door{
+  position:relative;cursor:pointer;
+  padding:36px 28px 32px;background:var(--black);
+  transition:background .35s ease,transform .25s ease;
+  overflow:hidden;min-height:220px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  border:none;text-align:left;font-family:'Syne',sans-serif;color:var(--white);
+}
 .door::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s ease;pointer-events:none}
 .door-a::before{background:rgba(37,99,196,.12)}
 .door-c::before{background:rgba(61,122,87,.12)}
 .door-d::before{background:rgba(196,96,58,.12)}
-
-.door:not(.disabled):hover::before{opacity:1}
-.door:not(.disabled):hover{transform:translateY(-2px)}
-
-/* DISABLED */
-.door.disabled{cursor:default;opacity:1}
-.door.disabled::after{content:'Bientôt';position:absolute;top:14px;right:16px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.18);font-weight:600}
-.door.disabled:hover{transform:none}
-.door.disabled .door-label{color:rgba(245,242,238,.28)}
-.door.disabled .door-desc{color:rgba(245,242,238,.15)}
-.door.disabled .door-arrow{opacity:.18}
-.door.disabled .door-accent{opacity:.25}
+.door-b::before{background:rgba(232,224,213,.05)}
+.door:hover::before{opacity:1}
+.door:hover{transform:translateY(-2px)}
 
 .door-accent{width:32px;height:3px;border-radius:2px;margin-bottom:20px;transition:width .35s ease;flex-shrink:0}
-.door:not(.disabled):hover .door-accent{width:48px}
+.door:hover .door-accent{width:48px}
 .door-a .door-accent{background:var(--door-a)}
-.door-b .door-accent{background:rgba(232,224,213,.6)}
+.door-b .door-accent{background:rgba(232,224,213,.5)}
 .door-c .door-accent{background:var(--door-c)}
 .door-d .door-accent{background:var(--door-d)}
 
-.door-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:10px;line-height:1}
-.door-a .door-tag{color:rgba(37,99,196,.7)}
+.door-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:10px;line-height:1.4}
+.door-a .door-tag{color:rgba(37,99,196,.75)}
 .door-b .door-tag{color:rgba(232,224,213,.3)}
-.door-c .door-tag{color:rgba(61,122,87,.65)}
-.door-d .door-tag{color:rgba(196,96,58,.6)}
+.door-c .door-tag{color:rgba(61,122,87,.7)}
+.door-d .door-tag{color:rgba(196,96,58,.65)}
 
-.door-label{font-size:clamp(15px,2vw,19px);font-weight:700;line-height:1.25;color:var(--white);margin-bottom:10px}
+.door-label{font-size:clamp(14px,1.8vw,18px);font-weight:700;line-height:1.25;color:var(--white);margin-bottom:10px}
 .door-desc{font-family:'Lora',serif;font-style:italic;font-size:13px;color:rgba(245,242,238,.38);line-height:1.55;flex:1}
 .door-arrow{margin-top:24px;width:36px;height:36px;border:1px solid rgba(245,242,238,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(245,242,238,.35);transition:all .3s ease;flex-shrink:0}
-.door:not(.disabled):hover .door-arrow{border-color:rgba(245,242,238,.35);color:var(--white);transform:translateX(3px)}
+.door:hover .door-arrow{border-color:rgba(245,242,238,.35);color:var(--white);transform:translateX(3px)}
 
 .idle-particle{position:absolute;width:80px;height:80px;border-radius:50%;opacity:.04;pointer-events:none;animation:idle-float 6s ease-in-out infinite;right:-20px;top:-20px}
-.door-a .idle-particle{background:var(--door-a);animation-delay:0s}
-.door:not(.disabled):hover .idle-particle{opacity:.1}
+.door:hover .idle-particle{opacity:.1}
 @keyframes idle-float{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.3) translate(-8px,8px)}}
 
 /* WA FAB */
@@ -122,7 +190,10 @@ footer{padding:20px 48px;display:flex;justify-content:center;font-size:11px;lett
   .wa-text{display:none}
   footer{padding:16px 24px}
 }
-@media(max-width:420px){.doors{grid-template-columns:1fr}}
+@media(max-width:420px){
+  .doors{grid-template-columns:1fr}
+  .ticker-word{letter-spacing:-.04em}
+}
 </style>
 </head>
 <body>
@@ -138,13 +209,30 @@ footer{padding:20px 48px;display:flex;justify-content:center;font-size:11px;lett
   </nav>
 
   <section class="hero">
-    <h1 class="hero-title">Product.<br><em>People.</em><br>Projets.</h1>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap" aria-label="Builder, Product, Ex-RH, Founder, GenAI, 0→1, Terrain">
+      <div class="ticker">
+        <div class="ticker-word">Builder</div>
+        <div class="ticker-word">Product</div>
+        <div class="ticker-word">Ex&#8209;RH</div>
+        <div class="ticker-word">Founder</div>
+        <div class="ticker-word outline">GenAI</div>
+        <div class="ticker-word">0&#8209;to&#8209;1</div>
+        <div class="ticker-word outline">Terrain</div>
+        <!-- boucle : repeat du 1er -->
+        <div class="ticker-word">Builder</div>
+      </div>
+    </div>
+
     <p class="hero-sub">Je construis des produits, des interventions et des lieux où les gens ont envie de se retrouver.</p>
 
     <div class="doors">
 
-      <!-- ACTIVE : Freelance → LinkedIn -->
-      <div class="door door-a" role="link" tabindex="0" onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')" onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')" aria-label="Voir mon profil LinkedIn pour missions freelance">
+      <div class="door door-a" role="link" tabindex="0"
+           onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')"
+           onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')"
+           aria-label="Missions freelance — voir mon profil LinkedIn">
         <div>
           <div class="door-accent"></div>
           <div class="door-tag">Mission · Freelance</div>
@@ -152,11 +240,13 @@ footer{padding:20px 48px;display:flex;justify-content:center;font-size:11px;lett
           <div class="door-desc">Structuration produit, first PM, transformation — je m'intègre là où ça compte.</div>
         </div>
         <div class="door-arrow">→</div>
-        <div class="idle-particle"></div>
+        <div class="idle-particle" style="background:#2563c4"></div>
       </div>
 
-      <!-- ACTIVE : CDI → LinkedIn -->
-      <div class="door door-b" role="link" tabindex="0" onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')" onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')" aria-label="Voir mon profil LinkedIn pour opportunité CDI">
+      <div class="door door-b" role="link" tabindex="0"
+           onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')"
+           onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')"
+           aria-label="CDI — voir mon profil LinkedIn">
         <div>
           <div class="door-accent"></div>
           <div class="door-tag">CDI · Équipe</div>
@@ -164,10 +254,13 @@ footer{padding:20px 48px;display:flex;justify-content:center;font-size:11px;lett
           <div class="door-desc">Si l'équipe, le projet et l'ambition s'alignent — la conversation vaut le coup.</div>
         </div>
         <div class="door-arrow">→</div>
+        <div class="idle-particle" style="background:rgba(232,224,213,1)"></div>
       </div>
 
-      <!-- ACTIVE : Intervention IA × RH -->
-      <div class="door door-c" role="link" tabindex="0" onclick="window.location.href='/intervention/'" onkeydown="if(event.key==='Enter')window.location.href='/intervention/'" aria-label="Voir mes interventions IA × RH">
+      <div class="door door-c" role="link" tabindex="0"
+           onclick="window.location.href='/intervention/'"
+           onkeydown="if(event.key==='Enter')window.location.href='/intervention/'"
+           aria-label="Interventions IA × RH">
         <div>
           <div class="door-accent"></div>
           <div class="door-tag">Intervention<br>IA × RH</div>
@@ -175,11 +268,13 @@ footer{padding:20px 48px;display:flex;justify-content:center;font-size:11px;lett
           <div class="door-desc">Conférence, atelier, programme — du concret, pas du théorique.</div>
         </div>
         <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:#3d7a57;animation-delay:0s"></div>
+        <div class="idle-particle" style="background:#3d7a57"></div>
       </div>
 
-      <!-- ACTIVE : Nola → cheznola.fr -->
-      <div class="door door-d" role="link" tabindex="0" onclick="window.open('https://cheznola.fr','_blank')" onkeydown="if(event.key==='Enter')window.open('https://cheznola.fr','_blank')" aria-label="Découvrir Nola">
+      <div class="door door-d" role="link" tabindex="0"
+           onclick="window.open('https://cheznola.fr','_blank')"
+           onkeydown="if(event.key==='Enter')window.open('https://cheznola.fr','_blank')"
+           aria-label="Découvrir Nola">
         <div>
           <div class="door-accent"></div>
           <div class="door-tag">Communauté · Paris</div>
@@ -187,7 +282,7 @@ footer{padding:20px 48px;display:flex;justify-content:center;font-size:11px;lett
           <div class="door-desc">Dîners en petit comité entre CPO, Head of Product et PM seniors. Sur invitation.</div>
         </div>
         <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:#c4603a;animation-delay:0s"></div>
+        <div class="idle-particle" style="background:#c4603a"></div>
       </div>
 
     </div>
