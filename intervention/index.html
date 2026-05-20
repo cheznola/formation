@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="Interventions IA × RH — Emmanuel Di Marco, ex-RH et Senior PM. Conférences, ateliers et programmes pour étudiants et équipes RH.">
+<meta property="og:title" content="IA × RH · Interventions — Emmanuel Di Marco">
+<meta property="og:description" content="Un praticien RH devenu Product Manager qui vient parler à vos équipes de ce qui change vraiment.">
+<meta property="og:url" content="https://emmanueldimarco.fr/intervention/">
+<meta property="og:type" content="website">
+<title>IA × RH · Interventions &amp; Programmes — Emmanuel Di Marco</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080808'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='%233d7a57'>E</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;-webkit-text-size-adjust:100%}
+:root{
+  --black:#080808;--off:#111111;--surface:#141414;--surface-2:#1c1c1c;
+  --white:#f5f2ee;--white-60:rgba(245,242,238,.6);--white-35:rgba(245,242,238,.35);
+  --white-15:rgba(245,242,238,.15);--white-08:rgba(245,242,238,.08);--white-05:rgba(245,242,238,.05);
+  --green:#3d7a57;--green-pale:rgba(61,122,87,.12);--green-mid:rgba(61,122,87,.25);--green-bright:#4d9a6e;
+  --border:rgba(245,242,238,.08);--border-2:rgba(245,242,238,.14);
+  --serif:'Lora',Georgia,serif;--sans:'Syne',sans-serif;--max-w:900px;--wa:#25D366;
+}
+body{background:var(--black);color:var(--white);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:200;transition:opacity .6s ease}
+.dots{display:flex;gap:14px;align-items:center}
+.dot{width:16px;height:16px;border-radius:50%;animation:bounce .9s ease infinite}
+.dot:nth-child(1){background:var(--green);animation-delay:0s}
+.dot:nth-child(2){background:var(--white);animation-delay:.15s}
+.dot:nth-child(3){background:rgba(61,122,87,.4);animation-delay:.3s}
+@keyframes bounce{0%,100%{transform:translateY(0) scale(1)}40%{transform:translateY(-20px) scale(1.12)}}
+
+#app{opacity:0;transition:opacity .8s ease;min-height:100vh;padding-bottom:80px}
+#app.visible{opacity:1}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 48px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-back{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--white-35);font-weight:600;transition:color .2s}
+.nav-back:hover{color:var(--white-60)}
+.nav-back svg{width:14px;height:14px;flex-shrink:0}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--white-35)}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:12px;font-weight:700;font-family:var(--sans);letter-spacing:.05em;cursor:pointer;transition:background .15s;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{background:var(--green-bright)}
+
+/* HERO */
+.hero{max-width:var(--max-w);margin:0 auto;padding:72px 48px 64px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-100px;right:-200px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(61,122,87,.07) 0%,transparent 65%);pointer-events:none}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green-bright);margin-bottom:28px}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-dot 2s ease infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-family:var(--sans);font-size:clamp(40px,7vw,80px);font-weight:800;line-height:1.0;letter-spacing:-.025em;margin-bottom:24px}
+.hero-title em{font-style:normal;color:transparent;-webkit-text-stroke:1px rgba(245,242,238,.2)}
+.hero-title .accent{color:var(--green-bright)}
+.hero-sub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2.2vw,20px);color:var(--white-60);max-width:580px;line-height:1.65;margin-bottom:40px}
+
+/* CRED BAR */
+.cred-bar{display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:56px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:10px;max-width:680px}
+.cred-photo{width:48px;height:48px;min-width:48px;border-radius:8px;object-fit:cover;margin-right:16px}
+.cred-info{margin-right:auto}
+.cred-name{font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px}
+.cred-role{font-size:11px;color:var(--white-35);line-height:1.4;letter-spacing:.02em}
+.cred-logos{display:flex;align-items:center;flex-wrap:wrap;gap:14px;padding-left:20px;border-left:1px solid var(--border);margin-left:16px}
+.cred-logo{font-size:10px;font-weight:700;color:var(--white-35);letter-spacing:.06em;white-space:nowrap}
+
+/* PILLARS */
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:640px;margin-bottom:16px}
+.pillar{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px}
+.pillar-icon{width:28px;height:28px;min-width:28px;background:var(--green-pale);border:1px solid var(--green-mid);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px}
+.pillar-label{font-size:12px;font-weight:700;color:var(--white);margin-bottom:2px}
+.pillar-desc{font-size:11.5px;color:var(--white-35);line-height:1.5}
+
+.not-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.not-tag{font-size:11px;font-weight:500;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:5px 14px;color:var(--white-35);display:inline-flex;align-items:center;gap:6px}
+.not-tag .x{color:rgba(200,80,80,.7);font-weight:700}
+.not-tag .ok{color:var(--green-bright);font-weight:700}
+
+/* SECTIONS */
+.section{max-width:var(--max-w);margin:0 auto;padding:56px 48px;border-top:1px solid var(--border)}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--green-bright);display:block;margin-bottom:16px}
+.section-title{font-family:var(--sans);font-size:clamp(22px,3.5vw,30px);font-weight:800;letter-spacing:-.025em;color:var(--white);margin-bottom:8px;line-height:1.1}
+.section-sub{font-size:13px;color:var(--white-35);margin-bottom:36px;line-height:1.65;max-width:580px}
+
+/* LOGOS */
+.logos-band{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 48px}
+.logos-inner{max-width:var(--max-w);margin:0 auto;display:flex;flex-direction:column;gap:20px}
+.logos-row-wrap{display:flex;align-items:center;flex-wrap:wrap;gap:0;row-gap:8px}
+.logos-label{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;background:var(--green);padding:5px 20px 5px 13px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%);line-height:1;height:26px;display:flex;align-items:center;flex-shrink:0;margin-right:20px;white-space:nowrap}
+.logos-names{display:flex;align-items:center;flex-wrap:wrap;gap:0;row-gap:6px}
+.logo-name{font-size:14px;font-weight:800;color:var(--white);opacity:.35;white-space:nowrap;letter-spacing:-.01em;transition:opacity .18s;cursor:default}
+.logo-name:hover{opacity:.7}
+.logo-sep{width:1px;height:14px;background:var(--border-2);flex-shrink:0;margin:0 18px;display:inline-block;vertical-align:middle}
+.logos-divider{height:1px;background:var(--border);width:100%}
+
+/* STATS */
+.stats-dark{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:48px}
+.stats-inner{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.stats-headline{font-family:var(--sans);font-size:clamp(20px,3vw,26px);font-weight:800;letter-spacing:-.025em;color:var(--white);line-height:1.15;margin-bottom:12px}
+.stats-headline em{font-style:italic;color:var(--green-bright)}
+.stats-sub{font-size:13px;color:var(--white-35);line-height:1.65}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat-box{background:var(--off);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
+.stat-num{font-family:var(--sans);font-size:30px;font-weight:800;color:var(--green-bright);letter-spacing:-.03em;line-height:1;margin-bottom:6px}
+.stat-label{font-size:11.5px;color:var(--white-35);line-height:1.45}
+.stat-source{display:block;font-size:9px;color:rgba(245,242,238,.18);margin-top:4px;font-style:italic}
+
+/* FORMATS */
+.formats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.format-card{border-radius:10px;padding:28px 24px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.format-card.starter{background:var(--surface);border:1px solid var(--border)}
+.format-card.core{background:var(--green);border:1px solid transparent}
+.format-card.premium{background:var(--off);border:1px solid var(--green-mid)}
+.format-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.format-badge{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+.starter .format-badge{background:var(--surface-2);color:var(--white-35)}
+.core .format-badge{background:rgba(255,255,255,.2);color:#fff}
+.premium .format-badge{background:var(--green-pale);border:1px solid var(--green-mid);color:var(--green-bright)}
+.format-rec{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.18);color:#fff;padding:3px 10px;border-radius:100px}
+.format-name{font-family:var(--sans);font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:6px}
+.starter .format-name,.premium .format-name{color:var(--white)}
+.core .format-name{color:#fff}
+.format-duration{font-size:11px;font-weight:600;margin-bottom:16px;opacity:.5;letter-spacing:.04em}
+.format-desc{font-family:var(--serif);font-style:italic;font-size:13px;line-height:1.65;flex:1}
+.starter .format-desc{color:var(--white-60)}
+.core .format-desc{color:rgba(255,255,255,.85)}
+.premium .format-desc{color:var(--white-60)}
+.format-cta-area{margin-top:22px;padding-top:16px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
+.core .format-cta-area{border-top-color:rgba(255,255,255,.2)}
+.premium .format-cta-area{border-top-color:var(--green-mid)}
+.format-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.04em;text-decoration:none;border-radius:6px;padding:9px 14px;transition:opacity .15s;font-family:var(--sans);cursor:pointer}
+.format-btn:hover{opacity:.8}
+.starter .format-btn,.premium .format-btn{background:var(--green);color:#fff}
+.core .format-btn{background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.format-btn-sec{font-size:11px;font-weight:500;color:var(--white-35);padding:4px 0;text-decoration:none;display:inline-block;transition:color .15s}
+.format-btn-sec:hover{color:var(--white-60)}
+
+/* ACCORDION */
+.accordion{margin-top:8px}
+.acc-item{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.acc-trigger{width:100%;display:flex;align-items:center;gap:14px;padding:18px 24px;background:var(--surface);border:none;cursor:pointer;text-align:left;font-family:var(--sans);transition:background .15s}
+.acc-trigger:hover,.acc-trigger[aria-expanded="true"]{background:var(--surface-2)}
+.acc-pill{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green-bright);background:var(--green-pale);border:1px solid var(--green-mid);border-radius:100px;padding:3px 10px;white-space:nowrap;flex-shrink:0}
+.acc-title-wrap{flex:1}
+.acc-title{font-size:14px;font-weight:700;color:var(--white)}
+.acc-sub{font-size:11px;color:var(--white-35);margin-top:2px}
+.acc-dur{font-size:10px;font-weight:700;letter-spacing:.08em;background:var(--off);color:var(--white-35);padding:4px 12px;border-radius:100px;white-space:nowrap;flex-shrink:0}
+.acc-chevron{width:18px;height:18px;min-width:18px;color:var(--white-35);transition:transform .25s ease;display:flex;align-items:center;justify-content:center}
+.acc-trigger[aria-expanded="true"] .acc-chevron{transform:rotate(180deg)}
+.acc-panel{display:none;padding:24px;background:var(--off)}
+.acc-panel.is-open{display:block}
+.acc-panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.pts-label{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green-bright);margin-bottom:10px}
+.pts-list{list-style:none}
+.pts-list li{font-size:12.5px;color:var(--white-60);padding:5px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.pts-list li:last-child{border-bottom:none}
+.pts-list li::before{content:'→';color:var(--green-bright);font-size:10px;margin-top:3px;min-width:12px;flex-shrink:0}
+.livrable-box{background:var(--green-pale);border:1px solid var(--green-mid);border-radius:8px;padding:14px 16px;margin-top:16px;grid-column:1/-1}
+.livrable-label{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--green-bright);margin-bottom:6px}
+.livrable-text{font-size:12.5px;color:var(--white-60);line-height:1.55}
+.starter-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.starter-step{background:var(--off);border:1px solid var(--border);border-radius:8px;padding:14px 16px}
+.step-time{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green-bright);margin-bottom:6px}
+.step-label-txt{font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px;line-height:1.3}
+.step-desc-txt{font-size:11.5px;color:var(--white-35);line-height:1.5}
+.session-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:10px}
+.session-head{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--surface-2)}
+.session-num{width:28px;height:28px;min-width:28px;background:var(--green);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
+.session-ttl{font-size:13px;font-weight:700;color:var(--white);flex:1;line-height:1.3}
+.session-sub{font-size:10px;color:var(--white-35);margin-top:2px}
+.session-dur{font-size:10px;font-weight:700;background:var(--off);color:var(--white-35);padding:3px 10px;border-radius:100px;white-space:nowrap;flex-shrink:0}
+.session-body{padding:16px 18px;background:var(--off)}
+
+/* COMPETENCES */
+.comp-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.comp-item{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+.comp-num{font-family:var(--sans);font-size:28px;font-weight:800;color:var(--surface-2);letter-spacing:-.03em;line-height:1;min-width:32px}
+.comp-title{font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.comp-desc{font-size:12px;color:var(--white-35);line-height:1.5}
+
+/* PUBLIC */
+.public-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.public-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}
+.public-type{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green-bright);margin-bottom:8px}
+.public-name{font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px}
+.public-desc{font-size:12px;color:var(--white-35);line-height:1.5}
+
+/* METHODE */
+.methode-intro{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px 32px;margin-bottom:20px}
+.methode-intro p{font-family:var(--serif);font-style:italic;font-size:16px;line-height:1.75;color:var(--white-60);max-width:640px}
+.methode-intro strong{color:var(--white)}
+.steps-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.step-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 16px}
+.step-n{font-family:var(--sans);font-size:26px;font-weight:800;color:var(--green-bright);letter-spacing:-.03em;line-height:1;margin-bottom:10px}
+.step-l{font-size:12px;font-weight:700;color:var(--white);margin-bottom:4px}
+.step-d{font-size:11.5px;color:var(--white-35);line-height:1.5}
+
+/* PILOT */
+.pilot-box{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:40px;padding:24px 28px;background:var(--surface);border:1px solid var(--border);border-radius:10px}
+.pilot-tag{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--green-bright);margin-bottom:10px}
+.pilot-title{font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px;letter-spacing:-.015em}
+.pilot-desc{font-size:13px;color:var(--white-35);line-height:1.6;max-width:480px}
+.pilot-btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;font-size:12px;font-weight:700;letter-spacing:.04em;padding:11px 20px;border-radius:7px;text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background .15s;font-family:var(--sans)}
+.pilot-btn:hover{background:var(--green-bright)}
+
+/* FOOTER */
+.footer{background:var(--off);border-top:1px solid var(--border);padding:24px 48px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer-brand{font-family:var(--sans);font-weight:800;font-size:15px;color:var(--green-bright);letter-spacing:-.01em}
+.footer-meta{font-size:11px;color:var(--white-35);letter-spacing:.04em}
+.footer-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.footer-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:7px;font-size:12px;font-weight:700;letter-spacing:.04em;text-decoration:none;white-space:nowrap;font-family:var(--sans);transition:opacity .15s,transform .12s;cursor:pointer}
+.footer-btn:hover{opacity:.8;transform:translateY(-1px)}
+.footer-btn-wa{background:var(--wa);color:#fff}
+.footer-btn-email{background:var(--surface-2);border:1px solid var(--border-2);color:var(--white-60)}
+
+/* WA FAB */
+.wa-fab{position:fixed;bottom:28px;right:28px;display:flex;align-items:center;gap:10px;background:rgba(8,8,8,.92);border:1px solid rgba(37,211,102,.2);border-radius:50px;padding:10px 18px 10px 12px;cursor:pointer;z-index:50;text-decoration:none;transition:all .3s ease;backdrop-filter:blur(12px)}
+.wa-fab:hover{border-color:rgba(37,211,102,.5);transform:translateY(-2px)}
+.wa-icon-wrap{width:32px;height:32px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wa-icon-wrap svg{width:17px;height:17px;fill:#fff}
+.wa-fab-txt{display:flex;flex-direction:column;gap:1px}
+.wa-fab-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--white)}
+.wa-fab-sub{font-size:10px;color:var(--white-35);letter-spacing:.03em}
+
+/* ANIM */
+.hero>*{animation:fadeUp .5s ease both}
+.hero>*:nth-child(1){animation-delay:.06s}.hero>*:nth-child(2){animation-delay:.12s}.hero>*:nth-child(3){animation-delay:.2s}.hero>*:nth-child(4){animation-delay:.28s}.hero>*:nth-child(5){animation-delay:.36s}.hero>*:nth-child(6){animation-delay:.42s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav{padding:0 24px}.hero,.section{padding-left:24px;padding-right:24px}
+  .logos-band{padding:22px 24px}.stats-dark{padding:36px 24px}.footer{padding:20px 24px}
+  .formats-grid{grid-template-columns:1fr 1fr}.formats-grid .format-card.premium{grid-column:1/-1}
+  .steps-grid{grid-template-columns:1fr 1fr 1fr}.stats-inner{grid-template-columns:1fr;gap:24px}
+}
+@media(max-width:680px){
+  html{font-size:14px}.nav{padding:0 16px;height:50px}.nav-label{display:none}
+  .hero{padding:40px 16px 36px}.section{padding:36px 16px}
+  .logos-band{padding:18px 16px}.stats-dark{padding:28px 16px}
+  .footer{padding:18px 16px;flex-direction:column;align-items:flex-start}
+  .footer-actions{width:100%}.footer-btn{flex:1;justify-content:center}
+  .formats-grid{grid-template-columns:1fr}.formats-grid .format-card.premium{grid-column:auto}
+  .steps-grid{grid-template-columns:1fr 1fr}.comp-grid{grid-template-columns:1fr}
+  .public-grid{grid-template-columns:1fr}.starter-steps{grid-template-columns:1fr 1fr}
+  .acc-panel-grid{grid-template-columns:1fr}.acc-dur{display:none}
+  .pillars{grid-template-columns:1fr}.cred-logos{display:none}
+  .wa-fab{bottom:18px;right:14px;padding:9px 14px 9px 10px}.wa-fab-txt{display:none}
+  .pilot-box{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:420px){.steps-grid{grid-template-columns:1fr}.starter-steps{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr}}
+@media print{#loader,.wa-fab{display:none}.acc-panel{display:block!important}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<div id="loader"><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+<div id="app">
+
+<nav class="nav">
+  <a class="nav-back" href="/" aria-label="Retour à l'accueil">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    emmanueldimarco.fr
+  </a>
+  <div class="nav-right">
+    <span class="nav-label">IA × RH</span>
+    <a href="https://wa.me/33659719827?text=Bonjour%20Emmanuel%2C%20j%27ai%20vu%20votre%20page%20d%27interventions%20IA%20%C3%97%20RH%20et%20je%20voudrais%20en%20discuter." target="_blank" rel="noopener" class="nav-cta">Me contacter</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag"><span class="hero-tag-dot"></span>Intervention<span style="color:rgba(245,242,238,.15);margin:0 4px">/</span>IA × RH</div>
+  <h1 class="hero-title">Vos équipes RH<br><em>prêtes</em> pour<br>l'<span class="accent">IA.</span></h1>
+  <p class="hero-sub">Un praticien RH devenu Product Manager qui vient parler à vos étudiants et équipes de ce qui change vraiment — pas ce que les vendeurs d'outils leur disent.</p>
+  <div class="cred-bar">
+    <img src="https://res.cloudinary.com/dtjcum3gb/image/upload/w_104,h_104,c_fill,g_face,r_8,q_auto,f_auto/v1777113053/Capture_d_e%CC%81cran_2026-04-25_a%CC%80_12.30.37_simsay.png" alt="Emmanuel Di Marco" class="cred-photo" width="48" height="48">
+    <div class="cred-info"><div class="cred-name">Emmanuel Di Marco</div><div class="cred-role">Ex-RH · Senior Product Manager · Fondateur</div></div>
+    <div class="cred-logos"><span class="cred-logo">Allianz</span><span class="cred-logo">Veepee</span><span class="cred-logo">MerciYanis</span><span class="cred-logo">Danone · TF1</span></div>
+  </div>
+  <div class="pillars">
+    <div class="pillar"><div class="pillar-icon">⚡</div><div><div class="pillar-label">Ultra-concrète</div><div class="pillar-desc">Un exercice après chaque session. Zéro théorie sans application.</div></div></div>
+    <div class="pillar"><div class="pillar-icon">🎯</div><div><div class="pillar-label">Terrain réel</div><div class="pillar-desc">J'enseigne des outils que j'ai construits et utilisés moi-même.</div></div></div>
+    <div class="pillar"><div class="pillar-icon">🧠</div><div><div class="pillar-label">Méthode PM</div><div class="pillar-desc">Les méthodes des meilleurs Product Managers, appliquées aux RH.</div></div></div>
+    <div class="pillar"><div class="pillar-icon">🏗️</div><div><div class="pillar-label">Livrable J+1</div><div class="pillar-desc">Chaque participant repart avec un outil activable dès le lendemain.</div></div></div>
+  </div>
+  <div class="not-list">
+    <div class="not-tag"><span class="x">✕</span> Vidéo pré-enregistrée</div>
+    <div class="not-tag"><span class="x">✕</span> Débat philosophique</div>
+    <div class="not-tag"><span class="x">✕</span> Passage théorique</div>
+    <div class="not-tag"><span class="x">✕</span> Formule magique</div>
+    <div class="not-tag"><span class="ok">✓</span> Fondamentaux solides et éprouvés</div>
+  </div>
+</div>
+
+<div class="logos-band">
+  <div class="logos-inner">
+    <div class="logos-row-wrap">
+      <div class="logos-label">Projets IA déployés pour</div>
+      <div class="logos-names"><span class="logo-name">Total</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-name">Danone</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-name">TF1</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-name">Ledger</span></div>
+    </div>
+    <div class="logos-divider" aria-hidden="true"></div>
+    <div class="logos-row-wrap">
+      <div class="logos-label">Expériences</div>
+      <div class="logos-names"><span class="logo-name">MerciYanis</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-name">Allianz France</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-name">Veepee</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-name">Société Générale</span><span class="logo-sep" aria-hidden="true"></span><span class="logo-name">American Express</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-dark">
+  <div class="stats-inner">
+    <div>
+      <div class="stats-headline">Les entreprises cherchent des RH qui <em>pensent produit.</em></div>
+      <p class="stats-sub">La transformation IA ne cherche pas des utilisateurs d'outils. Elle cherche des professionnels capables de piloter le changement, prioriser par impact, et itérer vite. Vos étudiants sortent avec exactement ce profil.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-num">83%</div><div class="stat-label">des DG considèrent l'automatisation RH comme prioritaire<span class="stat-source">Neobrain, 2025</span></div></div>
+      <div class="stat-box"><div class="stat-num">92%</div><div class="stat-label">des entreprises vont investir dans l'IA générative dans les 3 ans<span class="stat-source">ConvictionsRH x Mercer, 2025</span></div></div>
+      <div class="stat-box"><div class="stat-num">J+1</div><div class="stat-label">chaque session produit un livrable activable dès le lendemain</div></div>
+      <div class="stat-box"><div class="stat-num">100%</div><div class="stat-label">des participants repartent avec un outil opérationnel personnalisé</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <span class="eyebrow">3 formats disponibles</span>
+  <h2 class="section-title">Choisissez votre format</h2>
+  <p class="section-sub">Un seul contenu, trois niveaux d'intensité selon vos objectifs et votre contexte.</p>
+  <div class="formats-grid">
+    <div class="format-card starter">
+      <div class="format-top"><div class="format-badge">Starter</div></div>
+      <div class="format-name">Conférence d'acculturation</div>
+      <div class="format-duration">3h30 · Intervention ponctuelle</div>
+      <div class="format-desc">La porte d'entrée. Comprendre ce qui change vraiment pour les RH, identifier les 3 outils à maîtriser en priorité, repartir avec un premier système personnel activable. Format conférence avec Q&amp;A, 15 à 30 participants.</div>
+      <div class="format-cta-area">
+        <a href="https://wa.me/33659719827?text=Bonjour%20Emmanuel%2C%20je%20vous%20contacte%20pour%20le%20format%20Starter%20(conf%C3%A9rence%20IA%20%C3%97%20RH)." target="_blank" rel="noopener" class="format-btn">Me contacter</a>
+        <a href="/syllabus-product-hr.pdf" download class="format-btn-sec">Télécharger le syllabus →</a>
+      </div>
+    </div>
+    <div class="format-card core">
+      <div class="format-top"><div class="format-badge">Core</div><div class="format-rec">Recommandé</div></div>
+      <div class="format-name">Atelier intensif 2 jours</div>
+      <div class="format-duration">14h · Module intégré</div>
+      <div class="format-desc">Le module principal. À la fin des 2 jours, chaque participant repart avec son propre système de travail augmenté, adapté à son rôle, ses outils, ses enjeux réels. Format atelier, groupes de 8 à 20.</div>
+      <div class="format-cta-area">
+        <a href="https://wa.me/33659719827?text=Bonjour%20Emmanuel%2C%20je%20vous%20contacte%20pour%20le%20format%20Core%20(atelier%20intensif%202%20jours%20IA%20%C3%97%20RH)." target="_blank" rel="noopener" class="format-btn">Me contacter</a>
+        <a href="/syllabus-product-hr.pdf" download class="format-btn-sec">Télécharger le syllabus →</a>
+      </div>
+    </div>
+    <div class="format-card premium">
+      <div class="format-top"><div class="format-badge">Premium</div></div>
+      <div class="format-name">Programme sur 8 semaines</div>
+      <div class="format-duration">5 sessions × 3h · Étalement</div>
+      <div class="format-desc">Le programme long. Une session toutes les deux semaines sur 8 semaines, des exercices entre chaque session, des livrables individuels corrigés. L'écart avec le Core n'est pas la durée, c'est la profondeur d'ancrage.</div>
+      <div class="format-cta-area">
+        <a href="https://wa.me/33659719827?text=Bonjour%20Emmanuel%2C%20je%20vous%20contacte%20pour%20le%20format%20Premium%20(programme%208%20semaines%20IA%20%C3%97%20RH)." target="_blank" rel="noopener" class="format-btn">Me contacter</a>
+        <a href="/syllabus-product-hr.pdf" download class="format-btn-sec">Télécharger le syllabus →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" aria-controls="panel-starter" id="trig-starter">
+        <span class="acc-pill">Starter</span>
+        <div class="acc-title-wrap"><div class="acc-title">Conférence d'acculturation — programme détaillé</div><div class="acc-sub">Session unique · 15 à 30 participants</div></div>
+        <span class="acc-dur">3h30</span>
+        <span class="acc-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </button>
+      <div class="acc-panel" id="panel-starter" role="region" aria-labelledby="trig-starter">
+        <div class="starter-steps">
+          <div class="starter-step"><div class="step-time">0h00 — 0h30</div><div class="step-label-txt">Ce qui change vraiment</div><div class="step-desc-txt">Le paysage IA en 2026 vu depuis un poste RH. Ce qui est déjà là, ce qui arrive.</div></div>
+          <div class="starter-step"><div class="step-time">0h30 — 1h30</div><div class="step-label-txt">Les 3 outils à maîtriser</div><div class="step-desc-txt">Démo live + exercice guidé. Chaque participant teste sur son propre cas.</div></div>
+          <div class="starter-step"><div class="step-time">1h30 — 2h30</div><div class="step-label-txt">Construire son premier prompt système</div><div class="step-desc-txt">V1 personnelle. Blocages collectifs. Itération guidée.</div></div>
+          <div class="starter-step"><div class="step-time">2h30 — 3h30</div><div class="step-label-txt">Livrable + Q&amp;A</div><div class="step-desc-txt">Chaque participant repart avec 1 outil activable et 3 actions concrètes.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" aria-controls="panel-core" id="trig-core">
+        <span class="acc-pill">Core</span>
+        <div class="acc-title-wrap"><div class="acc-title">Atelier intensif — programme détaillé</div><div class="acc-sub">2 jours · Groupes de 8 à 20</div></div>
+        <span class="acc-dur">14h</span>
+        <span class="acc-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </button>
+      <div class="acc-panel" id="panel-core" role="region" aria-labelledby="trig-core">
+        <div class="acc-panel-grid">
+          <div><div class="pts-label">Jour 1 — Fondations</div><ul class="pts-list"><li>Lire l'IA sans se noyer : signaux RH vs bruit médiatique</li><li>Architecture d'un WOS RH : les 4 composantes essentielles</li><li>Le fichier contexte : briefer son IA une fois pour toutes</li><li>Stack no-code : quels outils, dans quel ordre, pour quels usages</li><li>V1 personnelle : chaque participant construit avec son contexte réel</li></ul></div>
+          <div><div class="pts-label">Jour 2 — Application</div><ul class="pts-list"><li>Recrutement augmenté : sourcing, scoring, entretiens, compte-rendu</li><li>Onboarding intelligent : personnalisation à l'échelle</li><li>Entretiens annuels : préparation, analyse, restitution</li><li>Marque employeur IA-first : produire 10x plus vite</li><li>HRBP augmenté : managers, masse salariale, performance</li><li>Raisonner comme un PM : discovery, priorisation, itération</li><li>Construire sa roadmap RH IA 3 mois</li></ul></div>
+          <div class="livrable-box"><div class="livrable-label">Livrables de fin de module</div><div class="livrable-text">WOS V1 fonctionnel et personnalisé · 1 processus RH retravaillé de A à Z · Roadmap RH IA 3 mois · Plan d'action personnel 90 jours.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <button class="acc-trigger" aria-expanded="false" aria-controls="panel-premium" id="trig-premium">
+        <span class="acc-pill">Premium</span>
+        <div class="acc-title-wrap"><div class="acc-title">Programme 8 semaines — détail des 5 sessions</div><div class="acc-sub">Étalé sur 8 semaines · Livrables individuels corrigés</div></div>
+        <span class="acc-dur">15h</span>
+        <span class="acc-chevron" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+      </button>
+      <div class="acc-panel" id="panel-premium" role="region" aria-labelledby="trig-premium">
+        <p style="font-size:13px;color:var(--white-35);margin-bottom:20px;line-height:1.6;font-family:var(--serif);font-style:italic;">Chaque session suit la même structure : démo, comprendre, faire, itérer. Chaque session produit un livrable concret.</p>
+        <div class="session-card"><div class="session-head"><div class="session-num">1</div><div><div class="session-ttl">Lire l'IA — construire sa grille de lecture</div><div class="session-sub">Passer du bruit au signal · Poser les fondations du WOS</div></div><div class="session-dur">3h</div></div><div class="session-body"><div class="acc-panel-grid"><div><div class="pts-label">Au programme</div><ul class="pts-list"><li>Le paysage IA en 2026 : ce qui est réel, ce qui est marketing</li><li>Les 5 changements structurels pour les métiers RH</li><li>Comment les meilleurs PM lisent l'actualité tech</li><li>Construire sa première grille de veille personnalisée</li><li>Introduction au concept de WOS</li></ul></div><div><div class="pts-label">Ce qu'on maîtrise à la fin</div><ul class="pts-list"><li>Distinguer les signaux pertinents du bruit ambiant</li><li>Identifier les 3 outils IA prioritaires pour son rôle</li><li>Avoir une routine de veille en moins de 15 min/jour</li></ul></div><div class="livrable-box"><div class="livrable-label">Exercice avant session 2</div><div class="livrable-text">Créer son premier fichier contexte personnel (PROFIL.md). Tester avec 3 requêtes RH concrètes. Comparer avec et sans contexte.</div></div></div></div></div>
+        <div class="session-card"><div class="session-head"><div class="session-num">2</div><div><div class="session-ttl">Construire son WOS RH — le système personnel augmenté</div><div class="session-sub">Fichiers contexte · Routines · Stack d'outils</div></div><div class="session-dur">3h</div></div><div class="session-body"><div class="acc-panel-grid"><div><div class="pts-label">Au programme</div><ul class="pts-list"><li>Architecture d'un WOS RH : les 4 composantes essentielles</li><li>Le fichier contexte : briefer son IA une fois pour toutes</li><li>Les routines IA qui changent vraiment le quotidien RH</li><li>Déblocage collectif sur les PROFIL.md de la session 1</li><li>Stack no-code : quels outils, dans quel ordre</li></ul></div><div><div class="pts-label">Ce qu'on maîtrise à la fin</div><ul class="pts-list"><li>Avoir un WOS V1 fonctionnel et personnalisé</li><li>Savoir briefer son IA sur n'importe quel projet RH</li><li>Maîtriser 3 outils no-code utiles immédiatement</li></ul></div><div class="livrable-box"><div class="livrable-label">Exercice avant session 3</div><div class="livrable-text">Utiliser son WOS sur un vrai projet RH en cours. Documenter ce qui a marché, ce qui n'a pas marché. 1 page maximum.</div></div></div></div></div>
+        <div class="session-card"><div class="session-head"><div class="session-num">3</div><div><div class="session-ttl">Piloter ses processus RH avec l'IA</div><div class="session-sub">Recrutement · Onboarding · Entretiens · Marque employeur · HRBP</div></div><div class="session-dur">3h</div></div><div class="session-body"><div class="acc-panel-grid"><div><div class="pts-label">Au programme</div><ul class="pts-list"><li>Cartographier ses processus RH : automatisable vs non-automatisable</li><li>Recrutement augmenté : sourcing, scoring, entretiens</li><li>Onboarding intelligent : personnalisation à l'échelle</li><li>Marque employeur IA-first : produire 10x plus vite</li><li>HRBP augmenté : managers, masse salariale, performance</li></ul></div><div><div class="pts-label">Ce qu'on maîtrise à la fin</div><ul class="pts-list"><li>Identifier où l'IA apporte de la valeur dans ses processus RH</li><li>Avoir automatisé au moins 1 tâche récurrente</li><li>Produire un contenu marque employeur complet en moins d'1h</li></ul></div><div class="livrable-box"><div class="livrable-label">Exercice avant session 4</div><div class="livrable-text">Retravailler 1 processus RH récurrent avec l'IA de A à Z. Documenter le avant/après : temps, qualité, ce qu'on a gardé humain.</div></div></div></div></div>
+        <div class="session-card"><div class="session-head"><div class="session-num">4</div><div><div class="session-ttl">Penser comme un product manager — la méthode appliquée aux RH</div><div class="session-sub">Discovery · Priorisation · Itération · Décision</div></div><div class="session-dur">3h</div></div><div class="session-body"><div class="acc-panel-grid"><div><div class="pts-label">Au programme</div><ul class="pts-list"><li>La logique product manager : discovery, priorisation, itération</li><li>Appliquer le "Why before What" à ses projets RH</li><li>Construire une roadmap RH priorisée par impact</li><li>Mesurer l'impact de ses actions RH : les métriques qui comptent</li><li>Déblocage collectif sur les processus de la session 3</li></ul></div><div><div class="pts-label">Ce qu'on maîtrise à la fin</div><ul class="pts-list"><li>Structurer un projet RH avec une logique produit</li><li>Prioriser ses initiatives par impact réel, pas par urgence perçue</li><li>Argumenter ses décisions RH de façon data-driven</li></ul></div><div class="livrable-box"><div class="livrable-label">Exercice avant session 5</div><div class="livrable-text">Construire la roadmap RH IA 3 mois de son service. Format : 3 initiatives, 1 métrique de succès, 1 risque identifié. Présentation 5 min en session 5.</div></div></div></div></div>
+        <div class="session-card"><div class="session-head"><div class="session-num">5</div><div><div class="session-ttl">Présenter, convaincre, ancrer — devenir Product HR</div><div class="session-sub">Livrables · Présentations · Plan d'action personnel</div></div><div class="session-dur">3h</div></div><div class="session-body"><div class="acc-panel-grid"><div><div class="pts-label">Au programme</div><ul class="pts-list"><li>Présentations des roadmaps (5 min par participant)</li><li>Comment vendre l'IA RH en interne : DRH, COMEX, managers</li><li>Les angles morts : biais IA, RGPD, résistances humaines</li><li>Construire son plan d'action personnel 90 jours</li><li>Ressources pour continuer à progresser après le programme</li></ul></div><div><div class="pts-label">Livrables finaux</div><ul class="pts-list"><li>Son WOS RH V3 opérationnel</li><li>Sa roadmap RH IA 3 mois</li><li>Son plan d'action personnel 90 jours</li><li>1 processus RH retravaillé et documenté</li></ul></div><div class="livrable-box"><div class="livrable-label">Critères d'évaluation</div><div class="livrable-text">WOS fonctionnel (fichier contexte + 3 routines IA documentées) · Roadmap 3 mois avec métriques · Présentation orale 5 min · Capacité à argumenter ses choix de priorisation.</div></div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pilot-box">
+    <div><div class="pilot-tag">Résultat réel · Session pilote</div><div class="pilot-title">Ce qu'une étudiante RH a construit en 2 jours</div><p class="pilot-desc">Son WOS personnel, un assistant IA métier et un prototype d'outil onboarding. Générés depuis son contexte réel, sans coder.</p></div>
+    <a href="/formationsarah/index.html" target="_blank" rel="noopener" class="pilot-btn">Voir la démo →</a>
+  </div>
+</div>
+
+<div class="section">
+  <span class="eyebrow">Objectifs pédagogiques</span>
+  <h2 class="section-title">Ce que vos participants savent faire à la fin</h2>
+  <p class="section-sub">Compétences mesurables, vérifiables à travers les livrables produits.</p>
+  <div class="comp-grid">
+    <div class="comp-item"><div class="comp-num">01</div><div><div class="comp-title">Lire l'actualité IA sans se noyer</div><div class="comp-desc">Distinguer ce qui change vraiment du bruit ambiant. Identifier les signaux pertinents pour son métier RH parmi les 100 nouveautés hebdomadaires.</div></div></div>
+    <div class="comp-item"><div class="comp-num">02</div><div><div class="comp-title">Construire son WOS RH personnel</div><div class="comp-desc">Créer son propre système de travail augmenté : fichiers contexte, routines IA, stack d'outils, adaptés à son rôle et ses enjeux réels.</div></div></div>
+    <div class="comp-item"><div class="comp-num">03</div><div><div class="comp-title">Piloter ses processus RH avec l'IA</div><div class="comp-desc">Recrutement, onboarding, entretiens annuels, marque employeur : identifier où l'IA apporte de la valeur réelle et comment l'intégrer sans casser l'existant.</div></div></div>
+    <div class="comp-item"><div class="comp-num">04</div><div><div class="comp-title">Raisonner comme un product manager</div><div class="comp-desc">Appliquer la logique discovery, priorisation, itération à ses projets RH. Passer de l'exécution à la conception de solutions.</div></div></div>
+    <div class="comp-item"><div class="comp-num">05</div><div><div class="comp-title">Produire ses propres outils IA</div><div class="comp-desc">Créer des prompts système, des workflows automatisés, des digests personnalisés, sans coder, avec les outils no-code accessibles aujourd'hui.</div></div></div>
+    <div class="comp-item"><div class="comp-num">06</div><div><div class="comp-title">Anticiper les évolutions de son rôle</div><div class="comp-desc">Comprendre quelles tâches RH seront automatisées, lesquelles seront augmentées, et comment positionner sa valeur ajoutée humaine durablement.</div></div></div>
+  </div>
+</div>
+
+<div class="section">
+  <span class="eyebrow">À qui s'adresse cette intervention</span>
+  <h2 class="section-title">Trois publics, une même urgence</h2>
+  <p class="section-sub">Le contenu s'adapte au niveau et au contexte : les exemples, les exercices et les livrables changent. La méthode, non.</p>
+  <div class="public-grid">
+    <div class="public-card"><div class="public-type">École · Bac+3 / Bac+5</div><div class="public-name">Étudiants en filière RH</div><div class="public-desc">Futurs HRBP, Talent Managers, DRH. Ils entrent sur un marché transformé. Cette intervention leur donne une longueur d'avance concrète dès leur premier poste.</div></div>
+    <div class="public-card"><div class="public-type">Entreprise · Équipe RH</div><div class="public-name">Professionnels RH en activité</div><div class="public-desc">Praticiens qui voient l'IA arriver et veulent comprendre ce qui change vraiment — pas ce que les vendeurs d'outils leur disent.</div></div>
+    <div class="public-card"><div class="public-type">Conférence · Événement</div><div class="public-name">Public RH &amp; Management</div><div class="public-desc">Format keynote ou table ronde. Un regard praticien, des cas concrets, un format qui provoque des questions. Adapté aux événements RH, SIRH, futurs du travail.</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <span class="eyebrow">Méthode pédagogique</span>
+  <h2 class="section-title">Le principe de l'itération appliqué à l'apprentissage</h2>
+  <p class="section-sub">Essai, erreur, analyse, en boucle. C'est comme ça que le cerveau ancre réellement.</p>
+  <div class="methode-intro"><p>Le principe d'itération s'applique aussi bien à l'apprentissage qu'au product management. <strong>On ne comprend pas un outil en regardant une démo.</strong> On le comprend en essayant, en se plantant, en comprenant pourquoi, et en recommençant avec ce qu'on a appris.</p></div>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-n">01</div><div class="step-l">Démo rapide</div><div class="step-d">On montre le résultat. Pas d'intro théorique. On part du concret.</div></div>
+    <div class="step-card"><div class="step-n">02</div><div class="step-l">Décryptage</div><div class="step-d">On explique comment ça marche — juste ce qu'il faut pour faire.</div></div>
+    <div class="step-card"><div class="step-n">03</div><div class="step-l">V1 personnelle</div><div class="step-d">Chaque participant construit sa V1 avec son contexte réel.</div></div>
+    <div class="step-card"><div class="step-n">04</div><div class="step-l">Déblocage collectif</div><div class="step-d">On revient ensemble sur les blocages. Ce sont eux qui révèlent les concepts clés.</div></div>
+    <div class="step-card"><div class="step-n">05</div><div class="step-l">V3 opérationnelle</div><div class="step-d">Chaque participant repart avec un livrable qui tourne vraiment.</div></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">IA × RH</div>
+  <div class="footer-meta">Emmanuel Di Marco · Interventions &amp; Programmes · Paris · 2026</div>
+  <div class="footer-actions">
+    <a href="mailto:emmanuel.dimarco1@gmail.com?subject=Intervention%20IA%20%C3%97%20RH%20%E2%80%94%20Demande%20d%27information" class="footer-btn footer-btn-email">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      M'écrire
+    </a>
+    <a href="https://wa.me/33659719827?text=Bonjour%20Emmanuel%2C%20je%20vous%20contacte%20au%20sujet%20de%20vos%20interventions%20IA%20%C3%97%20RH." target="_blank" rel="noopener" class="footer-btn footer-btn-wa">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/33659719827?text=Bonjour%20Emmanuel%2C%20j%27ai%20vu%20votre%20page%20IA%20%C3%97%20RH%20et%20je%20voudrais%20discuter%20d%27une%20intervention." target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">
+  <div class="wa-icon-wrap"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+  <div class="wa-fab-txt"><span class="wa-fab-label">Me contacter</span><span class="wa-fab-sub">Réponse rapide</span></div>
+</a>
+
+</div>
+<script>
+(function(){
+  var loader=document.getElementById('loader'),app=document.getElementById('app');
+  setTimeout(function(){loader.style.opacity='0';setTimeout(function(){loader.style.display='none';app.classList.add('visible')},600)},1800);
+  var triggers=document.querySelectorAll('.acc-trigger');
+  function closeAll(){triggers.forEach(function(t){t.setAttribute('aria-expanded','false');var p=document.getElementById(t.getAttribute('aria-controls'));if(p)p.classList.remove('is-open')})}
+  triggers.forEach(function(trigger){
+    trigger.addEventListener('click',function(){
+      var expanded=this.getAttribute('aria-expanded')==='true';
+      var panel=document.getElementById(this.getAttribute('aria-controls'));
+      closeAll();
+      if(!expanded&&panel){this.setAttribute('aria-expanded','true');panel.classList.add('is-open');var top=window.pageYOffset+this.getBoundingClientRect().top-64;window.scrollTo({top:top,behavior:'smooth'})}
+    });
+    trigger.addEventListener('keydown',function(e){if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();var list=Array.prototype.slice.call(triggers),idx=list.indexOf(this),next=e.key==='ArrowDown'?list[idx+1]:list[idx-1];if(next)next.focus()}});
+  });
+})();
+</script>
+</body>
+</html>
