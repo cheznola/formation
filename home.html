@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="Emmanuel Di Marco — Product Manager senior, intervenant IA × RH, fondateur de Nola. Paris.">
+<meta property="og:title" content="Emmanuel Di Marco">
+<meta property="og:description" content="Product. People. Projets.">
+<meta property="og:url" content="https://emmanueldimarco.fr">
+<meta property="og:type" content="website">
+<title>Emmanuel Di Marco</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080808'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='%23f5f2ee'>E</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#080808;
+  --white:#f5f2ee;
+  --muted:rgba(245,242,238,.35);
+  --border:rgba(245,242,238,.07);
+  --border-2:rgba(245,242,238,.13);
+  --door-a:#2563c4;
+  --door-c:#3d7a57;
+  --door-d:#c4603a;
+  --wa:#25D366;
+}
+body{background:var(--black);color:var(--white);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:100;transition:opacity .6s ease}
+.dots{display:flex;gap:14px;align-items:center}
+.dot{width:18px;height:18px;border-radius:50%;animation:bounce .9s ease infinite}
+.dot:nth-child(1){background:#2563c4;animation-delay:0s}
+.dot:nth-child(2){background:var(--white);animation-delay:.15s}
+.dot:nth-child(3){background:#c4603a;animation-delay:.3s}
+@keyframes bounce{0%,100%{transform:translateY(0) scale(1)}40%{transform:translateY(-22px) scale(1.15)}}
+
+/* APP */
+#app{opacity:0;transition:opacity .8s ease;min-height:100vh;display:flex;flex-direction:column;padding-bottom:80px}
+#app.visible{opacity:1}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:28px 48px;position:relative;z-index:10}
+.nav-name{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.nav-status{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);letter-spacing:.05em}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#3d7a57;animation:pulse-dot 2s ease infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* HERO */
+.hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 48px 60px;text-align:center;position:relative}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(52px,8vw,96px);font-weight:800;line-height:1.0;letter-spacing:-.025em;margin-bottom:24px}
+.hero-title em{font-style:normal;color:transparent;-webkit-text-stroke:1px rgba(245,242,238,.2)}
+.hero-sub{font-family:'Lora',serif;font-style:italic;font-size:clamp(15px,2vw,19px);color:rgba(245,242,238,.5);max-width:480px;line-height:1.65;margin-bottom:72px}
+
+/* DOORS */
+.doors{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;width:100%;max-width:880px;margin:0 auto}
+
+.door{position:relative;cursor:pointer;padding:36px 28px 32px;background:var(--black);transition:background .35s ease,transform .25s ease;overflow:hidden;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;border:none;text-align:left;font-family:'Syne',sans-serif;color:var(--white)}
+.door::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s ease;pointer-events:none}
+.door-a::before{background:rgba(37,99,196,.12)}
+.door-c::before{background:rgba(61,122,87,.12)}
+.door-d::before{background:rgba(196,96,58,.12)}
+
+.door:not(.disabled):hover::before{opacity:1}
+.door:not(.disabled):hover{transform:translateY(-2px)}
+
+/* DISABLED */
+.door.disabled{cursor:default;opacity:1}
+.door.disabled::after{content:'Bientôt';position:absolute;top:14px;right:16px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.18);font-weight:600}
+.door.disabled:hover{transform:none}
+.door.disabled .door-label{color:rgba(245,242,238,.28)}
+.door.disabled .door-desc{color:rgba(245,242,238,.15)}
+.door.disabled .door-arrow{opacity:.18}
+.door.disabled .door-accent{opacity:.25}
+
+.door-accent{width:32px;height:3px;border-radius:2px;margin-bottom:20px;transition:width .35s ease;flex-shrink:0}
+.door:not(.disabled):hover .door-accent{width:48px}
+.door-a .door-accent{background:var(--door-a)}
+.door-b .door-accent{background:rgba(232,224,213,.6)}
+.door-c .door-accent{background:var(--door-c)}
+.door-d .door-accent{background:var(--door-d)}
+
+.door-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin-bottom:10px;line-height:1}
+.door-a .door-tag{color:rgba(37,99,196,.7)}
+.door-b .door-tag{color:rgba(232,224,213,.3)}
+.door-c .door-tag{color:rgba(61,122,87,.65)}
+.door-d .door-tag{color:rgba(196,96,58,.6)}
+
+.door-label{font-size:clamp(15px,2vw,19px);font-weight:700;line-height:1.25;color:var(--white);margin-bottom:10px}
+.door-desc{font-family:'Lora',serif;font-style:italic;font-size:13px;color:rgba(245,242,238,.38);line-height:1.55;flex:1}
+.door-arrow{margin-top:24px;width:36px;height:36px;border:1px solid rgba(245,242,238,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(245,242,238,.35);transition:all .3s ease;flex-shrink:0}
+.door:not(.disabled):hover .door-arrow{border-color:rgba(245,242,238,.35);color:var(--white);transform:translateX(3px)}
+
+.idle-particle{position:absolute;width:80px;height:80px;border-radius:50%;opacity:.04;pointer-events:none;animation:idle-float 6s ease-in-out infinite;right:-20px;top:-20px}
+.door-a .idle-particle{background:var(--door-a);animation-delay:0s}
+.door:not(.disabled):hover .idle-particle{opacity:.1}
+@keyframes idle-float{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.3) translate(-8px,8px)}}
+
+/* WA FAB */
+.wa-fab{position:fixed;bottom:32px;right:32px;display:flex;align-items:center;gap:12px;background:rgba(8,8,8,.9);border:1px solid rgba(37,211,102,.22);border-radius:50px;padding:12px 20px 12px 14px;cursor:pointer;z-index:50;text-decoration:none;transition:all .3s ease;backdrop-filter:blur(12px)}
+.wa-fab:hover{border-color:rgba(37,211,102,.5);transform:translateY(-2px)}
+.wa-icon{width:34px;height:34px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wa-icon svg{width:18px;height:18px;fill:white}
+.wa-text{display:flex;flex-direction:column;gap:1px}
+.wa-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--white);text-transform:uppercase}
+.wa-sub{font-size:10px;color:rgba(245,242,238,.35);letter-spacing:.04em}
+
+footer{padding:20px 48px;display:flex;justify-content:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,242,238,.13)}
+
+/* RESPONSIVE */
+@media(max-width:780px){
+  nav{padding:20px 24px}
+  .hero{padding:0 24px 40px}
+  .doors{grid-template-columns:1fr 1fr;max-width:100%}
+  .door{min-height:190px;padding:26px 22px 22px}
+  .wa-fab{bottom:20px;right:16px;padding:10px 16px 10px 12px}
+  .wa-text{display:none}
+  footer{padding:16px 24px}
+}
+@media(max-width:420px){.doors{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+</div>
+
+<div id="app">
+  <nav>
+    <span class="nav-name">Emmanuel Di Marco</span>
+    <span class="nav-status"><span class="status-dot"></span>Disponible · Paris</span>
+  </nav>
+
+  <section class="hero">
+    <h1 class="hero-title">Product.<br><em>People.</em><br>Projets.</h1>
+    <p class="hero-sub">Je construis des produits, des interventions et des lieux où les gens ont envie de se retrouver.</p>
+
+    <div class="doors">
+
+      <!-- ACTIVE : Freelance → LinkedIn -->
+      <div class="door door-a" role="link" tabindex="0" onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')" onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')" aria-label="Voir mon profil LinkedIn pour missions freelance">
+        <div>
+          <div class="door-accent"></div>
+          <div class="door-tag">Mission · Freelance</div>
+          <div class="door-label">Tu cherches un PM pour une mission</div>
+          <div class="door-desc">Structuration produit, first PM, transformation — je m'intègre là où ça compte.</div>
+        </div>
+        <div class="door-arrow">→</div>
+        <div class="idle-particle"></div>
+      </div>
+
+      <!-- ACTIVE : CDI → LinkedIn -->
+      <div class="door door-b" role="link" tabindex="0" onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')" onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')" aria-label="Voir mon profil LinkedIn pour opportunité CDI">
+        <div>
+          <div class="door-accent"></div>
+          <div class="door-tag">CDI · Équipe</div>
+          <div class="door-label">Tu construis une équipe produit pour durer</div>
+          <div class="door-desc">Si l'équipe, le projet et l'ambition s'alignent — la conversation vaut le coup.</div>
+        </div>
+        <div class="door-arrow">→</div>
+      </div>
+
+      <!-- ACTIVE : Intervention IA × RH -->
+      <div class="door door-c" role="link" tabindex="0" onclick="window.location.href='/intervention/'" onkeydown="if(event.key==='Enter')window.location.href='/intervention/'" aria-label="Voir mes interventions IA × RH">
+        <div>
+          <div class="door-accent"></div>
+          <div class="door-tag">Intervention<br>IA × RH</div>
+          <div class="door-label">Tu veux acculturer ton équipe RH à l'IA</div>
+          <div class="door-desc">Conférence, atelier, programme — du concret, pas du théorique.</div>
+        </div>
+        <div class="door-arrow">→</div>
+        <div class="idle-particle" style="background:#3d7a57;animation-delay:0s"></div>
+      </div>
+
+      <!-- ACTIVE : Nola → cheznola.fr -->
+      <div class="door door-d" role="link" tabindex="0" onclick="window.open('https://cheznola.fr','_blank')" onkeydown="if(event.key==='Enter')window.open('https://cheznola.fr','_blank')" aria-label="Découvrir Nola">
+        <div>
+          <div class="door-accent"></div>
+          <div class="door-tag">Communauté · Paris</div>
+          <div class="door-label">Tu veux rejoindre Nola</div>
+          <div class="door-desc">Dîners en petit comité entre CPO, Head of Product et PM seniors. Sur invitation.</div>
+        </div>
+        <div class="door-arrow">→</div>
+        <div class="idle-particle" style="background:#c4603a;animation-delay:0s"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>Paris · 2026</footer>
+</div>
+
+<a class="wa-fab" href="https://wa.me/33659719827?text=Bonjour%20Emmanuel%2C%20j%27ai%20vu%20ton%20site%20et%20je%20voulais%20te%20contacter." target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">
+  <div class="wa-icon">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+  <div class="wa-text">
+    <span class="wa-label">Me contacter</span>
+    <span class="wa-sub">Réponse rapide</span>
+  </div>
+</a>
+
+<script>
+var loader=document.getElementById('loader');
+var app=document.getElementById('app');
+setTimeout(function(){
+  loader.style.opacity='0';
+  setTimeout(function(){loader.style.display='none';app.classList.add('visible')},600);
+},2000);
+</script>
+</body>
+</html>
