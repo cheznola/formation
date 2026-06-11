@@ -693,6 +693,8 @@ footer {
   .case-metrics { gap: 1.5rem; }
 }
 
+@media (min-width: 769px) { .temo-show-more { display: none; } }
+
 @media (max-width: 768px) {
   nav { padding: 0 1.25rem; height: 56px; }
   .nav-links { gap: 1rem; }
@@ -714,8 +716,8 @@ footer {
   .hero-cta-row { gap: 0.6rem; }
   .btn-p, .btn-s { padding: 0.7rem 1.3rem; font-size: 0.84rem; }
 
-  .section { padding: 64px 1.5rem; }
-  .band-dark-inner { padding: 64px 1.5rem; }
+  .section { padding: 72px 1.5rem; }
+  .band-dark-inner { padding: 72px 1.5rem; }
   .section-h2 { margin-bottom: 1.75rem; }
 
   .fit-grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -733,26 +735,32 @@ footer {
   .case-row { grid-template-columns: 1fr; gap: 1rem; }
   .case-small { padding: 1.75rem; }
 
-  .nola-inner { grid-template-columns: 1fr; padding: 64px 1.5rem; gap: 1.75rem; }
+  .nola-inner { grid-template-columns: 1fr; padding: 72px 1.5rem; gap: 1.75rem; }
   .nola-stats { gap: 0.6rem; }
   .ns { padding: 0.8rem 0.5rem; }
   .ns-val { font-size: 1.05rem; }
   .ns-lbl { font-size: 0.6rem; }
   .nola-right { padding: 1.5rem; }
 
-  .methode-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+  .methode-grid { display: flex; flex-direction: column; gap: 0; }
+  .methode-item { background: var(--white); border-radius: 16px; padding: 2rem 1.75rem; margin-bottom: 1rem; text-align: center; }
+  .methode-n { display: none; }
+  .methode-item h4 { font-size: 1.1rem; margin-bottom: 0.6rem; }
+  .methode-item p { font-size: 0.95rem; color: var(--ink-muted); max-width: 300px; margin: 0 auto; line-height: 1.65; }
 
   .temo-grid { grid-template-columns: 1fr; gap: 1rem; }
   .temo-card { padding: 1.6rem; }
+  .temo-grid .temo-card:nth-child(3),
+  .temo-grid .temo-card:nth-child(4) { display: none; }
   .temo-card p { font-size: 0.92rem; }
 
-  .int-inner { grid-template-columns: 1fr; padding: 64px 1.5rem; gap: 1.75rem; }
+  .int-inner { grid-template-columns: 1fr; padding: 72px 1.5rem; gap: 1.75rem; }
   .int-topics li { flex-direction: column; gap: 0.15rem; align-items: flex-start; padding: 0.7rem 0; }
   .int-topic-tag { text-align: left; }
 
   .about-grid { grid-template-columns: 1fr; gap: 2.25rem; }
 
-  .cta-inner { padding: 64px 1.5rem; }
+  .cta-inner { padding: 72px 1.5rem; }
   .cta-inner h2 br { display: none; }
 
   footer { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; justify-content: center; }
@@ -822,11 +830,10 @@ footer {
       <div class="fit-col yes">
         <h3>Oui, si vous êtes dans un de ces cas :</h3>
         <ul>
-          <li>Vous lancez un produit de zéro et il n'y a pas encore de PM chez vous</li>
-          <li>Vous êtes fondateur ou CEO, vous portez le produit seul, et ça commence à coincer</li>
-          <li>Vous transformez une organisation habituée au mode projet vers une culture produit</li>
-          <li>Vous êtes un grand groupe ou une PME avec un chantier délimité et de vraie latitude</li>
-          <li>Vous cherchez un PM qui parle au COMEX et aux utilisateurs terrain la même journée</li>
+          <li>Vous lancez un produit de zéro sans PM</li>
+          <li>Vous êtes fondateur, vous portez le produit seul</li>
+          <li>Vous transformez une orga vers une culture produit</li>
+          <li>Vous cherchez un PM qui parle C-level et terrain</li>
         </ul>
       </div>
       <div class="fit-col no">
@@ -1000,6 +1007,9 @@ footer {
       </div>
     </div>
   </div>
+  <button class="temo-show-more" onclick="this.previousElementSibling.querySelectorAll('.temo-card').forEach(c=>c.style.display='block'); this.remove();" style="margin-top:1rem; background:none; border:1px solid var(--border-strong); padding:0.7rem 1.5rem; border-radius:100px; font-size:0.85rem; color:var(--ink-soft); cursor:pointer; width:100%;">
+  Voir tous les témoignages →
+</button>
 </section>
 
 <!-- INTERVENTIONS -->
