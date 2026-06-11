@@ -2,451 +2,1112 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#080808">
-<meta name="description" content="Emmanuel Di Marco — Senior Product Manager, intervenant IA × RH, fondateur de Nola. Paris.">
-<meta property="og:title" content="Emmanuel Di Marco">
-<meta property="og:description" content="Builder. Product. Ex-RH. Founder.">
-<meta property="og:url" content="https://emmanueldimarco.fr">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Primary Meta Tags -->
+<title>Emmanuel Di Marco · Senior Product Manager · Paris</title>
+<meta name="title" content="Emmanuel Di Marco · Senior Product Manager · Paris">
+<meta name="description" content="Senior Product Manager à Paris. Je construis des produits, des interventions et des lieux où les gens ont envie de se retrouver. First PM chez MerciYanis, fondateur de Nola. Freelance, ouvert au bon CDI.">
+<meta name="author" content="Emmanuel Di Marco">
+<link rel="canonical" href="https://emmanueldimarco.fr/">
+<meta name="theme-color" content="#F8F7F3">
+
+<!-- Open Graph / Facebook / LinkedIn -->
 <meta property="og:type" content="website">
-<title>Emmanuel Di Marco</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23080808'/><text x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='18' font-weight='900' fill='%23f5f2ee'>E</text></svg>">
+<meta property="og:url" content="https://emmanueldimarco.fr/">
+<meta property="og:title" content="Emmanuel Di Marco · Senior Product Manager · Paris">
+<meta property="og:description" content="Je construis des produits, des interventions et des lieux où les gens ont envie de se retrouver. First PM chez MerciYanis, fondateur de Nola.">
+<meta property="og:image" content="https://emmanueldimarco.fr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://emmanueldimarco.fr/">
+<meta name="twitter:title" content="Emmanuel Di Marco · Senior Product Manager · Paris">
+<meta name="twitter:description" content="Je construis des produits, des interventions et des lieux où les gens ont envie de se retrouver.">
+<meta name="twitter:image" content="https://emmanueldimarco.fr/og-image.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;800;900&family=Caveat:wght@500;600;700&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Emmanuel Di Marco",
+  "jobTitle": "Senior Product Manager",
+  "url": "https://emmanueldimarco.fr",
+  "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
+  "sameAs": [
+    "https://www.linkedin.com/in/emmanueldimarco/",
+    "https://cheznola.fr"
+  ]
+}
+</script>
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --black:#080808;
-  --surface:#111111;
-  --white:#f5f2ee;
-  --muted:rgba(245,242,238,.38);
-  --desc:rgba(245,242,238,.55);
-  --border:rgba(245,242,238,.08);
-  --door-a:#2563c4;
-  --door-c:#3d7a57;
-  --door-d:#c4603a;
-  --wa:#25D366;
-}
-body{
-  background:var(--black);color:var(--white);
-  font-family:'League Spartan',sans-serif;
-  min-height:100vh;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:inherit;text-decoration:none}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── LOADER ── */
-#loader{position:fixed;inset:0;background:var(--black);display:flex;align-items:center;justify-content:center;z-index:100;transition:opacity .6s ease}
-.dots{display:flex;gap:14px;align-items:center}
-.dot{width:18px;height:18px;border-radius:50%;animation:bounce .9s ease infinite}
-.dot:nth-child(1){background:#2563c4;animation-delay:0s}
-.dot:nth-child(2){background:var(--white);animation-delay:.15s}
-.dot:nth-child(3){background:#c4603a;animation-delay:.3s}
-@keyframes bounce{0%,100%{transform:translateY(0) scale(1)}40%{transform:translateY(-22px) scale(1.15)}}
-
-/* ── APP ── */
-#app{opacity:0;transition:opacity .8s ease;min-height:100vh;display:flex;flex-direction:column;padding-bottom:80px}
-#app.visible{opacity:1}
-
-/* ── NAV ── */
-nav{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:32px 48px;position:relative;z-index:10;
-}
-.nav-name{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
-.nav-status{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);letter-spacing:.08em}
-.status-dot{width:7px;height:7px;border-radius:50%;background:#3d7a57;animation:pulse-dot 2s ease infinite;flex-shrink:0}
-@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* ── HERO ── */
-.hero{
-  flex:1;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:24px 48px 56px;
-  text-align:center;
+:root {
+  --cream: #F8F7F3;
+  --cream-dark: #EFECE4;
+  --ink: #1A1918;
+  --ink-soft: #4A4845;
+  --ink-muted: #8C8A86;
+  --sage: #6B8F6B;
+  --sage-light: #E8F0E8;
+  --sage-mid: #AABFAA;
+  --sage-dark: #3D5C3D;
+  --border: #E0DDD6;
+  --border-strong: #C8C5BC;
+  --white: #FFFFFF;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+  --mono: 'DM Mono', monospace;
 }
 
-/* ── TICKER ── */
-#tickerWrap{
-  position:relative;overflow:hidden;
-  width:100%;display:flex;align-items:flex-start;justify-content:center;
-  margin-bottom:28px;
-}
-#tickerWrap::before,#tickerWrap::after{
-  content:'';position:absolute;left:0;right:0;height:14%;z-index:2;pointer-events:none;
-}
-#tickerWrap::before{top:0;background:linear-gradient(to bottom,var(--black),transparent)}
-#tickerWrap::after{bottom:0;background:linear-gradient(to top,var(--black),transparent)}
-#ticker{display:flex;flex-direction:column;align-items:center;will-change:transform}
-.ticker-word{
-  font-family:'League Spartan',sans-serif;font-weight:900;
-  line-height:1;letter-spacing:-.025em;color:var(--white);
-  white-space:nowrap;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.ticker-word.outline{color:transparent;-webkit-text-stroke:2px rgba(245,242,238,.28)}
+html { scroll-behavior: smooth; }
 
-/* ── PHRASE ── */
-.hero-script{
-  font-family:'Caveat',cursive;font-weight:600;
-  font-size:clamp(22px,3.2vw,34px);
-  color:var(--white);line-height:1.45;
-  max-width:620px;margin-bottom:64px;letter-spacing:.01em;
+body {
+  font-family: var(--sans);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* ── DOORS DESKTOP ── */
-.doors{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);border-radius:16px;overflow:hidden;
-  width:100%;max-width:920px;margin:0 auto;
-}
-.door{
-  position:relative;cursor:pointer;
-  padding:36px 28px 32px;
-  background:var(--surface);
-  transition:background .3s ease,transform .25s ease;
-  overflow:hidden;min-height:240px;
-  display:flex;flex-direction:column;justify-content:space-between;
-  border:none;text-align:left;font-family:'League Spartan',sans-serif;color:var(--white);
-}
-.door::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s ease;pointer-events:none}
-.door-a::before{background:rgba(37,99,196,.14)}
-.door-b::before{background:rgba(232,224,213,.06)}
-.door-c::before{background:rgba(61,122,87,.14)}
-.door-d::before{background:rgba(196,96,58,.14)}
-.door:hover::before{opacity:1}
-.door:hover{transform:translateY(-2px)}
+img { max-width: 100%; }
 
-.door-accent{width:36px;height:3px;border-radius:2px;margin-bottom:22px;transition:width .3s ease;flex-shrink:0}
-.door:hover .door-accent{width:52px}
-.door-a .door-accent{background:var(--door-a)}
-.door-b .door-accent{background:rgba(232,224,213,.5)}
-.door-c .door-accent{background:var(--door-c)}
-.door-d .door-accent{background:var(--door-d)}
-
-.door-tag{font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-bottom:12px;line-height:1.4}
-.door-a .door-tag{color:rgba(37,99,196,.85)}
-.door-b .door-tag{color:rgba(232,224,213,.4)}
-.door-c .door-tag{color:rgba(61,122,87,.85)}
-.door-d .door-tag{color:rgba(196,96,58,.85)}
-
-.door-label{
-  font-size:clamp(17px,2vw,20px);font-weight:700;
-  line-height:1.2;color:var(--white);
-  margin-bottom:12px;letter-spacing:-.01em;
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 3rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(248, 247, 243, 0.94);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
 }
-.door-desc{
-  font-family:'Lora',serif;font-style:italic;
-  font-size:14px;color:var(--desc);
-  line-height:1.6;flex:1;font-weight:400;
+.nav-name {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
 }
-.door-arrow{
-  margin-top:28px;width:38px;height:38px;
-  border:1px solid rgba(245,242,238,.15);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:15px;color:rgba(245,242,238,.45);
-  transition:all .3s ease;flex-shrink:0;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
 }
-.door:hover .door-arrow{border-color:rgba(245,242,238,.4);color:var(--white);transform:translateX(3px)}
-
-.idle-particle{
-  position:absolute;width:90px;height:90px;border-radius:50%;
-  opacity:.05;pointer-events:none;
-  animation:idle-float 6s ease-in-out infinite;
-  right:-22px;top:-22px;
+.nav-links a {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
 }
-.door:hover .idle-particle{opacity:.12}
-@keyframes idle-float{0%,100%{transform:scale(1) translate(0,0)}50%{transform:scale(1.3) translate(-8px,8px)}}
-
-/* ── DOORS MOBILE : carrousel horizontal ── */
-.doors-mobile{
-  display:none;
-  width:100%;
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-  scroll-snap-type:x mandatory;
-  scrollbar-width:none;
-  gap:0;
-  padding:0 24px 4px;
-  /* reveal partiel de la carte suivante */
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  font-size: 0.82rem !important;
+  color: var(--white) !important;
+  background: var(--ink) !important;
+  padding: 0.45rem 1.1rem;
+  border-radius: 100px;
+  transition: background 0.2s !important;
 }
-.doors-mobile::-webkit-scrollbar{display:none}
-.doors-mobile .door{
-  scroll-snap-align:start;
-  flex-shrink:0;
-  width:82vw;max-width:320px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  margin-right:12px;
-  min-height:280px;
+.nav-cta:hover { background: var(--sage-dark) !important; }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 92vh;
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  align-items: center;
+  gap: 4rem;
+  padding: 110px 3rem 60px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
-.doors-mobile .door:last-child{margin-right:0}
-
-/* ── WA FAB ── */
-.wa-fab{
-  position:fixed;bottom:32px;right:32px;
-  display:flex;align-items:center;gap:12px;
-  background:rgba(8,8,8,.9);border:1px solid rgba(37,211,102,.22);
-  border-radius:50px;padding:12px 20px 12px 14px;
-  cursor:pointer;z-index:50;text-decoration:none;
-  transition:all .3s ease;backdrop-filter:blur(12px);
+.hero-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
-.wa-fab:hover{border-color:rgba(37,211,102,.5);transform:translateY(-2px)}
-.wa-icon{width:34px;height:34px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.wa-icon svg{width:18px;height:18px;fill:white}
-.wa-text{display:flex;flex-direction:column;gap:1px}
-.wa-label{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--white);text-transform:uppercase}
-.wa-sub{font-size:10px;color:rgba(245,242,238,.35);letter-spacing:.04em}
-
-footer{padding:20px 48px;display:flex;justify-content:center;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,242,238,.12)}
-
-/* ── RESPONSIVE ── */
-@media(max-width:780px){
-  nav{padding:40px 24px 24px}   /* plus d'espace en haut sur mobile */
-  .hero{padding:16px 0 40px}    /* 0 horizontal car le carrousel gère son propre padding */
-  .hero-script{padding:0 24px;font-size:clamp(20px,5vw,28px);margin-bottom:48px}
-
-  /* masquer grille desktop, afficher carrousel */
-  .doors{display:none}
-  .doors-mobile{display:flex}
-
-  .wa-fab{bottom:20px;right:16px;padding:10px 16px 10px 12px}
-  .wa-text{display:none}
-  footer{padding:16px 24px}
+.badge {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  white-space: nowrap;
 }
-@media(max-width:480px){
-  .doors-mobile .door{width:88vw}
+.badge-dark { background: var(--ink); color: var(--white); }
+.badge-outline { border: 1px solid var(--border-strong); color: var(--ink-soft); }
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+  font-weight: 400;
+}
+.hero h1 em { font-style: italic; color: var(--sage); }
+
+.hero-pitch {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  max-width: 460px;
+  line-height: 1.75;
+  margin-bottom: 2.25rem;
+}
+.hero-pitch strong { color: var(--ink); font-weight: 500; }
+
+.hero-cta-row {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-photo-frame {
+  width: 240px;
+  height: 300px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--cream-dark);
+}
+.hero-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ===== BUTTONS ===== */
+.btn-p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--ink);
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.75rem 1.6rem;
+  border-radius: 100px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.btn-p:hover { background: var(--sage-dark); }
+.btn-s {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.75rem 1.6rem;
+  border-radius: 100px;
+  font-size: 0.88rem;
+  border: 1px solid var(--border-strong);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-s:hover { border-color: var(--sage-mid); color: var(--sage-dark); }
+
+.btn-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 100px;
+  font-size: 0.88rem;
+  border: 1px dashed rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.55);
+  cursor: default;
+}
+.btn-soon .soon-tag {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: 100px;
+  color: var(--sage-mid);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 90px 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--sage-mid);
+}
+.section-h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+.section-h2 em { font-style: italic; color: var(--sage); }
+
+/* ===== BAND DARK ===== */
+.band-dark { background: var(--ink); color: var(--white); }
+.band-dark-inner { max-width: 1000px; margin: 0 auto; padding: 90px 3rem; }
+.band-dark .section-label { color: var(--sage-mid); }
+.band-dark .section-label::after { background: var(--sage-dark); }
+.band-dark .section-h2 { color: var(--white); }
+.band-dark .section-h2 em { color: var(--sage-mid); }
+
+/* ===== FIT ===== */
+.fit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.fit-col { border-radius: 14px; padding: 2.25rem; }
+.fit-col.yes {
+  background: rgba(107, 143, 107, 0.12);
+  border: 1px solid rgba(170, 191, 170, 0.3);
+}
+.fit-col.no {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.fit-col h3 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.3;
+}
+.fit-col.yes h3 { color: var(--sage-mid); }
+.fit-col.no h3 { color: rgba(255,255,255,0.45); }
+.fit-col ul { list-style: none; }
+.fit-col li {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 0.9rem;
+}
+.fit-col.yes li { color: rgba(255,255,255,0.85); }
+.fit-col.no li { color: rgba(255,255,255,0.45); }
+.fit-col.yes li::before { content: '→'; color: var(--sage-mid); flex-shrink: 0; margin-top: 0.1rem; font-size: 0.85rem; }
+.fit-col.no li::before { content: '×'; color: rgba(255,255,255,0.3); flex-shrink: 0; margin-top: 0.05rem; }
+.fit-no-note {
+  margin-top: 1.25rem;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.65;
+  font-style: italic;
+}
+.fit-footnote {
+  margin-top: 2rem;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.03em;
+  line-height: 1.75;
+}
+.fit-footnote strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+/* ===== CHANTIERS ===== */
+.case-main {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.75rem;
+  margin-bottom: 1.5rem;
+}
+.case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.case-title {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  color: var(--ink);
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+}
+.case-role {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.06em;
+}
+.case-metrics { display: flex; gap: 2rem; flex-wrap: wrap; }
+.cm { text-align: right; }
+.cm-val { font-family: var(--mono); font-size: 1.4rem; font-weight: 500; color: var(--sage-dark); line-height: 1; }
+.cm-lbl { font-size: 0.68rem; color: var(--ink-muted); margin-top: 0.2rem; }
+.case-body { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+.case-block h4 {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.9rem;
+}
+.case-block p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 0.9rem; }
+.case-block p strong { color: var(--ink); font-weight: 500; }
+.case-quote {
+  grid-column: 1/-1;
+  padding: 1.4rem 1.6rem;
+  border-left: 2px solid var(--sage-mid);
+  background: var(--sage-light);
+  border-radius: 0 8px 8px 0;
+}
+.case-quote p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 0.5rem;
+}
+.case-quote-attr { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-muted); }
+.case-quote-attr strong { color: var(--ink-soft); font-weight: 500; }
+
+.case-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.case-small {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 2rem;
+}
+.case-small-title { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); font-weight: 400; margin-bottom: 0.15rem; }
+.case-small-role { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-muted); letter-spacing: 0.05em; margin-bottom: 1.1rem; }
+.case-small p { font-size: 0.87rem; color: var(--ink-soft); line-height: 1.65; }
+.case-small p strong { color: var(--ink); font-weight: 500; }
+
+/* ===== NOLA ===== */
+.nola-band {
+  background: var(--sage-light);
+  border-top: 1px solid var(--sage-mid);
+  border-bottom: 1px solid var(--sage-mid);
+}
+.nola-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+.nola-left .section-label { color: var(--sage-dark); }
+.nola-left .section-label::after { background: var(--sage); }
+.nola-left h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1.18;
+  color: var(--ink);
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+.nola-left p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 1.5rem; }
+.nola-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+.ns {
+  background: var(--white);
+  border: 1px solid var(--sage-mid);
+  border-radius: 10px;
+  padding: 1rem 0.75rem;
+  text-align: center;
+}
+.ns-val { font-family: var(--mono); font-size: 1.2rem; font-weight: 500; color: var(--sage-dark); line-height: 1; }
+.ns-lbl { font-size: 0.65rem; color: var(--ink-muted); margin-top: 0.35rem; line-height: 1.3; }
+.nola-right {
+  background: var(--white);
+  border: 1px solid var(--sage-mid);
+  border-radius: 14px;
+  padding: 2rem;
+}
+.nola-right h4 {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+  margin-bottom: 1.25rem;
+}
+.nola-right p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.75; margin-bottom: 1rem; }
+.nola-right p strong { color: var(--ink); font-weight: 500; }
+
+/* ===== MÉTHODE ===== */
+.methode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 3.5rem;
+}
+.methode-n { font-family: var(--mono); font-size: 0.65rem; color: var(--sage); margin-bottom: 0.5rem; letter-spacing: 0.08em; }
+.methode-item h4 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  line-height: 1.35;
+}
+.methode-item p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.7; }
+
+/* ===== TEMOIGNAGES ===== */
+.temo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+.temo-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+}
+.temo-card.featured { background: var(--sage-light); border-color: var(--sage-mid); }
+.temo-card p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+.temo-author { display: flex; align-items: center; gap: 0.75rem; }
+.temo-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--sage-light);
+  border: 1px solid var(--sage-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--sage-dark);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+.temo-card.featured .temo-avatar { background: var(--white); }
+.temo-name { font-size: 0.82rem; font-weight: 500; color: var(--ink); }
+.temo-role { font-size: 0.74rem; color: var(--ink-muted); }
+
+/* ===== INTERVENTIONS ===== */
+.int-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 80px 3rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+.int-left h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1.18;
+  color: var(--white);
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+.int-left h2 em { font-style: italic; color: var(--sage-mid); }
+.int-left p {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+  max-width: 440px;
+}
+.int-orgs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.int-org-tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.04em;
+}
+.int-topics { list-style: none; }
+.int-topics li {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+.int-topics li:last-child { border-bottom: none; }
+.int-topic-name { font-size: 0.92rem; color: var(--white); font-weight: 500; }
+.int-topic-tag {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+/* ===== QUI JE SUIS ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 4rem;
+  align-items: start;
+}
+.about-text p {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.85;
+  margin-bottom: 1.4rem;
+}
+.about-text p strong { color: var(--ink); font-weight: 500; }
+.about-text a { color: var(--sage-dark); text-decoration: none; border-bottom: 1px solid var(--sage-mid); }
+.about-text a:hover { border-bottom-color: var(--sage-dark); }
+.about-signature {
+  font-style: italic;
+  color: var(--ink-muted) !important;
+  font-size: 0.9rem !important;
+}
+.sidebar-block {
+  padding-bottom: 1.6rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.sidebar-block h4 {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.7rem;
+}
+.sidebar-block p, .sidebar-block li { font-size: 0.84rem; color: var(--ink-soft); line-height: 1.7; }
+.sidebar-block ul { list-style: none; }
+.sidebar-block ul li::before { content: '·'; color: var(--sage); margin-right: 0.4rem; }
+.avail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 100px;
+  background: var(--sage-light);
+  color: var(--sage-dark);
+  border: 1px solid var(--sage-mid);
+  margin-bottom: 1rem;
+  letter-spacing: 0.03em;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+/* ===== CTA ===== */
+.cta-band { background: var(--cream-dark); border-top: 1px solid var(--border); }
+.cta-inner { max-width: 1000px; margin: 0 auto; padding: 90px 3rem; }
+.cta-inner h2 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--ink);
+  margin-bottom: 1rem;
+  line-height: 1.18;
+  font-weight: 400;
+}
+.cta-inner h2 em { font-style: italic; color: var(--sage); }
+.cta-inner p { font-size: 0.95rem; color: var(--ink-soft); max-width: 440px; margin-bottom: 2.25rem; line-height: 1.75; }
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-name { font-family: var(--serif); font-size: 0.9rem; color: var(--ink); }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+.footer-links a { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-muted); text-decoration: none; letter-spacing: 0.05em; }
+.footer-links a:hover { color: var(--ink); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .case-metrics { gap: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  body { font-size: 15px; }
+
+  nav { padding: 0 1.25rem; height: 56px; }
+  .nav-links { gap: 1rem; }
+  .nav-links li:not(:last-child) { display: none; }
+  .nav-cta { padding: 0.4rem 0.95rem; font-size: 0.78rem !important; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding: 86px 1.25rem 50px;
+    min-height: auto;
+  }
+  .hero-photo-wrap { order: -1; }
+  .hero-photo-frame { width: 104px; height: 128px; border-radius: 10px; }
+  .hero h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); margin-bottom: 1.1rem; }
+  .hero-pitch { font-size: 0.92rem; margin-bottom: 1.75rem; }
+  .hero-badges { margin-bottom: 1.1rem; }
+  .badge { font-size: 0.62rem; padding: 0.25rem 0.6rem; }
+  .hero-cta-row { gap: 0.6rem; }
+  .btn-p, .btn-s { padding: 0.7rem 1.3rem; font-size: 0.84rem; }
+
+  .section { padding: 56px 1.25rem; }
+  .band-dark-inner { padding: 56px 1.25rem; }
+  .section-h2 { margin-bottom: 1.75rem; }
+
+  .fit-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .fit-col { padding: 1.5rem; }
+  .fit-footnote { margin-top: 1.5rem; font-size: 0.7rem; }
+
+  .case-main { padding: 1.5rem; border-radius: 14px; }
+  .case-header { flex-direction: column; gap: 1.25rem; padding-bottom: 1.25rem; margin-bottom: 1.5rem; }
+  .case-metrics { gap: 1.5rem; }
+  .cm { text-align: left; }
+  .cm-val { font-size: 1.2rem; }
+  .case-body { grid-template-columns: 1fr; gap: 1.5rem; }
+  .case-quote { padding: 1.1rem 1.2rem; }
+  .case-quote p { font-size: 0.9rem; }
+  .case-row { grid-template-columns: 1fr; gap: 1rem; }
+  .case-small { padding: 1.5rem; }
+
+  .nola-inner { grid-template-columns: 1fr; padding: 56px 1.25rem; gap: 1.75rem; }
+  .nola-stats { gap: 0.6rem; }
+  .ns { padding: 0.8rem 0.5rem; }
+  .ns-val { font-size: 1.05rem; }
+  .ns-lbl { font-size: 0.6rem; }
+  .nola-right { padding: 1.5rem; }
+
+  .methode-grid { grid-template-columns: 1fr; gap: 1.75rem; }
+
+  .temo-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .temo-card { padding: 1.4rem; }
+  .temo-card p { font-size: 0.92rem; }
+
+  .int-inner { grid-template-columns: 1fr; padding: 56px 1.25rem; gap: 1.75rem; }
+  .int-topics li { flex-direction: column; gap: 0.15rem; align-items: flex-start; padding: 0.7rem 0; }
+  .int-topic-tag { text-align: left; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 2.25rem; }
+
+  .cta-inner { padding: 56px 1.25rem; }
+  .cta-inner h2 br { display: none; }
+
+  footer { padding: 1.5rem 1.25rem; flex-direction: column; text-align: center; justify-content: center; }
+  .footer-links { justify-content: center; }
+}
+
+@media (max-width: 380px) {
+  .hero h1 { font-size: 1.75rem; }
+  .btn-p, .btn-s { width: 100%; justify-content: center; }
+  .nola-stats { grid-template-columns: 1fr; }
+  .ns { display: flex; align-items: baseline; gap: 0.6rem; text-align: left; padding: 0.7rem 1rem; }
+  .ns-lbl { margin-top: 0; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .dot { animation: none; }
+  * { transition: none !important; }
 }
 </style>
 </head>
 <body>
 
-<div id="loader">
-  <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-</div>
+<!-- NAV -->
+<nav aria-label="Navigation principale">
+  <a href="#" class="nav-name">Emmanuel Di Marco</a>
+  <ul class="nav-links">
+    <li><a href="#fit">pour qui</a></li>
+    <li><a href="#chantiers">chantiers</a></li>
+    <li><a href="#methode">méthode</a></li>
+    <li><a href="#interventions">interventions</a></li>
+    <li><a href="#qui">qui je suis</a></li>
+    <li><a href="https://wa.me/33659719827" class="nav-cta" rel="noopener">M'écrire sur WhatsApp</a></li>
+  </ul>
+</nav>
 
-<div id="app">
-  <nav>
-    <span class="nav-name">Emmanuel Di Marco</span>
-    <span class="nav-status"><span class="status-dot"></span>Disponible · Paris</span>
-  </nav>
-
-  <section class="hero">
-
-    <div id="tickerWrap" aria-label="Builder, Product, Ex-RH, Founder, GenAI, 0-to-1, Terrain">
-      <div id="ticker">
-        <div class="ticker-word">Builder</div>
-        <div class="ticker-word">Product</div>
-        <div class="ticker-word">Ex&#8209;RH</div>
-        <div class="ticker-word">Founder</div>
-        <div class="ticker-word outline">GenAI</div>
-        <div class="ticker-word">0&#8209;to&#8209;1</div>
-        <div class="ticker-word outline">Terrain</div>
-        <div class="ticker-word" aria-hidden="true">Builder</div>
-      </div>
+<!-- HERO -->
+<header class="hero">
+  <div>
+    <div class="hero-badges">
+      <span class="badge badge-dark">Senior Product Manager</span>
+      <span class="badge badge-outline">Freelance · ouvert au bon CDI</span>
     </div>
-
-    <p class="hero-script">Je construis des produits, des interventions<br>et des lieux où les gens ont envie de se retrouver.</p>
-
-    <!-- GRILLE DESKTOP -->
-    <div class="doors">
-      <div class="door door-a" role="link" tabindex="0"
-        onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')"
-        onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')">
-        <div>
-          <div class="door-accent"></div>
-          <div class="door-tag">Mission · Freelance</div>
-          <div class="door-label">Tu cherches un PM pour une mission</div>
-          <div class="door-desc">Structuration produit, first PM, transformation — je m'intègre là où ça compte.</div>
-        </div>
-        <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:#2563c4"></div>
-      </div>
-      <div class="door door-b" role="link" tabindex="0"
-        onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')"
-        onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')">
-        <div>
-          <div class="door-accent"></div>
-          <div class="door-tag">CDI · Équipe</div>
-          <div class="door-label">Tu construis une équipe produit pour durer</div>
-          <div class="door-desc">Si l'équipe, le projet et l'ambition s'alignent — la conversation vaut le coup.</div>
-        </div>
-        <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:rgba(232,224,213,1)"></div>
-      </div>
-      <div class="door door-c" role="link" tabindex="0"
-        onclick="window.location.href='/intervention/'"
-        onkeydown="if(event.key==='Enter')window.location.href='/intervention/'">
-        <div>
-          <div class="door-accent"></div>
-          <div class="door-tag">Intervention · IA × RH</div>
-          <div class="door-label">Tu veux acculturer ton équipe RH à l'IA</div>
-          <div class="door-desc">Conférence, atelier, programme — du concret, pas du théorique.</div>
-        </div>
-        <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:#3d7a57"></div>
-      </div>
-      <div class="door door-d" role="link" tabindex="0"
-        onclick="window.open('https://cheznola.fr','_blank')"
-        onkeydown="if(event.key==='Enter')window.open('https://cheznola.fr','_blank')">
-        <div>
-          <div class="door-accent"></div>
-          <div class="door-tag">Communauté · Paris</div>
-          <div class="door-label">Tu veux rejoindre Nola</div>
-          <div class="door-desc">Dîners en petit comité entre Product, Designer, Tech & Data. Sur invitation.</div>
-        </div>
-        <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:#c4603a"></div>
-      </div>
+    <h1>Je construis des produits, des interventions et des lieux où les gens ont <em>envie de se retrouver.</em></h1>
+    <p class="hero-pitch">Vous avez un produit à lancer, une fonction PM à créer ou des équipes à acculturer à l'IA. <strong>On devrait se parler.</strong><br>First PM chez MerciYanis. Fondateur de Nola. 18 ans d'expérience dont 8 de pratique produit avant le titre.</p>
+    <div class="hero-cta-row">
+      <a href="https://wa.me/33659719827" class="btn-p" rel="noopener">↗ M'écrire sur WhatsApp</a>
+      <a href="#fit" class="btn-s">Suis-je le bon profil ?</a>
     </div>
-
-    <!-- CARROUSEL MOBILE -->
-    <div class="doors-mobile" role="list">
-      <div class="door door-a" role="listitem" tabindex="0"
-        onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')"
-        onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')">
-        <div>
-          <div class="door-accent"></div>
-          <div class="door-tag">Mission · Freelance</div>
-          <div class="door-label">Tu cherches un PM pour une mission</div>
-          <div class="door-desc">Structuration produit, first PM, transformation — je m'intègre là où ça compte.</div>
-        </div>
-        <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:#2563c4"></div>
-      </div>
-      <div class="door door-b" role="listitem" tabindex="0"
-        onclick="window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')"
-        onkeydown="if(event.key==='Enter')window.open('https://www.linkedin.com/in/emmanueldimarco/','_blank')">
-        <div>
-          <div class="door-accent"></div>
-          <div class="door-tag">CDI · Équipe</div>
-          <div class="door-label">Tu construis une équipe produit pour durer</div>
-          <div class="door-desc">Si l'équipe, le projet et l'ambition s'alignent — la conversation vaut le coup.</div>
-        </div>
-        <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:rgba(232,224,213,1)"></div>
-      </div>
-      <div class="door door-c" role="listitem" tabindex="0"
-        onclick="window.location.href='/intervention/'"
-        onkeydown="if(event.key==='Enter')window.location.href='/intervention/'">
-        <div>
-          <div class="door-accent"></div>
-          <div class="door-tag">Intervention · IA × RH</div>
-          <div class="door-label">Tu veux acculturer ton équipe RH à l'IA</div>
-          <div class="door-desc">Conférence, atelier, programme — du concret, pas du théorique.</div>
-        </div>
-        <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:#3d7a57"></div>
-      </div>
-      <div class="door door-d" role="listitem" tabindex="0"
-        onclick="window.open('https://cheznola.fr','_blank')"
-        onkeydown="if(event.key==='Enter')window.open('https://cheznola.fr','_blank')">
-        <div>
-          <div class="door-accent"></div>
-          <div class="door-tag">Communauté · Paris</div>
-          <div class="door-label">Tu veux rejoindre Nola</div>
-          <div class="door-desc">Dîners en petit comité entre Product, Designer, Tech & Data. Sur invitation.</div>
-        </div>
-        <div class="door-arrow">→</div>
-        <div class="idle-particle" style="background:#c4603a"></div>
-      </div>
-    </div>
-
-  </section>
-
-  <footer>Paris · 2026</footer>
-</div>
-
-<a class="wa-fab" href="https://wa.me/33659719827?text=Bonjour%20Emmanuel%2C%20j%27ai%20vu%20ton%20site%20et%20je%20voulais%20te%20contacter." target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">
-  <div class="wa-icon">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </div>
-  <div class="wa-text">
-    <span class="wa-label">Me contacter</span>
-    <span class="wa-sub">Réponse rapide</span>
+  <div class="hero-photo-wrap">
+    <div class="hero-photo-frame">
+      <img src="https://res.cloudinary.com/dtjcum3gb/image/upload/v1779526244/3322fde7-dc62-4c83-b353-3b0a0ecb01af_uswimj.jpg" alt="Portrait d'Emmanuel Di Marco" width="240" height="300" loading="eager" fetchpriority="high" />
+    </div>
   </div>
-</a>
+</header>
 
-<script>
-// LOADER
-(function(){
-  var loader=document.getElementById('loader');
-  var app=document.getElementById('app');
-  setTimeout(function(){
-    loader.style.opacity='0';
-    setTimeout(function(){loader.style.display='none';app.classList.add('visible')},600);
-  },2000);
-})();
+<main>
 
-// TICKER
-(function(){
-  var wrap  = document.getElementById('tickerWrap');
-  var track = document.getElementById('ticker');
-  var words = track.querySelectorAll('.ticker-word');
-  var TOTAL = 7;
-  var HOLD  = 1800;
-  var DUR   = 460;
-  var idx   = 0;
-  var h     = 0;
-  var busy  = false;
-  var timer = null;
+<!-- FIT -->
+<section class="band-dark" id="fit">
+  <div class="band-dark-inner">
+    <div class="section-label">Avant d'aller plus loin</div>
+    <h2 class="section-h2">On est faits pour <em>travailler ensemble ?</em></h2>
+    <div class="fit-grid">
+      <div class="fit-col yes">
+        <h3>Oui, si vous êtes dans un de ces cas :</h3>
+        <ul>
+          <li>Vous lancez un produit de zéro et il n'y a pas encore de PM chez vous</li>
+          <li>Vous êtes fondateur ou CEO, vous portez le produit seul, et ça commence à coincer</li>
+          <li>Vous transformez une organisation habituée au mode projet vers une culture produit</li>
+          <li>Vous êtes un grand groupe ou une PME avec un chantier délimité et de vraie latitude</li>
+          <li>Vous cherchez un PM qui parle au COMEX et aux utilisateurs terrain la même journée</li>
+        </ul>
+      </div>
+      <div class="fit-col no">
+        <h3>Probablement pas, si :</h3>
+        <ul>
+          <li>Vous cherchez un PM pour exécuter une roadmap déjà définie par d'autres</li>
+          <li>Votre organisation produit est très mature et vous voulez quelqu'un qui rentre dans le rang</li>
+          <li>Une expertise sectorielle pointue est un filtre dur sur le poste</li>
+        </ul>
+        <p class="fit-no-note">Je préfère vous le dire maintenant plutôt qu'au troisième entretien. Mon profil est fort là où il faut construire, pas là où il faut maintenir.</p>
+      </div>
+    </div>
+    <div class="fit-footnote">
+      Disponible en <strong>mission freelance</strong> (portage salarial) et ouvert à un <strong>CDI si l'équipe, le projet et l'ambition s'alignent</strong>. Actuellement en mission. J'interviens aussi en <strong>acculturation IA</strong> pour les équipes RH et managers.
+    </div>
+  </div>
+</section>
 
-  function fontSize(){
-    var vw = window.innerWidth;
-    if(vw <= 480) return Math.min(76,  vw * 0.18);
-    if(vw <= 780) return Math.min(108, vw * 0.15);
-    return Math.min(158, vw * 0.125);
-  }
+<!-- CHANTIERS -->
+<section class="section" id="chantiers">
+  <div class="section-label">Chantiers</div>
+  <h2 class="section-h2">Ce que j'ai <em>livré.</em></h2>
 
-  function setup(){
-    var fs = fontSize();
-    var pad = Math.round(fs * 0.13);
-    h = Math.round(fs) + pad * 2;
-    wrap.style.height = h + 'px';
-    words.forEach(function(w){
-      w.style.fontSize   = fs + 'px';
-      w.style.height     = h  + 'px';
-      w.style.paddingTop = pad + 'px';
-    });
-    track.style.transition = 'none';
-    track.style.transform  = 'translateY(' + (-idx * h) + 'px)';
-  }
+  <article class="case-main">
+    <div class="case-header">
+      <div>
+        <h3 class="case-title">MerciYanis</h3>
+        <div class="case-role">first product manager · saas b2b iot · 2023–2025</div>
+      </div>
+      <div class="case-metrics">
+        <div class="cm"><div class="cm-val">+68%</div><div class="cm-lbl">de CA en 2 ans</div></div>
+        <div class="cm"><div class="cm-val">&gt;80%</div><div class="cm-lbl">d'adoption terrain</div></div>
+        <div class="cm"><div class="cm-val">−90%</div><div class="cm-lbl">de bugs critiques</div></div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-block">
+        <h4>Le contexte</h4>
+        <p>Pas de PM avant moi. Pas de backlog, pas de rituel, pas de discovery. Des utilisateurs terrain peu digitalisés, des clients exigeants (TF1, Danone, Total), une équipe de 5 devs.</p>
+        <p><strong>Ma mission : créer la fonction produit en marchant.</strong></p>
+      </div>
+      <div class="case-block">
+        <h4>Ce que j'ai livré</h4>
+        <p>Structuration complète : EPICs, discovery en trio, QA, releases, recrutement du premier designer. Premier agent IA workplace de l'écosystème, de l'idée à la prod en 15 jours. Stratégie API partenaires. Gestion de crise migration serveur en appelant moi-même les comptes critiques.</p>
+      </div>
+      <div class="case-quote">
+        <p>Emmanuel est arrivé avec la difficile mission d'être notre premier Product Manager. Il nous a convaincus par sa capacité à apprendre rapidement. Il a proposé et mis en place des process pour mieux comprendre nos besoins clients, prioriser la roadmap et suivre la delivery côté tech. C'est un grand travailleur, entièrement dévoué dès lors qu'il croit dans le projet.</p>
+        <div class="case-quote-attr"><strong>Guillaume Blanc</strong> · Cofondateur &amp; CEO, MerciYanis</div>
+      </div>
+    </div>
+  </article>
 
-  function advance(){
-    if(busy) return;
-    busy = true;
-    idx++;
-    track.style.transition = 'transform ' + DUR + 'ms cubic-bezier(0.4,0,0.2,1)';
-    track.style.transform  = 'translateY(' + (-idx * h) + 'px)';
-    setTimeout(function(){
-      if(idx >= TOTAL){
-        track.style.transition = 'none';
-        idx = 0;
-        track.style.transform = 'translateY(0)';
-      }
-      busy = false;
-    }, DUR + 60);
-  }
+  <div class="case-row">
+    <article class="case-small">
+      <h3 class="case-small-title">Un acteur des services automobiles</h3>
+      <div class="case-small-role">product manager · mission freelance · 2026</div>
+      <p>Refonte d'un média digital grand public. Discovery terrain, cadrage avec design et tech, premiers prototypes testés utilisateurs. <strong>Apporter une culture produit dans une organisation en mode projet, sans la brusquer.</strong></p>
+    </article>
+    <article class="case-small">
+      <h3 class="case-small-title">L'Autre RH</h3>
+      <div class="case-small-role">fondateur &amp; first pm · 2021–2023</div>
+      <p>Marketplace de consultations RH. 30+ interviews, MVP lancé, 100+ utilisateurs payants. J'ai refusé 200K€ puis fait l'erreur de prioriser le business plan sur l'itération. <strong>Ce fail est documenté, assumé, et dans ma méthode aujourd'hui.</strong></p>
+    </article>
+  </div>
+</section>
 
-  function start(){
-    setup();
-    if(timer) clearInterval(timer);
-    timer = setInterval(advance, HOLD + DUR);
-  }
+<!-- NOLA -->
+<section class="nola-band" id="nola">
+  <div class="nola-inner">
+    <div class="nola-left">
+      <div class="section-label">Construit de zéro, de A à Z</div>
+      <h2>Nola, des dîners en petit comité pour les Product People parisiens.</h2>
+      <p>Un projet né d'une vraie frustration : les événements produit brassent de l'air. Nola fait le contraire. Groupes de 4 à 6, matching manuel, restaurants sélectionnés, pas de badge, pas de pitch. Des conversations qui ne se tiennent nulle part ailleurs.</p>
+      <div class="nola-stats">
+        <div class="ns"><div class="ns-val">150+</div><div class="ns-lbl">membres CPO, HoP, PM senior</div></div>
+        <div class="ns"><div class="ns-val">4</div><div class="ns-lbl">tables en simultané, restos différents</div></div>
+        <div class="ns"><div class="ns-val">100%</div><div class="ns-lbl">croissance organique, zéro pub</div></div>
+      </div>
+      <a href="https://cheznola.fr" class="btn-s" style="border-color:var(--sage-mid);" rel="noopener">Découvrir Nola →</a>
+    </div>
+    <div class="nola-right">
+      <h4>Pourquoi c'est ici</h4>
+      <p>Parce que Nola démontre en public ce qu'un CV dit en privé. <strong>Discovery continue</strong> à chaque édition. <strong>Décisions UX</strong> défendues face à des designers membres. <strong>Arbitrages tech</strong> pris avec des ingénieurs. <strong>Choix stratégiques</strong> tenus contre l'avis de gens plus expérimentés.</p>
+      <p>J'ai refusé de pivoter en BtoB malgré des clients prêts. J'ai maintenu 4 tables max par édition. La stack est construite seule : Supabase, Vercel, Make, Stripe, Resend, agents IA en prod. Ce sont des décisions produit. Elles sont visibles, vérifiables, critiquables.</p>
+    </div>
+  </div>
+</section>
 
-  if(document.fonts && document.fonts.ready){
-    document.fonts.ready.then(start);
-  } else {
-    setTimeout(start, 400);
-  }
+<!-- MÉTHODE -->
+<section class="section" id="methode">
+  <div class="section-label">Ma méthode</div>
+  <h2 class="section-h2">Comment je <em>travaille.</em></h2>
 
-  var resizeTimer;
-  window.addEventListener('resize', function(){
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(setup, 150);
-  });
-})();
-</script>
+  <div class="methode-grid">
+    <div class="methode-item">
+      <div class="methode-n">01</div>
+      <h4>Je commence par le terrain, jamais par la roadmap.</h4>
+      <p>Interviews utilisateurs, shadow du support, démos sales. 100+ interviews terrain chez MerciYanis. Je ne construis pas ce que je suppose, je construis ce que j'ai vu fonctionner ou rater pour de vrai.</p>
+    </div>
+    <div class="methode-item">
+      <div class="methode-n">02</div>
+      <h4>Je coordonne sans autorité hiérarchique.</h4>
+      <p>Veepee, Allianz, MerciYanis, Nola : j'ai toujours aligné des équipes sans ligne managériale directe. C'est mon mode par défaut, pas une contrainte que je subis.</p>
+    </div>
+    <div class="methode-item">
+      <div class="methode-n">03</div>
+      <h4>Je parle au CEO et à l'utilisateur la même journée.</h4>
+      <p>Je traduis dans les deux sens sans perdre de signal. Dans une organisation qui se construit, c'est souvent la chose la plus utile que je fais.</p>
+    </div>
+    <div class="methode-item">
+      <div class="methode-n">04</div>
+      <h4>J'écris du code quand c'est nécessaire.</h4>
+      <p>Pas développeur. Mais capable de prototyper, déboguer, lire une PR et tenir une conversation technique sans traducteur. Ça change la vitesse d'un cycle discovery.</p>
+    </div>
+    <div class="methode-item">
+      <div class="methode-n">05</div>
+      <h4>Je travaille le go-to-market, pas juste le produit.</h4>
+      <p>Pricing, distribution, acquisition, messaging : j'ai lancé L'Autre RH et Nola sans budget marketing. Les features ne se vendent pas toutes seules, et je l'ai appris à mes dépens.</p>
+    </div>
+    <div class="methode-item">
+      <div class="methode-n">06</div>
+      <h4>J'utilise l'IA comme outil de travail, pas comme sujet.</h4>
+      <p>Claude Code pour prototyper. Make + API Claude pour des agents autonomes en prod. Stack agentique complète activable en 24h sur une nouvelle mission. Au quotidien depuis 2023.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEMOIGNAGES -->
+<section class="section" style="padding-top:0;" id="temoignages">
+  <div class="section-label">Ils en parlent mieux que moi</div>
+
+  <div class="temo-grid">
+    <div class="temo-card featured">
+      <p>"Il ne compte pas ses heures lorsqu'il s'agit de creuser un sujet. Il tente, se trompe, analyse et rectifie. Toute équipe devrait avoir un Emmanuel, car c'est ce profil qui vous bousculera pour aller là où vous ne pensiez pas aller : plus haut."</p>
+      <div class="temo-author">
+        <div class="temo-avatar" aria-hidden="true">AL</div>
+        <div>
+          <div class="temo-name">Antoine Lafond</div>
+          <div class="temo-role">Consultant Marque Employeur &amp; Personal Branding</div>
+        </div>
+      </div>
+    </div>
+    <div class="temo-card">
+      <p>"Emmanuel a mis en place des outils et rituels à impact concret : une équipe tech plus focus, un meilleur suivi des demandes clients, des réunions stratégiques pour prioriser la roadmap."</p>
+      <div class="temo-author">
+        <div class="temo-avatar" aria-hidden="true">EA</div>
+        <div>
+          <div class="temo-name">Elise Applanat</div>
+          <div class="temo-role">Cofondatrice &amp; CPO · MerciYanis</div>
+        </div>
+      </div>
+    </div>
+    <div class="temo-card">
+      <p>"Sa vision produit user-centric a permis de tirer le meilleur de la discovery pour proposer un prototype répondant totalement aux besoins clients. Je ne peux que recommander son profil à 1000%."</p>
+      <div class="temo-author">
+        <div class="temo-avatar" aria-hidden="true">RC</div>
+        <div>
+          <div class="temo-name">Romain Cointet</div>
+          <div class="temo-role">Senior Product Designer · MerciYanis</div>
+        </div>
+      </div>
+    </div>
+    <div class="temo-card">
+      <p>"Un passionné, avec l'envie de transformer des entreprises bien établies. Capable de prendre des risques et de défendre ses convictions en interne. Travailler avec lui, c'est un privilège."</p>
+      <div class="temo-author">
+        <div class="temo-avatar" aria-hidden="true">SD</div>
+        <div>
+          <div class="temo-name">Sébastien Dujoncquoy</div>
+          <div class="temo-role">Fractional Head of Sales · Sool &amp; Proppl</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERVENTIONS -->
+<section class="band-dark" id="interventions">
+  <div class="int-inner">
+    <div class="int-left">
+      <div class="section-label">Interventions &amp; formation</div>
+      <h2>J'aide les équipes RH et les managers à comprendre ce que l'IA <em>change vraiment.</em></h2>
+      <p>Pas de slides sur le futur. Des ateliers construits sur vos cas métier réels, animés par quelqu'un qui utilise cette stack tous les jours depuis 2023.</p>
+      <div class="int-orgs">
+        <span class="int-org-tag">Référencé GERESO</span>
+        <span class="int-org-tag">Intervenant école de commerce</span>
+        <span class="int-org-tag">Jury filière RH</span>
+      </div>
+      <span class="btn-soon">Page dédiée <span class="soon-tag">Bientôt</span></span>
+    </div>
+    <div>
+      <ul class="int-topics">
+        <li><span class="int-topic-name">IA pour les RH</span><span class="int-topic-tag">0,5 à 2 jours</span></li>
+        <li><span class="int-topic-name">IA pour les managers</span><span class="int-topic-tag">0,5 à 1 jour</span></li>
+        <li><span class="int-topic-name">Agents &amp; automatisation sans coder</span><span class="int-topic-tag">atelier pratique</span></li>
+        <li><span class="int-topic-name">Keynote &amp; table ronde</span><span class="int-topic-tag">1 heure</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QUI JE SUIS -->
+<section class="section" id="qui">
+  <div class="section-label">Qui je suis</div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Je m'appelle Emmanuel. Tout le monde dit Manu. <strong>Né à Toulouse, installé à Paris depuis 2017.</strong></p>
+
+      <p>Mon parcours est un peu atypique. Il commence en banque, passe par les RH, traverse une DSI de 800 personnes chez Veepee, un groupe comme Allianz, une aventure entrepreneuriale avec L'Autre RH, et atterrit chez MerciYanis où je crée la fonction produit de zéro. Ce n'est pas un parcours rectiligne. C'est un avantage.</p>
+
+      <p><strong>Savoir lire les gens, comprendre les organisations, et construire des produits dans le même mouvement</strong> : c'est ce que donnent 18 ans de contextes différents. Le titre de PM est arrivé en 2023. La posture, bien avant.</p>
+
+      <p>Aujourd'hui je suis en mission freelance, je continue de construire <a href="https://cheznola.fr" rel="noopener">Nola</a>, et je reste ouvert à un CDI pour un contexte qui le mérite : un produit à lancer, une fonction à créer, une transformation à porter.</p>
+
+      <p class="about-signature">Si l'équipe, le projet et l'ambition s'alignent, la conversation vaut le coup.</p>
+    </div>
+
+    <aside class="about-sidebar">
+      <div class="sidebar-block">
+        <div class="avail-badge"><div class="dot"></div>Disponible CDI · sept. 2026</div>
+        <h4>Situation</h4>
+        <ul>
+          <li>Mission freelance · en cours</li>
+          <li>Portage salarial</li>
+          <li>Ouvert CDI senior dès sept.</li>
+        </ul>
+      </div>
+      <div class="sidebar-block">
+        <h4>Stack agentique</h4>
+        <ul>
+          <li>Claude, Claude Code, API Anthropic</li>
+          <li>Make · agents autonomes en prod</li>
+          <li>Supabase, Vercel, Resend, Stripe</li>
+        </ul>
+      </div>
+      <div class="sidebar-block">
+        <h4>Stack PM quotidienne</h4>
+        <ul>
+          <li>Notion, Linear, Figma</li>
+          <li>Mixpanel, Hotjar, SQL</li>
+          <li>Miro, Dovetail</li>
+        </ul>
+      </div>
+      <div class="sidebar-block">
+        <h4>Formation</h4>
+        <ul>
+          <li>Master Management des DRH · IGENSIA RH</li>
+          <li>Réussir le Changement · ESSEC Business School</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="cta-inner" id="contact">
+    <div class="section-label">Me contacter</div>
+    <h2>Le plus court chemin,<br>c'est <em>WhatsApp.</em></h2>
+    <p>Pas de formulaire, pas de Calendly. Un message direct, et si c'est concret, ça avance en quelques échanges.</p>
+    <div class="hero-cta-row">
+      <a href="https://wa.me/33659719827" class="btn-p" rel="noopener">↗ M'écrire sur WhatsApp</a>
+      <a href="https://www.linkedin.com/in/emmanueldimarco/" class="btn-s" rel="noopener">LinkedIn</a>
+      <a href="mailto:contact@emmanueldimarco.fr" class="btn-s">Email</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span class="footer-name">Emmanuel Di Marco</span>
+  <ul class="footer-links">
+    <li><a href="https://cheznola.fr" rel="noopener">Nola</a></li>
+    <li><a href="https://www.linkedin.com/in/emmanueldimarco/" rel="noopener">LinkedIn</a></li>
+    <li><a href="mailto:contact@emmanueldimarco.fr">contact</a></li>
+    <li><a href="/mentions-legales.html">mentions légales</a></li>
+  </ul>
+</footer>
+
 </body>
 </html>
